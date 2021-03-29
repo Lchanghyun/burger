@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	이 파일에는 프로젝트의 정보가 들어간다.
+	project 태그 내에 설정하도록 되어 있다.
+	자동완성이나 문법검사를 위해 주소 형태(CDN)로 양식을 제공하며, 이를 xmlns라고 부른다. 
+	xmlns는 XML NameSpace의 줄임말이다.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- 
+		아래 부분은 이 프로젝트의 정보를 의미한다
+		- modelVersion : 사용된 Maven 모델 버전
+		- groupId : 회사명에 해당하는 패키지를 의미(kr.or.iei)
+		- artifactId : 어플리케이션에 해당하는 패키지를 의미(spring01)
+		- name : 프로젝트 이름(spring01)
+		- packaging : 배포될 형태(빌드 완성 시 나와야 할 결과물의 형태)
+		- version : 현재 어플리케이션의 버전(x.y.z)
+	-->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.one</groupId>
+	<artifactId>burger</artifactId>
+	<name>burger</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	<!-- 
+		properties 에는 이 문서에서 사용할 변수가 저장된다
+		- 주로 버전 정보를 저장할 때 사용한다
+	 -->
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.9.6</org.aspectj-version>
+		<org.slf4j-version>1.7.30</org.slf4j-version>
+	</properties>
+	
+	<!-- 
+		dependencies 에는 이 프로젝트에서 사용할 의존성 정보가 작성된다.
+		= 의존성은 프로젝트에 필요한 라이브러리를 말한다.
+		= 여기에 의존성 정보를 작성하면 Maven이 자동으로 다운로드를 받는다.
+		= 더이상 직접 라이브러리를 다운받아서 추가할 필요가 없다.
+		= 기본적으로 Maven은 사용자 폴더에 .m2라는 폴더를 만들고 의존성을 다운로드 한다.
+		= 필요하다면 우리가 원하는 위치로 변경할 수 있어야 하며, 변경해야 충돌이 발생하지 않는다.
+	 -->
+	 
+	<dependencies>
+		
+		<!-- 스프링을 사용하기 위한 의존성 정보 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- 제외 설정 : 적용시키지 않을 대상을 기재 -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				 </exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+				
+		<!--Lombok 의존성 -->
+		<dependency>	    
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+		 	<version>1.18.18</version>		    
+		 	<scope>provided</scope>		
+	     </dependency>
+	     
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+				
+		<!-- 서블릿 관련 의존성 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- JSP 관련 의존성 -->
+		<dependency>
+		    <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.3.3</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+	
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>      
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${org.springframework-version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- 오라클 드라이버 의존성 -->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <version>21.1.0.0</version>
+		</dependency>
+		
+		<!-- 스프링 JDBC 의존성 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- DBCP 의존성 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.8.0</version>
+		</dependency>  
+		
+		<!-- DBCP 의존성 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.8.0</version>
+		</dependency>  
+		
+		<!-- mybatis 의존성 -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.6</version>
+		</dependency>
+				
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
+		
+		<!-- 비동기 통신에서 사용하기 위한 변환 라이브러리 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.12.1</version>
+		</dependency>
+				
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.1</version>
+		</dependency>
+		
+	</dependencies>
+	
+	<!-- 
+		build 에서는 빌드에 사용할 도구들을 작성
+	 -->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>org.test.int1.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+		컨트롤러를 한땀한땀 등록하려니 손가락이 아프다
+		= 패키지를 지정하고 자동으로 등록될 수 있도록 감시하자! 
+		= 컨트롤러를 등록하는 설정을 하는 것이 아니라 패키지를 감시하는 설정을 수행
+		= base-package에 작성하는 글자로 시작되는 패키지는 전부다 감시(하위 패키지 포함)
+	-->
+	<context:component-scan base-package="com.one.burger"></context:component-scan>
+
+	<!-- 
+		뷰 리졸버(View Resolver)
+		= 컨트롤러에서 반환되는 주소에 자동으로 접두사, 접미사를 추가하는 도구
+		= 접두사를 prefix , 접미사를 suffix라고 부른다
+		= 스프링에서 제공하는 도구를 사용
+		= org.springframework.web.servlet.view.InternalResourceViewResolver
+	 -->
+	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<beans:property name="prefix" value="/WEB-INF/views/"></beans:property>
+	 	<beans:property name="suffix" value=".jsp"></beans:property>
+	 </beans:bean>
+	 
+	 <!-- 
+	 	데이터베이스 연결을 담당하는 객체를 등록
+	 	= 연결 신규 생성 방식
+	 	= 연결 풀 방식(DBCP. DataBase Connection Pool 방식)
+	 	= 스프링에서 제공하는 클래스이므로 Annotation으로 등록이 불가하여 bean 설정을 직접 수행
+	 	= 직접 작성하거나 파일을 찾아서 copy qualified name 선택
+	 	= Connection 생성도구
+	  -->
+	 <beans:bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	 	<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
+	 	<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
+	 	<beans:property name="username" value="burger"></beans:property>
+	 	<beans:property name="password" value="burger"></beans:property>
+	 </beans:bean>
+	 
+	 <beans:bean id="dataSource2" class="org.apache.commons.dbcp2.BasicDataSource">
+	 	<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
+	 	<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
+	 	<beans:property name="username" value="burger"></beans:property>
+	 	<beans:property name="password" value="burger"></beans:property>
+	 	<beans:property name="maxTotal" value="20"></beans:property>
+	 	<beans:property name="minIdle" value="5"></beans:property>
+	 	<beans:property name="maxIdle" value="5"></beans:property>
+	 	<beans:property name="maxWaitMillis" value="3000"></beans:property>
+	 </beans:bean>
+	 
+	 <!-- 
+	 	Spring에서는 데이터베이스 명령 전송도 자체적으로 제공되는 도구를 등록하여 사용한다.
+	 	= PreparedStatement 대신 사용할 수 있는 도구
+	 	= JdbcTemplate
+	 	= reference 설정으로 데이터베이스 연결객체를 주입해야 한다
+	  -->
+	  <beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	  	<!-- jdbcTemplate 객체의 dataSource라는 변수에 dbcpSource 객체를 연결해라! -->
+	  	<beans:property name="dataSource" ref="dataSource2"></beans:property>
+	  </beans:bean>
+	  
+	  <!-- 
+	 	myBatis를 Spring에서 사용하기 위해 필요한 도구를 등록
+	 	
+	 	1. SqlSessionFactory(SqlSessionFactoryBean) : 초기 설정 및 관리를 수행하는 도구
+	 		- configLocation : 설정파일의 경로를 말하며 지정해주면 알아서 스트림열고 불러온다!
+	 		- dataSource : 데이터베이스 연결 방식 설정
+	 		- mapperLocations : 연결시킬 mapper 파일의 패턴을 지정
+	 	2. SqlSession(SqlSessionTemplate) : 실제 데이터베이스 명령을 수행하는 도구
+	 		- SqlSession을 만들기 위해서는 "반드시" SqlSessionFactory 정보가 있어야 한다.
+	 		- "반드시" 들어가야 하는 정보는 생성자를 이용하도록 코드를 구성한다
+	  -->
+	 
+	 <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<beans:property name="dataSource" ref="dataSource2"></beans:property>
+	 	<beans:property name="configLocation" value="classpath:/mybatis/mybatis-configuration.xml"></beans:property>
+	 	<beans:property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"></beans:property>
+	 </beans:bean>
+	 
+	 <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
+	 </beans:bean>
+	
+</beans:beans>
