@@ -20,16 +20,29 @@ super_no number primary key,
 super_id  varchar2(20) unique not null,
 super_pw varchar2(15) not null
 );
+drop sequence super_seq;
 create sequence super_seq;
+
+select * from supervisor;
+insert into supervisor values(super_seq.nextval, 'super1', 'super1');
+insert into supervisor values(super_seq.nextval, 'super2', 'super2');
+insert into supervisor values(super_seq.nextval, 'super3', 'super3');
+insert into supervisor values(super_seq.nextval, 'super4', 'super4');
+insert into supervisor values(super_seq.nextval, 'super5', 'super5');
 
 create table branch(
 branch_no number primary key,
 super_no number REFERENCES supervisor(super_no),
 branch_name varchar2(30) not null,
 branch_id varchar2(20) unique not null,
-branch_pw varchar2(15) not null
+branch_pw varchar2(15) not null,
+branch_address varchar(300) not null
 );
+
+drop SEQUENCE branch_seq;
 create sequence branch_seq;
+
+insert into branch values(branch_seq.nextval, 1, '강남점', 'branch1', 'branch1', '서울특별시 강남구 강남대로 406 GLASS TOWER');
 
 
 create table item(
@@ -83,19 +96,25 @@ receive_date date default sysdate not null
 );
 create sequence receive_seq;
 
-
 create table member(
 member_no number primary key,
 member_id varchar2(20) not null unique,
 member_pw varchar2(15) not null,
 member_name varchar2(60) not null,
-member_phone varchar2(12) not null unique,
+member_phone varchar2(13) not null unique,
 member_address varchar2(60) not null,
-member_gender varchar2(12) not null,
-member_age_group varchar2(5) not null
+member_gender varchar2(12) check
+    (member_gender in ('남', '여', '선택안함')),
+member_age_group varchar2(11) check
+    (member_age_group in ('10대', '20대', '30대', '40대', '50대이상'))
 );
+
+drop sequence member_seq;
 create sequence member_seq;
 
+insert into member values(
+    member_seq.nextval, 'test1', 'test1', '박지민', '010-1234-1234', '서울특별시 강남구 강남대로 406', '여', '10대'
+);
 
 create table NOTICE(
 notice_no number primary key,
@@ -119,6 +138,9 @@ save_type varchar2(256) not null
 create sequence np_seq;
 
 
+select * from supervisor;
+select * from branch;
+select * from member;
 
 create table burger_order( -- 주문
 order_no number primary key, -- 주문번호
@@ -126,6 +148,7 @@ member_no references member(member_no), -- 멤버 외래키
 branch_no references branch(branch_no) -- 지점 외래키
 );
 
+drop sequence order_seq;
 create sequence order_seq;
 
 

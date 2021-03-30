@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.one.burger.entity.BurgerOrder;
+import com.one.burger.repository.BurgerOrderRepository;
 
 @Service
 public class BurgerOrderServiceImpl implements BurgerOrderService {
@@ -13,8 +14,7 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 
 	@Override
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception {
-		// TODO Auto-generated method stub
-		
+		repository.orderInsert(burgerOrder);
 	}
 	
 	
