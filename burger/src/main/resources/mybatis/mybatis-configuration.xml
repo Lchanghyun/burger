@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+	myBatis 메인 설정 파일
+	= myBatis가 운영되기 위해 필요한 내용들을 설정하는 파일
+ -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<!-- 
+		별칭 부여
+		- <typeAliases> 안에 <typeAlias type="실제클래스경로" alias="별칭"/> 형태로 작성한다. 
+	-->
+	<typeAliases>
+		<package name="com.one.burger.entity"/>
+	</typeAliases>
+	
+	<!-- 운영 환경들에 대해서 정의하는 설정. 개발용과 배포용을 구분하기 위해서 사용 -->
+	<environments default="development">
+		
+		<environment id="development">
+			
+			<!-- 데이터베이스 커밋/롤백을 담당하는 관리자 설정 -->
+			<transactionManager type="JDBC"></transactionManager>
+			
+			<!-- 
+				데이터베이스 연결을 직접 해야할 경우 사용할 연결정보 설정
+				(스프링에서 연결할 경우 이 설정은 필요하지 않다)
+				
+				- type=POOLED : DBCP방식 사용
+				- type=UNPOOLED : 일반 방식
+			-->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="web"/>
+				<property name="password" value="web"/>
+			</dataSource>
+			
+		</environment>
+		
+	</environments>
+	
+	<!-- 
+		실제 전송을 위한 명령 파일(mapper)의 위치를 지정
+		= 일반적으로 테이블 1개당 1개의 mapper를 만드는 것을 권장
+		= spring과 연동하여 사용할 경우 이 설정은 없어도 된다.
+		= <mapper resource="mybatis/student-mapper.xml"/> 와 같이 작성한다.
+	 -->
+	<mappers>
+		
+	</mappers>
+	
+</configuration>
