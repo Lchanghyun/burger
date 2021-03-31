@@ -1,5 +1,5 @@
 drop table goods;
-drop table menu_item;
+drop table menu_item;  //드랍시키고 삭제바람 오바
 drop table menu_photo;
 drop table menu;
 drop table today;
@@ -27,7 +27,8 @@ branch_no number primary key,
 super_no number REFERENCES supervisor(super_no),
 branch_name varchar2(30) not null,
 branch_id varchar2(20) unique not null,
-branch_pw varchar2(15) not null
+branch_pw varchar2(15) not null,
+branch_address varchar2(60) not null
 );
 create sequence branch_seq;
 
@@ -46,7 +47,8 @@ stock_no number primary key,
 branch_no number references branch(branch_no),
 super_no number references supervisor(super_no),
 item_no number references item(item_no),
-stock_count number default 0 not null
+stock_count number default 0 not null,
+stock_date date default sysdate not null
 );
 create sequence stock_seq;
 
@@ -145,8 +147,8 @@ create table menu(
     menu_no number primary key,
     menu_name varchar2(60) not null unique,
     menu_price number default 0 not null,
-    menu_kcal number default 0 not null,
-    menu_etc varchar2(2000) not null
+	category varchar2(9) check
+    (category in ('햄버거', '음료', '사이드')) not null
 );
 create sequence menu_seq;
 
@@ -161,20 +163,19 @@ create table menu_photo(
 );
 create sequence menu_photo_seq;
 
-create table menu_item(
-    mi_no number primary key,
-    menu_no references menu(menu_no) on delete cascade,
-    item_no references item(item_no) on delete cascade,
-    branch_no references branch(branch_no) on delete cascade
+create table branch_menu(
+	bm_no number primary key,
+	branch_no references branch(branch_no),
+	menu_no references menu(menu_no),
+	menu_status char(1) check(menu_status in('0', '1')) not null 
 );
-create sequence mi_seq;
-
+create sequence bm_seq;
 
 create table goods ( -- 주문상품
 goods_no number primary key, -- 상품번호
 order_no references burger_order(order_no), -- 주문 외래키
 member_no references member(member_no), -- 멤버 외래키
-menu_no references menu(menu_no), -- 메뉴 외래키
+bm_no references branch_menu(bm_no), -- 메뉴 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 count number not null
 );
