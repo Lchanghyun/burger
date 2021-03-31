@@ -153,7 +153,8 @@ create table menu(
     menu_no number primary key,
     menu_name varchar2(60) not null unique,
     menu_price number default 0 not null,
-    menu_etc varchar2(2000) not null
+    category varchar2(9) check
+    (category in ('햄버거', '음료', '사이드')) not null
 );
 create sequence menu_seq;
 
