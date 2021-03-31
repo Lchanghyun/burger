@@ -16,39 +16,39 @@ drop table branch;
 drop table supervisor;
 
 create table supervisor(
-super_no number primary key,
-super_id  varchar2(20) unique not null,
-super_pw varchar2(15) not null
+	super_no number primary key,
+	super_id  varchar2(20) unique not null,
+	super_pw varchar2(15) not null
 );
 create sequence super_seq;
 
 create table branch(
-branch_no number primary key,
-super_no number REFERENCES supervisor(super_no),
-branch_name varchar2(30) not null,
-branch_id varchar2(20) unique not null,
-branch_pw varchar2(15) not null,
-branch_address varchar2(60) not null
+	branch_no number primary key,
+	super_no number REFERENCES supervisor(super_no),
+	branch_name varchar2(30) not null,
+	branch_id varchar2(20) unique not null,
+	branch_pw varchar2(15) not null,
+	branch_address varchar2(60) not null
 );
 create sequence branch_seq;
 
 
 create table item(
-item_no number primary key,
-item_name varchar2(60) unique not null,
-item_price number not null,
-category varchar2(30) check
-    (category in('소모품', '채소류', '육류', '제과류', '음료')) not null
+	item_no number primary key,
+	item_name varchar2(60) unique not null,
+	item_price number not null,
+	category varchar2(30) check
+	    (category in('소모품', '채소류', '육류', '제과류', '음료')) not null
 );
 create sequence item_seq;
 
 create table stock(
-stock_no number primary key,
-branch_no number references branch(branch_no),
-super_no number references supervisor(super_no),
-item_no number references item(item_no),
-stock_count number default 0 not null,
-stock_date date default sysdate not null
+	stock_no number primary key,
+	branch_no number references branch(branch_no),
+	super_no number references supervisor(super_no),
+	item_no number references item(item_no),
+	stock_count number default 0 not null,
+	stock_date date default sysdate not null
 );
 create sequence stock_seq;
 
