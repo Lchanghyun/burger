@@ -20,7 +20,9 @@ create table supervisor(
 	super_id  varchar2(20) unique not null,
 	super_pw varchar2(15) not null
 );
+drop sequence super_seq;
 create sequence super_seq;
+
 
 create table branch(
 	branch_no number primary key,
@@ -30,7 +32,10 @@ create table branch(
 	branch_pw varchar2(15) not null,
 	branch_address varchar2(60) not null
 );
+
+drop SEQUENCE branch_seq;
 create sequence branch_seq;
+
 
 
 create table item(
@@ -85,17 +90,20 @@ receive_date date default sysdate not null
 );
 create sequence receive_seq;
 
-
 create table member(
 member_no number primary key,
 member_id varchar2(20) not null unique,
 member_pw varchar2(15) not null,
 member_name varchar2(60) not null,
-member_phone varchar2(12) not null unique,
+member_phone varchar2(13) not null unique,
 member_address varchar2(60) not null,
-member_gender varchar2(12) not null,
-member_age_group varchar2(5) not null
+member_gender varchar2(12) check
+    (member_gender in ('남', '여', '선택안함')),
+member_age_group varchar2(11) check
+    (member_age_group in ('10대', '20대', '30대', '40대', '50대이상'))
 );
+
+drop sequence member_seq;
 create sequence member_seq;
 
 
@@ -120,14 +128,13 @@ save_type varchar2(256) not null
 );
 create sequence np_seq;
 
-
-
 create table burger_order( -- 주문
 order_no number primary key, -- 주문번호
 member_no references member(member_no), -- 멤버 외래키
 branch_no references branch(branch_no) -- 지점 외래키
 );
 
+drop sequence order_seq;
 create sequence order_seq;
 
 
