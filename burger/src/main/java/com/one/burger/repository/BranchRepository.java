@@ -9,8 +9,8 @@ import com.one.burger.entity.Branch;
 @Repository
 public class BranchRepository {
 	
-	@Autowired
-	private SqlSession sqlSession;
+	//@Autowired
+	//private SqlSession sqlSession;
 	
 	public void insert(Branch branch) throws Exception {
 		//sqlSession.
