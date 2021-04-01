@@ -1,5 +1,4 @@
 drop table goods;
-drop table menu_item;  //드랍시키고 삭제바람 오바
 drop table menu_photo;
 drop table menu;
 drop table today;
