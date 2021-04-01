@@ -170,11 +170,11 @@ create table menu_photo(
 );
 create sequence menu_photo_seq;
 
-create table branch_menu(
+create table branch_menu( -- 지점메뉴
 	bm_no number primary key,
 	branch_no references branch(branch_no),
-	menu_no references menu(menu_no),
-	menu_status char(1) check(menu_status in('0', '1')) not null 
+	menu_no references menu(menu_no), 
+	menu_status char(1) check(menu_status in('0', '1')) not null -- 0일때 정상판매, 1일태 품절처리
 );
 create sequence bm_seq;
 
