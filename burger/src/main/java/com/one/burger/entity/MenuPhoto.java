@@ -10,6 +10,6 @@ public class MenuPhoto {
 	private int menu_no;
 	private String upload_name;
 	private String save_name;
-	private int file_size;
+	private long file_size;
 	private String save_type;
 }
