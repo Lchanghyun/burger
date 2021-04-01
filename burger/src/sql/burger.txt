@@ -1,5 +1,5 @@
 drop table goods;
-drop table menu_item;  //드랍시키고 삭제바람 오바
+drop table branch_menu;
 drop table menu_photo;
 drop table menu;
 drop table today;
@@ -182,7 +182,7 @@ create table goods ( -- 주문상품
 goods_no number primary key, -- 상품번호
 order_no references burger_order(order_no), -- 주문 외래키
 member_no references member(member_no), -- 멤버 외래키
-bm_no references branch_menu(bm_no), -- 메뉴 외래키
+bm_no references branch_menu(bm_no), -- 지점 메뉴 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 count number not null
 );
