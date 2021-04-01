@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Menu {
+public class BranchMenu {
+	private int bm_no;
+	private int branch_no;
 	private int menu_no;
-	private String menu_name;
-	private int menu_price;
-	private String category;
+	private String menu_status;
 }
