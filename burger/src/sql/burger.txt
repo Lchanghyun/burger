@@ -1,5 +1,5 @@
 drop table goods;
-drop table menu_item;  //드랍시키고 삭제바람 오바
+drop table branch_menu;
 drop table menu_photo;
 drop table menu;
 drop table today;
@@ -169,11 +169,11 @@ create table menu_photo(
 );
 create sequence menu_photo_seq;
 
-create table branch_menu(
+create table branch_menu( -- 지점메뉴
 	bm_no number primary key,
 	branch_no references branch(branch_no),
-	menu_no references menu(menu_no),
-	menu_status char(1) check(menu_status in('0', '1')) not null 
+	menu_no references menu(menu_no), 
+	menu_status char(1) check(menu_status in('0', '1')) not null -- 0일때 정상판매, 1일태 품절처리
 );
 create sequence bm_seq;
 
@@ -181,7 +181,7 @@ create table goods ( -- 주문상품
 goods_no number primary key, -- 상품번호
 order_no references burger_order(order_no), -- 주문 외래키
 member_no references member(member_no), -- 멤버 외래키
-bm_no references branch_menu(bm_no), -- 메뉴 외래키
+bm_no references branch_menu(bm_no), -- 지점 메뉴 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 count number not null
 );

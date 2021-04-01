@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>햄버거 주문하기</title>
 </head>
 <body>
-	<a href="burger/order">주문하기</a>
+	오더하기
 </body>
 </html>
