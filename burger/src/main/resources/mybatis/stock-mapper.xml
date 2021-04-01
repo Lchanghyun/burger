@@ -24,4 +24,14 @@
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
 	
+	<select id="list" resultType="StockItemVo">
+		select S.branch_no, S.item_no, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date 
+		from stock S left outer join item I on S.item_no = I.item_no
+	</select>
+	
+	<insert id="register" parameterType="Stock">
+		insert stock into values(
+			stock_seq.nextval, #{branch_no}, #{item_no}, #{stock_count}, sysdate
+		)
+	</insert>
 </mapper>

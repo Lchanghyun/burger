@@ -50,7 +50,6 @@ create sequence item_seq;
 create table stock(
 	stock_no number primary key,
 	branch_no number references branch(branch_no),
-	super_no number references supervisor(super_no),
 	item_no number references item(item_no),
 	stock_count number default 0 not null,
 	stock_date date default sysdate not null
