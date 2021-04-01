@@ -32,7 +32,6 @@ public class BurgerOrderController {
 		log.info("POSTorderInsert()");
 		service.orderInsert(burgerOrder);
 		service.todayInsert(today);
-		service.goodsInsert(goods);
 		
 		return "burger/success";
 	}
