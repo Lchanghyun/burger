@@ -23,5 +23,11 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
+	<select id="list" parameterType="Purchase">
+		select super_no, purchase_date, status from purchase where branch_no= 1 ; 
+	</select>
 	
+	<select id="purchaseitem_list" >
+	
+	</select>
 </mapper>
