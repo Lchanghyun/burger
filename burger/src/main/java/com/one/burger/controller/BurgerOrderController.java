@@ -22,9 +22,13 @@ public class BurgerOrderController {
 	@Autowired
 	private BurgerOrderService service;
 	
+	
 	@GetMapping("/order")
-	public String orderInsert(){
+	public String orderInsert(Model model) throws Exception{
 		log.info("GETorderInsert()");
+		
+		model.addAttribute("bugerOrder.orderList", service.orderList());
+		
 		return "/burger/order";
 	}
 	@PostMapping("/order")
