@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.one.burger.entity.Item;
 import com.one.burger.entity.Stock;
-import com.one.burger.entity.StockItemVo;
 import com.one.burger.service.ItemService;
 import com.one.burger.service.StockService;
 
@@ -45,9 +43,9 @@ public class StockController {
 	
 	@PostMapping("/register")
 	public String PostRegister(Stock stock) throws Exception {
-		log.info("StockPostRegister()");
+		log.info("PostStockRegister()");
 		
-		stockservice.insert(stock);
+		stockservice.register(stock);
 		
 		return "stock/list";
 	}
@@ -60,12 +58,12 @@ public class StockController {
 	}
 	
 	@PostMapping("/stock_plus")
-	public String PostStockPlus(Item item) throws Exception{
-		log.info("PostStockPlus()");
-		Stock stock = new Stock();
-		stock.set
-		stockservice.insert(stock);
+	public String PostStockPlus(Integer item_no) throws Exception{
+		log.info("PostStockPlus() + item_no : " + item_no);
+		
+		stockservice.plus(item_no);
 		
 		return "redirect:stock_plus";
 	}
+	
 }

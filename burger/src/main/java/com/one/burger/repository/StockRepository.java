@@ -1,6 +1,7 @@
 package com.one.burger.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,12 @@ public class StockRepository {
 		return sqlSession.selectOne("stock.getSeq");
 	}
 	
-	public void insert(Stock stock) throws Exception{
+	public void register(Stock stock) throws Exception{
 		sqlSession.insert("stock.register", stock);
+	}
+	
+	public void plus(Map<String, Object> param) throws Exception {
+		sqlSession.insert("stock.plus", param);
 	}
 	
 	

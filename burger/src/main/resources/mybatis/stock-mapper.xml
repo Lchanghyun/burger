@@ -31,9 +31,16 @@
 	<select id="getSeq" resultType="int">
 		select stock_seq.nextval from dual
 	</select>
+	
 	<insert id="register" parameterType="Stock">
-		insert stock into values(
+		insert into stock values(
 			#{stock_no}, #{branch_no}, #{item_no}, #{stock_count}, sysdate
+		)
+	</insert>
+	
+	<insert id="plus" parameterType="map">
+		insert into stock values(
+			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate
 		)
 	</insert>
 </mapper>

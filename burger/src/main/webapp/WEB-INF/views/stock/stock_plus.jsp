@@ -10,10 +10,17 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 	$(function(){
-
+		$(".stock_plus_btn").on("click", function(e){
+			e.preventDefault();
+			$("#item_no").val($(this).parents("tr").prev().val());
+			$(".stock_plus_form").submit()
+		})
 	})
 </script>
 <body>
+	<form action="stock_plus" method="post" class="stock_plus_form">	
+		<input type="hidden" name="item_no" id="item_no">
+	</form>
 	<table>
 		<thead>
 			<tr>
@@ -24,17 +31,15 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${list}" var="item">
-			<tr>
-				<form action="" method="post">
 				<input type="hidden" value="${item.item_no}">
-				<td>${item.category}</td>
-				<td>${item.item_name}</td>
-				<td>${item.item_price}</td>
-				<td><button class="stock_add_btn">추가</button></td>
-				</form>
-			</tr>
+				<tr>
+					<td>${item.category}</td>
+					<td>${item.item_name}</td>
+					<td>${item.item_price}</td>
+					<td><button class="stock_plus_btn">추가</button></td>
+				</tr>	
 			</c:forEach>
 		</tbody>
-	</table>
+	</table>	
 </body>
 </html>
