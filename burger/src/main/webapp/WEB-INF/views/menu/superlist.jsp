@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="burger/order">주문하기</a>
+
 </body>
 </html>

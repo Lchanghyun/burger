@@ -5,11 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Goods {
-	private int goods_no;
-	private int order_no;
-	private int member_no;
+public class BranchMenu {
 	private int bm_no;
 	private int branch_no;
-	private int count;
+	private int menu_no;
+	private String menu_status;
 }
