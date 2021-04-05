@@ -13,10 +13,10 @@ import com.one.burger.entity.MenuBranchMenuVo;
 public class BurgerOrderRepository {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;	
 	
-	public List<MenuBranchMenuVo> orderList() throws Exception{
-		return sqlSession.selectList("burgerOrder.orderList");
+	public List<MenuBranchMenuVo> orderList(String category) throws Exception{
+		return sqlSession.selectList("burgerOrder.orderList", category);
 	}
 	
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception{

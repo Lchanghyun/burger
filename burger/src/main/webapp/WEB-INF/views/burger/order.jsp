@@ -10,7 +10,17 @@
 <script>
 	$(function(){		
 		//버튼을 누르면 목록을 불러온다.
-		$("#bnt_burger").click(function(){
+		$("#btn_burger").click(function(){
+			self.location = "order?category=햄버거"
+		});
+		$("#btn_drink").click(function(){
+			self.location = "order?category=음료"
+		});
+		$("#btn_side").click(function(){
+			self.location = "order?category=사이드"
+		});
+
+/*		$("#btn_burger").click(function(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/async/list",
 				type : "get", 
@@ -23,36 +33,53 @@
 				}
 			});
 		});
+*/
+		// 메뉴 클릭
+		$(".menuList").click(function(){
+			var checkBox = $(this).children(".choose");
+			checkBox.prop('checked', !checkBox.prop('checked'));				
+
+			
+			var check = $(this).children(".choose").prop("checked");
+			if(check){
+				console.log("엑티브를 생성합니다.")
+				$(this).addClass("active");
+			}else{
+				console.log("엑티브를 없앱니다.")
+				$(this).removeClass("active");
+			}
+		});
+		//버튼 클릭시 카테고리 메뉴 이동
+		
+		
+		
 	});
 </script>
-
+<style type="text/css">
+	
+</style>
 </head>
 <body>
 	<h3>메뉴</h3>
-	<button>햄버거</button>
-	<button>음료</button>
-	<button>사이드</button>
+		<button id="btn_burger">BURGER</button>
+		<button id="btn_drink">DRINK</button>
+		<button id="btn_side">SIDE</button>	
 	
 	<div id = "list">
-		<c:if test="${empty bugerOrder.orderList} ">
+		<c:if test="${empty orderList} ">
 			<p>게시물이 없습니다.</p>
 		</c:if>
-		<c:if test="">
-			<c:forEach items="${bugerOrder.orderList }" var="MenuBranchMenuVo">
-				<span>지점 번호</span>
-				<p>${MenuBranchMenuVo.branch_no}</p>
-				<span>메뉴 상태</span>
-				<p>${MenuBranchMenuVo.menu_status}</p>
-				<span>메뉴 이름</span>
-				<p>${MenuBranchMenuVo.menu_name}</p>
-				<span>메뉴 가격</span>
-				<p>${MenuBranchMenuVo.menu_price}</p>
-				<span>카테고리</span>
-				<p>${MenuBranchMenuVo.category}</p>
-				<span>저장 이름</span>
-				<img alt="${MenuBranchMenuVo.menu_name}" src="./img/${${MenuBranchMenuVo.upload_name}.jpg">
-			</c:forEach>
-		</c:if>		
+		<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
+			<div class="menuList" style="display: inline-block;">
+				<input type="checkbox" class ="choose" style="display: none;">
+				<p>지점 번호: ${MenuBranchMenuVo.branch_no}</p>
+				<p>메뉴 상태: ${MenuBranchMenuVo.menu_status}</p>
+				<p>메뉴 이름: ${MenuBranchMenuVo.menu_name}</p>
+				<p>메뉴 가격: ${MenuBranchMenuVo.menu_price}</p>
+				<p>메뉴 카테고리: ${MenuBranchMenuVo.category}</p>
+				<p>--------------------------------------</p>
+			</div>
+		</c:forEach>
 	</div>
 </body>
 </html>

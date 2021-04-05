@@ -16,10 +16,10 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	
 	@Autowired
 	private BurgerOrderRepository repository;
-
+	
 	@Override
-	public List<MenuBranchMenuVo> orderList() throws Exception {
-		return repository.orderList();
+	public List<MenuBranchMenuVo> orderList(String category) throws Exception {
+		return repository.orderList(category);
 	}
 	
 	@Override

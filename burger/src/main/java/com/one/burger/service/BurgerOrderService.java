@@ -9,10 +9,12 @@ import com.one.burger.entity.Today;
 
 public interface BurgerOrderService {
 	//주문하기 클릭시 나오는 메뉴
-	public List<MenuBranchMenuVo> orderList() throws Exception;
+	public List<MenuBranchMenuVo> orderList(String category) throws Exception;
 	
 	//주문하기
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception;
 	public void todayInsert(Today today) throws Exception;
 	public void goodsInsert(Goods goods) throws Exception;
+
+
 }
