@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>(지점)메뉴관리</title>
 	<style>
         html, body {
             margin: 0;

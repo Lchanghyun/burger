@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메뉴등록</title>
+<title>메뉴수정</title>
 	<style>
         .menu-register-box{
             width:800px;
