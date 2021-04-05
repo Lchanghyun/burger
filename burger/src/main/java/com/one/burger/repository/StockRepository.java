@@ -19,6 +19,10 @@ public class StockRepository {
 		return sqlSession.selectList("stock.list");
 	}
 	
+	public int getSeq() throws Exception{
+		return sqlSession.selectOne("stock.getSeq");
+	}
+	
 	public void insert(Stock stock) throws Exception{
 		sqlSession.insert("stock.register", stock);
 	}

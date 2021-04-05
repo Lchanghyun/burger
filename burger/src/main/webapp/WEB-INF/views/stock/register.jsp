@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>일일 재고 등록</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+	$(function(){
+		$(".stock_plus_button").on("click",function(){
+			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
+		})
+	})
+</script>
 <style>
 	.stock_count{
 		width: 1.5rem;
@@ -15,34 +23,35 @@
 	}
 </style>
 <body>
-	<div class="stock_all_wrapper">
-		<table class="stock_table">
-			<thead>
-				<tr>
-					<th>카테고리</th>
-					<th>자재명</th>
-					<th>수량</th>
-					<th>단가</th>
-					<th>등록일자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${empty list}">
+	<div class="list_all_wrapper">
+		<button class="stock_plus_button">재고 추가</button>
+		<form action="register" method="post">
+			<table class="list_table">
+				<thead>
 					<tr>
-						<td>아무것도 없네...</td>
+						<th>카테고리</th>
+						<th>자재명</th>
+						<th>수량</th>
+						<th>단가</th>
 					</tr>
-				</c:if>
-				<c:forEach items="${list}" var="StockItemVo">
-					<tr>
-						<td>${StockItemVo.category}</td>
-						<td>${StockItemVo.item_name}</td>
-						<td><input type="text" value="${StockItemVo.stock_count}" class="stock_count"></td>
-						<td>${StockItemVo.item_price}</td>
-						<td>${StockItemVo.stock_date}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:if test="${empty list}">
+						<tr>
+							<td>아무것도 없네...</td>
+						</tr>
+					</c:if>
+					<c:forEach items="${list}" var="StockItemVo">
+						<tr>
+							<td>${StockItemVo.category}</td>
+							<td>${StockItemVo.item_name}</td>
+							<td><input type="text" value="${StockItemVo.stock_count}" class="stock_count"></td>
+							<td>${StockItemVo.item_price}원</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

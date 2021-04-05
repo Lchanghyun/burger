@@ -15,12 +15,16 @@
 			location.href="${pageContext.request.contextPath}/stock/register"			
 		});
 	})
-	
 </script>
+<style>
+	.stock_table{
+		text-align:center;
+	}
+</style>
 <body>
-	<div class="stock_all_wrapper">
+	<div class="list_all_wrapper">
 		<button class="stock_register_btn">재고등록</button>
-		<table class="stock_table">
+		<table class="list_table">
 			<thead>
 				<tr>
 					<th>카테고리</th>

@@ -28,10 +28,12 @@
 		select S.branch_no, S.item_no, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date 
 		from stock S left outer join item I on S.item_no = I.item_no
 	</select>
-	
+	<select id="getSeq" resultType="int">
+		select stock_seq.nextval from dual
+	</select>
 	<insert id="register" parameterType="Stock">
 		insert stock into values(
-			stock_seq.nextval, #{branch_no}, #{item_no}, #{stock_count}, sysdate
+			#{stock_no}, #{branch_no}, #{item_no}, #{stock_count}, sysdate
 		)
 	</insert>
 </mapper>
