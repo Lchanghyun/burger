@@ -18,7 +18,7 @@ import lombok.extern.java.Log;
 @Controller
 @RequestMapping("/burger")
 public class BurgerOrderController {
-	
+	//허허...뭐지..
 	@Autowired
 	private BurgerOrderService service;
 	
