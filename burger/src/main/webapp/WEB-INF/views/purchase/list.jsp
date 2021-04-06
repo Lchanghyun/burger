@@ -7,6 +7,10 @@
 <title>발주메인화면</title>
 </head>
 <style>
+
+div{
+	box-sizing: border-box;
+}
 body,ul,li {
     padding: 0;
     margin: 0;
@@ -32,6 +36,7 @@ body {
 
 .left-side-bar {
     background-color: #dfdfdf;
+    opacity: 70%;
     height: 100%;
     width: 180px;
     position: fixed;
@@ -83,6 +88,20 @@ body {
 
 .left-side-bar:hover > .status-ico > span:first-child {
     display: none;
+}
+
+.purchase_wrap{
+	width: 100%;
+	height: 100%;
+	border: 1px solid black;
+	
+}
+
+.purchase_empty{
+	width: 20px;
+	height: 100%;
+	border: 1px solid black;
+	
 }
 </style>
 <body>
@@ -136,6 +155,11 @@ body {
               </ul>
           </li>
         </ul>
+    </div>
+    <div class="purchase_wrap">
+    	<div class="purchase_empty">
+    		
+    	</div>
     </div>
 </body>
 </html>

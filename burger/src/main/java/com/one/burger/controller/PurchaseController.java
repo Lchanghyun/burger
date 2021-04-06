@@ -21,7 +21,7 @@ public class PurchaseController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
-	@PostMapping("/list")
+	@GetMapping("/list")
 	public String branchPurchase(Purchase purchase) throws Exception{
 		log.info("PurchaseList");
 		
