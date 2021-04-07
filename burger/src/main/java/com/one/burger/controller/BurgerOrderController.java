@@ -18,21 +18,22 @@ import lombok.extern.java.Log;
 @Controller
 @RequestMapping("/burger")
 public class BurgerOrderController {
-	
+	//허허...뭐지..
 	@Autowired
 	private BurgerOrderService service;
 	
 	@GetMapping("/order")
-	public String orderInsert(){
-		log.info("GETorderInsert()");
-		return "/burger/order";
+	public String orderInsert(String category, Model model) throws Exception{
+		log.info("GETorderList()");
+		model.addAttribute("orderList", service.orderList(category));		
+		return "burger/order";
 	}
+	
 	@PostMapping("/order")
 	public String orderInsert(BurgerOrder burgerOrder, Today today, Goods goods) throws Exception {
 		log.info("POSTorderInsert()");
 		service.orderInsert(burgerOrder);
 		service.todayInsert(today);
-		service.goodsInsert(goods);
 		
 		return "burger/success";
 	}
