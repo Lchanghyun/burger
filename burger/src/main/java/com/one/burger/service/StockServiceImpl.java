@@ -31,30 +31,33 @@ public class StockServiceImpl implements StockService {
 	}
 	
 	@Override
-	public void register(Stock stock) throws Exception {
-		Integer stock_no=stockRepository.getSeq();
-		stock.setStock_no(stock_no);
-		
-		//int branch_no = (int) session.getAttribute("branch_no"); 
-		stock.setBranch_no(1);
-		stockRepository.register(stock);
+	public void register(List<Map<String, Object>> stock_list) throws Exception {
+		for (Map<String, Object> item : stock_list) {
+			log.info("item.item_no" + item.get("item_no"));
+			log.info("item.stock_count" + item.get("stock_count"));
+			Integer stock_no=stockRepository.getSeq();
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("item_no", item.get("item_no"));
+			param.put("stock_no", stock_no);
+			param.put("stock_count", item.get("stock_count"));
+			param.put("branch_no", 1);
+			
+			//int branch_no = (int) session.getAttribute("branch_no"); 
+			
+			stockRepository.register(param);
+		}
 	}
 
 	@Override
 	public void plus(Integer item_no) throws Exception {
 		Integer stock_no=stockRepository.getSeq();
-		log.info("stock_no : "+stock_no);
-		log.info("item_no : "+item_no);
 		
 		Map<String, Object> param = new HashMap<>();
 		param.put("stock_no", stock_no);
 		param.put("item_no", item_no);
 		param.put("branch_no", 1);
-		//int branch_no = (int) session.getAttribute("branch_no"); 
 		
-		log.info("stock_no : " +param.get("stock_no"));
-		log.info("item_no : " +param.get("item_no"));
-		log.info("branch_no : " +param.get("branch_no"));
+		//int branch_no = (int) session.getAttribute("branch_no"); 
 		
 		stockRepository.plus(param);
 	}

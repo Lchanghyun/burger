@@ -9,6 +9,6 @@ import com.one.burger.entity.StockItemVo;
 public interface StockService {
 	public List<StockItemVo> select() throws Exception;
 	public int getSeq() throws Exception;
-	public void register(Stock stock) throws Exception;
+	public void register(List<Map<String, Object>> stock_list) throws Exception;
 	public void plus(Integer item_no) throws Exception;
 }

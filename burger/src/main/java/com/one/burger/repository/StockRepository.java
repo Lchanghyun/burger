@@ -24,8 +24,8 @@ public class StockRepository {
 		return sqlSession.selectOne("stock.getSeq");
 	}
 	
-	public void register(Stock stock) throws Exception{
-		sqlSession.insert("stock.register", stock);
+	public void register(Map<String, Object> param) throws Exception{
+		sqlSession.insert("stock.register", param);
 	}
 	
 	public void plus(Map<String, Object> param) throws Exception {
