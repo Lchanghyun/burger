@@ -1,5 +1,6 @@
 package com.one.burger.entity;
 
+
 import lombok.Getter;
 import lombok.Setter;
 

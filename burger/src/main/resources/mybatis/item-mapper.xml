@@ -23,5 +23,15 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
+	<insert id="insert" parameterType="Item" >
+		insert into item values(#{item_no}, #{item_name}, #{item_price}, #{category})
+	</insert>
 	
+	<select id="list" resultType="Item">
+		select item_no, item_name, item_price, category from item order by category asc
+	</select>
+	
+	<select id="getSeq" resultType="int">
+		select item_seq.nextval form dual
+	</select>
 </mapper>
