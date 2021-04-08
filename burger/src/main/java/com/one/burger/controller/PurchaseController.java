@@ -25,7 +25,7 @@ public class PurchaseController {
 	public String branchPurchase(Model model) throws Exception{
 		log.info("PurchaseList");
 		
-		model.addAttribute("list");
+		model.addAttribute("Plist",purchaseService.call());
 		
 		return "purchase/list";
 	}
