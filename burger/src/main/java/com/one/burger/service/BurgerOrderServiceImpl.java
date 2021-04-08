@@ -18,8 +18,8 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	private BurgerOrderRepository repository;
 	
 	@Override
-	public List<MenuBranchMenuVo> orderList(String category) throws Exception {
-		return repository.orderList(category);
+	public List<MenuBranchMenuVo> orderList(int branch_no) throws Exception {
+		return repository.orderList(branch_no);
 	}
 	
 	@Override
@@ -38,6 +38,7 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	
 	

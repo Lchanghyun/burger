@@ -28,7 +28,7 @@
     		from branch_menu B
         		inner join menu M on B.menu_no = M.menu_no
         		inner join menu_photo MP on B.menu_no = MP.menu_no
-            		where B.branch_no = 1 and M.category = #{category}
+            		where B.branch_no = #{branch_no} and M.category != '단종'
                 		order by M.menu_no desc
 	</select>
 
