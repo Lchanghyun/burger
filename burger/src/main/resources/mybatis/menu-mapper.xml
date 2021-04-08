@@ -21,6 +21,7 @@
 	<select id="superlist" resultType="MenuPhotoVO">
 		select M.*, P.upload_name, P.save_name from
     	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	where not M.category = '단종'
     	order by M.menu_name asc
 	</select>
 	
@@ -45,13 +46,16 @@
 		order by M.menu_name asc
 	</select>
 	
-	<delete id="remove" parameterType="Integer">
-		delete menu where menu_no=#{menu_no}
-	</delete>
+	<update id="remove" parameterType="Integer">
+		update menu set category='단종' where menu_no=#{menu_no}
+	</update>
+	<update id="stopmenu" parameterType="Integer">
+		update branch_menu set menu_status='3' where menu_no=#{menu_no}
+	</update>
 	
-	<delete id="removeBranchMenu" parameterType="map">
-		delete branch_menu where branch_no=#{branch_no} and menu_no=#{menu_no}
-	</delete>
+	<update id="removeBranchMenu" parameterType="map">
+		update branch_menu set menu_status=#{menu_status} where branch_no=#{branch_no} and menu_no=#{menu_no}
+	</update>
 	
 	<insert id="menuAdd" parameterType="map">
 		insert into branch_menu (bm_no, branch_no, menu_no, menu_status)
@@ -62,10 +66,18 @@
 		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
     	menu M inner join branch_menu B on B.menu_no=M.menu_no
     	inner join menu_photo P on M.menu_no=P.menu_no
-		where B.branch_no=#{branch_no}
+		where B.branch_no=#{branch_no} and not B.menu_status='3'
 		<if test="category != null and category != '' ">
 			and M.category = #{category}
 		</if>
+		order by M.menu_name asc
+	</select>
+	
+	<select id="branchstoplist" parameterType="Integer" resultType="MenuBranchVO">
+		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
+    	menu M inner join branch_menu B on B.menu_no=M.menu_no
+    	inner join menu_photo P on M.menu_no=P.menu_no
+		where B.branch_no=#{branch_no} and B.menu_status='2'
 		order by M.menu_name asc
 	</select>
 	

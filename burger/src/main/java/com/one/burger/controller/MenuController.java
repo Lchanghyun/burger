@@ -59,6 +59,7 @@ public class MenuController {
 		log.info("branchList()");
 		session.setAttribute("branch_no", 1);
 		int branch_no = (Integer)session.getAttribute("branch_no");
+		String branch_name = menuService.getBranchName(branch_no);
 		
 		List<MenuPhotoVO> allList;
 		
@@ -81,6 +82,7 @@ public class MenuController {
 		}
 		List<MenuBranchVO> branchList = menuService.branchList(branch_no, category);
 		model.addAttribute("branchList",branchList);
+		model.addAttribute("branch_name",branch_name);
 	}
 	
 	@PostMapping("/menuAdd")
@@ -117,10 +119,10 @@ public class MenuController {
 	}
 	@PostMapping("/removeBranchMenu")
 	@ResponseBody
-	public String removeBranchMenu(Integer menu_no, String branch_no) throws Exception{
+	public String removeBranchMenu(Integer menu_no, String branch_no, String menu_status) throws Exception{
 		log.info("removeBranchMenu()");
-		menuService.removeBranchMenu(Integer.parseInt(branch_no), menu_no);
-		return "remove";
+		menuService.removeBranchMenu(Integer.parseInt(branch_no), menu_no, menu_status);
+		return "ok";
 	}
 	
 	@PostMapping("/soldoutAndResale")

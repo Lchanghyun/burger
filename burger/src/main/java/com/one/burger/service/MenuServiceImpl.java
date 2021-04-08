@@ -70,8 +70,8 @@ public class MenuServiceImpl implements MenuService{
 		menuRepository.remove(menu_no);
 	}
 	@Override
-	public void removeBranchMenu(Integer branch_no, Integer menu_no) throws Exception{
-		menuRepository.removeBranchMenu(branch_no, menu_no);
+	public void removeBranchMenu(Integer branch_no, Integer menu_no, String menu_status) throws Exception{
+		menuRepository.removeBranchMenu(branch_no, menu_no, menu_status);
 	}
 	@Override
 	public List<MenuPhotoVO> categoryList(String category) throws Exception{
@@ -88,5 +88,9 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public void soldoutAndResale(Integer branch_no, Integer menu_no, String menu_status) throws Exception{
 		menuRepository.soldoutAndResale(branch_no, menu_no, menu_status);
+	}
+	@Override
+	public String getBranchName(Integer branch_no) throws Exception{
+		return menuRepository.getBranchName(branch_no);
 	}
 }
