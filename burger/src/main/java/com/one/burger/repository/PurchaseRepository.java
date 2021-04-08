@@ -14,7 +14,8 @@ public class PurchaseRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void list(Purchase purchase) throws Exception{
+	public List<Object> list(Purchase purchase) throws Exception{
 		
+		return sqlSession.selectList("purchase.list");
 	}
 }

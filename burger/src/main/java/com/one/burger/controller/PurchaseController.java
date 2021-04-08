@@ -22,9 +22,10 @@ public class PurchaseController {
 	private PurchaseService purchaseService;
 	
 	@GetMapping("/list")
-	public String branchPurchase(Purchase purchase) throws Exception{
+	public String branchPurchase(Model model) throws Exception{
 		log.info("PurchaseList");
 		
+		model.addAttribute("list");
 		
 		return "purchase/list";
 	}

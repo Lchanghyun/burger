@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="/WEB-INF/views/template/sidebar.jsp"></jsp:include>
+<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
 
 <style>
     div{
@@ -56,6 +56,15 @@
         background: #eee;
     }
     </style>
+    <script>
+    $('#load_bt').on('click', function(){
+    	  var date = new Date($('#date-input').val());
+    	  day = date.getDate();
+    	  month = date.getMonth() + 1;
+    	  year = date.getFullYear();
+    	  alert([day, month, year].join('/'));
+    	});
+    </script>
     <body>
     
         <div class="purchase_wrap">
@@ -74,6 +83,7 @@
                                     <th>발주번호</th>
                                     <th>수신처</th>
                                     <th>일자</th>
+                                    <th>처리상태</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,11 +92,14 @@
                             		<td>no list</td>
                             	</tr>
                             	</c:if>
+                            	<c:forEach items="${list}" var="Purchase">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>${Purchase.purchase_no}</td>
+                                    <td>${Purchase.super_no}</td>
+                                    <td>${Purchase.purchase_no}</td>
+                                    <td>${Purchase.status}</td>
                                 </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
