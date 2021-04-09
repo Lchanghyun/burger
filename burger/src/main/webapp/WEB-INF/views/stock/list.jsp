@@ -14,6 +14,11 @@
 		$(".stock_register_btn").on("click",function(){
 			location.href="${pageContext.request.contextPath}/stock/register"			
 		});
+		
+		$(".stock_plus_btn").on("click",function(e){
+			e.preventDefault()
+			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
+		})
 	})
 </script>
 <style>
@@ -24,6 +29,13 @@
 <body>
 	<div class="list_all_wrapper">
 		<button class="stock_register_btn">재고등록</button>
+		<button class="stock_plus_btn">재고 추가</button>
+		<br>
+		<a href="list?category=채소류">채소류</a>
+		<a href="list?category=육류">육류</a>
+		<a href="list?category=제과류">제과류</a>
+		<a href="list?category=음료">음료</a>
+		<a href="list?category=소모품">소모품</a>
 		<table class="list_table">
 			<thead>
 				<tr>

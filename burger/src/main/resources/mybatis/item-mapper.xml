@@ -27,11 +27,31 @@
 		insert into item values(#{item_no}, #{item_name}, #{item_price}, #{category})
 	</insert>
 	
-	<select id="list" resultType="Item">
+	<select id="item_no" parameterType="int" resultType="Integer">
+		select S.item_no from item I left outer join stock S on I.item_no = S.item_no 
+			where branch_no = #{branch_no} 
+				group by S.item_no, I.category
+	</select>
+	
+	<select id="all_list" resultType="Item">
 		select item_no, item_name, item_price, category from item order by category asc
+	</select>
+	
+	<select id="category_list" parameterType="String" resultType="Item">
+		select item_no, item_name, item_price, category from item where category =#{category} order by category asc
 	</select>
 	
 	<select id="getSeq" resultType="int">
 		select item_seq.nextval form dual
 	</select>
+
+	<update id="edit" parameterType="map">
+		update item
+			set
+				item_price = #{item_price}
+				item_name = #{item_name}
+				category = #{category}
+			where
+				item_no = #{item_no}
+	</update>
 </mapper>
