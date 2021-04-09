@@ -21,10 +21,11 @@ public class PurchaseController {
 	@Autowired
 	private PurchaseService purchaseService;
 	
-	@PostMapping("/list")
-	public String branchPurchase(Purchase purchase) throws Exception{
+	@GetMapping("/list")
+	public String branchPurchase(Model model) throws Exception{
 		log.info("PurchaseList");
 		
+		model.addAttribute("Plist",purchaseService.call());
 		
 		return "purchase/list";
 	}
