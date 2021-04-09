@@ -21,7 +21,7 @@
 			location.href="${pageContext.request.contextPath}/stock/list";
 		})
 	})
-</script>
+</script> 
 <body>
 	<form action="stock_plus" method="post" class="stock_plus_form">	
 		<input type="hidden" name="item_no" id="item_no">
@@ -42,6 +42,11 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="3">추가할 자재가 없습니다.</td>
+				</tr>
+			</c:if>
 			<c:forEach items="${list}" var="item">
 				<input type="hidden" value="${item.item_no}">
 				<tr>

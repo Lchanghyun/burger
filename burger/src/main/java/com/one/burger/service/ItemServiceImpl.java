@@ -1,5 +1,6 @@
 package com.one.burger.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,9 @@ public class ItemServiceImpl implements ItemService{
 
 	@Autowired
 	private ItemRepository itemRepository;
+
+	@Autowired
+	private StockService stockservice;
 	
 	@Override
 	public int getSeq() throws Exception {
@@ -29,6 +33,10 @@ public class ItemServiceImpl implements ItemService{
 		
 		int item_no=itemRepository.getSeq();
 		item.setItem_no(item_no);
+		log.info("item_no : " + item.getItem_no() );
+		log.info("item_name : " +item.getItem_name());
+		log.info("item_price : " +item.getItem_price());
+		log.info("category : " +item.getCategory());
 		itemRepository.insert(item);
 	}
 
@@ -39,9 +47,22 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
-	public List<Item> category_list(String category) throws Exception {
-
-		return itemRepository.category_list(category);
+	public List<Item> category_list(int branch_no, String category) throws Exception {
+		
+		Map<String, Object> param = new HashMap<>();
+		List<Item> list = itemRepository.category_list(category);
+		List<Item> result = new ArrayList<>();
+		param.put("branch_no", branch_no);
+		log.info("category_list : " + list);
+		for(Item item : list) {
+			param.put("item_no", item.getItem_no());
+			if(!stockservice.item_check(param)) {
+				result.add(item);
+			}
+			param.remove("item_no");
+		}
+		log.info("result : " + result);
+		return result;
 	}
 
 	@Override

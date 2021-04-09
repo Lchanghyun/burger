@@ -111,15 +111,15 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public boolean item_check(Map<String, Object> param) throws Exception {
 		List<Stock> list = stockRepository.item_check(param);
-		boolean result = (list==null) ? false : true;
-		log.info("result : " + result);
+		boolean result = (list.size() == 0) ? false : true;
+		log.info("item_check_result : " + result);
 		return result;
 	}
 
 	@Override
 	public boolean date_check(int branch_no) throws Exception {
 		List<Stock> list = stockRepository.date_check(branch_no);
-		boolean result = (list==null) ? false : true;
+		boolean result = (list.size() == 0) ? false : true;
 		return result;
 	}
 

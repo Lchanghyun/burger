@@ -94,9 +94,12 @@ public class StockController {
 	public void stockPlus(Model model, String category) throws Exception{
 		log.info("stockPlus()");
 
+		int branch_no = 1;
+		//int branch_no = (int) session.getAttribute("branch_no");
+		
 		if(category == null) category="채소류";
 		
-		model.addAttribute("list", itemservice.category_list(category));
+		model.addAttribute("list", itemservice.category_list(branch_no, category));
 	}
 	
 	@PostMapping("/stock_plus")
