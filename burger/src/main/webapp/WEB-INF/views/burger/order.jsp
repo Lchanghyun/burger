@@ -103,7 +103,7 @@
 				<c:when test="${empty orderList}">
 					<p>게시물이 없습니다.</p>
 				</c:when>
-				<c:otherwise>
+					<c:otherwise>
 					<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
 						<c:if test="${MenuBranchMenuVo.menu_status != '2' and MenuBranchMenuVo.menu_status != '3'}">
 							<div class="menuList" style="display: inline-block;">
