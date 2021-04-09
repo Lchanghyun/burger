@@ -57,7 +57,7 @@
 	
 	<insert id="plus" parameterType="map">
 		insert into stock values(
-			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate
+			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate-1
 		)
 	</insert>
 	

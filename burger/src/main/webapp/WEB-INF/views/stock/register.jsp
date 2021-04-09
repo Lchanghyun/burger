@@ -54,7 +54,7 @@
 				},
 				success: function(resp){
 					let msg
-					if(resp==="ture"){
+					if(resp==="true"){
 						msg="등록이 완료되었습니다."
 					}
 					else{

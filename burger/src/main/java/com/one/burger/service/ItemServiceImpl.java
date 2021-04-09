@@ -33,6 +33,10 @@ public class ItemServiceImpl implements ItemService{
 		
 		int item_no=itemRepository.getSeq();
 		item.setItem_no(item_no);
+		log.info("item_no : " + item.getItem_no() );
+		log.info("item_name : " +item.getItem_name());
+		log.info("item_price : " +item.getItem_price());
+		log.info("category : " +item.getCategory());
 		itemRepository.insert(item);
 	}
 
