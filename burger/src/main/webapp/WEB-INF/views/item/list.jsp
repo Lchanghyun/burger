@@ -5,13 +5,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>원자재 목록</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+	$(function(){
+		$(".item_register_btn").on("click", function(){
+			location.href="${pageContext.request.contextPath}/item/register"
+		})
+		
+		$(".item_edit_btn").on("click", function(){
+			location.href="${pageContext.request.contextPath}/item/edit"
+		})
+		
+		let item_no
+		
+		$(".item_delete_btn").on("click", function(e){
+			e.preventDefault();
+			
+			console.log($(this).parent().parent().prev().val())
+			
+			item_no = $(this).parent().parent().prev().val() 
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/item/",
+				type: "POST",
+				data: {
+					item_no : item_no 
+				},
+				success: function(resp){
+					console.log("item_edit success!")
+				}
+			})
+		})
+	})
+</script>
 <body>
 	<div class="list_all_wrapper">
-		<button>자재추가</button>
-		<button>수정</button>
+		<button class="item_register_btn">자재추가</button>
+		<button class="item_edit_btn">수정</button>
 		<table class="list_table">
 			<thead>
 				<tr>
@@ -26,7 +58,7 @@
 					<td>${item.category}</td>
 					<td>${item.item_name}</td>
 					<td>${item.item_price}</td>
-					<td><button>삭제</button></td>
+					<td><button class="item_delete_btn">삭제</button></td>
 				</tr>
 			</c:forEach>
 			</tbody>
