@@ -18,7 +18,7 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	private BurgerOrderRepository repository;
 	
 	@Override
-	public List<MenuBranchMenuVo> orderList(int branch_no) throws Exception {
+	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception {
 		return repository.orderList(branch_no);
 	}
 	

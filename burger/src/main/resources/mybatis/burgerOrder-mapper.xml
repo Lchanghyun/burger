@@ -23,7 +23,7 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->	
-	<select id="orderList" resultType="MenuBranchMenuVo" parameterType="map">
+	<select id="orderList" resultType="MenuBranchMenuVo" parameterType="Integer">
 		select B.branch_no, M.menu_no, M.menu_name, M.menu_price, M.category, MP.save_name, B.menu_status
     		from branch_menu B
         		inner join menu M on B.menu_no = M.menu_no
@@ -31,5 +31,9 @@
             		where B.branch_no = #{branch_no} and M.category != '단종'
                 		order by M.menu_no desc
 	</select>
-
+	
+	<insert id="orderInsert" parameterType="BurgerOrder">
+		insert into burger_order values (order_seq.nextval, 1, #{branch_no})
+	</insert>
+	
 </mapper>

@@ -15,14 +15,13 @@ public class BurgerOrderRepository {
 	@Autowired
 	private SqlSession sqlSession;	
 	
-	public List<MenuBranchMenuVo> orderList(int branch_no) throws Exception{
-		return sqlSession.selectList("burgerOrder.orderList", branch_no);
-	}
-	
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception{
 		sqlSession.insert("burgerOrder.orderInsert", burgerOrder);
 	}
-
+	
+	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception{
+		return sqlSession.selectList("burgerOrder.orderList", branch_no);
+	}
 
 
 	

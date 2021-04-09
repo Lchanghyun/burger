@@ -9,29 +9,35 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
-		var branch_no = $("#branch_select");
+		var branch_no;
+		console.log(branch_no);
 		$("#branch_select").change(function(){
 			branch_no = $(this).val();
 			console.log(branch_no)
 		});		
-		$("#btn_order").click(function(){
-			if(branch_no == null){
+		
+ 		$(".form").submit(function(e){
+ 			e.preventDefault()
+			if(branch_no == null || branch_no == ""){
 				alert("지점을 선택해주세요");
+				return;
 			}else{
-				self.location = "burger/order?branch_no="+branch_no;				
+				this.submit();
 			}
 		});
 	});
 </script>
 </head>
 <body>
-	<p>지점 검색</p>
-	<select id="branch_select">
-			<option value="">지점선택</option>
-		<c:forEach items="${list}" var="Branch">
-			<option class="branch_no${Branch.branch_no}"  value="${Branch.branch_no}" >${Branch.branch_name}</option>
-		</c:forEach>
-	</select>
-		<button id="btn_order">주문하기</button>
+	<form class="form" action="burger/order" method="get">
+		<p>지점 검색</p>
+		<select id="branch_select" name="branch_no">
+				<option value="">지점선택</option>
+			<c:forEach items="${list}" var="Branch">
+				<option  value="${Branch.branch_no}" >${Branch.branch_name}</option>
+			</c:forEach>
+		</select>
+			<button type="submit" id="btn_order">주문하기</button>
+	</form>
 </body>
 </html>

@@ -52,56 +52,81 @@
 		$(".menuList").click(function(){
 			var checkBox = $(this).children(".choose");
 			checkBox.prop('checked', !checkBox.prop('checked'));				
-
+			
 			var check = $(this).children(".choose").prop("checked");
+			var menu_name = $(this).children(".menu_name").html();
+			var menu_price = $(this).children(".menu_price").html();
+			
+			
 			if(check){
 				console.log("엑티브를 생성합니다.")
-				$(this).addClass("active");
+				console.log(menu_name);
 				var template = $("#row-template").html();
-				$(template).insertBefore
+				$(template).insertBefore("#menuEmpty");
 				
 			}else{
 				console.log("엑티브를 없앱니다.")
 				$(this).removeClass("active");
 			}
-			
+		});
+		$("body").on("click", ".btn-del", function(){
+			console.log("메뉴 삭제")
+			$(this).parent().remove();
 		});
 		//버튼 클릭시 카테고리 메뉴 이동		
 	});
 </script>
-<script id="row-template" type="text/template"></script>
+<script id="row-template" type="text/template">
+	<div class="add-menu">
+		<button class="add-count">추가</button>
+			
+		<button class="del-count">삭제</button>
+		
+		<button class="btn-del">삭제</button>
+		
+	</div>
+</script>
 <style type="text/css">
 	
 </style>
 </head>
 <body>
+	<a href="/burger">home으로</a>
 	<h3>메뉴</h3>
 		<button id="btn_burger">BURGER</button>
 		<button id="btn_drink">DRINK</button>
 		<button id="btn_side">SIDE</button>
 		<br>
 		<br>
-	<div id = "list">
-		<c:if test="${empty orderList} ">
-			<p>게시물이 없습니다.</p>
-		</c:if>
-		<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
-			<c:if test="${MenuBranchMenuVo.menu_status != '2' and MenuBranchMenuVo.menu_status != '3'}">
-				<div class="menuList" style="display: inline-block;">
-					<input type="checkbox" class ="choose" style="display: none;">
-						<img alt="메뉴사진" src="http://placeimg.com/200/200/hamburger">
-						<p>메뉴 이름: ${MenuBranchMenuVo.menu_name}</p>
-						<p>메뉴 가격: ${MenuBranchMenuVo.menu_price}</p>
-						<input type="hidden" value="${MenuBranchMenuVo.menu_status}">
-						<input type="hidden" value="${MenuBranchMenuVo.category }">
-						<p>--------------------------------------</p>
-				</div>
-			</c:if>
-		</c:forEach>
-	</div>
-	<hr>
-	<div id="orderList">
-		
-	</div>
+		<div id="menu" style="width: 700px; display: inline;" >
+			<c:choose>
+				<c:when test="${empty orderList}">
+					<p>게시물이 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
+						<c:if test="${MenuBranchMenuVo.menu_status != '2' and MenuBranchMenuVo.menu_status != '3'}">
+							<div class="menuList" style="display: inline-block;">
+								<input type="checkbox" class ="choose" style="display: none;">
+									<img alt="메뉴사진" src="http://placeimg.com/200/200/hamburger">
+									<span>메뉴 이름: </span><p class="menu_name">${MenuBranchMenuVo.menu_name}</p>
+									<span>메뉴 가격: </span><p class="menu_price">${MenuBranchMenuVo.menu_price}</p>
+									<input type="hidden" value="${MenuBranchMenuVo.menu_status}">
+									<input type="hidden" value="${MenuBranchMenuVo.category }">
+									<p>--------------------------------------</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>				
+		</div>
+		<div id="array" style="width: 300px; border: 1px solid black; height: 600px;">
+			<div id="menuEmpty">제품을 선택해주세요</div>
+			
+						
+		</div>
+		<div id="orderList">
+			
+		</div>
 </body>
 </html>
