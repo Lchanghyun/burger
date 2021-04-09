@@ -125,8 +125,8 @@
                 <table class="purchase_table">
                     <thead>
                         <tr class="tlist">
-                            <th>수령번호</th>
                             <th>발주번호</th>
+                            <th>수령번호</th>
                             <th>일자</th>
                         </tr>
                     </thead>
@@ -136,11 +136,11 @@
                                 <td>no list</td>
                             </tr>
                         </c:if>
-                        <c:forEach items="${Plist}" var="Purchase">
+                        <c:forEach items="${Plist}" var="Received">
                             <tr>
-                                <td>${Purchase.purchase_no}</td>
-                                <td>${Purchase.super_no}</td>
-                                <td>${Purchase.status}</td>
+                                <td>${Received.purchase_no}</td>
+                                <td>${Received.super_no}</td>
+                                <td>${Received.purchase_date}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
