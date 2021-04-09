@@ -25,4 +25,11 @@ public class MyOrderRepository {
 		data.put("member_no",member_no);
 		return sqlSession.selectList("myorder.listDetail",data);
 	}
+	public int whatCategory(Integer order_no, String category, Integer member_no) throws Exception{
+		Map<String, Object> data = new HashMap<>();
+		data.put("order_no",order_no);
+		data.put("category",category);
+		data.put("member_no",member_no);
+		return sqlSession.selectOne("myorder.whatCategory",data);
+	}
 }

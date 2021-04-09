@@ -107,7 +107,12 @@
 		        <div class="mylastorder">
 		        	<input type="hidden" value="${list.order_no}">
 		            <div class="myorderlist-border">
-		                <img src="${pageContext.request.contextPath}/menu/photoShow?fileName=${menulist.get(list.order_no).get('save_name')}" class="menulist-img">
+		            	<c:if test="${menulist.get(list.order_no).get('save_name') ne null}">
+			                <img src="${pageContext.request.contextPath}/menu/photoShow?fileName=${menulist.get(list.order_no).get('save_name')}" class="menulist-img">
+		            	</c:if>
+		            	<c:if test="${menulist.get(list.order_no).get('save_name') eq null}">
+			                <div class="menulist-img"></div>
+		            	</c:if>
 		                <div class="myorderorder">
 			                <div class="mylastorder-list">
 			                	<c:if test="${list.count > 1}">
@@ -133,6 +138,5 @@
         </div>
         
     </div>
-    
 </body>
 </html>
