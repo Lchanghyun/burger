@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="category_list" parameterType="String" resultType="Item">
-		select item_no, item_name, item_price, category from item where category =#{category} order by category asc
+		select item_no, item_name, item_price, category from item where category = #{category}
 	</select>
 	
 	<select id="getSeq" resultType="int">

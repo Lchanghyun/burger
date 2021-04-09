@@ -49,7 +49,7 @@
 			<tbody>
 				<c:if test="${empty list}">
 					<tr>
-						<td>아무것도 없네...</td>
+						<td>재고가 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:forEach items="${list}" var="StockItemVo">
