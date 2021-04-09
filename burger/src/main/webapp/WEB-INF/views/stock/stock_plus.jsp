@@ -21,7 +21,7 @@
 			location.href="${pageContext.request.contextPath}/stock/list";
 		})
 	})
-</script>
+</script> 
 <body>
 	<form action="stock_plus" method="post" class="stock_plus_form">	
 		<input type="hidden" name="item_no" id="item_no">
