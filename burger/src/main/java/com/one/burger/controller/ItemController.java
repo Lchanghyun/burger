@@ -29,11 +29,13 @@ public class ItemController {
 	private ItemService itemservice;
 	
 	@GetMapping("/list")
-	public void ItemList(Model model) throws Exception {
+	public void ItemList(Model model, String category) throws Exception {
 		
 		log.info("itemList()");
 		
-		model.addAttribute("list",itemservice.all_list());
+		if(category == null) category="채소류";
+		
+		model.addAttribute("list",itemservice.category_list(category));
 	}
 	
 	@GetMapping("/edit")

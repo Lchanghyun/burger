@@ -44,6 +44,12 @@
 	<div class="list_all_wrapper">
 		<button class="item_register_btn">자재추가</button>
 		<button class="item_edit_btn">수정</button>
+		<br>
+		<a href="list?category=채소류">채소류</a>
+		<a href="list?category=육류">육류</a>
+		<a href="list?category=제과류">제과류</a>
+		<a href="list?category=음료">음료</a>
+		<a href="list?category=소모품">소모품</a>
 		<table class="list_table">
 			<thead>
 				<tr>

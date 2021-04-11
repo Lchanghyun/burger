@@ -54,4 +54,8 @@ public class StockRepository {
 		return sqlSession.selectOne("stock.chart_stock",param);
 	}
 	
+	public StockItemVo week_stock(Map<String, Object> param) throws Exception{
+		return sqlSession.selectOne("stock.week_stock",param);
+	}
+	
 }
