@@ -33,11 +33,15 @@
 					data : stock_count,
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)', 
-						'rgba(54, 162, 235, 0.2)'
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(12, 59, 192, 0.2)',
+						'rgba(12, 159, 42, 0.2)'
 					],
 					borderColor: [
 						'rgba(255, 99, 132, 1)', 
-						'rgba(54, 162, 235, 1)'
+						'rgba(54, 162, 235, 1)',
+						'rgba(12, 59, 192, 0.2)',
+						'rgba(12, 159, 42, 0.2)'
 					],
 					borderWidth : 1
 				}]
@@ -134,7 +138,6 @@
 		<a href="chart?category=제과류">제과류</a>
 		<a href="chart?category=음료">음료</a>
 		<a href="chart?category=소모품">소모품</a>
-		<canvas id="stock_line_chart"></canvas>
 	</div>
 </body>
 </html>

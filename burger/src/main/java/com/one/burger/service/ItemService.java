@@ -14,5 +14,6 @@ public interface ItemService {
 	public List<Item> category_list(String category) throws Exception;
 	public List<Integer> item_no(int branch_no) throws Exception;
 	public void edit(List<Map<String, Object>> item_list) throws Exception;
+	public boolean item_check(String item_name) throws Exception;
 }
 	

@@ -111,4 +111,10 @@ public class ItemServiceImpl implements ItemService{
 		}
 	}
 
+	@Override
+	public boolean item_check(String item_name) throws Exception {
+		boolean result = (itemRepository.item_check(item_name)==null) ? false : true;
+		return result;
+	}
+
 }

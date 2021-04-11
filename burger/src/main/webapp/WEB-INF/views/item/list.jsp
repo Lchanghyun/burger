@@ -34,10 +34,16 @@
 					item_no : item_no 
 				},
 				success: function(resp){
-					console.log("item_edit success!")
+					console.log("item_delete success!")
 				}
 			})
 		})
+		
+		let msg = '<c:out value="${msg}"/>';
+		console.log(msg)
+		if(msg !=null){
+			alert(msg)
+		}
 	})
 </script>
 <body>
