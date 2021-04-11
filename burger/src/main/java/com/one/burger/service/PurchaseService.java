@@ -7,5 +7,5 @@ import com.one.burger.entity.PurchaseItemVo;
 
 public interface PurchaseService {
 	public List<Purchase> call() throws Exception;
-	public List<PurchaseItemVo> select() throws Exception;
+	public List<PurchaseItemVo> select(int num) throws Exception;
 }

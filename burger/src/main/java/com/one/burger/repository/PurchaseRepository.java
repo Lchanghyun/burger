@@ -16,13 +16,10 @@ public class PurchaseRepository {
 	private SqlSession sqlSession;
 	
 	public List<Purchase> list() throws Exception {
-	
 		return sqlSession.selectList("purchase.Plist");
 	}
 
 	public List<PurchaseItemVo> select(int purchase_no) {
-		
-		
 		return sqlSession.selectList("purchase_item.PIlist",purchase_no);
 	}
 }

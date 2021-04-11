@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,6 +90,8 @@ body {
 
 </style>
 <body>
+	<c:choose>
+	<c:when test="${sessionScope.branch_name eq null}">
     <div class="left-side-bar">
         <div class="status-ico">
             <span>▶</span>
@@ -140,3 +143,58 @@ body {
           </li>
         </ul>
     </div>
+    </c:when>
+    <c:otherwise>
+    <div class="left-side-bar">
+        <div class="status-ico">
+            <span>▶</span>
+            <span>▼</span>
+        </div>
+
+        <ul>
+            <li>
+                <a href="#">매출관리</a>
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
+                <ul>
+                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">공지사항</a>
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">EVENT 관리</a>
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">지점 아이디 발급</a>
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                </ul>
+            </li>
+            <li>
+              <a href="#">메뉴 관리</a>
+              <ul>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+              </ul>
+          </li>
+        </ul>
+    </div>
+    </c:otherwise>
+    </c:choose>

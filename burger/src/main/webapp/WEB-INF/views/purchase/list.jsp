@@ -59,14 +59,33 @@
         background: #eee;
     }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
-    $('#load_bt').on('click', function(){
+  $(function(){
+     $('#load_bt').on('click', function(){
     	  var date = new Date($('#date-input').val());
     	  day = date.getDate();
     	  month = date.getMonth() + 1;
     	  year = date.getFullYear();
     	  alert([day, month, year].join('/'));
     	});
+     
+     $("#purchaseList tbody").on("click","tr",function(e){
+    	 e.preventDefault();
+    	 var purchase_no = $(this).find("td:first").text();
+    	 console.log(purchase_no);
+    	 
+    	 $.ajax({
+    			url:"${pageContext.request.contextPath}/purchase/ajax"
+    			,type: "post"
+    			,data: purchase_no
+    			,dataType: "text"
+    			,success: function(purchaseItemVo){
+    				console.log(purchaseItemVo);
+    			}
+	   	 })
+     })
+  })
     </script>
 <body>
     <div class="purchase_wrap">
@@ -83,7 +102,7 @@
                 </thead>
             </table>
             <div class="list_wrap">
-                <table class="purchase_table">
+                <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
                             <th>발주번호</th>
@@ -106,6 +125,9 @@
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="purchaseItemList">
+            	
             </div>
         </div>
         

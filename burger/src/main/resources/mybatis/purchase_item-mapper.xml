@@ -14,15 +14,6 @@
  
 <mapper namespace="purchase_item">
 
-	<!-- 
-		insert를 수행할 수 있는 구문
-		- id : 외부에서 구문을 호출하기 위한 이름(식별자)
-		- parameterType : 외부에서 전달되는 데이터의 자료형
-		
-		myBatis에서는 데이터를 배치하기 위해 다음과 같은 형태의 식을 제공
-		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
-		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
-	 -->
 	<select id = "PIlist" resultType="PurchaseItemVo" parameterType="int">
 	
 		SELECT I.item_name, I.item_price, i.category, P.count 

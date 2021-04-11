@@ -18,15 +18,17 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public List<Purchase> call() throws Exception {
-	
 		return purchaseRepository.list();
 	}
 
 
 	@Override
-	public List<PurchaseItemVo> select() throws Exception {
-
+	public List<PurchaseItemVo> select(int num) {
 		
-		return purchaseRepository.select(0);
+		return purchaseRepository.select(num);
 	}
+
+
+
+
 }

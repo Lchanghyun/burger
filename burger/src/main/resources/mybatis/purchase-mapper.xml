@@ -27,7 +27,6 @@
 		select purchase_no, super_no, purchase_date, status from purchase 
 	</select>
 	
-	<select id="purchaseitem_list" >
-	
-	</select>
+
+
 </mapper>
