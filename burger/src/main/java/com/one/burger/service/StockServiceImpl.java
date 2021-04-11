@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.one.burger.entity.Item;
 import com.one.burger.entity.Stock;
 import com.one.burger.entity.StockItemVo;
 import com.one.burger.repository.ItemRepository;
@@ -23,6 +24,8 @@ public class StockServiceImpl implements StockService {
 	private StockRepository stockRepository;
 	@Autowired
 	private ItemRepository itemRepository;
+	@Autowired
+	private ItemService itemservice;
 
 	@Override
 	public List<StockItemVo> all_list(int branch_no) throws Exception {
@@ -112,7 +115,6 @@ public class StockServiceImpl implements StockService {
 	public boolean item_check(Map<String, Object> param) throws Exception {
 		List<Stock> list = stockRepository.item_check(param);
 		boolean result = (list.size() == 0) ? false : true;
-		log.info("item_check_result : " + result);
 		return result;
 	}
 
@@ -127,7 +129,7 @@ public class StockServiceImpl implements StockService {
 	public List<String> chart_date() throws Exception {
 		List<String> list= new ArrayList<>();
 		
-		for(int day=1; day<8; day++) {
+		for(int day=7; day>0; day--) {
 			list.add(stockRepository.chart_date(day));
 		}
 		
@@ -145,7 +147,7 @@ public class StockServiceImpl implements StockService {
 		
 		for(Integer item : item_list) {
 			param.put("item_no", item);
-			for(int day=1; day<8; day++) {
+			for(int day=7; day>0; day--) {
 				
 				param.put("day",day);
 				list.add(stockRepository.chart_stock(param));
@@ -153,6 +155,33 @@ public class StockServiceImpl implements StockService {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public List<List<StockItemVo>> week_stock(int branch_no, String category) throws Exception {
+		
+		Map<String, Object> param =new HashMap<>();
+		List<List<StockItemVo>> result = new ArrayList<>();
+		
+		List<Item> item_list = itemservice.in_category_list(branch_no, category);
+
+		param.put("branch_no", branch_no);
+		
+		for(Item item : item_list) {
+			param.put("item_no", item.getItem_no());
+			List<StockItemVo> list = new ArrayList<>();
+			for(int day=7; day>0; day--) {
+				param.put("day", day);
+
+				list.add(stockRepository.week_stock(param));
+				log.info("list : " +list);
+				param.remove("day");
+			}
+			result.add(list);
+			param.remove("item_no");
+		}
+		
+		return result;
 	}
 
 }

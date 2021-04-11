@@ -17,4 +17,5 @@ public interface StockService {
 	public boolean date_check(int branch_no) throws Exception;
 	public List<String> chart_date() throws Exception;
 	public List<Stock> chart_stock(int branch_no) throws Exception;
+	public List<List<StockItemVo>> week_stock(int branch_no, String category) throws Exception;
 }

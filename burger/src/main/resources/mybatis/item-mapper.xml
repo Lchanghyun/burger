@@ -54,4 +54,8 @@
 			where
 				item_no = #{item_no}
 	</update>
+	
+	<select id="item_check" parameterType="String" resultType="Item">
+		select * from item where item_name= #{item_name}
+	</select>
 </mapper>
