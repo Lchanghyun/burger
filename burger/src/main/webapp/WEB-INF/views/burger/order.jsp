@@ -50,24 +50,24 @@
 */
 		// 메뉴 클릭
 		$(".menuList").click(function(){
-			var checkBox = $(this).children(".choose");
-			checkBox.prop('checked', !checkBox.prop('checked'));				
 			
-			var check = $(this).children(".choose").prop("checked");
-			var menu_name = $(this).children(".menu_name").html();
-			var menu_price = $(this).children(".menu_price").html();
+			let bm_no = $(this).children(".bm_no").val();
+			let menu_name = $(this).children(".menu_name").html();
+			let menu_price = $(this).children(".menu_price").html();
+			let html = '<div id="add-menu"></div>'
+			var template = $("#row-template").html();
+
+			const arr1 = new Array();
+			arr1.push(bm_no, menu_name, menu_price);
+			console.log(arr1)
+		
+			$("#array").append(html);
+			$("<p>").text(menu_price).prependTo("#add-menu");
+			$("<p>").text(menu_name).prependTo("#add-menu");
 			
 			
-			if(check){
-				console.log("엑티브를 생성합니다.")
-				console.log(menu_name);
-				var template = $("#row-template").html();
-				$(template).insertBefore("#menuEmpty");
-				
-			}else{
-				console.log("엑티브를 없앱니다.")
-				$(this).removeClass("active");
-			}
+			$("#menuEmpty").hide();
+			
 		});
 		$("body").on("click", ".btn-del", function(){
 			console.log("메뉴 삭제")
@@ -76,16 +76,7 @@
 		//버튼 클릭시 카테고리 메뉴 이동		
 	});
 </script>
-<script id="row-template" type="text/template">
-	<div class="add-menu">
-		<button class="add-count">추가</button>
-			
-		<button class="del-count">삭제</button>
-		
-		<button class="btn-del">삭제</button>
-		
-	</div>
-</script>
+
 <style type="text/css">
 	
 </style>
@@ -98,7 +89,7 @@
 		<button id="btn_side">SIDE</button>
 		<br>
 		<br>
-		<div id="menu" style="width: 700px; display: inline;" >
+		<div id="menu" style="width: 700px; float: left;" >
 			<c:choose>
 				<c:when test="${empty orderList}">
 					<p>게시물이 없습니다.</p>
@@ -107,10 +98,10 @@
 					<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
 						<c:if test="${MenuBranchMenuVo.menu_status != '2' and MenuBranchMenuVo.menu_status != '3'}">
 							<div class="menuList" style="display: inline-block;">
-								<input type="checkbox" class ="choose" style="display: none;">
 									<img alt="메뉴사진" src="http://placeimg.com/200/200/hamburger">
-									<span>메뉴 이름: </span><p class="menu_name">${MenuBranchMenuVo.menu_name}</p>
-									<span>메뉴 가격: </span><p class="menu_price">${MenuBranchMenuVo.menu_price}</p>
+									<p class="menu_name">${MenuBranchMenuVo.menu_name}</p>
+									<p class="menu_price">${MenuBranchMenuVo.menu_price}</p>
+									<input class="bm_no" type="hidden" value="${MenuBranchMenuVo.bm_no}">
 									<input type="hidden" value="${MenuBranchMenuVo.menu_status}">
 									<input type="hidden" value="${MenuBranchMenuVo.category }">
 									<p>--------------------------------------</p>
@@ -120,13 +111,12 @@
 				</c:otherwise>
 			</c:choose>				
 		</div>
-		<div id="array" style="width: 300px; border: 1px solid black; height: 600px;">
+		<div id="array" style="width: 300px; border: 1px solid black; height: 600px; float: right;">
 			<div id="menuEmpty">제품을 선택해주세요</div>
-			
 						
-		</div>
-		<div id="orderList">
 			
+			<button type="submit">결제하기</button>			
 		</div>
+
 </body>
 </html>
