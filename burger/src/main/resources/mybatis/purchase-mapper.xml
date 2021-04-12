@@ -27,6 +27,10 @@
 		select purchase_no, super_no, purchase_date, status from purchase 
 	</select>
 	
+	<insert id="PRegister" parameterType="map">
+		insert into purchase values(
+			#{purchase_no}, #{branch_no}, #{super_no}, sysdate, #{status})
+	</insert>
 
 
 </mapper>

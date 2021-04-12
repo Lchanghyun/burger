@@ -14,11 +14,16 @@
  
 <mapper namespace="purchase_item">
 
-	<select id = "PIlist" resultType="PurchaseItemVo" parameterType="int">
+	<select id ="PIlist" resultType="PurchaseItemVo" parameterType="int">
 	
 		SELECT I.item_name, I.item_price, i.category, P.count 
 			from purchase_item P inner join Item I 
 				on P.item_no = I.item_no
-					 where P.purchase_no=#{purchase_no};
+					 where P.purchase_no=#{purchase_no}
 	</select>
+	
+	<insert id="PIRegister" parameterType="map">
+		insert into purchase_item values(
+			#{pi-no}, #{purchase_no},#{branch_no},#{super_no},#{item_no},#{count})
+	</insert>
 </mapper>

@@ -70,6 +70,16 @@
     	  alert([day, month, year].join('/'));
     	});
      
+     $('#new_rg').on('click',function(e){
+    	e.preventDefault();
+		location.href="${pageContext.request.contextPath}/purchase/register"
+     });
+     
+     $('#update_bt').on('click',function(e){
+     	e.preventDefault();
+ 		location.href="${pageContext.request.contextPath}/purchase/update"
+      });
+     
      $("#purchaseList tbody").on("click","tr",function(e){
     	 e.preventDefault();
     	 var purchase_no = $(this).find("td:first").text();
@@ -77,15 +87,15 @@
     	 
     	 $.ajax({
     			url:"${pageContext.request.contextPath}/purchase/ajax"
-    			,type: "post"
+    			,type: "POST"
     			,data: purchase_no
-    			,dataType: "text"
-    			,success: function(purchaseItemVo){
-    				console.log(purchaseItemVo);
+    			,dataType: 'json'
+    			,success: function(data){
+    				console.log(data);
     			}
-	   	 })
-     })
-  })
+	   	 });
+     });
+  });
     </script>
 <body>
     <div class="purchase_wrap">
@@ -98,6 +108,8 @@
                         <th><input type="date" id="st_dt"></th>
                         <th><input type="date" id="en_dt"></th>
                         <th><input type="button" value="조회" id="load_dt">
+                        <th><input type="button" value="신규 등록" id="new_rg"></th>
+                        <th><input type="button" value="수정" id="update_bt"></th>
                     </tr>
                 </thead>
             </table>

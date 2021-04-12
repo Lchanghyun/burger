@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.one.burger.entity.Item;
 import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
+import com.one.burger.repository.ItemRepository;
 import com.one.burger.repository.PurchaseRepository;
 
 @Service
@@ -27,6 +29,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		return purchaseRepository.select(num);
 	}
+
 
 
 
