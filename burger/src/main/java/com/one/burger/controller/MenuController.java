@@ -1,16 +1,17 @@
 package com.one.burger.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,20 @@ public class MenuController {
 		List<MenuPhotoVO> allList = menuService.superlist();
 		model.addAttribute("allList",allList);
 	}
+	@PostMapping("/superlist")
+	public void superListSearch(Model model, String keyword) throws Exception{
+		log.info("superListSearch()");
+		List<MenuPhotoVO> allList;
+		if(keyword.equals("")) {
+			allList = menuService.superlist();
+		}
+		else {
+			allList = menuService.searchlist(keyword);
+		}
+		model.addAttribute("allList", allList);
+		model.addAttribute("key",keyword);
+	}
+	
 	@GetMapping("/categorylist")
 	public String categoryList(Model model, String category) throws Exception{
 		log.info("categoryList()");
@@ -84,6 +99,37 @@ public class MenuController {
 		model.addAttribute("branchList",branchList);
 		model.addAttribute("branch_name",branch_name);
 	}
+	@PostMapping("/branchlist")
+	public void branchListSearch(Model model, String my, String keyword, HttpSession session) throws Exception{
+		log.info("branchListSearch()");
+		int branch_no = (Integer)session.getAttribute("branch_no");
+		String branch_name = menuService.getBranchName(branch_no);
+		String category = null;
+		List<MenuPhotoVO> allList;
+		List<MenuBranchVO> branchList;
+		if(my == null) { // 전체메뉴
+			if(keyword.equals("")) {
+				allList = menuService.superlist();
+			}
+			else {
+				allList = menuService.searchlist(keyword);
+			}
+			model.addAttribute("allList",allList);
+			model.addAttribute("my",false);
+		}
+		else { // my 지점 메뉴목록
+			model.addAttribute("my",true);
+		}
+		if(keyword.equals("")) {
+			branchList = menuService.branchList(branch_no, category);
+		}
+		else {
+			branchList = menuService.branchSearch(branch_no, keyword);
+		}
+		model.addAttribute("branchList",branchList);
+		model.addAttribute("branch_name",branch_name);
+		model.addAttribute("key",keyword);
+	}
 	
 	@PostMapping("/menuAdd")
 	public ResponseEntity<String> menuAdd(Integer menu_no, HttpSession session) throws Exception{
@@ -92,6 +138,14 @@ public class MenuController {
 		int branch_no = (Integer)session.getAttribute("branch_no");
 		menuService.menuAdd(menu_no, branch_no);
 		return new ResponseEntity<String>("add",HttpStatus.OK);
+	}
+	
+	@PostMapping("/checkMenu")
+	@ResponseBody
+	public String checkMenu(String menu_name) throws Exception{
+		boolean check = menuService.checkMenu(menu_name);
+		String result = check ? "o" : "x";
+		return result;
 	}
 	
 	@GetMapping("/modify")
@@ -157,29 +211,26 @@ public class MenuController {
 	@GetMapping("/photoShow")
 	public ResponseEntity<byte[]> showPhoto(String fileName) throws Exception{
 		log.info("파일명: "+fileName);
-		File target = new File(uploadPath, fileName);
-		
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
 		try {
-//			InputStream in;
-//			in = new FileInputStream(uploadPath+fileName);
-			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-			BufferedImage img = ImageIO.read(target);
-			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			ImageIO.write(img, formatName.toUpperCase(), os);
-			byte[] result = os.toByteArray();
-			return new ResponseEntity<byte[]>(result, HttpStatus.CREATED);
-//			byte[] data = FileUtils.readFileToByteArray(target);
-//			return ResponseEntity.ok().header("Content-Type", "application/octet-stream")
-//				.header("Content-Disposition", "attachment; filename=\""+URLEncoder.encode(fileName,"UTF-8")+"\"")
-//				.header("Content-Length", String.valueOf(target.length()))
-//				.header("Content-Encoding", "UTF-8")
-//				.body(data);
+			in = new FileInputStream(uploadPath+fileName);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			headers.add("Content-Disposition", "attachment; filename=\"" +
+					new String(fileName.getBytes("UTF-8"), 
+							"ISO-8859-1") + "\"");
+			entity = new ResponseEntity<byte[]>(
+					IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.notFound().build();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 		}
+		finally {
+			in.close();
+		}
+		return entity;
 	}
-	
 
 }

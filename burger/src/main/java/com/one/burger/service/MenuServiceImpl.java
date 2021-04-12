@@ -82,6 +82,10 @@ public class MenuServiceImpl implements MenuService{
 		menuRepository.menuAdd(menu_no, branch_no);
 	}
 	@Override
+	public boolean checkMenu(String menu_name) throws Exception{
+		return menuRepository.checkMenu(menu_name);
+	}
+	@Override
 	public List<MenuBranchVO> branchList(Integer branch_no, String category) throws Exception{
 		return menuRepository.branchList(branch_no, category);
 	}
@@ -92,5 +96,13 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public String getBranchName(Integer branch_no) throws Exception{
 		return menuRepository.getBranchName(branch_no);
+	}
+	@Override
+	public List<MenuPhotoVO> searchlist(String menu_name) throws Exception{
+		return menuRepository.searchlist(menu_name);
+	}
+	@Override
+	public List<MenuBranchVO> branchSearch(Integer branch_no, String key) throws Exception{
+		return menuRepository.branchSearch(branch_no, key);
 	}
 }

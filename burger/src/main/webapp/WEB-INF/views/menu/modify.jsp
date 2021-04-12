@@ -71,7 +71,6 @@
     <script>
     	$(function(){
     		let str = "<div><img src='photoShow?fileName=/thumbnail/th_${menu.upload_name}'></div>";
-			console.log(str);
 			$(".menuphotoshow").append(str);
 			$("#menu_photo").hide();
 			
@@ -93,10 +92,8 @@
     			}
     		})
     		$("#menu_photo").on("change", function(e){
-    			console.log("썸네일");
     			let files = e.target.files;
     			let file = files[0];
-    			console.log(file);
     			let formData = new FormData();
     			formData.append("file",file);
     			$.ajax({
@@ -107,10 +104,8 @@
     				dataType:"text",
     				type:"POST",
     				success: function(res){
-    					console.log(res);
     					$(".menuphotoshow").children().remove();
     					let str = "<div><img src='photoShow?fileName="+res+"'></div>";
-    					console.log(str);
     					$(".menuphotoshow").append(str);
     				}
     			})

@@ -30,6 +30,9 @@ public class MenuRepository {
 	public List<MenuPhotoVO> superlist() throws Exception{
 		return sqlSession.selectList("menu.superlist");
 	}
+	public List<MenuPhotoVO> searchlist(String menu_name) throws Exception{
+		return sqlSession.selectList("menu.searchlist", menu_name);
+	}
 	public MenuPhotoVO read(Integer menu_no) throws Exception{
 		return sqlSession.selectOne("menu.read", menu_no);
 	}
@@ -60,6 +63,10 @@ public class MenuRepository {
 		data.put("menu_status",'0');
 		sqlSession.insert("menu.menuAdd", data);
 	}
+	public boolean checkMenu(String menu_name) throws Exception{
+		int menu = sqlSession.selectOne("menu.checkMenu",menu_name);
+		return menu > 0;
+	}
 	public List<MenuBranchVO> branchList(Integer branch_no, String category) throws Exception{
 		if(category!=null && category.equals("판매중지")) {
 			return sqlSession.selectList("menu.branchstoplist", branch_no);
@@ -78,5 +85,11 @@ public class MenuRepository {
 	}
 	public String getBranchName(Integer branch_no) throws Exception{
 		return sqlSession.selectOne("today.getBranchName", branch_no);
+	}
+	public List<MenuBranchVO> branchSearch(Integer branch_no, String key) throws Exception{
+		Map<String, Object> data = new HashMap<>();
+		data.put("branch_no",branch_no);
+		data.put("key", key);
+		return sqlSession.selectList("menu.branchSearch", data);
 	}
 }

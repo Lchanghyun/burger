@@ -25,6 +25,13 @@
     	order by M.menu_name asc
 	</select>
 	
+	<select id="searchlist" parameterType="String" resultType="MenuPhotoVO">
+		select M.*, P.upload_name, P.save_name from
+    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	where not M.category = '단종' and instr(M.menu_name,#{menu_name}) > 0
+    	order by M.menu_name asc
+	</select>
+	
 	<update id="modify" parameterType="Menu">
 		update menu set menu_name=#{menu_name}, menu_price=#{menu_price}, category=#{category} where menu_no=#{menu_no}
 	</update>
@@ -62,6 +69,10 @@
 		values (bm_seq.nextval, #{branch_no}, #{menu_no}, #{menu_status})
 	</insert>
 	
+	<select id="checkMenu" parameterType="String" resultType="Integer">
+		select count(*) from menu where menu_name=#{menu_name}
+	</select>
+	
 	<select id="branchlist" parameterType="map" resultType="MenuBranchVO">
 		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
     	menu M inner join branch_menu B on B.menu_no=M.menu_no
@@ -79,6 +90,14 @@
     	inner join menu_photo P on M.menu_no=P.menu_no
 		where B.branch_no=#{branch_no} and B.menu_status='2'
 		order by M.menu_name asc
+	</select>
+	
+	<select id="branchSearch" parameterType="map" resultType="MenuBranchVO">
+		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
+    	menu M inner join branch_menu B on B.menu_no=M.menu_no
+    	inner join menu_photo P on M.menu_no=P.menu_no
+    	where B.branch_no=#{branch_no} and instr(M.menu_name,#{key})>0 and not B.menu_status='3'
+    	order by M.menu_name asc
 	</select>
 	
 	<update id="soldoutAndResale" parameterType="map">

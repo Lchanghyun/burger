@@ -31,44 +31,65 @@
         }
         .menulist-title{
             font-size: 20px;
+            color:green;
+            font-weight:bold;
+            padding-left:30px;
+            margin-bottom:15px;
         }
         .search-menulist{
             display: flex;
             justify-content: center;
-            margin:20px 0;
+            margin:20px 0 30px 0;
         }
         .menuname{
-            font-size: 17px;
+            font-size: 18px;
+            color:green;
         }
         .searchmenu-keyword{
             margin:0 10px;
             outline: none;
-            width: 300px;
-            height: 23px;
+            width: 200px;
+            height: 25px;
+            border:1px solid green;
         }
         .searchBtn{
-            
+            background-color:green;
+            color:white;
+            font-size:15px;
+            outline:none;
+            border:none;
         }
         .menuinsert{
         	padding-left:35px;
         }
         .menuinsertBtn{
-
+			background-color:green;
+			color:white;
+			border-radius:3rem;
+			border:none;
+			outline:none;
+			font-size:17px;
+			padding:0.2rem 0.5rem;
         }
-        .admin-list-box{
-            display: flex;
-            justify-content: center;
+        .tableHead{
+        	width:600px;
             margin-top:20px;
-            height:600px;
+            margin:0 auto;
+        }
+        .tableBody{
+        	width:650px;
+        	height:500px;
             overflow:auto;
+            margin-left:50px;
         }
         .menu-adminlist{
             width:600px;
             border-spacing: 0;
         }
         thead > tr > th{
-            border-top:2px solid gray;
-            border-bottom:2px solid gray;
+            border-top:2px solid green;
+            border-bottom:2px solid green;
+            color:green;
             height:40px;
             font-size: 17px;
         }
@@ -80,6 +101,7 @@
         }
         .categoryBox{
         	text-align:center;
+        	margin:10px 0;
         }
         .total, .burger, .side, .drink, .theend{
         	text-decoration: none;
@@ -87,8 +109,12 @@
         	margin:0 0.5rem;
         	color:lightgray;
         }
+        .total:hover, .burger:hover, .side:hover, .drink:hover, .theend:hover{
+        	font-weight:bold;
+        }
         .activeList{
         	color:green;
+        	font-weight:bold;
         }
         .stopsale{
         	color:red;
@@ -100,6 +126,28 @@
         }
         .marginPic{
         	margin-right:10px;
+        }
+        .listphotoshow{
+        	background-color:transparent;
+        	color:green;
+        	border:1px solid green;
+        	border-radius: 5rem;
+        	outline:none;
+        	cursor:pointer;
+        	font-weight:bold;
+        	font-size:13px;
+        	margin-right:10px;
+        }
+        .menuModify, .menuRemove{
+        	background-color:transparent;
+        	color:green;
+        	outline:none;
+        	border:none;
+        	font-size:18px;
+        	cursor:pointer;
+        }
+        .menuModify:hover, .menuRemove:hover{
+        	font-weight:bold;
         }
     </style>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -167,18 +215,20 @@
 			<div><a href="${pageContext.request.contextPath}/menu/superlist">본사메뉴관리</a></div>
 		</div>
 		<div class="menustatuslist">
-	        <div class="menulist-title">(본사)메뉴관리</div>
+	        <div class="menulist-title">본사 ☞ 메뉴관리</div>
 	
+		<form action="superlist" method="post">
 	        <div class="search-menulist">
 	            <div>
 	                <span class="menuname">메뉴명</span>
 	            </div>
 	            <div class="searchmenu-key">
-	                <input type="text" name="keyword" class="searchmenu-keyword">
+	                <input type="text" name="keyword" class="searchmenu-keyword" value="${key}">
 	            </div>
-	            <input type="button" value="조회" class="searchBtn">
+	            <input type="submit" value="조회" class="searchBtn">
 	        </div>
-	
+		</form>
+		
 	        <div class="menuinsert">
 	            <input type="button" value="메뉴등록" class="menuinsertBtn">
 	        </div>
@@ -191,7 +241,7 @@
 	        	<a href="categorylist?category=단종" class="theend">단종메뉴</a>
 	        </div>
 	
-	        <div class="admin-list-box">
+	        <div class="tableHead">
 	            <table class="menu-adminlist">
 	                <thead>
 	                	<c:if test="${mCategory ne '단종'}">
@@ -212,6 +262,10 @@
 	                		</tr>
                 		</c:if>
 	                </thead>
+	             </table>
+	         </div>
+	         <div class="tableBody">
+	             <table class="menu-adminlist">
 	                <tbody>
 	                	<c:if test="${empty allList}">
 	                		<c:if test="${mCategory ne '단종'}">
@@ -225,32 +279,31 @@
 		                		</tr>
 	                		</c:if>
 	                	</c:if>
-	                    <!-- for문 -->
 	                    <c:forEach var="menu" items="${allList}">
 		                    <tr>
 		                    	<c:if test="${menu.category ne '단종'}">
-		                    		<td>${menu.category}</td>
-		                    		<td class="picAndMenu">
+		                    		<td width="24%">${menu.category}</td>
+		                    		<td class="picAndMenu" width="37%">
 		                    			<input type="hidden" value="${menu.menu_name}">
 			                        	<input type="hidden" value="${menu.save_name}">
 			                        	<input type="button" value="사진" class="listphotoshow marginPic">
 			                        	<span>${menu.menu_name}</span>
 			                        </td>
-			                        <td>${menu.menu_price} 원</td>
-		                    		<td>
+			                        <td width="17%">${menu.menu_price} 원</td>
+		                    		<td width="10%">
 			                        	<input type="hidden" value="${menu.menu_no}">
 			                        	<input type="button" value="수정" class="menuModify">
 			                        </td>
-			                        <td>
+			                        <td width="12%">
 			                        	<input type="hidden" value="${menu.menu_no}">
 			                        	<input type="button" value="단종" class="menuRemove">
 			                        </td>
 		                    	</c:if>
 		                    	<c:if test="${menu.category eq '단종'}">
-		                    		<td class="stopsale">단종</td>
-		                    		<td>${menu.menu_name}</td>
-			                        <td>${menu.menu_price} 원</td>
-			                        <td>
+		                    		<td class="stopsale" width="24%">단종</td>
+		                    		<td width="37%">${menu.menu_name}</td>
+			                        <td width="17%">${menu.menu_price} 원</td>
+			                        <td width="22%">
 			                        	<input type="hidden" value="${menu.menu_name}">
 			                        	<input type="hidden" value="${menu.save_name}">
 			                        	<input type="button" value="사진" class="listphotoshow">
