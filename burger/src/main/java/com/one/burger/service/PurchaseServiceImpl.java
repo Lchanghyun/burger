@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.one.burger.entity.Item;
 import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
+import com.one.burger.entity.ReceivedItemVo;
 import com.one.burger.repository.ItemRepository;
 import com.one.burger.repository.PurchaseRepository;
 
@@ -23,12 +24,19 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return purchaseRepository.list();
 	}
 
+	@Override
+	public List<PurchaseItemVo> select(int purchase_no) {
+		
+		return purchaseRepository.select(purchase_no);
+	}
 
 	@Override
-	public List<PurchaseItemVo> select(int num) {
+	public List<ReceivedItemVo> received(int purchase_no) throws Exception {
 		
-		return purchaseRepository.select(num);
+		return purchaseRepository.received(purchase_no);
 	}
+
+
 
 
 

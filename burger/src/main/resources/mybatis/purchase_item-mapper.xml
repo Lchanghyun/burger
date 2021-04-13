@@ -22,6 +22,10 @@
 					 where P.purchase_no=#{purchase_no}
 	</select>
 	
+	<select id="getSeq" resultType="int">
+		select pi_seq.nextval from dual
+	</select>
+	
 	<insert id="PIRegister" parameterType="map">
 		insert into purchase_item values(
 			#{pi-no}, #{purchase_no},#{branch_no},#{super_no},#{item_no},#{count})

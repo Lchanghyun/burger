@@ -23,5 +23,11 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
-	
+	<select id="Received" resultType="ReceivedItemVo" parameterType="int">
+		Select R.Item_no, I.item_name, I.item_price, i.category, R.count, R.receive_date
+		    from Purchase_item P left outer JOIN Item I 
+		        on P.item_no = I.item_no left outer join received_item R 
+		            on P.item_no = R.item_no 
+		                where P.purchase_no=#{purchase_no}
+	</select>
 </mapper>

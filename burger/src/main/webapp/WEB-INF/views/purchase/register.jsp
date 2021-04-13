@@ -11,23 +11,19 @@
     }
     
     .purchase_wrap{
-        width: 100%;
-        height: 980px;
-        display: flex;
-        
+        width: 80%;
+	    height: 400px;
+	    position: fixed;
+	    left: 245px;
+	    top: 260px;
     }
     
-    .purchase_empty{
-        width: 2%;
-        height: 980px;
-        display: inline-block;
-    }
-    
-    .half{
-        width: 48%;
-        height: 980px;
-        display: inline-block;
-        
+    .purchase_container{
+        width: 95%;
+	    height: 300px;
+	    position: absolute;
+	    left: 35px;
+	    top: 45px;
     }
 
     .list_wrap{
@@ -59,11 +55,29 @@
         background: #eee;
     }
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
     $(function(){
-    	$('#movebt').click(function(){
+    	
+    	/*
+    	var tb1 = $('#purchaseList');
+    	var tb2 = $('#itemList');
+    	
+    	$('#purchaseList, #itemList').find('tbody tr').on('click', moveRow);
+    		function moveRow(){
+    			
+    			var row = $(this);
+    			var table_current = row.closest('table');
+    			
+    			if(table_current.prop('id')== tb1.prop('id')){
+    				tb2.find('tbody').append(row);
+    			} else {
+    				tb1.find('tbody').append(row);
+    			}
+    			return;
+    		}
+    		*/
     		
+    		/*
     		var rowData = new Array();
     		var tdArr = new Array();
     		var checkbox = $("input[id=itemCk]:checked");
@@ -80,8 +94,8 @@
     			var price = td.eq(3).text();
     			
     			console.log("cate");
-    		});
-    		
+    		}); 
+    		*/
     		/*$('tr.selected','#purchaseList').each(function(){
     			
     			var selectItem = $(this).closest("tr");
@@ -90,21 +104,21 @@
     			$('tbody', 'itemList').append(moveItem);
     		});
     	}); */
-    })
+    });
     </script>
 <body>
     <div class="purchase_wrap">
-        <div class="purchase_empty"></div>
         <div class="half">
             <div class="list_wrap">
             <input type="button" value="등록" id="movebt">
                 <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
-                        	<th>덤디덤디</th>
+                        	<th>선택</th>
                         	<th>카테고리</th>
                             <th>자재명</th>
                             <th>단가</th>
+                            <th>수량</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,39 +133,9 @@
 								<td>${item.category}</td>
 								<td>${item.item_name}</td>
 								<td>${item.item_price}</td>
+								<td><input type="text" style="text-align:center"></td>
 							</tr>
                         </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        
-        <div class="half">
-            <div class="list_wrap">
-            <input type="button" value="발주" id="regbt">
-                <table class="purchase_table" id="itemList">
-                    <thead>
-                        <tr class="tlist">
-                        	<th>덤디덤디</th>
-                        	<th>카테고리</th>
-                            <th>자재명</th>
-                            <th>단가</th>
-                            <th>수량</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:if test="${empty Plist}">
-                            <tr>
-                                <td>컴온!</td>
-                            </tr>
-                        </c:if>
-                        <tr>
-                        	<td></td>
-                        	<td></td>
-                        	<td></td>
-                        	<td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

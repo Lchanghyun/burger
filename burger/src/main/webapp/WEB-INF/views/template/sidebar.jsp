@@ -33,12 +33,9 @@ body {
 
 .left-side-bar {
     background-color: #dfdfdf;
-    opacity: 70%;
-    height: 100%;
+    height: 950px;
     width: 180px;
-    position: fixed;
-    left: -155px;
-    transition: left .3s;
+    float:left;
 }
 
 .left-side-bar > .status-ico {
@@ -62,9 +59,6 @@ body {
     white-space: nowrap;
 }
 
-.left-side-bar:hover {
-    left: 0;
-}
 
 .left-side-bar ul > li:hover ul {
     display: block;
@@ -75,17 +69,7 @@ body {
     background-color: black;
 }
 
-.left-side-bar > .status-ico > span:last-child {
-    display: none;
-}
 
-.left-side-bar:hover > .status-ico > span:last-child {
-    display: block;
-}
-
-.left-side-bar:hover > .status-ico > span:first-child {
-    display: none;
-}
 
 
 </style>
@@ -94,10 +78,8 @@ body {
 	<c:when test="${sessionScope.branch_name eq null}">
     <div class="left-side-bar">
         <div class="status-ico">
-            <span>▶</span>
             <span>▼</span>
         </div>
-
         <ul>
             <li>
                 <a href="#">매출관리</a>

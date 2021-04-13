@@ -11,23 +11,19 @@
     }
     
     .purchase_wrap{
-        width: 100%;
-        height: 980px;
-        display: flex;
-        
+        width: 80%;
+	    height: 400px;
+	    position: fixed;
+	    left: 245px;
+	    top: 260px;
     }
     
-    .purchase_empty{
-        width: 2%;
-        height: 980px;
-        display: inline-block;
-    }
-    
-    .half{
-        width: 48%;
-        height: 980px;
-        display: inline-block;
-        
+    .purchase_container{
+        width: 95%;
+	    height: 300px;
+	    position: absolute;
+	    left: 35px;
+	    top: 45px;
     }
 
     .list_wrap{
@@ -62,96 +58,47 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
     $(function(){
-    	$('#movebt').click(function(){
-    		
-    		var rowData = new Array();
-    		var tdArr = new Array();
-    		var checkbox = $("input[id=itemCk]:checked");
-    		
-    		checkbox.each(function(i){
-    			
-    			var tr = checkbox.parent().parent().eq(i);
-    			var td = tr.children();
-    			
-    			rowData.push(tr.text());
-    			
-    			var cate = td.eq(1).text();
-    			var name = td.eq(2).text();
-    			var price = td.eq(3).text();
-    			
-    			console.log("cate");
-    		});
-    		
-    		/*$('tr.selected','#purchaseList').each(function(){
-    			
-    			var selectItem = $(this).closest("tr");
-    			var moveItem = selectItem.clone();
-    			
-    			$('tbody', 'itemList').append(moveItem);
-    		});
-    	}); */
-    })
+    	// 목록
+   	 $('#back').on('click',function(e){
+   		 location.href="${pageContext.request.contextPath}/purchase/list"
+        })
+    });
     </script>
 <body>
     <div class="purchase_wrap">
-        <div class="purchase_empty"></div>
-        <div class="half">
+        <div class="purchase_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="button" value="목록" id="back"></th>
+                        <th><input type="button" value="수정 " id="update_bt"></th>
+                    </tr>
+                </thead>
+            </table>
             <div class="list_wrap">
-            <input type="button" value="등록" id="movebt">
                 <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
-                        	<th>덤디덤디</th>
-                        	<th>카테고리</th>
-                            <th>자재명</th>
-                            <th>단가</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:if test="${empty list}">
-                            <tr>
-                                <td>no list</td>
-                            </tr>
-                        </c:if>
-                        <c:forEach items="${list}" var="item">
-							<tr>
-								<td><input type="checkbox" id=itemCk></td>
-								<td>${item.category}</td>
-								<td>${item.item_name}</td>
-								<td>${item.item_price}</td>
-							</tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        
-        <div class="half">
-            <div class="list_wrap">
-            <input type="button" value="발주" id="regbt">
-                <table class="purchase_table" id="itemList">
-                    <thead>
-                        <tr class="tlist">
-                        	<th>덤디덤디</th>
-                        	<th>카테고리</th>
-                            <th>자재명</th>
-                            <th>단가</th>
+                            <th>카테고리</th>
+                            <th>발주품목</th>
+                            <th>발주금액</th>
                             <th>수량</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:if test="${empty Plist}">
+                        <c:if test="${empty PIlist}">
                             <tr>
-                                <td>컴온!</td>
+                                <td>no list</td>
                             </tr>
                         </c:if>
-                        <tr>
-                        	<td></td>
-                        	<td></td>
-                        	<td></td>
-                        	<td></td>
-                        </tr>
+                        <c:forEach items="${PIlist}" var="PI">
+                            <tr>
+                                <td>${PI.category}</td>
+                                <td>${PI.item_name}</td>
+                                <td>${PI.item_price}</td>
+                                <td><input type="number" value="${PI.count}" style="text-align:center"></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
