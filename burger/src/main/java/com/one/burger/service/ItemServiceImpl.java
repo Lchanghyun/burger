@@ -97,6 +97,17 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
+	public List<Integer> category_item_no(int branch_no, String category) throws Exception {
+		
+		Map<String, Object> param = new HashMap<>();
+		
+		param.put("branch_no", branch_no);
+		param.put("category", category);
+		
+		return itemRepository.category_item_no(param);
+	}
+	
+	@Override
 	public void edit(List<Map<String, Object>> item_list) throws Exception {
 				
 		for(Map<String, Object> item : item_list) {

@@ -28,6 +28,10 @@ public class ItemRepository {
 		return sqlSession.selectList("item.item_no", branch_no);
 	}
 	
+	public List<Integer> category_item_no(Map<String, Object> param){
+		return sqlSession.selectList("item.category_item_no", param);
+	}
+	
 	public List<Integer> category_item(Map<String, Object> param){
 		
 		return sqlSession.selectList("item.category_item", param);

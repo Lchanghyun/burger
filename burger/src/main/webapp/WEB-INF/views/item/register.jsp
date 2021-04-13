@@ -19,13 +19,13 @@
 		
 		$(".item_list_btn").on("click", function(e){
 			e.preventDefault()
-			
+
 			location.href="${pageContext.request.contextPath}/item/list"
 		})
 	})
 </script>
 <body>
-	<div>
+	<div class="item_lsit_wrapper">
 		<button class="item_list_btn">자재현황</button>
 		<form action="register" method="POST" class="item_register_form">
 			<select name="category">

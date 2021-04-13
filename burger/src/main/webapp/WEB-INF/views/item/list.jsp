@@ -40,10 +40,11 @@
 		})
 		
 		let msg = '<c:out value="${msg}"/>';
-		console.log(msg)
-		if(msg !=null){
+
+		if(msg!==""){
 			alert(msg)
 		}
+		
 	})
 </script>
 <body>

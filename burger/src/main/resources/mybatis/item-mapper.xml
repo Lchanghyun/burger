@@ -33,6 +33,12 @@
 				group by S.item_no, I.category order by category
 	</select>
 	
+	<select id="category_item_no" parameterType="Map" resultType="Integer">
+		select S.item_no from item I left outer join stock S on I.item_no = S.item_no 
+			where branch_no = #{branch_no} and I.category = #{category}
+				group by S.item_no, I.category order by category
+	</select>
+	
 	<select id="all_list" resultType="Item">
 		select item_no, item_name, item_price, category from item order by category asc
 	</select>
