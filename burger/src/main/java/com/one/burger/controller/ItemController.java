@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.one.burger.entity.Item;
 import com.one.burger.service.ItemService;
@@ -29,11 +30,13 @@ public class ItemController {
 	private ItemService itemservice;
 	
 	@GetMapping("/list")
-	public void ItemList(Model model) throws Exception {
+	public void ItemList(Model model, String category) throws Exception {
 		
 		log.info("itemList()");
 		
-		model.addAttribute("list",itemservice.all_list());
+		if(category == null) category="채소류";
+		
+		model.addAttribute("list",itemservice.category_list(category));
 	}
 	
 	@GetMapping("/edit")
@@ -74,17 +77,16 @@ public class ItemController {
 	}
 	
 	@PostMapping("/register")
-	public String PostItemRegister(Item item) throws Exception{
+	public String PostItemRegister(Item item, RedirectAttributes redirectAttribute) throws Exception{
 		log.info("PostItemRegister()");
-		try {
+		
+		if(!itemservice.item_check(item.getItem_name())) {
 			itemservice.insert(item);
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			
+		else {
+			redirectAttribute.addFlashAttribute("msg", "이미 등록된 원자재입니다.");
 		}
-		
+
 		return "redirect:list";
 	}
 	

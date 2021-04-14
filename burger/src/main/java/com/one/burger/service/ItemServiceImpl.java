@@ -47,13 +47,21 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
-	public List<Item> category_list(int branch_no, String category) throws Exception {
-		
+	public List<Item> category_list(String category) throws Exception {
+		//지점상관없이 모든 카테고리별 원자재 리스트
+		List<Item> list = itemRepository.category_list(category);
+
+		return list;
+	}
+	
+	@Override
+	public List<Item> none_category_list(int branch_no, String category) throws Exception {
+		//지점에 등록되지 않은 원자재만 나오도록 구현
 		Map<String, Object> param = new HashMap<>();
 		List<Item> list = itemRepository.category_list(category);
 		List<Item> result = new ArrayList<>();
 		param.put("branch_no", branch_no);
-		log.info("category_list : " + list);
+
 		for(Item item : list) {
 			param.put("item_no", item.getItem_no());
 			if(!stockservice.item_check(param)) {
@@ -61,10 +69,27 @@ public class ItemServiceImpl implements ItemService{
 			}
 			param.remove("item_no");
 		}
-		log.info("result : " + result);
 		return result;
 	}
+	
+	@Override
+	public List<Item> in_category_list(int branch_no, String category) throws Exception {
+		//지점에 등록된 원자재만 나오도록 구현
+		Map<String, Object> param = new HashMap<>();
+		List<Item> list = itemRepository.category_list(category);
+		List<Item> result = new ArrayList<>();
+		param.put("branch_no", branch_no);
 
+		for(Item item : list) {
+			param.put("item_no", item.getItem_no());
+			if(stockservice.item_check(param)) {
+				result.add(item);
+			}
+			param.remove("item_no");
+		}
+		return result;
+	}
+	
 	@Override
 	public List<Integer> item_no(int branch_no) throws Exception {
 	
@@ -84,6 +109,12 @@ public class ItemServiceImpl implements ItemService{
 			
 			itemRepository.edit(param);  
 		}
+	}
+
+	@Override
+	public boolean item_check(String item_name) throws Exception {
+		boolean result = (itemRepository.item_check(item_name)==null) ? false : true;
+		return result;
 	}
 
 }
