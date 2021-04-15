@@ -19,6 +19,12 @@ public class BurgerOrderRepository {
 		sqlSession.insert("burgerOrder.orderInsert", burgerOrder);
 	}
 	
+	public Integer getSeq() throws Exception{
+		Integer getSeq;
+		getSeq = sqlSession.selectOne("burgerOrder.getSeq"); 
+		return getSeq;
+	}
+	
 	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception{
 		return sqlSession.selectList("burgerOrder.orderList", branch_no);
 	}

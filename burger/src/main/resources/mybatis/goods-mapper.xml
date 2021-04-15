@@ -12,7 +12,7 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
  
-<mapper namespace="burgerOrder">
+<mapper namespace="goods">
 
 	<!-- 
 		insert를 수행할 수 있는 구문
@@ -22,23 +22,18 @@
 		myBatis에서는 데이터를 배치하기 위해 다음과 같은 형태의 식을 제공
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
-	 -->	
-	<select id="orderList" resultType="MenuBranchMenuVo" parameterType="Integer">
-		select B.branch_no, M.menu_no, M.menu_name, M.menu_price, M.category, 
-					MP.save_name, B.menu_status, B.bm_no
-    		from branch_menu B
-        		inner join menu M on B.menu_no = M.menu_no
-        		inner join menu_photo MP on B.menu_no = MP.menu_no
-            		where B.branch_no = #{branch_no} and M.category != '단종'
-                		order by M.menu_no desc
+	 -->		
+	 <select id="goodsList" resultType="GoodsBranchMenuVo" parameterType="Integer">
+		select G.order_no, G.bm_no, M.menu_name, M.menu_price, G.count 
+		    from branch_menu B
+		        inner join goods G on G.bm_no = B.bm_no
+		        inner join menu M on M.menu_no = B.menu_no
+		            where G.order_no = #{order_no}
 	</select>
 	
-	<select id="getSeq" resultType="int">
-		select order_seq.nextval from dual
-	</select>
-	
-	<insert id="orderInsert" parameterType="BurgerOrder">
-		insert into burger_order values (#{order_no}, #{member_no}, #{branch_no})
+	<insert id="goodsInsert" parameterType="Goods">
+		insert into goods values (
+			goods_seq.nextval, #{order_no}, #{member_no}, #{branch_no}, #{bm_no}, #{count})
 	</insert>
 	
 </mapper>
