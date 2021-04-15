@@ -46,7 +46,7 @@
 			e.preventDefault();
 			
 			let temp = JSON.stringify(list)
-		
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/stock/register",
 				type: "POST",
