@@ -20,9 +20,6 @@
 			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
 		})
 		
-		let category =
-		
-		console.log(category)
 	})
 </script>
 <style>
@@ -55,6 +52,8 @@
 	.stock_plus_btn{
 		font-size : 15px;
 	}
+	.btn_wrapper{
+	}
 	
 </style>
 <body>
@@ -64,11 +63,46 @@
 			<button class="stock_plus_btn">자재 추가</button>
 		</div>
 		<div class="category_wrapper">
-			<a href="list?category=채소류" class="category_link">채소류</a>
-			<a href="list?category=육류" class="category_link">육류</a>
-			<a href="list?category=제과류" class="category_link">제과류</a>
-			<a href="list?category=음료" class="category_link">음료</a>
-			<a href="list?category=소모품" class="category_link">소모품</a>
+			<c:choose>
+				<c:when test="${category eq '채소류'}">
+					<a href="list?category=채소류" class="category_link" style="font-weight: bold; font-size: 17px">채소류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=채소류" class="category_link">채소류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '육류'}">
+					<a href="list?category=육류" class="category_link" style="font-weight: bold; font-size: 16px">육류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=육류" class="category_link">육류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '제과류'}">
+					<a href="list?category=제과류" class="category_link" style="font-weight: bold; font-size: 16px">제과류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=제과류" class="category_link">제과류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '음료'}">
+					<a href="list?category=음료" class="category_link" style="font-weight: bold; font-size: 16px">음료</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=음료" class="category_link">음료</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '소모품'}">
+					<a href="list?category=소모품" class="category_link" style="font-weight: bold; font-size: 16px">소모품</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=소모품" class="category_link">소모품</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<table class="list_table">
 			<thead>

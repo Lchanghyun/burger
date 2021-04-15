@@ -46,10 +46,13 @@ public class ItemRepository {
 	}
 	
 	public void edit(Map<String, Object> param) {
-		sqlSession.update("item.editPrice" , param);
+		sqlSession.update("item.edit" , param);
 	}
 	
 	public Item item_check(String item_name) {
 		return sqlSession.selectOne("item.item_check",item_name);
+	}
+	public void delete_category(int item_no) {
+		sqlSession.delete("item.delete_category", item_no);
 	}
 }

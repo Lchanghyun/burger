@@ -29,14 +29,16 @@
 	
 	<select id="item_no" parameterType="int" resultType="Integer">
 		select S.item_no from item I left outer join stock S on I.item_no = S.item_no 
-			where branch_no = #{branch_no} 
+			where
+				branch_no = #{branch_no} and (status='0' or (status='1' and stock_count > 0))
 				group by S.item_no, I.category order by category
 	</select>
 	
 	<select id="category_item_no" parameterType="Map" resultType="Integer">
 		select S.item_no from item I left outer join stock S on I.item_no = S.item_no 
-			where branch_no = #{branch_no} and I.category = #{category}
-				group by S.item_no, I.category order by category
+			where
+				branch_no = #{branch_no} and I.category = #{category} and (status='0' or (status='1' and stock_count > 0))
+			group by S.item_no, I.category order by category
 	</select>
 	
 	<select id="all_list" resultType="Item">
@@ -54,8 +56,8 @@
 	<update id="edit" parameterType="map">
 		update item
 			set
-				item_price = #{item_price}
-				item_name = #{item_name}
+				item_price = #{item_price},
+				item_name = #{item_name},
 				category = #{category}
 			where
 				item_no = #{item_no}
@@ -64,4 +66,13 @@
 	<select id="item_check" parameterType="String" resultType="Item">
 		select * from item where item_name= #{item_name}
 	</select>
+	
+	<update id="delete_category" parameterType="int">
+		update item
+			set
+				category='단종'
+			where
+				item_no = #{item_no}
+	</update>
+	
 </mapper>

@@ -62,23 +62,28 @@
 	})
 </script>
 <style>
-	.chart_wrapper{
-		width: 800px;
+	.chart_all_wrapper{
+		text-align: center; 
+	}
+	.bar_chart_wrapper{
+		width: 500px;
+		height : 300px;
+		margin : 0 auto; 
 	}
 	.chart_iframe{
 		width: 500px;
 		height: 500px;
 	}
-	
 </style>
 <body>
-	<div class="chart_wrapper">
-		<canvas id="stock_bar_chart"></canvas>
+	<div class="chart_all_wrapper">
+		<div class="bar_chart_wrapper">
+			<canvas id="stock_bar_chart"></canvas>
+		</div>
+		<div class="iframe_wrapper">	
+			<iframe src="${pageContext.request.contextPath}/stock/category_chart" class="chart_iframe" scrolling="no"></iframe>
+			<iframe src="${pageContext.request.contextPath}/stock/category_chart?category=육류" class="chart_iframe" scrolling="no"></iframe>
+		</div>
 	</div>
-	<div class="iframe_wrapper">	
-		<iframe src="${pageContext.request.contextPath}/stock/category_chart" class="chart_iframe" scrolling="no"></iframe>
-		<iframe src="${pageContext.request.contextPath}/stock/category_chart?category=육류" class="chart_iframe" scrolling="no"></iframe>
-	</div>
-	
 </body>
 </html>

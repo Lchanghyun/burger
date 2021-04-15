@@ -103,6 +103,7 @@ public class StockController {
 		if(category == null) category="채소류";
 		
 		model.addAttribute("list", itemservice.none_category_list(branch_no, category));
+		model.addAttribute("category",category);
 	}
 	
 	@PostMapping("/stock_plus")
@@ -143,5 +144,8 @@ public class StockController {
 		model.addAttribute("week_list", stockservice.week_stock(branch_no, category));
 		
 		model.addAttribute("item_list", itemservice.in_category_list(branch_no, category));
+		
+		model.addAttribute("category",category);
+
 	}
 }

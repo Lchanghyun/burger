@@ -27,7 +27,8 @@
 		
 		$(".count_input").on("blur",function(){
 			stock_count = $(this).val()
-			item_no = $(this).parent().next().children().val()
+			item_no = $(this).parent().parent().prev().val()
+			console.log(item_no)
 			list_check(item_no)
 			list.push({"item_no" : item_no, "stock_count" : stock_count})
 		})
@@ -71,6 +72,28 @@
 		width: 1.5rem;
 		text-align: center;
 	}
+	.list_table{
+		margin : 10px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+
+	}
+	.list_table >thead>tr> th,
+	.list_table >tbody>tr> td {
+		border-bottom : 1px solid black;
+		padding : 10px;
+	}
+	.list_all_wrapper{
+		text-align : center;
+	}
+	button{
+		cursor : pointer;
+	}
+	.stock_list_btn,
+	.stock_plus_btn,
+	.stock_form_btn{
+		font-size : 15px;
+	}
 </style>
 <body>
 	<div class="list_all_wrapper">
@@ -92,16 +115,16 @@
 			<tbody>
 				<c:if test="${empty list}">
 					<tr>
-						<td>아무것도 없네...</td>
+						<td colspan="4">등록된 자재가 없습니다.</td> 
 					</tr>
 				</c:if>
 				<c:forEach items="${list}" var="StockItemVo">
+					<input type="hidden" value="${StockItemVo.item_no}">
 					<tr>
 						<td>${StockItemVo.category}</td>
 						<td>${StockItemVo.item_name}</td>
 						<td>${StockItemVo.item_price}</td>
-						<td><input type="text" value="${StockItemVo.stock_count}" class="count_input" required></td>
-						<td><input type="hidden" value="${StockItemVo.item_no}"></td>
+						<td><input type="text" value="${StockItemVo.stock_count}" class="count_input" required></td>	
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -1,5 +1,7 @@
 package com.one.burger.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,5 +40,9 @@ public class BurgerOrderController {
 		return "burger/success";
 	}
 	
+	@GetMapping("/address")
+	public void address(HttpSession session, Model model) {
+		
+	}
 	
 }

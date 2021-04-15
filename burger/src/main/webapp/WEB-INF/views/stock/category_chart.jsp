@@ -90,18 +90,60 @@
 		text-align: center;
 		margin : 0 auto;
 	}
+		.category_link{
+		text-decoration : none;
+		color : black;
+		padding : 0 10px;
+	}
+	.category_link:hover{
+		font-weight: bold;
+	}
 
 </style>
 <body>
 	<div class="chart_wrapper" >
-		<div class="category_link">
-		<a href="category_chart?category=채소류">채소류</a>
-		<a href="category_chart?category=육류">육류</a>
-		<a href="category_chart?category=제과류">제과류</a>
-		<a href="category_chart?category=음료">음료</a>
-		<a href="category_chart?category=소모품">소모품</a>
+		<div class="category_wrapper">
+			<c:choose>
+				<c:when test="${category eq '채소류'}">
+					<a href="category_chart?category=채소류" class="category_link" style="font-weight: bold; font-size: 17px">채소류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="category_chart?category=채소류" class="category_link">채소류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '육류'}">
+					<a href="category_chart?category=육류" class="category_link" style="font-weight: bold; font-size: 16px">육류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="category_chart?category=육류" class="category_link">육류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '제과류'}">
+					<a href="category_chart?category=제과류" class="category_link" style="font-weight: bold; font-size: 16px">제과류</a>
+				</c:when>
+				<c:otherwise>
+					<a href="category_chart?category=제과류" class="category_link">제과류</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '음료'}">
+					<a href="category_chart?category=음료" class="category_link" style="font-weight: bold; font-size: 16px">음료</a>
+				</c:when>
+				<c:otherwise>
+					<a href="category_chart?category=음료" class="category_link">음료</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '소모품'}">
+					<a href="category_chart?category=소모품" class="category_link" style="font-weight: bold; font-size: 16px">소모품</a>
+				</c:when>
+				<c:otherwise>
+					<a href="category_chart?category=소모품" class="category_link">소모품</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		<br>
 	</div>
 </body>
 </html>

@@ -43,7 +43,7 @@ create table item(
 	item_name varchar2(60) unique not null,
 	item_price number not null,
 	category varchar2(30) check
-	    (category in('소모품', '채소류', '육류', '제과류', '음료')) not null
+	    (category in('소모품', '채소류', '육류', '제과류', '음료', '단종')) not null
 );
 create sequence item_seq;
 
@@ -52,7 +52,8 @@ create table stock(
 	branch_no number references branch(branch_no),
 	item_no number references item(item_no),
 	stock_count number default 0 not null,
-	stock_date date default sysdate not null
+	stock_date date default sysdate not null,
+	status char(1) check(status in('0','1'))
 );
 create sequence stock_seq;
 

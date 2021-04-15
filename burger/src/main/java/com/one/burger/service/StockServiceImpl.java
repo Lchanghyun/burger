@@ -99,6 +99,7 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public void plus(Integer item_no, int branch_no) throws Exception {
+		
 		Integer stock_no=getSeq();
 		
 		Map<String, Object> param = new HashMap<>();
@@ -181,6 +182,18 @@ public class StockServiceImpl implements StockService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public void delete_status(int item_no) throws Exception {
+		log.info("StockService delete_status()");
+		stockRepository.delete_status(item_no);
+	}
+
+	@Override
+	public void restore_status(int item_no) throws Exception {
+		stockRepository.restore_status(item_no); 
+		
 	}
 
 }

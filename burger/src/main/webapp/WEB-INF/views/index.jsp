@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>버거머거</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <body>
 	<a href="burger/order?category=햄버거">주문하기</a>
 </body>
