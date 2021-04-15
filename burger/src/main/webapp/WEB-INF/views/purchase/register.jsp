@@ -94,7 +94,7 @@
     		console.log(list)
     		
     		$.ajax({
-    			url:"${pageContext.request.contextPath}/purchase/regist",
+    			url:"${pageContext.request.contextPath}/purchase/register",
     			type: "POST",
     			data: {
     				purchase_item : temp
@@ -136,7 +136,7 @@
                             </tr>
                         </c:if>
                         <c:forEach items="${list}" var="item">
-                        <input type="hidden" value="${PI.item_no}">
+                        <input type="hidden" value="${item.item_no}">
 							<tr>
 								<td><input type="checkbox" id=itemCk></td>
 								<td>${item.category}</td>

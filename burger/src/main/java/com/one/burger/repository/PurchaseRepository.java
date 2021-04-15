@@ -61,7 +61,7 @@ public class PurchaseRepository {
 
 	public void register(Map<String, Object> param) {
 
-		sqlSession.insert("purchase_item.regist",param);
+		sqlSession.insert("purchase_item.PIRegister",param);
 		
 	}
 

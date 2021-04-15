@@ -84,6 +84,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void register(List<Map<String, Object>> list) throws Exception {
 			
 			int pi_no = purchaseRepository.getSeq();
+			
 			for(Map<String, Object> purchase : list) {
 			
 			Map<String, Object> param = new HashMap<String, Object>();

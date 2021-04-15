@@ -74,8 +74,12 @@ body {
 
 </style>
 <body>
+
+	<div class="upbar">
+		
+	</div>
 	<c:choose>
-	<c:when test="${sessionScope.branch_name eq null}">
+	<c:when test="${empty sessionScope.super_no}">
     <div class="left-side-bar">
         <div class="status-ico">
             <span>▼</span>

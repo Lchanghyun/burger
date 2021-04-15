@@ -32,6 +32,6 @@
 	
 	<insert id="PIRegister" parameterType="map">
 		insert into purchase_item values(
-			#{pi-no}, #{purchase_no},#{branch_no},#{super_no},#{item_no},#{count})
+			#{pi-no, jdbcType=INTEGER}, #{purchase_no, jdbcType=INTEGER},#{branch_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{item_no, jdbcType=INTEGER},#{count, jdbcType=INTEGER})
 	</insert>
 </mapper>
