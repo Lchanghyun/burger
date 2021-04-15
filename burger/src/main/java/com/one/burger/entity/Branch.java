@@ -11,4 +11,5 @@ public class Branch {
 	private String branch_name;
 	private String branch_id;
 	private String branch_pw;
+	private String branch_address;
 }
