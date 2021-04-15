@@ -27,10 +27,23 @@
 		select purchase_no, super_no, purchase_date, status from purchase 
 	</select>
 	
-	<insert id="PRegister" parameterType="map">
-		insert into purchase values(
-			#{purchase_no}, #{branch_no}, #{super_no}, sysdate, #{status})
+	<select id="SPlist" resultType="PurchaseSuperVo">
+		select B.branch_name, P.purchase_no, P.super_no, P.purchase_date, P.status 
+			from purchase P inner join branch B
+				 on P.branch_no = B.branch_no
+	</select>
+	
+	<select id="getSeq" resultType="int">
+		select purchase_seq.nextval from dual
+	</select>
+	
+	<insert id="PRegister" parameterType="Hashmap" >
+		insert into purchase values(#{purchase_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{branch_no , jdbcType=INTEGER},sysdate,#{status, jdbcType=VARCHAR})
 	</insert>
-
+	
+	<update id="SUpdate" parameterType="map">
+		update purchase set status=#{status} where purchase_no=#{purchase_no}
+	</update>
+	
 
 </mapper>

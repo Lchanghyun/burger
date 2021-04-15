@@ -60,19 +60,21 @@
   $(function(){
      
 	 // 신규 발주
-     $('#new_rg').on('click',function(e){
-    	e.preventDefault();
-		location.href="${pageContext.request.contextPath}/purchase/register"
+     $('#new_rg').on('click',function(){
+    	$(form).submit();
      })
      
      // 목록
-	 $('#back').on('click',function(e){
+	 $('#back').on('click',function(e){ 
 		 location.href="${pageContext.request.contextPath}/purchase/list"
+		 
      })
      
   })
     </script>
 <body>
+<form method="get" action="register" name="form">
+<input type= "hidden" name="purchase_no" value="${param.purchase_no}">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
@@ -112,5 +114,6 @@
             </div>
         </div>
     </div>
+    </form>
 </body>
 </html>

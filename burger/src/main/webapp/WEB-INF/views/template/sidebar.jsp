@@ -92,7 +92,7 @@ body {
                 <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
-                    <li><a href="#">2</a></li>
+                    <li><a href="<%=request.getContextPath()%>/purchase/superlist">본사발주</a></li>
                 </ul>
             </li>
             <li>

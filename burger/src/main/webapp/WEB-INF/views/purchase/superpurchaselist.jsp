@@ -57,64 +57,33 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
-    $(function(){
-    	
-    	//파라미터값 가져오기
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-
-        // 목록
-       	 $('#back').on('click',function(e){ 
-		 location.href="${pageContext.request.contextPath}/purchase/list"
+  $(function(){
+	   
+	 // 발주확인
+     $('#purchase').on('click',function(){
+		$(form).submit();
+		
+     })
+     
+     // 목록
+	 $('#back').on('click',function(e){ 
+		location.href="${pageContext.request.contextPath}/purchase/superlist"
 		 
-        })
-        
-        let list=[]
-    	let item_no
-    	let count
-    	let purchase_no
-    	
-    	$(".count_input").on("blur", function(){
-    		
-    		count = $(this).val()
-    		item_no = $(this).parent().parent().prev().val()
-    		purchase_no = getParameterByName('purchase_no')
-    		list.push({"item_no" : item_no, "count" : count , "purchase_no" : purchase_no})
-    		
-    	})
-    	
-    	$("#regist_bt").on("click", function(e){
-    		e.preventDefault()
-    		
-    		let temp = JSON.stringify(list)
-    		console.log(list)
-    		
-    		$.ajax({
-    			url:"${pageContext.request.contextPath}/purchase/regist",
-    			type: "POST",
-    			data: {
-    				purchase_item : temp
-    			},
-    			success: function(resp){
-    				location.href="${pageContext.request.contextPath}/purchase/list"
-    				
-    			}			
-    		})
-    	})
-    })
+     })
+     
+  })
     </script>
 <body>
+<form method="post" action="superpurchaselist" name="form">
+<input type= "hidden" name="purchase_no" value="${param.purchase_no}">
+<input type= "hidden" name="status" value="발주완료">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
                 <thead>
                     <tr>
                         <th><input type="button" value="목록" id="back"></th>
-                        <th><input type="button" value="발주 " id="regist_bt"></th>
+                        <th><input type="button" value="발주" id="purchase"></th>
                     </tr>
                 </thead>
             </table>
@@ -122,7 +91,6 @@
                 <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
-                        	<th>선택</th>
                             <th>카테고리</th>
                             <th>발주품목</th>
                             <th>발주금액</th>
@@ -130,25 +98,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:if test="${empty list}">
+                        <c:if test="${empty PIlist}">
                             <tr>
                                 <td>no list</td>
                             </tr>
                         </c:if>
-                        <c:forEach items="${list}" var="item">
-                        <input type="hidden" value="${PI.item_no}">
-							<tr>
-								<td><input type="checkbox" id=itemCk></td>
-								<td>${item.category}</td>
-								<td>${item.item_name}</td>
-								<td>${item.item_price}</td>
-								<td><input type="number" class="count_input" name="count" style="text-align:center"></td>
-							</tr>
+                        <c:forEach items="${PIlist}" var="PI">
+                            <tr>
+                                <td>${PI.category}</td>
+                                <td>${PI.item_name}</td>
+                                <td>${PI.item_price}</td>
+                                <td>${PI.count}</td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
-     </div>
+    </div>
+    </form>
 </body>
 </html>

@@ -1,12 +1,16 @@
 package com.one.burger.controller;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
+import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.Purchase_Item;
 import com.one.burger.service.ItemService;
 import com.one.burger.service.PurchaseService;
@@ -69,24 +75,97 @@ public class PurchaseController {
 	
 	
 	@PostMapping("/update")
-	public String postUpdate(Purchase_Item purchase_item, Model model) throws Exception{
+	public String postUpdate(String purchase_item) throws Exception{
+		log.info("postUpdate()");
+		
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(purchase_item);
+		
+		List<Map<String, Object>> list = new ArrayList<>();
+		JSONArray jArray = (JSONArray) obj;
+		
+		if(jArray != null) {
+			for (int i=0; i<jArray.size(); i++) {
+				log.info("jArray(i) : " + jArray.get(i));
+				list.add((Map<String, Object>) jArray.get(i));
+			}
+		}
+		log.info("list :" + list);
+		
+		purchaseService.edit(list);
 		
 		return "purchase/update";
 	}
 	
 	
 	@GetMapping("/register")
-	public void ItemList(Model model) throws Exception {
+	public void ItemList(int purchase_no, Model model) throws Exception {
 		log.info("itemList()");
 		
 		model.addAttribute("list",itemservice.all_list());
 	}
 	
+	@PostMapping("/register")
+	public String postRegist(String purchase_item) throws Exception{
+		log.info("postUpdate()");
+		
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(purchase_item);
+		
+		List<Map<String, Object>> list = new ArrayList<>();
+		JSONArray jArray = (JSONArray) obj;
+		
+		if(jArray != null) {
+			for (int i=0; i<jArray.size(); i++) {
+				log.info("jArray(i) : " + jArray.get(i));
+				list.add((Map<String, Object>) jArray.get(i));
+			}
+		}
+		log.info("list :" + list);
+		
+		purchaseService.register(list);
+		
+		return "purchase/list";
+	}
 	
-	
-	@PostMapping("/insert")
-	public void insert(Purchase_Item purchase_item) throws Exception{
+	@PostMapping("/regist")
+	public ModelAndView insert(HttpServletRequest req) throws Exception{
+		log.info("insert");
+		
+		Map param = new HashMap();
+		param.put("branch_no", req.getParameter("branch_no"));
+		param.put("super_no", req.getParameter("super_no"));
+		param.put("status", req.getParameter("status"));
 		
 		
+		purchaseService.insert(param);
+		
+		ModelAndView mv = new ModelAndView("redirect:/purchase/list");
+		return mv;
+	}
+	
+	@GetMapping("/superlist")
+	public String superPurchase(Model model) throws Exception{
+		log.info("superPurchase()");
+		
+		model.addAttribute("SPlist",purchaseService.show());
+		
+		return "purchase/superlist";
+	}
+	
+	@GetMapping("/superpurchaselist")
+	public void superPurchaseList(int purchase_no, Model model) throws Exception{
+		log.info("purchaseDetail()");
+		
+		model.addAttribute("PIlist", purchaseService.select(purchase_no));
+		
+	}
+	@PostMapping("/superpurchaselist")
+	public String statusUpdate(PurchaseSuperVo purchaseSuperVo) throws Exception{
+		log.info("statusUpdate()");
+		
+		purchaseService.update(purchaseSuperVo);
+		
+	   return "purchase/superlist";
 	}
 }

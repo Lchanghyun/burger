@@ -58,11 +58,54 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
     $(function(){
-    	// 목록
-   	 $('#back').on('click',function(e){
-   		 location.href="${pageContext.request.contextPath}/purchase/list"
+     
+   	//파라미터값 가져오기
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+     }
+
+    // 목록
+   	$('#back').on('click',function(e){
+   		 location.href="${pageContext.request.contextPath}/purchase/superlist"
         })
-    });
+    
+    let list=[]
+	let item_no
+	let count
+	let purchase_no
+	
+	$(".count_input").on("blur", function(){
+		
+		count = $(this).val()
+		item_no = $(this).parent().parent().prev().val()
+		purchase_no = getParameterByName('purchase_no')
+		list.push({"item_no" : item_no, "count" : count , "purchase_no" : purchase_no})
+		
+	})
+	
+	$("#update_bt").on("click", function(e){
+		e.preventDefault()
+		
+		let temp = JSON.stringify(list)
+		console.log(list)
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/purchase/update",
+			type: "POST",
+			data: {
+				purchase_item : temp
+			},
+			success: function(resp){
+				location.href="${pageContext.request.contextPath}/purchase/list"
+				
+			}			
+		})
+		
+	})
+ })
     </script>
 <body>
     <div class="purchase_wrap">
@@ -71,7 +114,7 @@
                 <thead>
                     <tr>
                         <th><input type="button" value="목록" id="back"></th>
-                        <th><input type="button" value="수정 " id="update_bt"></th>
+                        <th><input type="button" value="발주 " id="regist_bt"></th>
                     </tr>
                 </thead>
             </table>
@@ -92,11 +135,12 @@
                             </tr>
                         </c:if>
                         <c:forEach items="${PIlist}" var="PI">
+                        <input type="hidden" value="${PI.item_no}">
                             <tr>
-                                <td>${PI.category}</td>
+                            	<td>${PI.category}</td>
                                 <td>${PI.item_name}</td>
                                 <td>${PI.item_price}</td>
-                                <td><input type="number" value="${PI.count}" style="text-align:center"></td>
+                                <td><input type="number" class="count_input" value="${PI.count}" style="text-align:center"></td>
                             </tr>
                         </c:forEach>
                     </tbody>

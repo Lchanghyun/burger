@@ -58,12 +58,15 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
   $(function(){
-     
-     // 목록
-	 $('#back').on('click',function(e){
-		 location.href="${pageContext.request.contextPath}/purchase/list"
-     })
-  })
+	  
+	 // 날짜 조회
+     $('#load_bt').on('click', function(){
+    	  var date = new Date($('#date-input').val());
+    	  day = date.getDate();
+    	  month = date.getMonth() + 1;
+    	  year = date.getFullYear();
+    	  alert([day, month, year].join('/'));
+    	}) 
      
     </script>
 <body>
@@ -72,9 +75,10 @@
             <table>
                 <thead>
                     <tr>
-                    
-                        <th><input type="button" value="목록" id="back"></th>
-                        <th><input type="button" value="신규 등록" id="new_rg"></th>
+                        <th>발주일자</th>
+                        <th><input type="date" id="st_dt"></th>
+                        <th><input type="date" id="en_dt"></th>
+                        <th><input type="button" value="조회" id="date_dt"></th>
                     </tr>
                 </thead>
             </table>
@@ -82,24 +86,41 @@
                 <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
-                            <th>카테고리</th>
-                            <th>발주품목</th>
-                            <th>발주금액</th>
-                            <th>수량</th>
+                        	<th>지점명</th>
+                            <th>발주번호</th>
+                            <th>처리상태</th>                           
+                            <th>일자</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:if test="${empty RIlist}">
+                        <c:if test="${empty SPlist}">
                             <tr>
                                 <td>no list</td>
                             </tr>
                         </c:if>
-                        <c:forEach items="${RIlist}" var="Re">
+                        <c:forEach items="${SPlist}" var="Super">
                             <tr>
-                                <td>${Re.category}</td>
-                                <td>${Re.item_name}</td>
-                                <td>${Re.item_price}</td>
-                                <td>${Re.count}</td>
+                            	<td>${Super.branch_name}</td>
+                                <td><input type="hidden" name="purchase_no" value="${Super.purchase_no}">
+	                                <a href="${pageContext.request.contextPath}/purchase/superpurchaselist?purchase_no=${Super.purchase_no}">
+	                                 ${Super.purchase_no}
+	                                </a>
+                                </td>
+                                <td>
+                                	<c:set var="status" value="${Super.status}"/>
+	                                <c:choose>
+    	                            	<c:when test="${status == '발주완료'}">
+    	                            		<a href="${pageContext.request.contextPath}/purchase/superreceived?purchase_no=${Super.purchase_no}">
+    	                            			${Super.status}
+    	                            		</a>
+    	                            	</c:when>
+    	                            	
+    	                            	<c:when test="${status != '발주완료'}">
+    	                            			${Super.status}
+    	                            	</c:when>		
+       	                        	</c:choose>
+                                </td>
+                                <td>${Super.purchase_date}</td>  
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -8,6 +8,7 @@ import lombok.Setter;
 public class PurchaseItemVo {
 	
 	private int purchase_no;
+	private int item_no;
 	private String item_name;
 	private int item_price;
 	private String category;

@@ -61,21 +61,28 @@
 	  
 	 // 날짜 조회
      $('#load_bt').on('click', function(){
-    	  var date = new Date($('#date-input').val());
+    	 
+    	 alert($('input[name=branch_no]').val());
+    	/*  var date = new Date($('#date-input').val());
     	  day = date.getDate();
     	  month = date.getMonth() + 1;
     	  year = date.getFullYear();
-    	  alert([day, month, year].join('/'));
+    	  alert([day, month, year].join('/'));*/
     	});
      
 	 // 신규 발주
-     $('#new_rg').on('click',function(e){
-    	e.preventDefault();
-		location.href="${pageContext.request.contextPath}/purchase/register"
+     $('#new_rg').on('click',function(){
+    	 
+    	 
+    	$(form).submit();
      })
   })
     </script>
 <body>
+<form method="post" action="regist" name="form">
+<input type="hidden" name="branch-no" value="1">
+<input type="hidden" name="super_no" value="1">
+<input type="hidden" name="status" value="발주대기">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
@@ -84,7 +91,7 @@
                         <th>발주일자</th>
                         <th><input type="date" id="st_dt"></th>
                         <th><input type="date" id="en_dt"></th>
-                        <th><input type="button" value="조회" id="date_dt"></th>
+                        <th><input type="button" value="조회" id="load_dt"></th>
                         <th><input type="button" value="신규 등록" id="new_rg"></th>
                     </tr>
                 </thead>
@@ -135,5 +142,6 @@
             </div>
         </div>
     </div>
+    </form>
 </body>
 </html>
