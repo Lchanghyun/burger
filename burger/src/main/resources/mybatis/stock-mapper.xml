@@ -57,7 +57,7 @@
 	
 	<insert id="plus" parameterType="map">
 		insert into stock values(
-			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate
+			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate-1
 		)
 	</insert>
 	
@@ -70,5 +70,11 @@
 			where to_char(stock_date) = to_char(sysdate-#{day}) 
 				and item_no = #{item_no} 
 				and branch_no = #{branch_no}
+	</select>
+	
+	<select id="week_stock" parameterType="map" resultType="StockItemVo">
+		select S.branch_no, S.item_no, S.stock_count, S.stock_date, I.item_name, I.category from stock S 
+			left outer join item I on S.item_no = I.item_no 
+				where to_char(S.stock_date) = to_char(sysdate-#{day}) and S.item_no = #{item_no} and S.branch_no = #{branch_no}
 	</select>
 </mapper>

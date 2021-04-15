@@ -44,4 +44,8 @@ public class ItemRepository {
 	public void edit(Map<String, Object> param) {
 		sqlSession.update("item.editPrice" , param);
 	}
+	
+	public Item item_check(String item_name) {
+		return sqlSession.selectOne("item.item_check",item_name);
+	}
 }

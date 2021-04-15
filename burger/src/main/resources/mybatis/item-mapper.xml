@@ -24,13 +24,13 @@
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
 	<insert id="insert" parameterType="Item" >
-		insert into item values(#{item_no}, #{item_name}, #{item_price}, #{category})
+		insert into item (item_no, item_name, item_price, category) values(#{item_no}, #{item_name}, #{item_price}, #{category})
 	</insert>
 	
 	<select id="item_no" parameterType="int" resultType="Integer">
 		select S.item_no from item I left outer join stock S on I.item_no = S.item_no 
 			where branch_no = #{branch_no} 
-				group by S.item_no, I.category
+				group by S.item_no, I.category order by category
 	</select>
 	
 	<select id="all_list" resultType="Item">
@@ -38,11 +38,11 @@
 	</select>
 	
 	<select id="category_list" parameterType="String" resultType="Item">
-		select item_no, item_name, item_price, category from item where category =#{category} order by category asc
+		select item_no, item_name, item_price, category from item where category = #{category}
 	</select>
 	
 	<select id="getSeq" resultType="int">
-		select item_seq.nextval form dual
+		select item_seq.nextval from dual
 	</select>
 
 	<update id="edit" parameterType="map">
@@ -54,4 +54,8 @@
 			where
 				item_no = #{item_no}
 	</update>
+	
+	<select id="item_check" parameterType="String" resultType="Item">
+		select * from item where item_name= #{item_name}
+	</select>
 </mapper>
