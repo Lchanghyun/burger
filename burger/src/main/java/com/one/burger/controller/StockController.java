@@ -44,6 +44,7 @@ public class StockController {
 		if(category == null) category="채소류";
 		
 		model.addAttribute("list", stockservice.category_list(category, branch_no));
+		model.addAttribute("category", category);
 		
 		return "stock/list";
 	}
@@ -102,6 +103,7 @@ public class StockController {
 		if(category == null) category="채소류";
 		
 		model.addAttribute("list", itemservice.none_category_list(branch_no, category));
+		model.addAttribute("category",category);
 	}
 	
 	@PostMapping("/stock_plus")
@@ -117,21 +119,33 @@ public class StockController {
 	}
 	
 	@GetMapping("/chart")
-	public void stockChart(Model model, HttpSession session, String category) throws Exception{
+	public void stockChart(Model model, HttpSession session) throws Exception{
 		log.info("stockChart()");
+		
+		int branch_no = 1;
+		//int branch_no = (int) session.getAttribute("branch_no");
+				
+		model.addAttribute("bar_list", stockservice.all_list(branch_no));
+		
+		
+	}
+	
+	@GetMapping("/category_chart")
+	public void categoryChart(Model model, HttpSession session, String category) throws Exception{
+		log.info("categoryChart()");
 		
 		int branch_no = 1;
 		//int branch_no = (int) session.getAttribute("branch_no");
 		
 		if(category == null) category="채소류";
-		
-		model.addAttribute("bar_list", stockservice.all_list(branch_no));
-		
+
 		model.addAttribute("chart_date", stockservice.chart_date());
 		
 		model.addAttribute("week_list", stockservice.week_stock(branch_no, category));
 		
 		model.addAttribute("item_list", itemservice.in_category_list(branch_no, category));
+		
+		model.addAttribute("category",category);
+
 	}
-	
 }

@@ -41,9 +41,8 @@ public class StockServiceImpl implements StockService {
 			
 			param.put("item_no", item);
 			
-			if(item_check(param)) {
-				list.add(stockRepository.all_list(param));
-			}
+			list.add(stockRepository.all_list(param));
+			
 			param.remove("item_no");
 		}		
 		return list;
@@ -59,15 +58,14 @@ public class StockServiceImpl implements StockService {
 		param.put("branch_no", branch_no);
 		param.put("category", category);
 		
-		item_list = itemRepository.item_no(branch_no);
+		item_list = itemservice.category_item_no(branch_no, category);
 		
 		for(Integer item : item_list) {
 			
 			param.put("item_no", item);
 			
-			if(item_check(param)) {
-				list.add(stockRepository.category_list(param));
-			}
+			list.add(stockRepository.category_list(param));
+			
 			param.remove("item_no");
 		}		
 		return list;
@@ -101,6 +99,7 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public void plus(Integer item_no, int branch_no) throws Exception {
+		
 		Integer stock_no=getSeq();
 		
 		Map<String, Object> param = new HashMap<>();
@@ -114,6 +113,7 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public boolean item_check(Map<String, Object> param) throws Exception {
 		List<Stock> list = stockRepository.item_check(param);
+		log.info("size : " + list.size());
 		boolean result = (list.size() == 0) ? false : true;
 		return result;
 	}
@@ -182,6 +182,18 @@ public class StockServiceImpl implements StockService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public void delete_status(int item_no) throws Exception {
+		log.info("StockService delete_status()");
+		stockRepository.delete_status(item_no);
+	}
+
+	@Override
+	public void restore_status(int item_no) throws Exception {
+		stockRepository.restore_status(item_no); 
+		
 	}
 
 }

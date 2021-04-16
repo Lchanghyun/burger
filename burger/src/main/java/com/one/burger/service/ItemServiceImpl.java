@@ -97,7 +97,18 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
-	public void edit(List<Map<String, Object>> item_list) throws Exception {
+	public List<Integer> category_item_no(int branch_no, String category) throws Exception {
+		
+		Map<String, Object> param = new HashMap<>();
+		
+		param.put("branch_no", branch_no);
+		param.put("category", category);
+		
+		return itemRepository.category_item_no(param);
+	}
+	
+	@Override
+	public void edit(List<Map<String, Object>> item_list, String category) throws Exception {
 				
 		for(Map<String, Object> item : item_list) {
 		
@@ -106,7 +117,9 @@ public class ItemServiceImpl implements ItemService{
 			param.put("item_price", item.get("item_price"));
 			param.put("item_name", item.get("item_name"));
 			param.put("category", item.get("category"));
-			
+			if(category.equals("단종")) {
+				stockservice.restore_status(Integer.parseInt((String) item.get("item_no")));
+			}
 			itemRepository.edit(param);  
 		}
 	}
@@ -117,4 +130,10 @@ public class ItemServiceImpl implements ItemService{
 		return result;
 	}
 
+	@Override
+	public void delete_category(int item_no) throws Exception {
+		itemRepository.delete_category(item_no);
+		
+	}
+	
 }
