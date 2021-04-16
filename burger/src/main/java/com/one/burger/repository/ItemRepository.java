@@ -28,6 +28,10 @@ public class ItemRepository {
 		return sqlSession.selectList("item.item_no", branch_no);
 	}
 	
+	public List<Integer> category_item_no(Map<String, Object> param){
+		return sqlSession.selectList("item.category_item_no", param);
+	}
+	
 	public List<Integer> category_item(Map<String, Object> param){
 		
 		return sqlSession.selectList("item.category_item", param);
@@ -42,10 +46,13 @@ public class ItemRepository {
 	}
 	
 	public void edit(Map<String, Object> param) {
-		sqlSession.update("item.editPrice" , param);
+		sqlSession.update("item.edit" , param);
 	}
 	
 	public Item item_check(String item_name) {
 		return sqlSession.selectOne("item.item_check",item_name);
+	}
+	public void delete_category(int item_no) {
+		sqlSession.delete("item.delete_category", item_no);
 	}
 }

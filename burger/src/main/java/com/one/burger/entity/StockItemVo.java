@@ -15,5 +15,6 @@ public class StockItemVo {
 	private String item_name;
 	private int item_price;
 	private int stock_count;
+	private char status;
 	private Date stock_date;
 }

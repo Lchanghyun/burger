@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.one.burger.entity.Item;
 import com.one.burger.service.ItemService;
+import com.one.burger.service.StockService;
 
 import lombok.extern.java.Log;
 
@@ -28,6 +29,8 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService itemservice;
+	@Autowired
+	private StockService stockservice;
 	
 	@GetMapping("/list")
 	public void ItemList(Model model, String category) throws Exception {
@@ -36,19 +39,35 @@ public class ItemController {
 		
 		if(category == null) category="채소류";
 		
+		model.addAttribute("category",category);
+		
 		model.addAttribute("list",itemservice.category_list(category));
 	}
 	
+	@PostMapping("/delete")
+	public String PostDelete(int item_no) throws Exception{
+		log.info("PostDelete()");
+		
+		stockservice.delete_status(item_no);
+		itemservice.delete_category(item_no);
+		
+		return "redirect:list";
+	}
+	
 	@GetMapping("/edit")
-	public void ItemEdit(Model model) throws Exception {
+	public void ItemEdit(Model model, String category) throws Exception {
 		
 		log.info("ItemEdit()");
 		
-		model.addAttribute("list", itemservice.all_list());
+		if(category == null) category="채소류";
+		
+		model.addAttribute("category",category);
+		
+		model.addAttribute("list", itemservice.category_list(category));
 	}
 	
 	@PostMapping("/edit")
-	public String PostItemEdit(String item_list) throws Exception{
+	public String PostItemEdit(String item_list, String category) throws Exception{
 		
 		log.info("PostItemEdit()");
 		
@@ -65,9 +84,10 @@ public class ItemController {
 			}
 		}
 		log.info("list :" + list);
-		itemservice.edit(list);
-		
-		return "item/list";
+		log.info("category"+category);
+
+		itemservice.edit(list, category);
+		return "redirect:list";
 	}
 	
 	@GetMapping("/register")
@@ -82,11 +102,12 @@ public class ItemController {
 		
 		if(!itemservice.item_check(item.getItem_name())) {
 			itemservice.insert(item);
+			redirectAttribute.addFlashAttribute("msg", item.getItem_name()+ "가 등록되었습니다.");
 		}
 		else {
 			redirectAttribute.addFlashAttribute("msg", "이미 등록된 원자재입니다.");
+			return "redirect:register";
 		}
-
 		return "redirect:list";
 	}
 	
