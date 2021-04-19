@@ -12,6 +12,7 @@ import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhoto;
 import com.one.burger.entity.MenuPhotoVO;
+import com.one.burger.entity.SalesSuperTotal;
 
 @Repository
 public class MenuRepository {
@@ -91,5 +92,21 @@ public class MenuRepository {
 		data.put("branch_no",branch_no);
 		data.put("key", key);
 		return sqlSession.selectList("menu.branchSearch", data);
+	}
+	public void stopModify(int menu_no, String category) throws Exception{
+		sqlSession.update("menu.stopModify2", menu_no);
+		Map<String, Object> data = new HashMap<>();
+		data.put("menu_no", menu_no);
+		data.put("category", category);
+		sqlSession.update("menu.stopModify1", data);
+	}
+	
+	
+	
+	
+	
+	
+	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
+		return sqlSession.selectList("sales.eachBranch",choiceDate);
 	}
 }

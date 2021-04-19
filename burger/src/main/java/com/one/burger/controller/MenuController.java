@@ -2,7 +2,10 @@ package com.one.burger.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -24,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhotoVO;
+import com.one.burger.entity.SalesSuperTotal;
 import com.one.burger.service.MenuService;
 import com.one.burger.util.UploadFileUtils;
 
@@ -143,9 +147,17 @@ public class MenuController {
 	@PostMapping("/checkMenu")
 	@ResponseBody
 	public String checkMenu(String menu_name) throws Exception{
+		log.info("checkMenu()");
 		boolean check = menuService.checkMenu(menu_name);
 		String result = check ? "o" : "x";
 		return result;
+	}
+	@PostMapping("/stopModify")
+	@ResponseBody
+	public String stopModify(int menu_no, String category) throws Exception{
+		log.info("stopModify()");
+		menuService.stopModify(menu_no, category);
+		return "success";
 	}
 	
 	@GetMapping("/modify")
@@ -196,21 +208,19 @@ public class MenuController {
 	public String menuInsertPost(Menu menu, Model model) throws Exception{
 		log.info("menu-registerPost()");
 		menuService.register(menu);
-		log.info("메뉴등록완료");
 		return "redirect:superlist";
 	}
 	
 	@PostMapping(value="/thumbUpload", produces="text/plain; charset=UTF-8")
 	public ResponseEntity<String> thumbUpload(MultipartFile file) throws Exception{
 		log.info("thumbUpload()");
-		
 		String savedName = UploadFileUtils.makeThumbnail(uploadPath, file.getOriginalFilename(), file.getBytes());
 		return new ResponseEntity<String>(savedName, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/photoShow")
 	public ResponseEntity<byte[]> showPhoto(String fileName) throws Exception{
-		log.info("파일명: "+fileName);
+		log.info("showPhoto()");
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		try {
@@ -231,6 +241,95 @@ public class MenuController {
 			in.close();
 		}
 		return entity;
+	}
+	
+	
+	
+	
+	
+	@GetMapping("/superMonthChart")
+	public void superMonthChart(Model model) throws Exception{
+		log.info("superMonthChart()");
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH)+1;
+		String now;
+		String prev;
+		if(month<10) {
+			now = year+"/0"+month;
+			if(month==1) {
+				prev = (year-1)+"/12";
+			}
+			else {
+				prev = year+"/0"+(month-1);
+			}
+		}
+		else {
+			now = year+"/"+month;
+			if(month==10) {
+				prev = year+"/0"+(month-1);
+			}
+			else {
+				prev = year+"/"+(month-1);
+			}
+		}
+		List<SalesSuperTotal> list = menuService.getSalesTotal(now);
+		List<SalesSuperTotal> prevlist = menuService.getSalesTotal(prev);
+		Map<String,Integer> map = new HashMap<>();
+		for(SalesSuperTotal n : list) {
+			int count = 0;
+			for(SalesSuperTotal p : prevlist) {
+				if(n.getBranch_name().equals(p.getBranch_name())) {
+					count = p.getTotal();
+					break;
+				}
+			}
+			map.put(n.getBranch_name(),count);
+		}
+		model.addAttribute("totalchartList",list);
+		model.addAttribute("length",list.size());
+		model.addAttribute("prevmap",map);
+		model.addAttribute("year",now.substring(0, 4));
+		model.addAttribute("month",now.substring(5));
+		model.addAttribute("prevyear",prev.substring(0,4));
+		model.addAttribute("prevmonth",prev.substring(5));
+	}
+	@PostMapping("/superMonthChart")
+	public void superMonthChartPost(String year, String month, Model model) throws Exception{
+		log.info("superMonthChartPost()");
+		String choice = year+"/"+month;
+		String prev;
+		if(month.equals("01")) {
+			prev = Integer.parseInt(year)-1 + "/12";
+		}
+		else {
+			if(Integer.parseInt(month)<11) {
+				prev = year + "/0"+ (Integer.parseInt(month)-1);
+			}
+			else {
+				prev = year + "/"+ (Integer.parseInt(month)-1);
+			}
+		}
+		List<SalesSuperTotal> list = menuService.getSalesTotal(choice);
+		List<SalesSuperTotal> prevlist = menuService.getSalesTotal(prev);
+		Map<String,Integer> map = new HashMap<>();
+		for(SalesSuperTotal n : list) {
+			int count = 0;
+			for(SalesSuperTotal p : prevlist) {
+				if(n.getBranch_name().equals(p.getBranch_name())) {
+					count = p.getTotal();
+					break;
+				}
+			}
+			map.put(n.getBranch_name(),count);
+		}
+		model.addAttribute("totalchartList",list);
+		model.addAttribute("length",list.size());
+		model.addAttribute("prevmap",map);
+		model.addAttribute("year",year);
+		model.addAttribute("month",month);
+		model.addAttribute("prevyear",prev.substring(0,4));
+		model.addAttribute("prevmonth",prev.substring(5));
 	}
 
 }

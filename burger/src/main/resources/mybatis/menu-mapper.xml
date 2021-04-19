@@ -40,6 +40,13 @@
 		update menu_photo set upload_name=#{upload_name}, save_name=#{save_name}, file_size=#{file_size}, save_type=#{save_type} where menu_no=#{menu_no}
 	</update>
 	
+	<update id="stopModify1" parameterType="map">
+		update menu set category=#{category} where menu_no=#{menu_no}
+	</update>
+	<update id="stopModify2" parameterType="Integer">
+		update branch_menu set menu_status='0' where menu_no=#{menu_no}
+	</update>
+	
 	<select id="read" parameterType="Integer" resultType="MenuPhotoVO">
 		select M.*, P.upload_name, P.save_name from
     	menu M inner join menu_photo P on M.menu_no=P.menu_no

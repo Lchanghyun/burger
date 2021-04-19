@@ -12,6 +12,7 @@ import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhoto;
 import com.one.burger.entity.MenuPhotoVO;
+import com.one.burger.entity.SalesSuperTotal;
 import com.one.burger.repository.MenuRepository;
 import com.one.burger.util.UploadFileUtils;
 
@@ -104,5 +105,17 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public List<MenuBranchVO> branchSearch(Integer branch_no, String key) throws Exception{
 		return menuRepository.branchSearch(branch_no, key);
+	}
+	@Override
+	public void stopModify(int menu_no, String category) throws Exception{
+		menuRepository.stopModify(menu_no, category);
+	}
+	
+	
+	
+	
+	@Override
+	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
+		return menuRepository.getSalesTotal(choiceDate);
 	}
 }
