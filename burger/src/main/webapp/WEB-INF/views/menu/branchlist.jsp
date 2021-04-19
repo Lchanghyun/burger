@@ -6,160 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>(지점)메뉴관리</title>
-	<style>
-        html, body {
-            margin: 0;
-            padding: 0;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        .adminbox{
-        	width:100vw;
-        	height:100vh;
-        	display:flex;
-        }
-        .menubar{
-        	min-width:100px;
-        	height:100%;
-        	border-right:1px solid black;
-        }
-        .menustatuslist{
-            min-width:700px;
-            margin:auto;
-            padding:1rem;
-        }
-        .menulist-title{
-            font-size: 20px;
-            color:green;
-            font-weight:bold;
-            padding-left:30px;
-            margin-bottom:15px;
-            margin-top:-50px;
-        }
-        .search-menulist{
-            display: flex;
-            justify-content: center;
-            margin:20px 0 30px 0;
-        }
-        .menuname{
-            font-size: 18px;
-            color:green;
-        }
-        .searchmenu-keyword{
-            margin:0 10px;
-            outline: none;
-            width: 200px;
-            height: 25px;
-            border:1px solid green;
-        }
-        .searchBtn{
-            background-color:green;
-            color:white;
-            font-size:15px;
-            outline:none;
-            border:none;
-        }
-        .tableHead{
-        	width:600px;
-            margin-top:20px;
-            margin:0 auto;
-        }
-        .tableBody{
-        	width:650px;
-        	height:500px;
-            overflow:auto;
-            margin-left:50px;
-        }
-        .menu-adminlist{
-            width:600px;
-            border-spacing: 0;
-        }
-        thead > tr > th{
-            border-top:2px solid green;
-            border-bottom:2px solid green;
-            height:40px;
-            color:green;
-            font-size: 17px;
-        }
-        tbody > tr > td{
-            text-align: center;
-            height:45px;
-            font-size: 16px;
-            border-bottom:1px dotted gray;
-        }
-        .categoryBox{
-        	text-align:center;
-        	margin:10px 0;
-        }
-        .total, .burger, .side, .drink, .theend, .stop{
-        	text-decoration: none;
-        	font-size:20px;
-        	margin:0 0.5rem;
-        	color:lightgray;
-        }
-        .total:hover, .burger:hover, .side:hover, .drink:hover, .theend:hover, .stop:hover{
-        	font-weight:bold;
-        }
-        .activeList{
-        	color:green;
-        	font-weight:bold;
-        }
-        .listTopBox{
-        	text-align:right;
-        	margin:30px 0;
-        }
-        .topTotal, .myBranchList{
-        	text-decoration: none;
-        	font-size:17px;
-        	margin:0 0.5rem;
-        	color:lightgray;
-        }
-        .activeTopList{
-        	color: darkgray;
-        	font-weight:bold;
-        	border-bottom:2px solid darkgray;
-        }
-        .soldOutStatus, .stopsale{
-        	color:red;
-        	font-style:italic;
-        }
-        .picAndMenu{
-        	text-align:left;
-        	padding-left:30px;
-        }
-        .listphotoshow{
-        	background-color:transparent;
-        	color:green;
-        	border:1px solid green;
-        	border-radius: 5rem;
-        	outline:none;
-        	cursor:pointer;
-        	font-weight:bold;
-        	font-size:13px;
-        	margin-right:10px;
-        }
-        .menuAdd, .menuSoldout, .menuResale, .menuBranchRemove, .stopResale{
-        	background-color:transparent;
-        	color:green;
-        	outline:none;
-        	border:none;
-        	font-size:18px;
-        	cursor:pointer;
-        }
-        .menuAdd:hover, .menuSoldout:hover, .menuResale:hover, 
-        .menuBranchRemove:hover, .stopResale:hover{
-        	font-weight:bold;
-        }
-        .notAdd{
-        	background-color:transparent;
-        	color:lightgray;
-        	outline:none;
-        	border:none;
-        	font-size:18px;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/menuAdmin.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
 		$(function(){
 			let my = ${my};
@@ -318,7 +166,7 @@
 			<form action="branchlist?my" method="post">
 			<div class="search-menulist">
 	            <div>
-	                <span class="menuname">메뉴명</span>
+	                <span class="menuname">메뉴명 : </span>
 	            </div>
 	            <div class="searchmenu-key">
 	                <input type="text" name="keyword" class="searchmenu-keyword" value="${key}">
@@ -331,7 +179,7 @@
 			<form action="branchlist" method="post">
 	        <div class="search-menulist">
 	            <div>
-	                <span class="menuname">메뉴명</span>
+	                <span class="menuname">메뉴명 : </span>
 	            </div>
 	            <div class="searchmenu-key">
 	                <input type="text" name="keyword" class="searchmenu-keyword" value="${key}">
