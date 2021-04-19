@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>지점 재고관리</title>
-</head>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$(function(){
@@ -41,7 +33,8 @@
 	.stock_list_table >tbody>tr> td {
 		border-bottom : 1px solid black;
 		padding : 10px;
-		width: 90px;
+		width: 100px;
+		text-align : center;
 	}
 	.list_all_wrapper{
 		text-align : center;
@@ -63,9 +56,9 @@
 	}
 	.btn_wrapper{
 	}
-	
 </style>
-<body>
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>  
+<div style="height: calc(100% - 162px);">
 	<div class="list_all_wrapper">
 		<div class="btn_wrapper">
 			<button class="stock_register_btn">재고등록</button>
@@ -149,5 +142,5 @@
 			</tbody>
 		</table>
 	</div>
-</body>
-</html>
+</div> 
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 
