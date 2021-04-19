@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+   @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+    }
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f6fa;
+    }
+    /* header*/
+    header{
+        height: 60px; 
+        background-color: #EE4E34;
+        font-family: 'GmarketSansBold';
+    }
+    .header-inner > div > p{
+        display: inline-block;  
+        font-weight: bold;
+    }
+    .inner-fl > p{
+        margin: 10px; 
+        font-size: 30px;
+    }
+    .inner-fr > p{
+        margin: 19px; 
+        font-size: 15px;
+    }
+    .inner-fl, inner-fr{
+        height: inherit;
+        position: relative;
+    }
+    .inner-fl {
+        float: left;
+        padding-left: 15px;
+    }
+    .inner-fr {
+        float: right;
+        padding-right: 15px;
+    }
+    .btn-login::before {
+        content: '';
+        vertical-align: middle;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(./img/ico_login.png) no-repeat 0 0;
+    }
+    .btn-email::before {
+        content: '';
+        vertical-align: middle;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(./img/ico_email.png) no-repeat 0 0;
+    }
+    .header-inner a {
+        text-decoration: none;
+        color: #FCEDDA;
+        margin-right: 20px;
+    }
+
+    .header-inner a:hover {
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    header::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    /* center */
+    section{
+        font-family: 'GmarketSansMedium';
+    }
+    aside{
+        float: left;
+        width: 180px; 
+        background-color: #FCEDDA; 
+        height: 770px;
+    }
+    article{
+        float: left;
+        width: calc(100% - 180px);
+    }
+    section::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    footer{
+        height: 100px; 
+        background-color: lightgray;
+    }
+    footer > p {
+        padding: 40px; 
+        font-size: 15px; 
+        margin: 0;
+    }

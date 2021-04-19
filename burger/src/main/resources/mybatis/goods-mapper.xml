@@ -33,7 +33,7 @@
 	
 	<insert id="goodsInsert" parameterType="Goods">
 		insert into goods values (
-			goods_seq.nextval, #{order_no}, #{member_no}, #{branch_no}, #{bm_no}, #{count})
+			goods_seq.nextval, #{order_no}, #{member_no}, #{bm_no}, #{branch_no}, #{count})
 	</insert>
 	
 </mapper>

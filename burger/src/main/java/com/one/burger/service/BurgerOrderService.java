@@ -21,9 +21,11 @@ public interface BurgerOrderService {
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception;
 	public void goodsInsert(Goods goods) throws Exception;
 	
+	
 	//결제하기 리스트
 	public List<GoodsBranchMenuVo> goodsList(int order_no) throws Exception;
 	
+	//결제하기
 	public void todayInsert(Today today) throws Exception;
 
 

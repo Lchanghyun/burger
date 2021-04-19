@@ -1,13 +1,8 @@
 package com.one.burger.controller;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +42,7 @@ public class BurgerOrderController {
 			@RequestParam(value="order_count[]") List<Integer> order_count,
 			@RequestParam int branch_no, 
 			BurgerOrder burgerOrder, Goods goods, HttpSession session) throws Exception {
+		
 		log.info("POSTorderInsert()");
 		log.info("branch_no = "+ branch_no);
 		int member_no = 1;
@@ -62,8 +58,8 @@ public class BurgerOrderController {
 		if(order_bm_no != null) {
 			for (int i=0; i<order_bm_no.size(); i++) {
 				goods.setOrder_no(order_no);
-				goods.setBranch_no(branch_no);
 				goods.setMember_no(member_no);
+				goods.setBranch_no(branch_no);
 				goods.setBm_no(order_bm_no.get(i));
 				goods.setCount(order_count.get(i));
 				System.out.println(goods.getOrder_no()+" / "+goods.getBranch_no()+" / "+goods.getMember_no()+" / "+
