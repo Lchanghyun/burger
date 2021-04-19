@@ -13,10 +13,11 @@
         font-style: normal;
     }
     html,
-    body {
+    body,ul,li {
         margin: 0;
         padding: 0;
         background-color: #f5f6fa;
+        list-style: none;
     }
     /* header*/
     header{
@@ -108,3 +109,55 @@
         font-size: 15px; 
         margin: 0;
     }
+
+<!-- side-bar -->
+	a {
+	    color: inherit;
+	    text-decoration: none;
+	}
+	
+	.left-side-bar > ul ul {
+	    display: none;
+	    position: absolute;
+	    top: 0;
+	    left: 100%;
+	    background-color: #dfdfdf;
+	}
+	
+	.left-side-bar {
+	    background-color: #dfdfdf;
+	    height: 950px;
+	    width: 180px;
+	    float:left;
+	}
+	
+	.left-side-bar > .status-ico {
+	    text-align: right;
+	    padding: 10px;
+	}
+	
+	.left-side-bar > ul li {
+	    position: relative;
+	}
+	
+	.left-side-bar ul {
+	    font-weight: bold;
+	    text-align: center;
+	    padding: 0;
+	}
+	
+	.left-side-bar ul > li > a {
+	    display: block;
+	    padding: 10px;
+	    white-space: nowrap;
+	}
+	
+	
+	.left-side-bar ul > li:hover ul {
+	    display: block;
+	}
+	
+	.left-side-bar ul > li:hover > a {
+	    color: white;
+	    background-color: black;
+	}

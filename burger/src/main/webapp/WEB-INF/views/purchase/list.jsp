@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+
 
 <style>
     div{
@@ -78,7 +78,8 @@
      })
   })
     </script>
-<body>
+<c:import url="/WEB-INF/views/template/managerHeader.jsp"></c:import>
+<div style="height:670px">
 <form method="post" action="regist" name="form">
 <input type="hidden" name="branch-no" value="1">
 <input type="hidden" name="super_no" value="1">
@@ -143,5 +144,5 @@
         </div>
     </div>
     </form>
-</body>
-</html>
+    </div>
+    <c:import url="/WEB-INF/views/template/managerFooter.jsp"></c:import>

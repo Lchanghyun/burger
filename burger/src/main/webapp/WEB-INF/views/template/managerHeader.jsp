@@ -45,6 +45,54 @@
         </header>
         <section>
             <aside>
-                <!--승주야 여기에 메뉴바 넣으면 될 것 같아여-->
+                <div class="left-side-bar">
+			        <div class="status-ico">
+			            <span>▼</span>
+			        </div>
+			        <ul>
+			            <li>
+			                <a href="#">매출관리</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
+			                <ul>
+			                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
+			                    <li><a href="<%=request.getContextPath()%>/purchase/superlist">본사발주</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">공지사항</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">EVENT 관리</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">지점 아이디 발급</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			              <a href="#">메뉴 관리</a>
+			              <ul>
+			                  <li><a href="#">1</a></li>
+			                  <li><a href="#">2</a></li>
+			              </ul>
+			          </li>
+			        </ul>
+			    </div>
             </aside>
            <article>
