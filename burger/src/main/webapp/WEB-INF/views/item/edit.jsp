@@ -108,34 +108,35 @@
 	.category_link:hover{
 		font-weight: bold;
 	}
-	.list_table{
+	.item_list_table{
 		margin : 10px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 
 	}
-	.list_table >thead>tr> th,
-	.list_table >tbody>tr> td {
+	.item_list_table >thead>tr> th,
+	.item_list_table >tbody>tr> td {
 		border-bottom : 1px solid black;
 		padding : 10px;
+		width: 90px;
 	}
 	.list_all_wrapper{
 		text-align : center;
 	}
 	.item_name_input{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px;
 		width : 120px;
 		text-align : right; 		
 	} 
 	.item_price_input{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px;
 		width : 50px;
 		text-align : right; 
 	}
 	.item_category_select{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px; 
 	}
 </style>
@@ -192,7 +193,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<table class="list_table">
+		<table class="item_list_table">
 			<thead>
 				<tr>
 					<th>카테고리</th>

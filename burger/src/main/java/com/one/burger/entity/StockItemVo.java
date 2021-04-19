@@ -1,7 +1,7 @@
 package com.one.burger.entity;
 
 import java.sql.Date;
-
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +17,6 @@ public class StockItemVo {
 	private int stock_count;
 	private char status;
 	private Date stock_date;
+	
+	private List<StockItemVo> stockItemVo_list;
 }

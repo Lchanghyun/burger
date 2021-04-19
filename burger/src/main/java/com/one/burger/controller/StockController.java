@@ -1,7 +1,7 @@
 package com.one.burger.controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.one.burger.entity.Item;
 import com.one.burger.entity.StockItemVo;
@@ -60,38 +61,33 @@ public class StockController {
 
 		return "stock/register";
 	}
-
+	
 	@PostMapping("/register")
-	@ResponseBody
-	public String PostRegister(String stock_list, Model model, HttpSession session) throws Exception {
+	public String PostRegister(StockItemVo stockItemVo, int size, HttpSession session, RedirectAttributes redirectAttribute) throws Exception {
 		log.info("PostStockRegister()");
 		
 		int branch_no = 1;
 		//int branch_no = (int) session.getAttribute("branch_no");
 		
-		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(stock_list);
-		
 		List<Map<String, Object>> list = new ArrayList<>();
-		JSONArray jArray = (JSONArray) obj;
 		
-		if(jArray != null) {
-			for (int i=0; i<jArray.size(); i++) {
-				list.add((Map<String, Object>) jArray.get(i));
-			}
+		for(int i=1; i<=size; i++) {
+			Map<String, Object> param = new HashMap<>();
+			param.put("item_no",stockItemVo.getStockItemVo_list().get(i).getItem_no()); 
+			param.put("stock_count",stockItemVo.getStockItemVo_list().get(i).getStock_count());
+			list.add(param);
 		}
 		boolean result = stockservice.register(list, branch_no);
-		
-		String msg;
-		
-		if(result)  {
-			msg="true";
+		if(result) {
+			redirectAttribute.addFlashAttribute("msg", "일일재고 등록 완료");
+			return "redirect:list";
 		}
 		else {
-			msg="fail";
+			redirectAttribute.addFlashAttribute("msg", "이미 등록된 당일재고가 있습니다.");
+			return "redirect:list";
 		}
-		return msg;
 	}
+
 	
 	@GetMapping("/stock_plus")
 	public void stockPlus(Model model, String category, HttpSession session) throws Exception{
