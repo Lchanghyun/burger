@@ -13,11 +13,10 @@
         font-style: normal;
     }
     html,
-    body,ul,li {
+    body {
         margin: 0;
         padding: 0;
         background-color: #f5f6fa;
-        list-style: none;
     }
     /* header*/
     header{
@@ -73,8 +72,6 @@
 
     .header-inner a:hover {
         cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
     }
     header::after {
         content: "";
@@ -88,8 +85,7 @@
     aside{
         float: left;
         width: 180px; 
-        background-color: #FCEDDA; 
-        height: 770px;
+        background-color: #FCEDDA;  
     }
     article{
         float: left;
@@ -109,60 +105,6 @@
         font-size: 15px; 
         margin: 0;
     }
-<<<<<<< HEAD
-
-<!-- side-bar -->
-	a {
-	    color: inherit;
-	    text-decoration: none;
-	}
-	
-	.left-side-bar > ul ul {
-	    display: none;
-	    position: absolute;
-	    top: 0;
-	    left: 100%;
-	    background-color: #dfdfdf;
-	}
-	
-	.left-side-bar {
-	    background-color: #dfdfdf;
-	    height: 950px;
-	    width: 180px;
-	    float:left;
-	}
-	
-	.left-side-bar > .status-ico {
-	    text-align: right;
-	    padding: 10px;
-	}
-	
-	.left-side-bar > ul li {
-	    position: relative;
-	}
-	
-	.left-side-bar ul {
-	    font-weight: bold;
-	    text-align: center;
-	    padding: 0;
-	}
-	
-	.left-side-bar ul > li > a {
-	    display: block;
-	    padding: 10px;
-	    white-space: nowrap;
-	}
-	
-	
-	.left-side-bar ul > li:hover ul {
-	    display: block;
-	}
-	
-	.left-side-bar ul > li:hover > a {
-	    color: white;
-	    background-color: black;
-	}
-=======
     /* 사이드바 */
 	.left-side-bar a {
 	    color: inherit;
@@ -175,35 +117,34 @@
 	    left: 100%;
 	    background-color: #FCEDDA;
 	}
-	   .left-side-bar {
-	       height: 950px;
-	       width: 180px;
-	       float: left;
-	   }
-	   .left-side-bar > .status-ico {
-	       text-align: right;
-	       padding: 10px;
-	   }
-	
-	   .left-side-bar > ul li {
-	       position: relative;
-	       list-style: none;
-	   }
-	   .left-side-bar ul {
-	       font-weight: bold;
-	       text-align: center;
-	       padding: 0;
-	   }
-	   .left-side-bar ul > li > a {
-	       display: block;
-	       padding: 10px;
-	       white-space: nowrap;
-	   }
-	   .left-side-bar ul > li:hover ul {
-	       display: block;
-	   }
-	   .left-side-bar ul > li:hover > a {
-	       color: white;
-	       background-color: black;
-	   }
->>>>>>> refs/remotes/origin/main
+   .left-side-bar {
+        height: calc(100% - 60px); 
+	    width: 180px;
+	    float: left;
+   }
+   .left-side-bar > .status-ico {
+       text-align: right;
+       padding: 10px;
+   }
+
+   .left-side-bar > ul li {
+       position: relative;
+       list-style: none;
+   }
+   .left-side-bar ul {
+       font-weight: bold;
+       text-align: center;
+       padding: 0;
+   }
+   .left-side-bar ul > li > a {
+       display: block;
+       padding: 10px;
+       white-space: nowrap;
+   }
+   .left-side-bar ul > li:hover ul {
+       display: block;
+   }
+   .left-side-bar ul > li:hover > a {
+       color: white;
+       background-color: black;
+   }

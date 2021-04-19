@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-
 <style>
-    div{
-        box-sizing: border-box;
-        border : 1px solid black;
-    }
+    
     
     .purchase_wrap{
         width: 80%;
@@ -77,13 +71,14 @@
     	$(form).submit();
      })
   })
-    </script>
+</script>
 <c:import url="/WEB-INF/views/template/managerHeader.jsp"></c:import>
-<div style="height:670px">
-<form method="post" action="regist" name="form">
-<input type="hidden" name="branch-no" value="1">
-<input type="hidden" name="super_no" value="1">
-<input type="hidden" name="status" value="발주대기">
+<body>
+<div style="height: calc(100% - 162px)">
+	<form method="post" action="regist" name="form">
+	<input type="hidden" name="branch-no" value="1">
+	<input type="hidden" name="super_no" value="1">
+	<input type="hidden" name="status" value="발주대기">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
@@ -138,11 +133,11 @@
                                 <td>${Purchase.purchase_date}</td>
                             </tr>
                         </c:forEach>
-                    </tbody>
+                    </tbody> 
                 </table>
             </div>
         </div>
     </div>
-    </form>
-    </div>
-    <c:import url="/WEB-INF/views/template/managerFooter.jsp"></c:import>
+ </form>
+</div>
+<c:import url="/WEB-INF/views/template/managerFooter.jsp"></c:import>
