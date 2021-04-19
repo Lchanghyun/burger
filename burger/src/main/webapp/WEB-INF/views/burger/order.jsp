@@ -10,7 +10,7 @@
 <script>
 	$(function(){		
 		let branch_no = $(".branch_no").val();
-		let
+		l
 		
 		let category_burger = $("input[value=햄버거]"); 
 		let category_drink = $("input[value=음료]"); 
