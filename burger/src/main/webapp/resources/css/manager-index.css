@@ -87,8 +87,7 @@
     aside{
         float: left;
         width: 180px; 
-        background-color: #FCEDDA; 
-        height: 770px;
+        background-color: #FCEDDA;
     }
     article{
         float: left;
@@ -121,7 +120,7 @@
 	    background-color: #FCEDDA;
 	}
 	   .left-side-bar {
-	       height: 950px;
+	       height: calc(100% - 60px);
 	       width: 180px;
 	       float: left;
 	   }
