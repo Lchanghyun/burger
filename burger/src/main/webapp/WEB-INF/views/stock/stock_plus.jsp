@@ -23,16 +23,17 @@
 	})
 </script> 
 <style>
-	.list_table{
+	.stock_list_table{
 		margin : 10px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 
 	}
-	.list_table >thead>tr> th,
-	.list_table >tbody>tr> td {
+	.stock_list_table >thead>tr> th,
+	.stock_list_table >tbody>tr> td {
 		border-bottom : 1px solid black;
 		padding : 10px;
+		width: 90px;
 	}
 	.list_all_wrapper{
 		text-align : center;
@@ -100,7 +101,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<table class="list_table">
+		<table class="stock_list_table">
 			<thead>
 				<tr>
 					<th>카테고리</th>
