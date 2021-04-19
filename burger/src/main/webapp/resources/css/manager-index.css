@@ -54,7 +54,7 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-        background: url(./img/ico_login.png) no-repeat 0 0;
+        background: url(/burger/resources/img/ico_login.png) no-repeat 0 0;
     }
     .btn-email::before {
         content: '';
@@ -62,7 +62,7 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-        background: url(./img/ico_email.png) no-repeat 0 0;
+        background: url(/burger/resources/img/ico_email.png) no-repeat 0 0;
     }
     .header-inner a {
         text-decoration: none;
@@ -108,3 +108,46 @@
         font-size: 15px; 
         margin: 0;
     }
+    /* 사이드바 */
+	.left-side-bar a {
+	    color: inherit;
+	    text-decoration: none;
+	}
+	.left-side-bar > ul ul {
+	    display: none;
+	    position: absolute;
+	    top: 0;
+	    left: 100%;
+	    background-color: #FCEDDA;
+	}
+	   .left-side-bar {
+	       height: 950px;
+	       width: 180px;
+	       float: left;
+	   }
+	   .left-side-bar > .status-ico {
+	       text-align: right;
+	       padding: 10px;
+	   }
+	
+	   .left-side-bar > ul li {
+	       position: relative;
+	       list-style: none;
+	   }
+	   .left-side-bar ul {
+	       font-weight: bold;
+	       text-align: center;
+	       padding: 0;
+	   }
+	   .left-side-bar ul > li > a {
+	       display: block;
+	       padding: 10px;
+	       white-space: nowrap;
+	   }
+	   .left-side-bar ul > li:hover ul {
+	       display: block;
+	   }
+	   .left-side-bar ul > li:hover > a {
+	       color: white;
+	       background-color: black;
+	   }

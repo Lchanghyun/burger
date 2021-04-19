@@ -11,12 +11,17 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script> 
 $(function(){
+
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp68451399'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
     var msg;
-	       
 	var totalprice = $(".menu_total").text();
 	totalprice = Number(totalprice);
+	let total = [];
+	total.push(totalprice);
+	console.log(total)
+	var totalPrice = $(".total_price").text();
+	
 	$("#payment").click(function(){	
 		IMP.request_pay({
 		    pg : 'kakaopay',
@@ -84,7 +89,10 @@ $(function(){
 							</div>
 					</c:forEach>
 				</c:otherwise>
-			</c:choose>				
+			</c:choose>
+			<div>
+				<p class="total_price"></p>		
+			</div>
 		</div>
 		<button id="payment">결제완료</button>
 </body>
