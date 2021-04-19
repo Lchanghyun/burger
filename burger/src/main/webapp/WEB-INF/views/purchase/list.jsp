@@ -7,7 +7,7 @@
     .purchase_wrap{
         width: 80%;
 	    height: 400px;
-	    position: fixed;
+	    position: relative;
 	    left: 245px;
 	    top: 260px;
     }
