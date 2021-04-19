@@ -9,6 +9,7 @@
 <title>지점 재고관리</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 	$(function(){
 		$(".stock_register_btn").on("click",function(){
@@ -19,20 +20,28 @@
 			e.preventDefault()
 			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
 		})
+		let msg = '<c:out value="${msg}"/>'
+		if(msg!=""){
+			Swal.fire({
+				icon: 'info',
+			   	title: msg
+			})
+		}
 		
 	})
 </script>
 <style>
-	.list_table{
+	.stock_list_table{
 		margin : 10px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 
 	}
-	.list_table >thead>tr> th,
-	.list_table >tbody>tr> td {
+	.stock_list_table >thead>tr> th,
+	.stock_list_table >tbody>tr> td {
 		border-bottom : 1px solid black;
 		padding : 10px;
+		width: 90px;
 	}
 	.list_all_wrapper{
 		text-align : center;
@@ -103,8 +112,16 @@
 					<a href="list?category=소모품" class="category_link">소모품</a>
 				</c:otherwise>
 			</c:choose>
+			<c:choose>
+				<c:when test="${category eq '단종'}">
+					<a href="list?category=단종" class="category_link" style="font-weight: bold; font-size: 16px">단종</a>
+				</c:when>
+				<c:otherwise>
+					<a href="list?category=단종" class="category_link">단종</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		<table class="list_table">
+		<table class="stock_list_table">
 			<thead>
 				<tr>
 					<th>카테고리</th>
@@ -124,7 +141,7 @@
 					<tr>
 						<td>${StockItemVo.category}</td>
 						<td>${StockItemVo.item_name}</td>
-						<td>${StockItemVo.item_price}</td>
+						<td>${StockItemVo.item_price}원</td>
 						<td>${StockItemVo.stock_count}</td>
 						<td>${StockItemVo.stock_date}</td>
 					</tr>

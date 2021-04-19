@@ -49,10 +49,10 @@
 			let week_chart= new Chart($(".chart_wrapper").children().last().find("canvas"),{
 				type : "line",
 				data : {
-					labels : chart_date,
+					labels : chart_date,//x축 데이터
 					datasets : [{
 						label : 'Last Week Stock',
-						data : week_list[i],
+						data : week_list[i], //y축 데이터
 						backgroundColor: 'transparent',
 						borderColor: 'blue',
 						borderWidth : 1

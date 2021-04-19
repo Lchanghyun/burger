@@ -38,19 +38,19 @@
 		text-align : center; 
 	}
 	.item_name_input{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px;
 		width : 120px;
 		text-align : right; 
 	}
 	.item_price_input{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px;
 		width : 50px;
 		text-align : right; 
 	}
 	.item_category_select{
-		padding : 3px;
+		padding : 5px;
 		font-size : 15px; 
 	}
 	.input_wrapper{
