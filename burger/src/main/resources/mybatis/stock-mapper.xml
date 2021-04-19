@@ -15,7 +15,7 @@
 <mapper namespace="stock">
 
 	<!-- 
-		insert를 수행할 수 있는 구문
+		insert를 수행할 수 있는 구문	
 		- id : 외부에서 구문을 호출하기 위한 이름(식별자)
 		- parameterType : 외부에서 전달되는 데이터의 자료형
 		
@@ -24,7 +24,9 @@
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
 	<select id ="item_check" parameterType="Map" resultType="Stock">
-		select item_no from stock where item_no = #{item_no} and branch_no = #{branch_no}
+		select item_no from stock 
+			where
+		 		item_no = #{item_no} and branch_no = #{branch_no} and ((not status='1') or stock_count > 0)
 	</select>
 	
 	<select id="date_check" parameterType="int" resultType="Stock">
@@ -32,16 +34,22 @@
 	</select>
 	
 	<select id="category_list" parameterType="map" resultType="StockItemVo">
-		select rn, S.branch_no, S.item_no, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date from (
+		select rn, S.branch_no, S.item_no, S.status, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date from (
 			select rownum rn, TMP.* from(
-				select * from stock where item_no = #{item_no} and branch_no = #{branch_no} order by stock_date desc) TMP
+				select * from stock 
+				where
+					item_no = #{item_no} and branch_no = #{branch_no} and (status='0' or (status='1' and stock_count > 0))
+				order by stock_date desc) TMP
 			) S left outer join item I on S.item_no = I.item_no where I.category = #{category} and rn=1
 	</select>
 	
 	<select id="all_list" resultType="StockItemVo">
-		select rn, S.branch_no, S.item_no, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date from (
+		select rn, S.branch_no, S.item_no, S.status, I.category, I.item_name, I.item_price, S.stock_count, S.stock_date from (
 			select rownum rn, TMP.* from(
-				select * from stock where item_no = #{item_no} and branch_no = #{branch_no} order by stock_date desc) TMP
+				select * from stock 				
+				where
+					item_no = #{item_no} and branch_no = #{branch_no} and (status='0' or (status='1' and stock_count > 0))
+				 order by stock_date desc) TMP
 			) S left outer join item I on S.item_no = I.item_no where rn=1 
 	</select>
 	
@@ -51,13 +59,13 @@
 	
 	<insert id="register" parameterType="map">
 		insert into stock values(
-			#{stock_no}, #{branch_no}, #{item_no}, #{stock_count}, sysdate
+			#{stock_no}, #{branch_no}, #{item_no}, #{stock_count}, sysdate , '0'
 		)
 	</insert>
 	
 	<insert id="plus" parameterType="map">
 		insert into stock values(
-			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate-1
+			#{stock_no}, #{branch_no}, #{item_no}, 0, sysdate-1, '0'
 		)
 	</insert>
 	
@@ -73,8 +81,20 @@
 	</select>
 	
 	<select id="week_stock" parameterType="map" resultType="StockItemVo">
-		select S.branch_no, S.item_no, S.stock_count, S.stock_date, I.item_name, I.category from stock S 
+		select S.branch_no, S.item_no, S.stock_count, S.stock_date, S.status, I.item_name, I.category from stock S 
 			left outer join item I on S.item_no = I.item_no 
 				where to_char(S.stock_date) = to_char(sysdate-#{day}) and S.item_no = #{item_no} and S.branch_no = #{branch_no}
 	</select>
+	
+	<update id="delete_status" parameterType="int">
+		update stock
+			set status ='1'
+			where item_no = #{item_no}
+	</update>
+	
+	<update id="restore_status" parameterType="int">
+		update stock
+			set status ='0'
+			where item_no = #{item_no}
+	</update>
 </mapper>

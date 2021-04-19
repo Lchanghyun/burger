@@ -21,55 +21,41 @@
 			e.preventDefault()
 			location.href="${pageContext.request.contextPath}/stock/list"			
 		})
-		let list = [];
-		let item_no;
-		let stock_count;
 		
-		$(".count_input").on("blur",function(){
-			stock_count = $(this).val()
-			item_no = $(this).parent().next().children().val()
-			list_check(item_no)
-			list.push({"item_no" : item_no, "stock_count" : stock_count})
-		})
-		
-		function list_check(item_no){
-			$.each(list, function(index, element){
-				if(element.item_no === item_no){
-					delete list[index]
-					return false;
-				}
-			})
-		}
-		
-		$(".stock_form_btn").on("click", function(e){
-			e.preventDefault();
-			
-			let temp = JSON.stringify(list)
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/stock/register",
-				type: "POST",
-				data: {
-					stock_list : temp
-				},
-				success: function(resp){
-					let msg
-					if(resp==="true"){
-						msg="등록이 완료되었습니다."
-					}
-					else{
-						msg="오늘 등록된 재고가 있습니다."
-					}
-					alert(msg)
-				}			
-			})
-		})
 	})
 </script>
 <style>
 	.count_input{
 		width: 1.5rem;
 		text-align: center;
+	}
+	.stock_list_table{
+		margin : 10px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+
+	}
+	.stock_list_table >thead>tr> th,
+	.stock_list_table >tbody>tr> td {
+		border-bottom : 1px solid black;
+		padding : 10px;
+		width: 90px;
+	}
+	.list_all_wrapper{
+		text-align : center;
+	}
+	button{
+		cursor : pointer;
+	}
+	.stock_list_btn,
+	.stock_plus_btn,
+	.stock_form_btn{
+		font-size : 15px;
+	}
+	.count_input{
+		width : 50px;
+		padding : 5px; 
+		text-align: right;
 	}
 </style>
 <body>
@@ -78,9 +64,8 @@
 		<button class="stock_plus_btn">재고 추가</button>
 		
 		<form action="register" method="post" class="stock_register_form">
-			<input type="hidden" name="stock_list" id="stock_list">
-		</form>
-		<table class="list_table">
+		<input type="hidden" name="size" value="${list.size()}">
+		<table class="stock_list_table">
 			<thead>
 				<tr>
 					<th>카테고리</th>
@@ -92,21 +77,25 @@
 			<tbody>
 				<c:if test="${empty list}">
 					<tr>
-						<td>아무것도 없네...</td>
+						<td colspan="4">등록된 자재가 없습니다.</td> 
 					</tr>
 				</c:if>
+				<c:set var="index" value="0"/>
 				<c:forEach items="${list}" var="StockItemVo">
+					<c:set var="index" value="${index+1}"/>
+					<input type="hidden" name="stockItemVo_list[${index}].item_no" value="${StockItemVo.item_no}">
 					<tr>
 						<td>${StockItemVo.category}</td>
 						<td>${StockItemVo.item_name}</td>
-						<td>${StockItemVo.item_price}</td>
-						<td><input type="text" value="${StockItemVo.stock_count}" class="count_input" required></td>
-						<td><input type="hidden" value="${StockItemVo.item_no}"></td>
+						<td>${StockItemVo.item_price}원</td>
+						<td><input type="text" name="stockItemVo_list[${index}].stock_count" class="count_input" required></td>	
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<button class="stock_form_btn">등록 완료</button>
+			<input type="submit" class="stock_form_btn" value="등록 완료">
+		</form>
+		
 		
 	</div>
 </body>
