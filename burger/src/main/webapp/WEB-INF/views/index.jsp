@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>버거머거</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
@@ -28,6 +28,7 @@
 	});
 </script>
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <body>
 	<form class="form" action="burger/order" method="get">
 		<p>지점 검색</p>

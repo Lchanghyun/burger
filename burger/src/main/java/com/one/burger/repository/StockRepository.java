@@ -12,6 +12,9 @@ import com.one.burger.entity.Item;
 import com.one.burger.entity.Stock;
 import com.one.burger.entity.StockItemVo;
 
+import lombok.extern.java.Log;
+
+@Log
 @Repository
 public class StockRepository {
 	
@@ -35,6 +38,8 @@ public class StockRepository {
 	}
 	
 	public void plus(Map<String, Object> param) throws Exception {
+		log.info("stockRep plus()");
+
 		sqlSession.insert("stock.plus", param);
 	}
 	
@@ -56,6 +61,14 @@ public class StockRepository {
 	
 	public StockItemVo week_stock(Map<String, Object> param) throws Exception{
 		return sqlSession.selectOne("stock.week_stock",param);
+	}
+	
+	public void delete_status(int item_no) throws Exception{
+		sqlSession.update("stock.delete_status",item_no);
+	}
+	
+	public void restore_status(int item_no) throws Exception{
+		sqlSession.update("stock.restore_status",item_no);
 	}
 	
 }
