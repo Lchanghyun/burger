@@ -155,7 +155,7 @@ create table menu(
     menu_name varchar2(60) not null unique,
     menu_price number default 0 not null,
 	category varchar2(9) check
-    (category in ('햄버거', '음료', '사이드')) not null
+    (category in ('햄버거', '음료', '사이드', '단종')) not null
 );
 create sequence menu_seq;
 
@@ -174,7 +174,7 @@ create table branch_menu( -- 지점메뉴
 	bm_no number primary key,
 	branch_no references branch(branch_no),
 	menu_no references menu(menu_no) on delete cascade, 
-	menu_status char(1) check(menu_status in('0', '1')) not null -- 0일때 정상판매, 1일태 품절처리
+	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null -- 0일때 정상판매, 1일태 품절처리
 );
 create sequence bm_seq;
 
