@@ -72,8 +72,6 @@
 
     .header-inner a:hover {
         cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
     }
     header::after {
         content: "";
@@ -87,8 +85,7 @@
     aside{
         float: left;
         width: 180px; 
-        background-color: #FCEDDA; 
-        height: 770px;
+        background-color: #FCEDDA;  
     }
     article{
         float: left;
@@ -120,34 +117,34 @@
 	    left: 100%;
 	    background-color: #FCEDDA;
 	}
-	   .left-side-bar {
-	       height: 950px;
-	       width: 180px;
-	       float: left;
-	   }
-	   .left-side-bar > .status-ico {
-	       text-align: right;
-	       padding: 10px;
-	   }
-	
-	   .left-side-bar > ul li {
-	       position: relative;
-	       list-style: none;
-	   }
-	   .left-side-bar ul {
-	       font-weight: bold;
-	       text-align: center;
-	       padding: 0;
-	   }
-	   .left-side-bar ul > li > a {
-	       display: block;
-	       padding: 10px;
-	       white-space: nowrap;
-	   }
-	   .left-side-bar ul > li:hover ul {
-	       display: block;
-	   }
-	   .left-side-bar ul > li:hover > a {
-	       color: white;
-	       background-color: black;
-	   }
+   .left-side-bar {
+        height: calc(100% - 60px); 
+	    width: 180px;
+	    float: left;
+   }
+   .left-side-bar > .status-ico {
+       text-align: right;
+       padding: 10px;
+   }
+
+   .left-side-bar > ul li {
+       position: relative;
+       list-style: none;
+   }
+   .left-side-bar ul {
+       font-weight: bold;
+       text-align: center;
+       padding: 0;
+   }
+   .left-side-bar ul > li > a {
+       display: block;
+       padding: 10px;
+       white-space: nowrap;
+   }
+   .left-side-bar ul > li:hover ul {
+       display: block;
+   }
+   .left-side-bar ul > li:hover > a {
+       color: white;
+       background-color: black;
+   }

@@ -20,7 +20,7 @@
                     <div class="inner-fr">
                        <p>
                             <a href="#" class="btn-login">LOGIN</a>
-                            <a href="#" class="btn-join">E-MAIL</a>
+                            <a href="#" class="btn-email">E-MAIL</a>
                         </p>
                     </div>
                 </div>
