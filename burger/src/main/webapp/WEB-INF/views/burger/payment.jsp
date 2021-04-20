@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/> 
+<title>결제하기</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -67,9 +65,13 @@ $(function(){
 	});   
 });
 </script>
-</head>
-<body>
-	<div id="goods" style="width: 700px; float: left;" >
+<c:import url="/WEB-INF/views/template/header.jsp"></c:import>
+	<br><br>
+	<div style="display: inline-block;">
+		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 내역 및 결제</h3>
+	</div>
+	<div></div>
+	<div id="goods" style="width: 1140px;" >
 			<c:choose>
 				<c:when test="${empty goodsList}">
 					<p>게시물이 없습니다.</p>
@@ -95,5 +97,4 @@ $(function(){
 			</div>
 		</div>
 		<button id="payment">결제완료</button>
-</body>
-</html>
+<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
