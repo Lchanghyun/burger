@@ -23,55 +23,55 @@
                             <a href="#" class="btn-email">E-MAIL</a>
                         </p>
                     </div>
-                </div>
+                </div> 
         </header>
         <section>
             <aside>
-    <div class="left-side-bar">
-        <ul>
-            <li>
-                <a href="#">매출관리</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
-                <ul>
-                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">공지사항</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">EVENT 관리</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">지점 아이디 발급</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-              <a href="#">메뉴 관리</a>
-              <ul>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-              </ul>
-          </li>
-        </ul>
-    </div>
-            </aside>
-           <article>
+			    <div class="left-side-bar">
+			        <ul>
+			            <li>
+			                <a href="#">매출관리</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
+			                <ul>
+			                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">공지사항</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">EVENT 관리</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="#">지점 아이디 발급</a>
+			                <ul>
+			                    <li><a href="#">1</a></li>
+			                    <li><a href="#">2</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			              <a href="#">메뉴 관리</a>
+			              <ul>
+			                  <li><a href="#">1</a></li>
+			                  <li><a href="#">2</a></li>
+			              </ul>
+			          </li>
+			        </ul>
+			    </div>
+	  </aside>
+ <article>

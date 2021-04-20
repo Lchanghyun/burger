@@ -1,19 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
-    div{
-        box-sizing: border-box;
-        border : 1px solid black;
-    }
     
     .purchase_wrap{
         width: 80%;
 	    height: 400px;
-	    position: fixed;
+	    position: relative;
 	    left: 245px;
 	    top: 260px;
     }
@@ -31,14 +25,15 @@
         height: 200px;
         overflow: auto;
     }
-    table.purchase_table {
+    
+    table.purchase_table { 
         border-collapse: separate;
         border-spacing: 1px;
         text-align: center;
         line-height: 1.5;
         margin: 20px 10px;
-        
     }
+    
     table.purchase_table > thead > tr.tlist > th {
         width: 155px;
         padding: 10px;
@@ -47,6 +42,7 @@
         color: #fff;
         background: #ce4869 ;
     }
+    
     table.purchase_table td {
         width: 155px;
         padding: 10px;
@@ -54,8 +50,9 @@
         border-bottom: 1px solid #ccc;
         background: #eee;
     }
+    
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script>
     $(function(){
     	
@@ -107,7 +104,8 @@
     	})
     })
     </script>
-<body>
+    <c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
+<div style="height: calc(100% - 162px)">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
@@ -150,5 +148,5 @@
             </div>
         </div>
      </div>
-</body>
-</html>
+</div>
+<c:import url="/WEB-INF/views/template/managerFooter.jsp"/>

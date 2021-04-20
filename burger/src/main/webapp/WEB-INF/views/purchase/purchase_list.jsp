@@ -1,19 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
-    div{
-        box-sizing: border-box;
-        border : 1px solid black;
-    }
-    
     .purchase_wrap{
         width: 80%;
 	    height: 400px;
-	    position: fixed;
+	    position: relative;
 	    left: 245px;
 	    top: 260px;
     }
@@ -31,14 +24,15 @@
         height: 200px;
         overflow: auto;
     }
+    
     table.purchase_table {
         border-collapse: separate;
         border-spacing: 1px;
         text-align: center;
         line-height: 1.5;
         margin: 20px 10px;
-        
     }
+    
     table.purchase_table > thead > tr.tlist > th {
         width: 155px;
         padding: 10px;
@@ -47,6 +41,7 @@
         color: #fff;
         background: #ce4869 ;
     }
+    
     table.purchase_table td {
         width: 155px;
         padding: 10px;
@@ -55,7 +50,7 @@
         background: #eee;
     }
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script>
   $(function(){
      
@@ -72,7 +67,9 @@
      
   })
     </script>
-<body>
+    
+<c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
+<div style="height: calc(100% - 162px)">
 <form method="get" action="register" name="form">
 <input type= "hidden" name="purchase_no" value="${param.purchase_no}">
     <div class="purchase_wrap">
@@ -114,6 +111,6 @@
             </div>
         </div>
     </div>
-    </form>
-</body>
-</html>
+</form>
+</div>
+<c:import url="/WEB-INF/views/template/managerFooter.jsp"/>

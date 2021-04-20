@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <style>
-    div{
-        box-sizing: border-box;
-        border : 1px solid black;
-    }
     
     .purchase_wrap{
         width: 80%;
 	    height: 400px;
-	    position: fixed;
+	    position: relative;
 	    left: 245px;
 	    top: 260px;
     }
@@ -54,8 +49,9 @@
         border-bottom: 1px solid #ccc;
         background: #eee;
     }
+    
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script>
   $(function(){
      
@@ -64,15 +60,15 @@
 		 location.href="${pageContext.request.contextPath}/purchase/list"
      })
   })
-     
     </script>
-<body>
+    
+<c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
+<div style="height: calc(100% - 162px)">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>
                 <thead>
                     <tr>
-                    
                         <th><input type="button" value="목록" id="back"></th>
                         <th><input type="button" value="신규 등록" id="new_rg"></th>
                     </tr>
@@ -107,5 +103,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+<c:import url="/WEB-INF/views/template/managerFooter.jsp"/>

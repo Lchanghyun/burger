@@ -1,19 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
-    div{
-        box-sizing: border-box;
-        border : 1px solid black;
-    }
-    
     .purchase_wrap{
         width: 80%;
 	    height: 400px;
-	    position: fixed;
+	    position: relative;
 	    left: 245px;
 	    top: 260px;
     }
@@ -55,7 +48,7 @@
         background: #eee;
     }
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script>
   $(function(){
 	   
@@ -73,7 +66,8 @@
      
   })
     </script>
-<body>
+    <c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
+<div style="height: calc(100% - 162px)">
 <form method="post" action="superpurchaselist" name="form">
 <input type= "hidden" name="purchase_no" value="${param.purchase_no}">
 <input type= "hidden" name="status" value="발주완료">
@@ -117,5 +111,5 @@
         </div>
     </div>
     </form>
-</body>
-</html>
+</div>
+<c:import url="/WEB-INF/views/template/managerFooter.jsp"/>

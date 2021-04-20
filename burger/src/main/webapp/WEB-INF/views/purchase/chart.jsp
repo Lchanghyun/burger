@@ -64,20 +64,10 @@
     	  alert([day, month, year].join('/'));*/
     	});
      
-	 // 신규 발주
-     $('#new_rg').on('click',function(){
-    	 
-    	 
-    	$(form).submit();
-     })
   })
 </script>
 <c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
 <div style="height: calc(100% - 162px)">
-	<form method="post" action="regist" name="form">
-	<input type="hidden" name="branch-no" value="1">
-	<input type="hidden" name="super_no" value="1">
-	<input type="hidden" name="status" value="발주대기">
     <div class="purchase_wrap">
         <div class="purchase_container">
             <table>

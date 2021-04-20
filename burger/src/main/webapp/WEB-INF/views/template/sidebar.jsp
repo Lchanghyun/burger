@@ -66,11 +66,8 @@
 	<div class="upbar">
 		
 	</div>
-	<c:choose>
-	<c:when test="${empty sessionScope.super_no}">
+	<
     
-    </c:when>
-    <c:otherwise>
     <div class="left-side-bar">
         <div class="status-ico">
             <span>▶</span>
@@ -122,5 +119,4 @@
           </li>
         </ul>
     </div>
-    </c:otherwise>
-    </c:choose>
+    

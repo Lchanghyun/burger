@@ -8,4 +8,5 @@ import lombok.extern.java.Log;
 @Controller
 public class ChartController {
 
+	
 }

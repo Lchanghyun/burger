@@ -34,7 +34,7 @@
         }            
     </style>
 </head>
-<body>
+<body> 
     <main>
         <header>
                 <div class="header-inner">
@@ -45,7 +45,7 @@
                         <p><a href="#">BURGER&amp;DRINK</a></p>
                     </div>
                     <div class="logo">
-                        <img src="${path}/resources/img/bgmg_log.png" alt="로고">
+                        <img src="${path}/resources/img/BGMG.png" alt="로고">
                     </div>
                     <div>
                         <p><a href="#">LOGIN</a></p>
