@@ -2,26 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-	$(function(){
-		$(".stock_register_btn").on("click",function(){
-			location.href="${pageContext.request.contextPath}/stock/register"			
-		});
-		
-		$(".stock_plus_btn").on("click",function(e){
-			e.preventDefault()
-			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
-		})
-		let msg = '<c:out value="${msg}"/>'
-		if(msg!=""){
-			Swal.fire({
-				icon: 'info',
-			   	title: msg
-			})
-		}
-		
-	})
-</script>
 <style>
 	.stock_list_table{
 		margin : 10px auto;
@@ -58,6 +38,26 @@
 	}
 </style>
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>  
+<script>
+	$(function(){
+		$(".stock_register_btn").on("click",function(){
+			location.href="${pageContext.request.contextPath}/stock/register"			
+		});
+		
+		$(".stock_plus_btn").on("click",function(e){
+			e.preventDefault()
+			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
+		})
+		let msg = '<c:out value="${msg}"/>'
+		if(msg!=""){
+			Swal.fire({
+				icon: 'info',
+			   	title: msg
+			})
+		}
+		
+	})
+</script>
 <div style="height: calc(100% - 162px);">
 	<div class="list_all_wrapper">
 		<div class="btn_wrapper">
