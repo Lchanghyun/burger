@@ -39,16 +39,18 @@ header{
     position: relative; 
     top: -38px;
 }
-.header-inner > div > p{
+.header-inner > div > p,
+.header-inner > div > a{
     font-weight: bold; 
     display: inline-block; 
     margin-top: 40px; 
     font-size: 25px;
     color: #FCEDDA;
 }
-.header-inner > div > p > a {
+.header-inner > div > p > a,
+.header-inner > div > a {
     text-decoration: none;
-    color: inherit;
+    color: #FCEDDA;
 }
 .header-inner > div > img{
     width: 130px;
@@ -60,7 +62,7 @@ header{
 }
 /* body */
 section{
-    height: 600px;
+
     font-family: 'GmarketSansMedium';
 }
 article{

@@ -15,20 +15,17 @@ $(function(){
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp68451399'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
     var msg;
-	var totalprice = $(".menu_total").text();
-	totalprice = Number(totalprice);
-	let total = [];
-	total.push(totalprice);
-	console.log(total)
 	var totalPrice = $(".total_price").text();
+	totalPrice = Number(totalPrice);
 	
 	$("#payment").click(function(){	
+		
 		IMP.request_pay({
 		    pg : 'kakaopay',
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 14000,
+		    amount : totalPrice,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -78,16 +75,19 @@ $(function(){
 					<p>게시물이 없습니다.</p>
 				</c:when>
 					<c:otherwise>
+					<c:set var="sum" value="${0}"></c:set>
 					<c:forEach items="${goodsList}" var="GoodsBranchMenuVo" >
 							<div class="goodsList add-menu${GoodsBranchMenuVo.bm_no}" style="display: inline-block;">
 									<span class="menu_name">${GoodsBranchMenuVo.menu_name}</span>
 									<span class="menu_price">${GoodsBranchMenuVo.menu_price}</span>
 									<span class="menu_count">${GoodsBranchMenuVo.count}</span><br>
-									<p class="menu_total">${GoodsBranchMenuVo.menu_price*GoodsBranchMenuVo.count}</p>		
+									<span class="menu_total">${GoodsBranchMenuVo.menu_price*GoodsBranchMenuVo.count}</span>		
 									<p>--------------------------------------</p>
+									<c:set var="sum" value="${sum+(GoodsBranchMenuVo.menu_price*GoodsBranchMenuVo.count)}"></c:set>
 									<p>--------------------------------------</p>
 							</div>
 					</c:forEach>
+					<p class="total_price"><c:out value="${sum}"></c:out></p>
 				</c:otherwise>
 			</c:choose>
 			<div>

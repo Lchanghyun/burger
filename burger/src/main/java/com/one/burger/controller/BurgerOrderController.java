@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.one.burger.entity.BurgerOrder;
 import com.one.burger.entity.Goods;
+import com.one.burger.service.BranchService;
 import com.one.burger.service.BurgerOrderService;
 
 import lombok.extern.java.Log;
@@ -24,8 +25,17 @@ import lombok.extern.java.Log;
 public class BurgerOrderController {
 	
 	@Autowired
-//	private BurgerOrder burgerOrder;
 	private BurgerOrderService service;
+	@Autowired
+	private BranchService branchService;
+	
+	@GetMapping("/location")
+	public String location(Model model)throws Exception{
+		log.info("location()");
+		model.addAttribute("list", branchService.list());
+		return "burger/location";
+
+	}
 	
 	@GetMapping("/order")
 	public String orderInsert(int branch_no, Model model) throws Exception{

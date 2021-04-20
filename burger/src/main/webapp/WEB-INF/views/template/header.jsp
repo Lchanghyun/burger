@@ -39,7 +39,7 @@
         <header>
                 <div class="header-inner">
                     <div>
-                        <p><a href="#">ORDER</a></p>
+                        <a href="${path}/burger/location"><p>ORDER</p></a>
                     </div>
                     <div>
                         <p><a href="#">BURGER&amp;DRINK</a></p>

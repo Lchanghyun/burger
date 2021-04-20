@@ -162,7 +162,6 @@
 </style>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 
-	<a href="/burger">home으로</a>
 	<h3>메뉴</h3>
 		<button id="btn_burger">BURGER</button>
 		<button id="btn_drink">DRINK</button>
