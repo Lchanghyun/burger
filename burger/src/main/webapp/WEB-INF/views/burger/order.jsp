@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<c:set var="path" value="${pageContext.request.contextPath}"/> 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>햄버거 주문하기</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
@@ -162,8 +160,8 @@
 		display: none;
 	}
 </style>
-</head>
-<body>
+<c:import url="/WEB-INF/views/template/header.jsp"></c:import>
+
 	<a href="/burger">home으로</a>
 	<h3>메뉴</h3>
 		<button id="btn_burger">BURGER</button>
@@ -171,7 +169,7 @@
 		<button id="btn_side">SIDE</button>
 		<br>
 		<br>
-		<div id="menu" style="width: 700px; float: left;" >
+		<div id="menu" style="width: 700px;" >
 			<c:choose>
 				<c:when test="${empty orderList}">
 					<p>게시물이 없습니다.</p>
@@ -198,12 +196,11 @@
 			<p>총 금액: <span id="total_price"></span></p>	
 		</div>
 		<button type="button" id="all-delete">전체 삭제</button>
-			<div id="array" style="width: 300px; border: 1px solid black; height: 600px; float: right;">
+			<div id="array" style="width: 300px; border: 1px solid black; height: 600px; ">
 				<div id="menuEmpty">제품을 선택해주세요</div>				
 				
 			</div>
 		<br><br>
 		<input type="button" id="payment" value="주문하기">			
-
-</body>
-</html>
+<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+		
