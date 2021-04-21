@@ -10,11 +10,13 @@
 <script> 
 $(function(){
 	$("input[name=pay]").click(function(){
+		$("input[name=pay]").addClass("active");
 		let order_no = $(".order_no").val();
 		let branch_no = $(".branch_no").val();
-		
-		$(`<input type="hidden" name="order_no">`).val(order_no).addClass("form").prependTo("#form");
-		$(`<input type="hidden" name="branch_no">`).val(branch_no).addClass("form").prependTo("#form");
+		if(!$(this).hasClass("active")){			
+			$(`<input type="hidden" name="order_no">`).val(order_no).addClass("form").prependTo("#form");
+			$(`<input type="hidden" name="branch_no">`).val(branch_no).addClass("form").prependTo("#form");
+		}
 	});
 	
 	var IMP = window.IMP; // 생략가능
