@@ -8,7 +8,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script> 
-$(function(){ㅇ
+$(function(){
 	$("input[name=pay]").click(function(){
 		$("input[name=pay]").addClass("active");
 		let order_no = $(".order_no").val();
