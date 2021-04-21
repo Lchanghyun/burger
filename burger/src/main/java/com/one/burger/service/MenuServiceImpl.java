@@ -111,11 +111,4 @@ public class MenuServiceImpl implements MenuService{
 		menuRepository.stopModify(menu_no, category);
 	}
 	
-	
-	
-	
-	@Override
-	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
-		return menuRepository.getSalesTotal(choiceDate);
-	}
 }
