@@ -96,11 +96,11 @@
       clear: both;
     }
     footer{
-        height: 100px; 
+        height: 80px; 
         background-color: lightgray;
     }
     footer > p {
-        padding: 40px; 
+        padding: 30px; 
         font-size: 15px; 
         margin: 0;
     }
