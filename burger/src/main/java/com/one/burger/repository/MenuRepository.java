@@ -12,7 +12,6 @@ import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhoto;
 import com.one.burger.entity.MenuPhotoVO;
-import com.one.burger.entity.SalesSuperTotal;
 
 @Repository
 public class MenuRepository {
