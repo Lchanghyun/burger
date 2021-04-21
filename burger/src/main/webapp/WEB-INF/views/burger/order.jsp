@@ -7,8 +7,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
 	$(function(){		
-
-		let branch_no = $(".branch_no").val();
+		let status = $("input[value=1]");
+		if(status.val() === "1"){
+			$(status).parent().addClass("unclick");
+			$("<p>").text("품 절").addClass("soldout").prependTo(".unclick");
+		}
+		
+		let branch_no = $("#branch_no").text();
+		console.log(branch_no)
 		
 		let category_burger = $("input[value=햄버거]"); 
 		let category_drink = $("input[value=음료]"); 
@@ -58,7 +64,7 @@
 				alert("이미 선택되었습니다.");
 				return false;
 			}			
-			bm_no = $(this).children(".bm_no").val();
+			bm_no = $(this).children(".bm_no").text();
 			let bm_no_no = $(".add-menu"+bm_no);
 			let menu_name = $(this).children(".menu_name").html();
 			let menu_price = $(this).children(".menu_price").html();
@@ -101,8 +107,7 @@
 			console.log(arr)
 			console.log(branch_no);
 			console.log($(".total_price"+bm_no).text())
-			
-			$("#order_price").text()
+			$('html, body').animate({scrollTop : $('#payment').offset().top}, 300);
 		});
 		// 전체 삭제
 		$("#all-delete").click(function(){
@@ -140,8 +145,6 @@
 			price = Number(price);
 			console.log(price* count);
 			$(".total_price"+arr[any-1]).text(price*count);
-
-			
 		});
 		$("body").on("click", ".minus-count", function(){
 			any = $(this).parent().parent().index();
@@ -198,6 +201,19 @@
 	});
 </script>
 <style type="text/css">
+	.soldout{
+		margin: 0;
+		padding: 5px;
+		color: yellow;
+	}
+	.menulist{
+		height: 336px;
+	}
+	.unclick{
+		pointer-events: none;
+		z-index: 9999;
+		background-color: grey;
+	}
 	/* 메뉴 리스트 버튼 */
 	.btn_list button{
 		border: none;
@@ -279,7 +295,8 @@
 		cursor: pointer;
 		color: black;
 	}
-	.menu_delete button:focus{
+	.menu_delete button:focus,
+	#payment:focus{
 		border: none;
 		outline: none;
 	}
@@ -362,9 +379,9 @@
 										<img alt="메뉴사진" src="http://placeimg.com/200/200/hamburger">
 										<p class="menu_name">${MenuBranchMenuVo.menu_name}</p>
 										<p class="menu_price">${MenuBranchMenuVo.menu_price}</p>
-										<input class="branch_no" type="hidden" value="${MenuBranchMenuVo.branch_no}">
-										<input class="bm_no" type="hidden" value="${MenuBranchMenuVo.bm_no}">
-										<input type="hidden" value="${MenuBranchMenuVo.menu_status}">
+										<p id="branch_no" style="display: none;">${MenuBranchMenuVo.branch_no}</p>
+										<p class="bm_no" style="display: none;">${MenuBranchMenuVo.bm_no}</p>
+										<input type="hidden" id="status" value="${MenuBranchMenuVo.menu_status}">
 										<input type="hidden" value="${MenuBranchMenuVo.category }">
 										<br>
 								</div>

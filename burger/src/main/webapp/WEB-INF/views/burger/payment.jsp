@@ -68,7 +68,7 @@ $(function(){
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 	<br><br>
 	<div style="display: inline-block;">
-		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 내역 및 결제</h3>
+		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 정보</h3>
 	</div>
 	<div></div>
 	<div id="goods" style="width: 1140px;" >
@@ -95,6 +95,12 @@ $(function(){
 			<div>
 				<p class="total_price"></p>		
 			</div>
+			<div style="display: inline-block;">
+				<h3 style="margin: 0 0 0 50px; font-size: 40px;">결제수단</h3>
+			</div>
+			
+			
+			
 		</div>
-		<button id="payment">결제완료</button>
+		<button id="payment">결제하기</button>
 <c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
