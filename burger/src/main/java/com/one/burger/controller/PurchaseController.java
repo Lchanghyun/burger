@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -27,6 +28,7 @@ import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.Purchase_Item;
 import com.one.burger.service.ItemService;
 import com.one.burger.service.PurchaseService;
+import com.one.burger.service.StockService;
 
 import lombok.extern.java.Log;
 
@@ -38,7 +40,8 @@ public class PurchaseController {
 	@Autowired
 	private PurchaseService purchaseService;
 	@Autowired
-	private ItemService itemservice;
+	private StockService stockservice;
+	
 	
 	@GetMapping("/list")
 	public String branchPurchase(Model model) throws Exception{
@@ -75,6 +78,7 @@ public class PurchaseController {
 	
 	
 	@PostMapping("/update")
+	@ResponseBody
 	public String postUpdate(String purchase_item) throws Exception{
 		log.info("postUpdate()");
 		
@@ -99,13 +103,19 @@ public class PurchaseController {
 	
 	
 	@GetMapping("/register")
-	public void ItemList(int purchase_no, Model model) throws Exception {
-		log.info("itemList()");
+	public String StockList(int purchase_no, Model model, HttpSession session) throws Exception {
+		log.info("stockList()");
 		
-		model.addAttribute("list",itemservice.all_list());
+		int branch_no=1; 
+		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		model.addAttribute("list", stockservice.all_list(branch_no));
+		 
+		return "purchase/register";
 	}
 	
 	@PostMapping("/register")
+	@ResponseBody
 	public String postRegist(String purchase_item) throws Exception{
 		log.info("postUpdate()");
 		

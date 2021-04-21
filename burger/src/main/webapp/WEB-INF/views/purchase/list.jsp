@@ -5,48 +5,75 @@
 
 <style>
     .purchase_wrap{
-        width: 80%;
-	    height: 400px;
+        width: 1340px;
+	    height: 845px;
 	    position: relative;
-	    left: 245px;
-	    top: 260px;
+	    margin: auto;
     }
     
     .purchase_container{
-        width: 95%;
-	    height: 300px;
+   		width: 1270px;
+        height: 670px;
 	    position: absolute;
 	    left: 35px;
 	    top: 45px;
+	    border: 1px solid black;
     }
 
     .list_wrap{
-        width: 100%;
-        height: 200px;
+        width: 1270px;
+   		height: 450px;
         overflow: auto;
+        position: relative;
+	    left: 0px;
+	    top: 140px;
+	    
     }
+
     table.purchase_table {
         border-collapse: separate;
         border-spacing: 1px;
         text-align: center;
         line-height: 1.5;
-        margin: 20px 10px;
-        
+        margin: auto; 
     }
     table.purchase_table > thead > tr.tlist > th {
         width: 155px;
         padding: 10px;
         font-weight: bold;
         vertical-align: top;
-        color: #fff;
-        background: #ce4869 ;
+        border-bottom: 1px solid #444444;
+        position : sticky;
+        top: 0px;
+    	background-color: whitesmoke !important;
+      
     }
     table.purchase_table td {
-        width: 155px;
-        padding: 10px;
+        width: 300px;
+        padding: 10px; 
+        text-align: center;
         vertical-align: top;
-        border-bottom: 1px solid #ccc;
-        background: #eee;
+        border-bottom: 1px solid #444444;
+    
+    }
+    
+    table.purchase_table tr:hover {
+    	background-color:#f3e9e9 !important;
+  		color:#303f39 !important
+    }
+    
+    input[type=button] {
+    	width: 100px;
+	    height: 30px;
+	    padding: 3px;
+	    padding-top: 6px;
+	    background-color: #EE4E34;
+	    color: white;
+	    border: none;
+	    font-family: 'GmarketSansMedium';
+	    font-size: 15px;
+	    font-weight: bold;
+	    border-radius: 3px;
     }
 </style>
     
@@ -80,7 +107,7 @@
 	<input type="hidden" name="status" value="발주대기">
     <div class="purchase_wrap">
         <div class="purchase_container">
-            <table>
+            <table style="position: relative; top: 100px; margin: auto;">
                 <thead>
                     <tr>
                         <th>발주일자</th>

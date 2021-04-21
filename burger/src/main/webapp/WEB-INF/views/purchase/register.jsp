@@ -133,15 +133,17 @@
                                 <td>no list</td>
                             </tr>
                         </c:if>
-                        <c:forEach items="${list}" var="item">
-                        <input type="hidden" value="${item.item_no}">
+                        <c:forEach items="${list}" var="stockItemVo">
+                        <c:if test="${stockItemVo.status != '1'}">
+                        <input type="hidden" value="${stockItemVo.item_no}">
 							<tr>
 								<td><input type="checkbox" id=itemCk></td>
-								<td>${item.category}</td>
-								<td>${item.item_name}</td>
-								<td>${item.item_price}</td>
+								<td>${stockItemVo.category}</td>
+								<td>${stockItemVo.item_name}</td>
+								<td>${stockItemVo.item_price}</td>
 								<td><input type="number" class="count_input" name="count" style="text-align:center"></td>
 							</tr>
+							</c:if>
                         </c:forEach>
                     </tbody>
                 </table>

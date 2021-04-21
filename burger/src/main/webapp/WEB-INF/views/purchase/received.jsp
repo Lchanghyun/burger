@@ -70,7 +70,6 @@
                 <thead>
                     <tr>
                         <th><input type="button" value="목록" id="back"></th>
-                        <th><input type="button" value="신규 등록" id="new_rg"></th>
                     </tr>
                 </thead>
             </table>

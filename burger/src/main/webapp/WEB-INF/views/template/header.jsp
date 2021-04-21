@@ -46,7 +46,7 @@
                     </div>
                     <div class="logo">
 
-                        <img src="${path}/resources/img/BGMG.png" alt="로고">
+                        <img src="${path}/resources/img/bgmg.png" alt="로고">
                     </div>
 
                     <div>
