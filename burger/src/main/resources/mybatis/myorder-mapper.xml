@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+ <mapper namespace="myorder">
+ 	
+ 	<select id="listCount" parameterType="Integer" resultType="MyOrder">
+ 		select O.order_no, T.today_time, T.total_price, T.status, B.branch_name, count(G.bm_no) count from
+	    burger_order O inner join today T on O.order_no=T.order_no
+	    inner join branch B on O.branch_no=B.branch_no
+	    inner join goods G on O.order_no=G.order_no
+	    where O.member_no=#{member_no}
+	    group by O.order_no, T.today_time, T.total_price, T.status, B.branch_name
+    	order by order_no desc
+ 	</select>
+ 	
+ 	<select id="listDetail" parameterType="map" resultType="MyOrderDetail">
+ 		select G.count, M.menu_name,M.menu_price,M.category,P.save_name from 
+	    goods G inner join branch_menu B on G.bm_no=B.bm_no
+	    inner join menu M on B.menu_no=M.menu_no
+	    inner join menu_photo P on M.menu_no=P.menu_no
+	    where G.order_no=#{order_no} and G.member_no=#{member_no}
+	    order by M.menu_no desc
+ 	</select>
+ 	
+ 	<select id="whatCategory" parameterType="map" resultType="Integer">
+ 		select count(*) C from
+	    goods G inner join branch_menu B on G.bm_no=B.bm_no
+	    inner join menu M on B.menu_no=M.menu_no
+	    where G.order_no=#{order_no} and M.category=#{category} and G.member_no=#{member_no}
+ 	</select>
+ 	
+ </mapper>
