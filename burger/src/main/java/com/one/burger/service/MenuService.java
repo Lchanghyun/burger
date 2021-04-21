@@ -5,7 +5,6 @@ import java.util.List;
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhotoVO;
-import com.one.burger.entity.SalesSuperTotal;
 
 public interface MenuService {
 	public void register(Menu menu) throws Exception;

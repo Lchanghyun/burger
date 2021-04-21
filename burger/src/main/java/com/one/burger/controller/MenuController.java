@@ -2,10 +2,7 @@ package com.one.burger.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -28,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
 import com.one.burger.entity.MenuPhotoVO;
-import com.one.burger.entity.SalesSuperTotal;
 import com.one.burger.service.MenuService;
 import com.one.burger.util.UploadFileUtils;
 
