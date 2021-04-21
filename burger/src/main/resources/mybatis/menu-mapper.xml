@@ -14,7 +14,102 @@
 		values (menu_photo_seq.nextval, #{menu_no}, #{upload_name}, #{save_name}, #{file_size}, #{save_type})
 	</insert>
 	
-	<select id="getSequence">
+	<select id="getSequence" resultType="Integer">
 		select menu_seq.nextval from dual
 	</select>
+	
+	<select id="superlist" resultType="MenuPhotoVO">
+		select M.*, P.upload_name, P.save_name from
+    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	where not M.category = '단종'
+    	order by M.menu_name asc
+	</select>
+	
+	<select id="searchlist" parameterType="String" resultType="MenuPhotoVO">
+		select M.*, P.upload_name, P.save_name from
+    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	where not M.category = '단종' and instr(M.menu_name,#{menu_name}) > 0
+    	order by M.menu_name asc
+	</select>
+	
+	<update id="modify" parameterType="Menu">
+		update menu set menu_name=#{menu_name}, menu_price=#{menu_price}, category=#{category} where menu_no=#{menu_no}
+	</update>
+	
+	<update id="modifyPhoto" parameterType="MenuPhoto">
+		update menu_photo set upload_name=#{upload_name}, save_name=#{save_name}, file_size=#{file_size}, save_type=#{save_type} where menu_no=#{menu_no}
+	</update>
+	
+	<update id="stopModify1" parameterType="map">
+		update menu set category=#{category} where menu_no=#{menu_no}
+	</update>
+	<update id="stopModify2" parameterType="Integer">
+		update branch_menu set menu_status='0' where menu_no=#{menu_no}
+	</update>
+	
+	<select id="read" parameterType="Integer" resultType="MenuPhotoVO">
+		select M.*, P.upload_name, P.save_name from
+    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+		where M.menu_no = #{menu_no}
+	</select>
+	
+	<select id="categorySearch" parameterType="String" resultType="MenuPhotoVO">
+		select M.*, P.upload_name, P.save_name from
+    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+		where M.category = #{category}
+		order by M.menu_name asc
+	</select>
+	
+	<update id="remove" parameterType="Integer">
+		update menu set category='단종' where menu_no=#{menu_no}
+	</update>
+	<update id="stopmenu" parameterType="Integer">
+		update branch_menu set menu_status='3' where menu_no=#{menu_no}
+	</update>
+	
+	<update id="removeBranchMenu" parameterType="map">
+		update branch_menu set menu_status=#{menu_status} where branch_no=#{branch_no} and menu_no=#{menu_no}
+	</update>
+	
+	<insert id="menuAdd" parameterType="map">
+		insert into branch_menu (bm_no, branch_no, menu_no, menu_status)
+		values (bm_seq.nextval, #{branch_no}, #{menu_no}, #{menu_status})
+	</insert>
+	
+	<select id="checkMenu" parameterType="String" resultType="Integer">
+		select count(*) from menu where menu_name=#{menu_name}
+	</select>
+	
+	<select id="branchlist" parameterType="map" resultType="MenuBranchVO">
+		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
+    	menu M inner join branch_menu B on B.menu_no=M.menu_no
+    	inner join menu_photo P on M.menu_no=P.menu_no
+		where B.branch_no=#{branch_no} and not B.menu_status='3'
+		<if test="category != null and category != '' ">
+			and M.category = #{category}
+		</if>
+		order by M.menu_name asc
+	</select>
+	
+	<select id="branchstoplist" parameterType="Integer" resultType="MenuBranchVO">
+		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
+    	menu M inner join branch_menu B on B.menu_no=M.menu_no
+    	inner join menu_photo P on M.menu_no=P.menu_no
+		where B.branch_no=#{branch_no} and B.menu_status='2'
+		order by M.menu_name asc
+	</select>
+	
+	<select id="branchSearch" parameterType="map" resultType="MenuBranchVO">
+		select M.*, B.branch_no, B.menu_status, P.upload_name, P.save_name from 
+    	menu M inner join branch_menu B on B.menu_no=M.menu_no
+    	inner join menu_photo P on M.menu_no=P.menu_no
+    	where B.branch_no=#{branch_no} and instr(M.menu_name,#{key})>0 and not B.menu_status='3'
+    	order by M.menu_name asc
+	</select>
+	
+	<update id="soldoutAndResale" parameterType="map">
+		update branch_menu set menu_status=#{menu_status} where branch_no=#{branch_no} and menu_no=#{menu_no}
+	</update>
+	
+	
  </mapper>

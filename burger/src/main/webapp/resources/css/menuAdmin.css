@@ -1,0 +1,302 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .adminbox{
+        	height: calc(100% - 162px);
+        	display:flex;
+        	font-family: GmarketSansMedium;
+        }
+        .menubar{
+        	min-width:180px;
+        	height:100%;
+        	border-right:1px solid black;
+        }
+        .menustatuslist{
+            min-width:700px;
+            margin:auto;
+            padding:1rem;
+        }
+        .menulist-title{
+            font-size: 20px;
+            color: black;
+            font-weight:bold;
+            padding-left:30px;
+            margin-bottom:15px;
+            margin-top:-50px;
+        }
+        .search-menulist{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            margin:20px 0 30px 0;
+        }
+        .menuname{
+            font-size: 18px;
+            font-weight: bold;
+            color: #EE4E34;
+        }
+        .searchmenu-keyword{
+            margin:0 10px;
+            outline: none;
+            width: 200px;
+            height: 28px;
+            font-weight: bold;
+            font-size: 17px;
+            padding:0 0.5rem;
+            border:2px solid #EE4E34;
+            border-radius : 3px;
+        }
+        .searchBtn{
+            background-color: #EE4E34;
+            color:white;
+            font-size:17px;
+            height: 28px;
+            outline:none;
+            border:none;
+            border-radius : 3px;
+            font-family: GmarketSansMedium;
+        }
+        .menuinsert{
+        	padding-left:35px;
+        }
+        .menuinsertBtn{
+			background-color: #EE4E34;
+			color:white;
+			border-radius:3px;
+			border:none;
+			outline:none;
+			font-size:17px;
+			padding:0.2rem 0.5rem;
+			font-family: GmarketSansMedium;
+        }
+        .tableHead{
+        	width:600px;
+            margin-top:20px;
+            margin:0 auto;
+        }
+        .tableBody{
+        	width:650px;
+        	height:500px;
+            overflow:auto;
+            margin-left:50px;
+        }
+        .menu-adminlist{
+            width:600px;
+            border-spacing: 0;
+        }
+        .picAndMenu{
+        	padding-left:30px;
+        }
+        .menu-adminlist > thead > tr > th{
+            border-top:2px solid #EE4E34;
+            border-bottom:2px solid #EE4E34;
+            color:#EE4E34;
+            height:40px;
+            font-size: 17px;
+        }
+        .menu-adminlist > tbody > tr > td{
+            height:45px;
+            font-size: 16px;
+            border-bottom:1px dotted gray;
+        }
+        .menu-adminlist > tbody > tr > td:not(.picAndMenu){
+        	text-align: center;
+        }
+        .categoryBox{
+        	text-align:center;
+        	margin:10px 0;
+        }
+        .total, .burger, .side, .drink, .theend, .stop{
+        	text-decoration: none;
+        	font-size:20px;
+        	margin:0 0.5rem;
+        	color:lightgray;
+        }
+        .total:hover, .burger:hover, .side:hover, .drink:hover, .theend:hover, .stop:hover{
+        	font-weight:bold;
+        }
+        .activeList{
+        	color:#EE4E34;
+        	font-weight:bold;
+        }
+        .soldOutStatus, .stopsale{
+        	color:red;
+        	font-style:italic;
+        }
+        .marginPic{
+        	margin-right:10px;
+        }
+        .listphotoshow{
+        	background-color:transparent;
+        	color: #EE4E34;
+        	border:1px solid #EE4E34;
+        	border-radius: 5rem;
+        	outline:none;
+        	cursor:pointer;
+        	font-weight:bold;
+        	font-size:13px;
+        	margin-right:10px;
+        }
+        .menuAdd, .menuSoldout, .menuResale, .menuBranchRemove, 
+        .stopResale, .menuModify, .menuRemove, .menuStopCancle, .CategorySelectBtn, .CategoryCancleBtn{
+        	background-color:transparent;
+        	color: #EE4E34;
+        	outline:none;
+        	border:none;
+        	font-size:18px;
+        	cursor:pointer;
+        	font-family: GmarketSansMedium;
+        }
+        .menuAdd:hover, .menuSoldout:hover, .menuResale:hover, 
+        .menuBranchRemove:hover, .stopResale:hover, .menuModify:hover, 
+        .menuRemove:hover, .menuStopCancle:hover, .CategorySelectBtn:hover, .CategoryCancleBtn:hover{
+        	font-weight:bold;
+        }
+        .StopModify{
+        	font-size:16px;
+        	border: 2px solid #EE4E34;
+        	border-radius: 3px;
+        	outline:none;
+        	width:80px;
+        	padding-top:4px;
+        	font-family: GmarketSansMedium;
+        }
+        .listTopBox{
+        	text-align:right;
+        	margin:30px 0;
+        }
+        .topTotal, .myBranchList{
+        	text-decoration: none;
+        	font-size:17px;
+        	margin:0 0.5rem;
+        	color:lightgray;
+        }
+        .activeTopList{
+        	color: darkgray;
+        	font-weight:bold;
+        	border-bottom:2px solid darkgray;
+        }
+        .notAdd{
+        	background-color:transparent;
+        	color:lightgray;
+        	outline:none;
+        	border:none;
+        	font-size:18px;
+        	font-family: GmarketSansMedium;
+        }
+        
+        
+        
+         .menu-register-box{
+            width:800px;
+            margin:auto;
+            display: flex;
+            justify-content: center;
+        }
+        .resetBtn, .registformBtn, .modifyBtn, .cancleBtn{
+        	padding:0.4rem 0.3rem 0.3rem 0.3rem;
+        	font-size:18px;
+        	background-color: #EE4E34;
+        	color:white;
+        	outline:none;
+        	border:none;
+        	margin-right:10px;
+        	width:80px;
+        	font-family: GmarketSansMedium;
+        	border-radius: 3px;
+        }
+        .menu-register-btn{
+            margin-bottom: 20px;
+            text-align:center;
+        }
+        .tableforborder{
+        	border:1px solid #EE4E34;
+        	border-radius: 3px;
+        }
+        .registermenu-table{
+            width:700px;
+            border-spacing:0;
+        }
+        .registermenu-table > tbody > tr > th{
+            height: 70px;
+            font-size: 18px;
+            background-color:lightgray;
+        }
+        .requiredSign{
+        	color: red;
+        	font-size: 16px;
+        }
+        .td-border{
+        	border-bottom:1px dotted black;
+        	font-size:17px;
+        }
+        input[name=menu_name]{
+            width:350px;
+            margin-left:20px;
+        }
+        input[name=menu_price]{
+        	text-align: right;
+        }
+        input[name=menu_name],
+        input[name=menu_price]{
+        	height:40px;
+        	outline:none;
+        	font-size:17px;
+        	padding:0 0.5rem;
+        	font-family: GmarketSansMedium;
+        }
+        input[name=category],
+        input[name=menu_price],
+        input[name=file]{
+        	margin-left:20px;
+        	font-size:17px;
+        }
+        input[name=file]{
+        	margin:10px 20px;
+        	outline:none;
+        	font-family: GmarketSansMedium;
+        	border-radius: 3px;
+        }
+        .menuphotoshow{
+        	padding:0 0.5rem 0.5rem 0.5rem;
+        	width:480px;
+        	height:450px;
+        }       
+        .photoChangeBtn{
+        	margin:10px 20px;
+        	font-family: GmarketSansMedium;
+        	font-size: 17px;
+        	padding: 0.2rem 0.5rem;
+        	outline:none;
+        	border:none;
+        	border-radius: 3px;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
