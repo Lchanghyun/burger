@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchVO;
@@ -45,10 +46,25 @@ public class MenuController {
 	private MenuService menuService;
 	
 	@GetMapping("/superlist")
-	public void superList(Model model) throws Exception{
+	public void superList(Model model, String category, HttpSession session) throws Exception{
 		log.info("superList()");
-		List<MenuPhotoVO> allList = menuService.superlist();
+		String tempCategory = (String)session.getAttribute("tempCategory");
+		List<MenuPhotoVO> allList;
+		if(category == null) {
+			if((tempCategory != null&&tempCategory.equals("")) || tempCategory == null) {
+				allList = menuService.superlist();
+			}
+			else{
+				allList = menuService.categoryList(tempCategory);
+				category = tempCategory;
+			}
+		}
+		else {
+			allList = menuService.categoryList(category);
+		}
+		session.removeAttribute("tempCategory");
 		model.addAttribute("allList",allList);
+		model.addAttribute("mCategory", category);
 	}
 	@PostMapping("/superlist")
 	public void superListSearch(Model model, String keyword) throws Exception{
@@ -62,15 +78,6 @@ public class MenuController {
 		}
 		model.addAttribute("allList", allList);
 		model.addAttribute("key",keyword);
-	}
-	
-	@GetMapping("/categorylist")
-	public String categoryList(Model model, String category) throws Exception{
-		log.info("categoryList()");
-		List<MenuPhotoVO> allList = menuService.categoryList(category);
-		model.addAttribute("allList",allList);
-		model.addAttribute("mCategory", category);
-		return "menu/superlist";
 	}
 	
 	@GetMapping("/branchlist")
@@ -160,19 +167,24 @@ public class MenuController {
 		return "success";
 	}
 	
-	@GetMapping("/modify")
-	public void menuModify(Integer menu_no, Model model) throws Exception{
-		log.info("menu-modifyGet()");
+	@PostMapping("/modifyTemp")
+	public String modifyTemp(Integer menu_no, String category, RedirectAttributes redirectAttributes) throws Exception{
+		log.info("modifyTemp()");
 		MenuPhotoVO vo = menuService.read(menu_no);
-		model.addAttribute("menu", vo);
+		redirectAttributes.addFlashAttribute("menu", vo);
+		redirectAttributes.addFlashAttribute("tempcategory", category);
+		return "redirect:modify";
+	}
+	@GetMapping("/modify")
+	public void menuModify() throws Exception{
+		log.info("menu-modifyGet()");
 	}
 	
 	@PostMapping("/modify")
-	public String menuModifyPost(Menu menu, Model model) throws Exception{
+	public String menuModifyPost(Menu menu, String tempcategory, Model model, HttpSession session) throws Exception{
 		log.info("menu-modifyPost()");
 		menuService.modify(menu);
-		List<MenuPhotoVO> list = menuService.superlist();
-		model.addAttribute("list",list);
+		session.setAttribute("tempCategory", tempcategory);
 		return "redirect:superlist";
 	}
 	
@@ -185,16 +197,18 @@ public class MenuController {
 	}
 	@PostMapping("/removeBranchMenu")
 	@ResponseBody
-	public String removeBranchMenu(Integer menu_no, String branch_no, String menu_status) throws Exception{
+	public String removeBranchMenu(Integer menu_no, String menu_status, HttpSession session) throws Exception{
 		log.info("removeBranchMenu()");
-		menuService.removeBranchMenu(Integer.parseInt(branch_no), menu_no, menu_status);
+		int branch_no = (int)session.getAttribute("branch_no");
+		menuService.removeBranchMenu(branch_no, menu_no, menu_status);
 		return "ok";
 	}
 	
 	@PostMapping("/soldoutAndResale")
 	@ResponseBody
-	public String soldoutAndResale(Integer branch_no, Integer menu_no, String menu_status) throws Exception{
+	public String soldoutAndResale(Integer menu_no, String menu_status, HttpSession session) throws Exception{
 		log.info("soldoutAndResale()");
+		int branch_no = (int)session.getAttribute("branch_no");
 		menuService.soldoutAndResale(branch_no, menu_no, menu_status);
 		return "success";
 	}
@@ -241,95 +255,6 @@ public class MenuController {
 			in.close();
 		}
 		return entity;
-	}
-	
-	
-	
-	
-	
-	@GetMapping("/superMonthChart")
-	public void superMonthChart(Model model) throws Exception{
-		log.info("superMonthChart()");
-		Calendar c = Calendar.getInstance();
-		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH)+1;
-		String now;
-		String prev;
-		if(month<10) {
-			now = year+"/0"+month;
-			if(month==1) {
-				prev = (year-1)+"/12";
-			}
-			else {
-				prev = year+"/0"+(month-1);
-			}
-		}
-		else {
-			now = year+"/"+month;
-			if(month==10) {
-				prev = year+"/0"+(month-1);
-			}
-			else {
-				prev = year+"/"+(month-1);
-			}
-		}
-		List<SalesSuperTotal> list = menuService.getSalesTotal(now);
-		List<SalesSuperTotal> prevlist = menuService.getSalesTotal(prev);
-		Map<String,Integer> map = new HashMap<>();
-		for(SalesSuperTotal n : list) {
-			int count = 0;
-			for(SalesSuperTotal p : prevlist) {
-				if(n.getBranch_name().equals(p.getBranch_name())) {
-					count = p.getTotal();
-					break;
-				}
-			}
-			map.put(n.getBranch_name(),count);
-		}
-		model.addAttribute("totalchartList",list);
-		model.addAttribute("length",list.size());
-		model.addAttribute("prevmap",map);
-		model.addAttribute("year",now.substring(0, 4));
-		model.addAttribute("month",now.substring(5));
-		model.addAttribute("prevyear",prev.substring(0,4));
-		model.addAttribute("prevmonth",prev.substring(5));
-	}
-	@PostMapping("/superMonthChart")
-	public void superMonthChartPost(String year, String month, Model model) throws Exception{
-		log.info("superMonthChartPost()");
-		String choice = year+"/"+month;
-		String prev;
-		if(month.equals("01")) {
-			prev = Integer.parseInt(year)-1 + "/12";
-		}
-		else {
-			if(Integer.parseInt(month)<11) {
-				prev = year + "/0"+ (Integer.parseInt(month)-1);
-			}
-			else {
-				prev = year + "/"+ (Integer.parseInt(month)-1);
-			}
-		}
-		List<SalesSuperTotal> list = menuService.getSalesTotal(choice);
-		List<SalesSuperTotal> prevlist = menuService.getSalesTotal(prev);
-		Map<String,Integer> map = new HashMap<>();
-		for(SalesSuperTotal n : list) {
-			int count = 0;
-			for(SalesSuperTotal p : prevlist) {
-				if(n.getBranch_name().equals(p.getBranch_name())) {
-					count = p.getTotal();
-					break;
-				}
-			}
-			map.put(n.getBranch_name(),count);
-		}
-		model.addAttribute("totalchartList",list);
-		model.addAttribute("length",list.size());
-		model.addAttribute("prevmap",map);
-		model.addAttribute("year",year);
-		model.addAttribute("month",month);
-		model.addAttribute("prevyear",prev.substring(0,4));
-		model.addAttribute("prevmonth",prev.substring(5));
 	}
 
 }
