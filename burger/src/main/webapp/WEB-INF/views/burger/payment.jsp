@@ -9,7 +9,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script> 
 $(function(){
-
+	$("input[name=pay]").click(function(){
+		let order_no = $(".order_no").val();
+		let branch_no = $(".branch_no").val();
+		
+		$(`<input type="hidden" name="order_no">`).val(order_no).addClass("form").prependTo("#form");
+		$(`<input type="hidden" name="branch_no">`).val(branch_no).addClass("form").prependTo("#form");
+	});
+	
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp68451399'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
     var msg;
@@ -65,7 +72,17 @@ $(function(){
 	});   
 });
 </script>
+<style>
+	
+</style>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
+	<br><br>
+	<div style="display: inline-block;">
+		<h3 style="margin: 0 0 0 50px; font-size: 40px;">픽업 정보</h3>
+	</div>
+	<div>
+		지도랑 주소 보여주기
+	</div>
 	<br><br>
 	<div style="display: inline-block;">
 		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 정보</h3>
@@ -80,6 +97,8 @@ $(function(){
 					<c:set var="sum" value="${0}"></c:set>
 					<c:forEach items="${goodsList}" var="GoodsBranchMenuVo" >
 							<div class="goodsList add-menu${GoodsBranchMenuVo.bm_no}" style="display: inline-block;">
+									<input class="order_no" type="hidden" value="${GoodsBranchMenuVo.order_no}">
+									<input class="branch_no" type="hidden" value="${GoodsBranchMenuVo.branch_no}">
 									<span class="menu_name">${GoodsBranchMenuVo.menu_name}</span>
 									<span class="menu_price">${GoodsBranchMenuVo.menu_price}</span>
 									<span class="menu_count">${GoodsBranchMenuVo.count}</span><br>
@@ -98,9 +117,16 @@ $(function(){
 			<div style="display: inline-block;">
 				<h3 style="margin: 0 0 0 50px; font-size: 40px;">결제수단</h3>
 			</div>
-			
-			
-			
-		</div>
-		<button id="payment">결제하기</button>
+		<form id="form">
+			<div>
+				<input type="radio" value="0" name="pay" id="payment1" ><label for="payment1">만나서 결제</label>
+				<input type="radio" value="1" name="pay" id="payment2" ><label for="payment2">간편 결제(카카오)</label>
+			<div>
+					<span>총 결제 금액</span>
+					<p>￦<span id="total_price"><c:out value="${sum}"></c:out></span></p>
+				</div>
+			</div>
+			<button id="payment">결제하기</button>			
+		</form>
+		</div>			
 <c:import url="/WEB-INF/views/template/footer.jsp"></c:import>

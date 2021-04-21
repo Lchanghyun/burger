@@ -69,7 +69,7 @@
 			let menu_name = $(this).children(".menu_name").html();
 			let menu_price = $(this).children(".menu_price").html();
 
-			//선택돈 메뉴 div 생성
+			//선택된 메뉴 div 생성
 			let html = `<div class="add-menu add-menu`+bm_no+`" id="add-menu`+bm_no+`"></div>`;
 			let price = `<div class="menu_count menu_price`+bm_no+`" id="menu_price`+bm_no+`"></div>`;
 			let totalP = `<div class="total_menu_price total_menu_price`+bm_no+`" id="total_menu_price`+bm_no+`"></div>`;

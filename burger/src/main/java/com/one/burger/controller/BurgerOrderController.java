@@ -92,6 +92,10 @@ public class BurgerOrderController {
 		model.addAttribute("goodsList", service.goodsList(order_no));
 		return "burger/payment";
 	}
+	@PostMapping("/payment")
+	public String paymentPost() throws Exception{
+		return "";
+	}
 	
 	
 }
