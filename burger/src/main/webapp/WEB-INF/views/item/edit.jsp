@@ -3,107 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<style>
-	.category_link{
-		text-decoration : none;
-		font-size : 25px; 
-		color : black;
-		padding : 0 40px;
-	}
-	.select_category{
-		font-size : 28px;
-		font-weight : bold;
-	}
-	.category_link:hover{
-		font-weight: bold;
-	}
-	.item_list_table{
-		margin : 10px auto;
-		border : 1px solid black;
-		border-collapse: collapse;
-		width : 1100px;
-	}
-	.item_list_table >thead>tr> th,
-	.item_list_table >tbody>tr> td {
-		border-bottom : 1px solid black;
-		padding : 12px;
-		width : 240px;  
-		text-align : center;
-		font-size : 18px;
-	}
-	.list_all_wrapper{
-		text-align : center;
-	}
-	.list_border{
-		width : clamp(800px, 1600px, 2000px);
-		height : 490px;
-		border : 1px solid black;
-		position : absolute; 
-		top : 27%;
-		left : clamp(210px, 12%, 12%);
-		display : flex;
-		flex-direction : cloumn;
-		justify-content : center;
-		padding : 30px 0 0 0;
-	}
-	.hr_line{
-		position : absolute;
-		top : 20%;  
-		left : 218px;
-		display : block;
-		width: 84%;   
-		border : 2px solid;
-	}
-	.page_title{
-		position : absolute;
-		top : 15%;
-		left : 220px;
-		font-size : 40px;	
-	}
-	.item_list_btn{
-		position : absolute;
-		top: clamp(10px, 16% , 500px);
-		right: clamp(20px, 4%, 400px);  
-	}
-	.item_edit_btn{
-		position : absolute;
-		right: clamp(200px, 15%, 500px);     
-	}
-	.item_edit_btn,
-	.item_list_btn{
-		border : none;				
-		border-radius: 5px;
-		width : 120px;
-		padding : 3px;
-		font-size : 18px;
-		font-weight: bold;
-		color : white;
-		background-color : #EE4E34; 
-		margin-right : 10px;  
-		height : 35px; 
-	}
-	.item_name_input{
-		padding : 5px;
-		font-size : 15px;
-		width : 150px;
-		text-align : right; 		
-	} 
-	.item_price_input{
-		padding : 5px;
-		font-size : 15px;
-		width : 80px;
-		text-align : right; 
-	}
-	.item_category_select{
-		padding : 5px;
-		font-size : 15px; 
-		width : 100px;	
-		text-align : center; 
-	}
-	button{
-		cursor : pointer;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 <script>
 	$(function(){
@@ -114,7 +14,7 @@
 			location.href="${pageContext.request.contextPath}/item/list"
 		})
 		let category = '<c:out value="${category}"/>';
-	
+	 
 		let list=[]
 		let item_no
 		let item_price
@@ -153,7 +53,7 @@
 				}
 			})
 		}
-		$(".item_edit_btn").on("click", function(e){
+		$(".item_edit_form_btn").on("click", function(e){
 			e.preventDefault()
 			
 			let temp = JSON.stringify(list)
@@ -183,8 +83,8 @@
    							},
    							success: function(resp){
    								setTimeout(function(){
-   									location.href="${pageContext.request.contextPath}/item/edit"
-   		        				},1500)
+   									location.reload()
+   		        				},1000)
    							}			
    						})	
      				}
@@ -195,7 +95,7 @@
 </script>
 <div style="height: calc(100% - 162px);">
 	<div class="page_title">원자재 수정</div>
-	<button class="item_list_btn">원자재 목록</button>
+	<button class="item_list_btn">자재 목록</button>
 	<hr class="hr_line">
 	<div class="list_border">
 		<div class="list_all_wrapper">
@@ -317,7 +217,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
-			<button class="item_edit_btn">수정 완료</button> 
+			<button class="item_edit_form_btn">수정 완료</button> 
 		</div>
 	</div>
 </div>
