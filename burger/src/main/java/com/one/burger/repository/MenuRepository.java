@@ -101,12 +101,4 @@ public class MenuRepository {
 		sqlSession.update("menu.stopModify1", data);
 	}
 	
-	
-	
-	
-	
-	
-	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
-		return sqlSession.selectList("sales.eachBranch",choiceDate);
-	}
 }
