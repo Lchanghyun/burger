@@ -45,8 +45,8 @@
                         <p><a href="#">BURGER&amp;DRINK</a></p>
                     </div>
                     <div class="logo">
-                        <img src="${path}/resources/img/bgmg_log.png" alt="로고">
-                    </div>
+                        <img src="${path}/resources/img/bgmg.png" alt="로고">  
+                    </div> 
                     <div>
                         <p><a href="#">LOGIN</a></p>
                     </div>
