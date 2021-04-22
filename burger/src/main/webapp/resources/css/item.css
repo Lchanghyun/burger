@@ -50,6 +50,7 @@
 	}
 	.list_all_wrapper{
 		text-align : center; 
+		overflow : auto;
 	}
 	.list_border{
 		width : clamp(800px, 1600px, 2000px);
@@ -121,12 +122,14 @@
 		padding : 7px;
 		font-size : 15px;
 		width : 200px; 
+		height : 38px;
 		text-align : right; 
 	}
 	.item_price_input{
 		padding : 7px; 
 		font-size : 15px;
 		width : 100px;   	
+		height : 38px;
 		text-align : right; 
 	}
 	.item_list_btn{
@@ -138,6 +141,7 @@
 		padding : 7px;
 		font-size : 15px; 
 		width : 100px;
+		height : 38px;
 		text-align : center; 
 	}  
 	.item_edit_form_btn{

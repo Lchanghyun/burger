@@ -97,7 +97,7 @@
 	<div class="page_title">원자재 수정</div>
 	<button class="item_list_btn">자재 목록</button>
 	<hr class="hr_line">
-	<div class="list_border">
+	<div class="list_border"> 
 		<div class="list_all_wrapper">
 			<div class="category_wrapper">
 				<c:choose>
