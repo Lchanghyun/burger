@@ -1,4 +1,6 @@
 package com.one.burger.controller;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.one.burger.entity.BurgerOrder;
 import com.one.burger.entity.Goods;
+import com.one.burger.entity.Today;
 import com.one.burger.service.BranchService;
 import com.one.burger.service.BurgerOrderService;
 
@@ -85,6 +88,7 @@ public class BurgerOrderController {
 			return "false";
 		}
 	}
+	
 	@GetMapping("/payment")
 	public String paymentList(int order_no, Model model) throws Exception{
 		log.info("GETpaymentList()");
@@ -92,9 +96,24 @@ public class BurgerOrderController {
 		model.addAttribute("goodsList", service.goodsList(order_no));
 		return "burger/payment";
 	}
+	int today_num = 0;
 	@PostMapping("/payment")
-	public String paymentPost() throws Exception{
-		return "";
+	public String paymentPost(Today today) throws Exception{
+		log.info("POSTpayment()");
+		//sysdate 조회 -> 조회목록 0보다 크면 하튼 길이로 체크 불린;; today_num이 1로 초기화
+		Integer reset = service.sysdateToday();
+		
+		if(reset == null) {
+			today_num = 0;
+		}
+		
+		today_num++;
+		today.setToday_num(today_num);
+		System.out.println(today.getToday_num()+"<>"+today.getOrder_no()+" / "+today.getTotal_price()+" / "+today.getBranch_no()+" / "+today.getPrice_status());
+		service.TodayInsert(today);
+		today_num = today_num++;
+		
+		return "burger/success";
 	}
 	
 	

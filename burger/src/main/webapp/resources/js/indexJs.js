@@ -5,7 +5,11 @@ $(function(){
     let idxMenuBurger = $(".header-inner").children().eq(1).children();
     let idxMenuLogin = $(".header-inner").children().eq(3).children();
     let idxMenuJoin = $(".header-inner").children().eq(4).children();
-
+    
+    $(".logo").click(function(){
+    	self.location= "/burger";
+    })
+    
     $(idxMenuOrder).hover(function(){
         idxMenuOrder.text("주문하기");
     }, function(){

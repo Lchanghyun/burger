@@ -295,9 +295,12 @@
 		cursor: pointer;
 		color: black;
 	}
-	.menu_delete button:focus,
-	#payment:focus{
+	.menu_delete button:focus{
 		border: none;
+		outline: none;
+	}
+	#payment:focus{
+		border: 3px solid #818181;
 		outline: none;
 	}
 	/* 수량 카운트 */

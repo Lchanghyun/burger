@@ -5,6 +5,18 @@
  
  <mapper namespace="today">
  
+ 	<insert id="todayInsert" parameterType="Today">
+ 		insert into today values(
+ 			today_seq.nextval, #{order_no}, #{branch_no}, #{today_num}, 
+ 			sysdate, #{total_price}, '0', #{price_status})
+ 	</insert>
+ 	
+ 	<select id="sysdate" resultType="Integer">
+		select order_no 
+		    from today 
+        		where to_char(today_time, 'YYYY-MM-dd') = to_char(sysdate, 'YYYY-MM-dd') and rownum = 1
+ 	</select>
+ 	
  	<update id="status" parameterType="map">
  		update today set status='1' where order_no=#{order_no} and branch_no=#{branch_no}
  	</update>

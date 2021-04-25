@@ -42,7 +42,7 @@
                         <a href="${path}/burger/location"><p>ORDER</p></a>
                     </div>
                     <div>
-                        <p><a href="#">BURGER&amp;DRINK</a></p>
+                        <a href="${path}/burger/location"><p>BURGER&amp;DRINK</p></a>
                     </div>
                     <div class="logo">
                         <img src="${path}/resources/img/bgmg.png" alt="로고">  
