@@ -1,84 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-	.whole_wrapper{
-		height : calc(100% - 162px) ;
-	}
-	.stock_list_table{
-		margin : 10px auto;
-		border : 1px solid black;
-		border-collapse: collapse;
-		width : 1100px;
-	}
-	.stock_list_table >thead>tr> th,
-	.stock_list_table >tbody>tr> td {
-		border-bottom : 1px solid black;
-		padding : 12px;
-		width : 240px;  
-		text-align : center;
-		font-size : 18px;
-	}
-	.list_all_wrapper{
-		text-align : center;
-	}
-	.list_border{
-		width : clamp(800px, 1600px, 2000px);
-		height : 490px;
-		border : 1px solid black;
-		position : absolute; 
-		top : 27%;
-		left : clamp(210px, 12%, 12%);
-		display : flex;
-		flex-direction : cloumn;
-		justify-content : center;
-		padding : 30px 0 0 0;
-	}
-	.category_link{
-		text-decoration : none;
-		font-size : 25px; 
-		color : black;
-		padding : 0 40px; 
-	}
-	.select_category{
-		font-size : 28px;
-		font-weight : bold;
-	}
-	.category_link:hover{
-		font-weight: bold;
-	}
-	button{
-		cursor : pointer;
-	}
-	.hr_line{
-		position : absolute;
-		top : 20%;  
-		left : 218px;
-		display : block;
-		width: 84%;   
-		border : 2px solid;
-	}
-	.page_title{
-		position : absolute;
-		top : 15%;
-		left : 220px;
-		font-size : 40px;	
-	}
-	.stock_list_btn{
-		border : none; 
-		border-radius: 5px;
-		width : 100px;
-		padding : 3px;
-		font-size : 18px;
-		font-weight: bold;
-		color : white;
-		height : 35px;
-		background-color : #EE4E34;
-		position : absolute;
-		top: clamp(10px, 16% , 500px);
-		right: clamp(20px, 5%, 400px); 
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/stock.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>  
 <script>
 	$(function(){
@@ -96,9 +19,7 @@
 </script> 
 <div class="whole_wrapper">
 	<div class="page_title">재고 추가</div>
-	<div class="btn_wrapper">
-		<button class="stock_list_btn">재고현황</button>
-	</div>
+	<button class="stock_list_btn stock_plus">재고현황</button>
 	<hr class="hr_line">  
 	<div class="list_border">
 		<div class="list_all_wrapper">
@@ -140,7 +61,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${category eq '소모품'}">
-						<a href="stock_plus?category=소모품" class="category_link" style="font-weight: bold; font-size: 16px">소모품</a>
+						<a href="stock_plus?category=소모품" class="category_link select_category">소모품</a>
 					</c:when>
 					<c:otherwise>
 						<a href="stock_plus?category=소모품" class="category_link">소모품</a>
