@@ -37,9 +37,6 @@
                 <div style="padding-left: 10px;">
                     <input type="button" value="회원가입" id="join">
        			</div>
-</head>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<body>
 	<form class="form" action="burger/order" method="get">
 		<p>지점 검색</p>
 		<select id="branch_select" name="branch_no">
