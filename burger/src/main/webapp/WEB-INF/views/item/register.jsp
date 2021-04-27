@@ -45,7 +45,7 @@
 					</select>
 					<input type="text" class="item_name_input" name="item_name" placeholder="자재명" required>
 					<input type="text" class="item_price_input" name="item_price" placeholder="단가" required>
-					<button class="item_register_btn">등록</button>
+					<input type="button" class="item_register_btn" value="등록">
 				</form>				
 			</div>
 		</div>
