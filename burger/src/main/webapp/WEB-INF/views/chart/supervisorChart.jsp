@@ -5,7 +5,7 @@
 
 <style>
 	.supervisorChart{
-		height: calc(100% - 100px);
+		height: calc(100% - 162px);
        	font-family: GmarketSansMedium;
        	padding : 10px 0 10px 10px; 
 	}
