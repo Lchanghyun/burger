@@ -28,7 +28,7 @@
 	    height: 950px;
 	    width: 180px;
 	    float:left;
-	}
+	} 
 	
 	.left-side-bar > .status-ico {
 	    text-align: right;
