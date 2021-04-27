@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>재고 그래프</title>
-</head>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/stock.css"> 
+ 
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>  
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 	$(function(){
@@ -56,34 +51,28 @@
 				} 
 			}
 		})
-		$(".chart_iframe").bind("click",function(){
+		
+		$(".category_chart_btn").on("click",function(){
 			location.href="${pageContext.request.contextPath}/stock/category_chart"
+		})
+		
+		$(".stock_list_btn").on("click", function(e){
+			e.preventDefault()
+			location.href="${pageContext.request.contextPath}/stock/list"			
 		})
 	})
 </script>
-<style>
-	.chart_all_wrapper{
-		text-align: center; 
-	}
-	.bar_chart_wrapper{
-		width: 500px;
-		height : 300px;
-		margin : 0 auto; 
-	}
-	.chart_iframe{
-		width: 500px;
-		height: 500px;
-	}
-</style>
-<body>
-	<div class="chart_all_wrapper">
-		<div class="bar_chart_wrapper">
-			<canvas id="stock_bar_chart"></canvas>
-		</div>
-		<div class="iframe_wrapper">	
-			<iframe src="${pageContext.request.contextPath}/stock/category_chart" class="chart_iframe" scrolling="no"></iframe>
-			<iframe src="${pageContext.request.contextPath}/stock/category_chart?category=육류" class="chart_iframe" scrolling="no"></iframe>
-		</div>
+<div class="whole_wrapper">
+	<div class="page_title">재고 분석</div>
+	<div class="chart_btn_wrapper">
+		<button class="category_chart_btn">카테고리별 차트</button> 
+		<button class="stock_list_btn">재고 현황</button>
 	</div>
-</body>
-</html>
+	<hr class="hr_line"> 
+	<div class="chart_border"> 
+		<div class="bar_chart_wrapper">
+			<canvas id="stock_bar_chart"></canvas> 
+		</div> 
+	</div>
+</div>
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 

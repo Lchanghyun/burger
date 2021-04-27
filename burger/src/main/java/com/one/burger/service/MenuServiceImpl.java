@@ -109,5 +109,9 @@ public class MenuServiceImpl implements MenuService{
 	public void stopModify(int menu_no, String category) throws Exception{
 		menuRepository.stopModify(menu_no, category);
 	}
-	
+	@Override
+	public List<Menu> all_list() throws Exception{
+		return menuRepository.all_list();
+	};
+
 }

@@ -3,100 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<style>
-	.category_link{
-		text-decoration : none;
-		font-size : 25px; 
-		color : black;
-		padding : 0 40px; 
-	}
-	.select_category{
-		font-size : 28px;
-		font-weight : bold;
-	}
-	.category_link:hover{
-		font-weight: bold;
-	}
-	.item_list_table{
-		margin : 10px auto;
-		width : 1100px;
-		border : 1px solid black;
-		border-collapse: collapse;
-	}
-	.item_list_table >thead>tr> th,
-	.item_list_table >tbody>tr> td {
-		border-bottom : 1px solid black;
-		padding : 12px;
-		width : 240px;  
-		text-align : center;
-		font-size : 18px;
-	}
-	.list_all_wrapper{
-		text-align : center; 
-	}
-	.list_border{
-		width : clamp(800px, 1600px, 2000px);
-		height : 490px;
-		border : 1px solid black;
-		position : absolute; 
-		top : 27%;
-		left : clamp(210px, 12%, 12%);
-		display : flex;
-		flex-direction : cloumn;
-		justify-content : center;
-		padding : 30px 0 0 0;
-	}
-	.whole_wrapper{
-		height : calc(100% - 162px) ;
-	}
-	.hr_line{
-		position : absolute;
-		top : 20%;  
-		left : 218px;
-		display : block;
-		width: 84%;   
-		border : 2px solid;
-	}
-	.page_title{
-		position : absolute;
-		top : 15%;
-		left : 220px;
-		font-size : 40px;	
-	}
-	.btn_wrapper{
-		position : absolute;
-		top: clamp(10px, 16% , 500px);
-		left: clamp(600px, 84%, 1700px);  
-		width : 240px;  
-	}
-	.item_register_btn,
-	.item_edit_btn{
-		border : none;
-		border-radius: 5px;
-		width : 100px;
-		padding : 3px;
-		font-size : 18px;
-		font-weight: bold;
-		color : white;
-		background-color : #EE4E34; 
-		margin-right : 10px;  
-		height : 35px;
-	}
-	.item_delete_btn{
-		border : none;
-		border-radius: 5px; 
-		width : 70px; 
-		height : 30px;
-		padding : 3px; 		
-		font-size : 16px;
-		font-weight: bold;
-		color : white;
-		background-color : #EE4E34; 
-	}
-	button{
-		cursor : pointer;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 <script>
 	$(function(){
@@ -123,17 +30,35 @@
 						
 			item_no = $(this).parent().parent().prev().val() 
 			
-			console.log(item_no)
-			$.ajax({
-				url: "${pageContext.request.contextPath}/item/delete",
-				type: "POST",
-				data: {
-					item_no : item_no 
-				},
-				success: function(resp){
-					location.href="${pageContext.request.contextPath}/item/list";
-				}
-			})
+			Swal.fire({ icon: 'error', 
+               	title: '단종 처리하시겠습니까?', 
+               	icon: 'warning', 
+               	showCancelButton: true, 
+               	confirmButtonColor: '#3085d6', 
+               	cancelButtonColor: '#d33', 
+               	confirmButtonText: '승인', 
+               	cancelButtonText: '취소'
+        		}).then((result) => { 
+        			if (result.isConfirmed) { 
+        				Swal.fire({
+        					icon: 'success',
+        				   	title:'단종 처리되었습니다'
+        				});
+        				
+						$.ajax({
+							url: "${pageContext.request.contextPath}/item/delete",
+							type: "POST",
+							data: {
+								item_no : item_no 
+							},
+							success: function(resp){
+								setTimeout(function(){
+									location.reload()	
+								},1000)
+							}
+						})
+       				}
+    			})
 		})
 	})
 </script>

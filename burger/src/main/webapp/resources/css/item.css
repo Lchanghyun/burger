@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+   @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+    }
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .category_link{
+		text-decoration : none;
+		font-size : 25px; 
+		color : lightgrey;
+		padding : 0 40px; 
+	}
+	.select_category{
+		font-size : 28px;
+		font-weight : bold;
+		color : #EE4E34;
+	}
+	.category_link:hover{
+		font-weight: bold;
+	}
+	.item_list_table{
+		margin : 10px auto;
+		width : 1100px;
+		border-collapse: collapse;
+	}
+	.item_list_wrapper{
+		text-align : center; 
+	}
+	.item_list_table >thead>tr> th,
+	.item_list_table >tbody>tr> td {
+		border-bottom : 1px solid grey;
+		padding : 12px;
+		width : 240px;   
+		text-align : center;
+		font-size : 18px;
+	}
+	.item_list_table >thead>tr> th{
+		color : #EE4E34;
+		border-left : none;  	
+		border-top : 2px solid #EE4E34;
+		border-bottom : 2px solid #EE4E34;
+	}
+	.list_all_wrapper{
+		text-align : center; 
+		overflow : auto;
+	}
+	.list_border{
+		width : clamp(800px, 1600px, 2000px);
+		height : 490px;
+		position : absolute; 
+		top : 27%;
+		left : clamp(210px, 12%, 12%);
+		display : flex;
+		flex-direction : cloumn;
+		justify-content : center;
+		padding : 30px 0 0 0;
+	}
+	.whole_wrapper{
+		height : calc(100% - 142px) ;
+	}
+	.hr_line{
+		position : absolute;
+		top : 20%;  
+		left : 218px;
+		display : block;
+		width: 84%;   
+		border : 2px solid;
+	}
+	.page_title{
+		position : absolute;
+		top : 15%;
+		left : 220px;
+		font-size : 40px;	
+	}
+	.btn_wrapper{
+		position : absolute;
+		top: clamp(10px, 16% , 500px);
+		left: clamp(600px, 84%, 1700px);  
+		width : 240px;  
+	}
+	.item_list_btn,
+	.item_register_btn,
+	.item_edit_btn,
+	.item_edit_form_btn{
+		border : none;
+		border-radius: 5px;
+		width : 100px;
+		padding : 3px;
+		font-size : 18px;
+		font-weight: bold;
+		color : white;
+		background-color : #EE4E34; 
+		margin-right : 10px;  
+		height : 35px;
+	}
+	.item_delete_btn{
+		border : none;
+		border-radius: 5px; 
+		width : 70px; 
+		height : 30px;
+		padding : 3px; 		
+		font-size : 16px;
+		font-weight: bold;
+		color : white;
+		background-color : #EE4E34; 
+	}
+	button{
+		cursor : pointer;
+	}
+	button:focus{
+		outline: none;
+	}
+	.item_name_input{
+		padding : 7px;
+		font-size : 15px;
+		width : 200px; 
+		height : 38px;
+		text-align : right; 
+	}
+	.item_price_input{
+		padding : 7px; 
+		font-size : 15px;
+		width : 100px;   	
+		height : 38px;
+		text-align : right; 
+	}
+	.item_list_btn{
+		position : absolute;
+		top: clamp(10px, 16% , 500px);
+		right: clamp(20px, 4%, 400px);  
+	}  
+	.item_category_select{
+		padding : 7px;
+		font-size : 15px; 
+		width : 100px;
+		height : 38px;
+		text-align : center; 
+	}  
+	.item_edit_form_btn{
+		position : absolute;
+		right: clamp(200px, 15%, 500px);     
+	}
+	.input_wrapper{
+		margin : 10px auto;
+	}

@@ -23,6 +23,7 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
+
 	<select id ="branch_total_sales" parameterType="map" resultType="BranchTotalSales">
 	
 		select to_char(T.today_time, 'YYYY/MM') sales_time, sum(t.total_price) total_sales 
@@ -30,6 +31,15 @@
 		        where status='1' and to_char(T.today_time,'YYYY') = #{year} and B.branch_no=#{branch_no, jdbcType=INTEGER} 
 		        	group by to_char(T.today_time,'YYYY/MM') 
 		        		order by sales_time asc 
+	</select>
 			
+
+	<select id="menu_total_sales" parameterType="map" resultType="MenuBranchMenuGoodsVo">
+		select M.menu_name, sum(T.total_price) total_sales, to_char(T.today_time,'YYYY/MM') sales_time from menu M 
+		    left outer join branch_menu BM on M.menu_no = BM.menu_no 
+		        left outer join goods G on BM.bm_no = G.bm_no 
+		            left outer join today T  on G.order_no = T.order_no  where status ='1' and to_char(T.today_time,'YYYY/MM') = #{day} and M.menu_no = #{menu_no}
+		                group by to_char(T.today_time,'YYYY/MM'), M.menu_name
+ 
 	</select>
 </mapper>

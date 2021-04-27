@@ -6,8 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.one.burger.entity.BranchTotalSales;
+import com.one.burger.entity.MenuBranchMenuGoodsVo;
+
 
 import lombok.extern.java.Log;
 
@@ -19,8 +20,11 @@ public class ChartRepository {
 		private SqlSession sqlSession;
 		
 		public List<BranchTotalSales> branch_total(Map<String,Object> param) throws Exception {
-		
 		return sqlSession.selectList("chart.branch_total_sales",param);
+	}
+
+	public MenuBranchMenuGoodsVo menu_sales(Map<String, Object> param) throws Exception{
+		return sqlSession.selectOne("chart.menu_total_sales",param);
 	}
 
 }
