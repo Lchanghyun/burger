@@ -8,20 +8,22 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.entity.Branch;
 import com.one.burger.entity.SalesSuperTotal;
 import com.one.burger.repository.ChartRepository;
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchMenuGoodsVo;
 import com.one.burger.repository.MenuRepository;
-
 import lombok.extern.java.Log;
-
+ 
 @Log
 @Service
 public class ChartServiceImpl implements ChartService{
 	@Autowired
 	private ChartRepository chartRepository;
+	@Autowired
+	private MenuRepository menuRepository;
 	
 	@Override
 	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
@@ -54,10 +56,6 @@ public class ChartServiceImpl implements ChartService{
 		return result;
 	}
 	
-	
-	@Autowired
-	private MenuRepository menuRepository;
-	
 	@Override
 	public List<MenuBranchMenuGoodsVo> menu_sales(String sales_date) throws Exception {
 		log.info("menu_sales(repository) : !");
@@ -75,5 +73,16 @@ public class ChartServiceImpl implements ChartService{
 		
 		return result;
 	}
-
-}
+ 
+	@Override
+	public List<BranchTotalSales> total_sales(int branch_no) throws Exception {
+		log.info("total_sales()");
+		Map<String, Object> param = new HashMap<>();
+		String Year = "2021";
+		param.put("year", Year);
+		param.put("branch_no", branch_no);
+		List<BranchTotalSales> list =chartRepository.branch_total(param);
+		
+		return list ;
+	}
+} 
