@@ -70,4 +70,8 @@
 		delete from branch where branch_id = #{branch_id} and branch_pw = #{branch_pw}
 	</delete>
 
+	<select id="list" resultType="Branch">
+		select * from branch
+	</select>
+	
 </mapper>

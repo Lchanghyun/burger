@@ -48,7 +48,6 @@ public class ChartController {
 		model.addAttribute("year", year);
 		model.addAttribute("menu_list", menuService.all_list());
 		model.addAttribute("menu_sales", chartService.menu_sales(sysdate));
-
 	}
 	
 	@PostMapping("/menuSales")
