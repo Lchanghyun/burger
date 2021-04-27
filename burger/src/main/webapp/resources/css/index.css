@@ -19,12 +19,15 @@ body {
 /* header */
 header{
     height: 120px; 
+    width: 100%;
     background-color: #EE4E34;
     box-shadow: 0 4px 2px -2px gray;
     font-family: 'GmarketSansBold';
 }
 .header-inner{
     width: 1200px; 
+	background-color: #EE4E34;
+    box-shadow: 0 4px 2px -2px gray;    
     height: inherit; 
     margin: 0 auto; 
     text-align: center;
@@ -39,16 +42,18 @@ header{
     position: relative; 
     top: -38px;
 }
-.header-inner > div > p{
+.header-inner > div > p,
+.header-inner > div > a{
     font-weight: bold; 
     display: inline-block; 
     margin-top: 40px; 
     font-size: 25px;
     color: #FCEDDA;
 }
-.header-inner > div > p > a {
+.header-inner > div > p > a,
+.header-inner > div > a {
     text-decoration: none;
-    color: inherit;
+    color: #FCEDDA;
 }
 .header-inner > div > img{
     width: 130px;
@@ -60,7 +65,7 @@ header{
 }
 /* body */
 section{
-    height: 600px;
+
     font-family: 'GmarketSansMedium';
 }
 article{
@@ -72,13 +77,16 @@ article{
 /*  footer  */
 footer{
     height: 250px;
+    width: 100%;
     background-color: #292929;
     color: #818181;
 }
 .menu-footer{
-    margin-left: 160px; 
+	width: 1040px;
+	height: 200px;
+    background-color: #292929;
+	padding: 50px 0 0 160px;
     display: inline-block; 
-    margin-top: 50px;
 }
 .menu-footer h4{
     font-size: 30px; 

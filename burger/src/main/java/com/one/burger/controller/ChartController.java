@@ -1,5 +1,7 @@
 package com.one.burger.controller;
 
+import javax.servlet.http.HttpSession;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +20,8 @@ import com.one.burger.entity.MenuBranchMenuGoodsVo;
 import com.one.burger.service.ChartService;
 import com.one.burger.service.MenuService;
 
+import com.one.burger.service.ChartService;
+
 import lombok.extern.java.Log;
 
 @Log
@@ -26,6 +30,7 @@ import lombok.extern.java.Log;
 public class ChartController {
 	
 	@Autowired
+	private ChartService service;
 	private MenuService menuService;
 	@Autowired
 	private ChartService chartService;
@@ -55,7 +60,11 @@ public class ChartController {
 	}
 	
 	@GetMapping("/branchChart")
-	public void getBranchChart() {
+	public void getBranchChart(Model model, HttpSession session) throws Exception{
 		log.info("getBranchChart()");
+		int branch_no = 1;
+		
+		//model.addAttribute("burgerChart", service.bm_burgerChart())
 	}
+	
 }

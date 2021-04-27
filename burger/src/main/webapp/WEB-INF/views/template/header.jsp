@@ -10,9 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="${path}/resources/js/indexJs.js"></script>
 	<link rel="stylesheet" href="${path}/resources/css/index.css">
-    <script>
-        
-    </script>
     <style>
         #join{
             width: 100px;
@@ -39,10 +36,10 @@
         <header>
                 <div class="header-inner">
                     <div>
-                        <p><a href="#">ORDER</a></p>
+                        <a href="${path}/burger/location"><p>ORDER</p></a>
                     </div>
                     <div>
-                        <p><a href="#">BURGER&amp;DRINK</a></p>
+                        <a href="${path}/burger/location"><p>BURGER&amp;DRINK</p></a>
                     </div>
                     <div class="logo">
                         <img src="${path}/resources/img/bgmg.png" alt="로고">  
