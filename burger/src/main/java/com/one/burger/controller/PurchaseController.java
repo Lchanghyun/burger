@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
 import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.Purchase_Item;
+import com.one.burger.entity.StockItemVo;
 import com.one.burger.service.ItemService;
 import com.one.burger.service.PurchaseService;
 import com.one.burger.service.StockService;
@@ -54,10 +56,11 @@ public class PurchaseController {
 	
 
 	@GetMapping("/purchase_list")
-	public void purchaseDetail(int purchase_no, Model model) throws Exception{
+	public void purchaseDetail(HttpServletRequest req, Model model) throws Exception{
 		log.info("purchaseDetail()");
 		
-		model.addAttribute("PIlist", purchaseService.select(purchase_no));
+		int purchase_no = Integer.parseInt(req.getParameter("purchase_no"));
+		model.addAttribute("PurchaseItem", purchaseService.select(purchase_no));
 		
 	}
 	
@@ -103,15 +106,17 @@ public class PurchaseController {
 	
 	
 	@GetMapping("/register")
-	public String StockList(int purchase_no, Model model, HttpSession session) throws Exception {
+	public void StockList(Model model, HttpSession session, HttpServletRequest req) throws Exception {
 		log.info("stockList()");
 		
 		int branch_no=1; 
 		//int branch_no = (int) session.getAttribute("branch_no");
 		
-		model.addAttribute("list", stockservice.all_list(branch_no));
-		 
-		return "purchase/register";
+		int purchase_no = Integer.parseInt(req.getParameter("purchase_no"));
+		
+		model.addAttribute("purchase_no",purchase_no); 
+		model.addAttribute("list", purchaseService.StockList(branch_no));
+		
 	}
 	
 	@PostMapping("/register")
@@ -139,19 +144,31 @@ public class PurchaseController {
 	}
 	
 	@PostMapping("/regist")
-	public ModelAndView insert(HttpServletRequest req) throws Exception{
+	public ModelAndView insert(HttpServletRequest req, HttpSession session) throws Exception{
 		log.info("insert");
 		
-		Map param = new HashMap();
-		param.put("branch_no", req.getParameter("branch_no"));
+		int branch_no=1; 
+		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		Map<String, Object> param = new HashMap();
+		param.put("branch_no", branch_no);
 		param.put("super_no", req.getParameter("super_no"));
 		param.put("status", req.getParameter("status"));
-		
 		
 		purchaseService.insert(param);
 		
 		ModelAndView mv = new ModelAndView("redirect:/purchase/list");
 		return mv;
+	}
+	@GetMapping("/delete")
+	public String delete(HttpServletRequest req) throws Exception{
+		log.info("purchaseDelete");
+		
+		int purchase_no = Integer.parseInt(req.getParameter("purchase_no"));
+		
+		purchaseService.delete();
+		
+		return "purchase/list";
 	}
 	
 	@GetMapping("/superlist")

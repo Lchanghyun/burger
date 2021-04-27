@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
+import com.one.burger.entity.PurchaseStockVo;
 import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.ReceivedItemVo;
+import com.one.burger.entity.StockItemVo;
 
 @Repository
 public class PurchaseRepository {
@@ -54,7 +56,7 @@ public class PurchaseRepository {
 		return sqlSession.selectOne("purchase.getSeq");
 	}
 	
-	public void insert(Map param) {
+	public void insert(Map<String, Object> param) {
 		
 		sqlSession.insert("purchase.PRegister",param);
 	}
@@ -62,9 +64,12 @@ public class PurchaseRepository {
 	public void register(Map<String, Object> param) {
 
 		sqlSession.insert("purchase_item.PIRegister",param);
-		
+		 
 	}
-
+	public List<PurchaseStockVo> stock(int branch_no) {
+		 
+		return sqlSession.selectList("purchase_item.StockList",branch_no);
+	}
 	
 	
 	

@@ -6,8 +6,10 @@ import java.util.Map;
 
 import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
+import com.one.burger.entity.PurchaseStockVo;
 import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.ReceivedItemVo;
+import com.one.burger.entity.StockItemVo;
 
 public interface PurchaseService {
 	public List<Purchase> call() throws Exception;
@@ -17,7 +19,8 @@ public interface PurchaseService {
 	public List <PurchaseSuperVo> show() throws Exception;
 	public void update(PurchaseSuperVo purchaseSuperVo) throws Exception;
 	public int getSeq() throws Exception;
-	public void insert(Map param) throws Exception;
-	public void register(List<Map<String, Object>> list) throws Exception;
+	public void insert(Map<String, Object> param) throws Exception;
+	public List <PurchaseStockVo> StockList(int branch_no) throws Exception;
+	public void register(List<Map<String, Object>> list) throws Exception; 
 
 }

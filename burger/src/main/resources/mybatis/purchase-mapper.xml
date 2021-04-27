@@ -45,5 +45,8 @@
 		update purchase set status=#{status} where purchase_no=#{purchase_no}
 	</update>
 	
+	<delete id ="purchaseDelete" parameterType="int">
+		delete from purchase where purchase_no=#{purchase_no}
+	</delete>
 
 </mapper>

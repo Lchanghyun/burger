@@ -16,10 +16,19 @@
 
 	<select id ="PIlist" resultType="PurchaseItemVo" parameterType="int">
 	
-		select I.item_name, I.item_price, i.category, P.count, I.item_no
-			from purchase_item P inner join Item I 
-				on P.item_no = I.item_no
+		select i.item_name, i.item_price, i.category, p.count 
+			from purchase_item P  
+				left outer join stock S on P.stock_no = S.stock_no 
+				left outer join Item i on S.item_no = I.item_no 
 					 where P.purchase_no=#{purchase_no}
+	</select> 
+	
+	<select id ="StockList" resultType="PurchaseStockVo" parameterType="int">
+		
+		select i.item_name, i.item_price, i.category, s.stock_no
+    		from stock S
+		        left outer join item i on I.item_no = S.item_no
+		            where S.status = 1 and S.branch_no= #{branch_no}
 	</select>
 	
 	<update id="update" parameterType="map">
@@ -32,6 +41,6 @@
 	
 	<insert id="PIRegister" parameterType="map">
 		insert into purchase_item values(
-			#{pi-no, jdbcType=INTEGER}, #{purchase_no, jdbcType=INTEGER},#{branch_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{item_no, jdbcType=INTEGER},#{count, jdbcType=INTEGER})
+			#{pi_no, jdbcType=INTEGER}, #{purchase_no, jdbcType=INTEGER},#{branch_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{stock_no, jdbcType=INTEGER},#{count, jdbcType=INTEGER})
 	</insert>
 </mapper>
