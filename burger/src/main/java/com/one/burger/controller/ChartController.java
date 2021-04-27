@@ -61,9 +61,9 @@ public class ChartController {
 	@GetMapping("/branchChart")
 	public void getBranchChart(Model model, HttpSession session) throws Exception{
 		log.info("getBranchChart()");
-		int branch_no = 1;
 		
-		//model.addAttribute("burgerChart", service.bm_burgerChart())
+		
+		
 	}
 	
 }
