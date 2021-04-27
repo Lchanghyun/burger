@@ -19,9 +19,15 @@
     }
     /* header*/
     header{
-        height: 60px; 
+        height: 60px;
+        width: 100%; 
         background-color: #EE4E34;
         font-family: 'GmarketSansBold';
+    }
+    .header-inner{
+        background-color: #EE4E34;
+		width: clamp(1680px, 100%, 100%);
+		height: inherit;
     }
     .header-inner > div > p{
         display: inline-block;  
@@ -97,9 +103,14 @@
     }
     footer{
         height: 80px; 
+        width: 100%;
         background-color: lightgray;
     }
-    footer > p {
+    footer > div{
+    	width: 1500px;
+        background-color: lightgray;
+    }
+    footer > div > p {
         padding: 30px; 
         font-size: 15px; 
         margin: 0;

@@ -1,5 +1,7 @@
 package com.one.burger.controller;
 
+import javax.servlet.http.HttpSession;
+
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -21,6 +23,7 @@ import com.one.burger.entity.MenuBranchMenuGoodsVo;
 import com.one.burger.service.ChartService;
 import com.one.burger.service.MenuService;
 
+
 import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.service.ChartService;
 
@@ -32,6 +35,7 @@ import lombok.extern.java.Log;
 public class ChartController {
 	
 	@Autowired
+	private ChartService service;
 	private MenuService menuService;
 	
 	@Autowired
@@ -62,8 +66,10 @@ public class ChartController {
 	}
 	
 	@GetMapping("/branchChart")
-	public void getBranchChart(HttpSession session, Model model) throws Exception {
+	public void getBranchChart(Model model, HttpSession session) throws Exception{
+
 		log.info("getBranchChart()");
+
 		int branch_no = 1 ;
 		//int branch_no = (int) session.getAttribute("branch_no");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY/MM");
@@ -74,5 +80,6 @@ public class ChartController {
 		List<BranchTotalSales> list = chartService.total_sales(branch_no);
 		
 		model.addAttribute("Totalsales",list);
+
 	}
 }

@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+	.soldout{
+		margin: 0;
+		padding: 5px;
+		color: yellow;
+	}
+	.menulist{
+		height: 336px;
+	}
+	.unclick{
+		pointer-events: none;
+		z-index: 9999;
+		background-color: grey;
+	}
+	/* 메뉴 리스트 버튼 */
+	.btn_list button{
+		border: none;
+		font-size: 25px;
+		background-color: white;
+		margin: 0 10px;
+		font-weight: bold;
+		color: #818181;
+	}
+	.btn_list button:hover{
+		cursor: pointer;
+	}
+	.btn_list button:focus{
+		border: none;
+		outline: none;
+	}
+	/* 주문내역 */
+	#array{
+		height: auto; 
+		min-height: 300px; 
+		overflow: auto; 
+		width: 1000px; 
+		margin-top: 10px;
+	}
+	.add-menu{
+		padding: 0 30px;
+	}
+	/* 메뉴 타이틀 */	
+	.menu_title{
+		display: inline-block;	
+		width: 800px;
+	}
+	.menuName{
+		font-size: 25px;
+		margin-top: 10px;
+		margin-bottom: 3px;
+	}
+	.price{
+		font-size: 18px;
+		margin: 3px 0;
+	}
+	/* 주문내역 삭제 버튼*/
+	.menu_delete{
+		display: inline-block;
+		position: relative; 
+		left: 100px;
+		top: -20px;
+	}
+	.menu_delete button, 
+	#all-delete{
+		border: none;
+		background-color: white;
+		margin: 0 10px;
+		font-size: 30px;
+		font-weight: bold;
+		color: #818181;
+	}
+	#all-delete{
+		border: 3px solid #818181;
+		border-radius: 3px;
+		font-size: 18px;
+	}
+	#all-delete{
+		position: relative;
+		left: 800px;	
+	}
+	#all-delete:hover{
+		border: 4px solid black;
+		border-radius: 3px;
+		color: black;
+		cursor: pointer;
+	}
+	.menu_delete button:hover{
+		cursor: pointer;
+		color: black;
+	}
+	.menu_delete button:focus{
+		border: none;
+		outline: none;
+	}
+	#payment{
+		position: relative;
+		left: -180px;
+       width: 180px;
+       height: 50px;
+       padding: 3px;
+       padding-top: 6px;
+       background-color:#EE4E34;
+       color: white;
+       border: none;
+       font-family: 'GmarketSansMedium';
+       font-size: 25px;
+       font-weight: bold;
+       border-radius: 3px;
+    }
+    #payment:hover{
+        cursor: pointer;
+        background-color:#FCEDDA;
+        color: #EE4E34;
+    }
+	#payment:focus{
+		outline: none;
+	}
+	/* 수량 카운트 */
+	.menu_count{
+		display: inline-block;	
+		width: 105px;
+		height: 30px;
+		text-align: center;
+		box-shadow: 0 2px 5px -4px grey;
+		position: relative;
+		left: 800px;
+	}
+	.menu_count button:hover{
+		cursor: pointer;
+	}
+	.plus-count{
+		border: none;
+		width: 30px;
+		height: 30px;
+		background: #d9d9d9 url(/burger/resources/img/+.png) no-repeat 50%;
+		border-radius: 5px 0 0 5px;
+	}
+	.count{
+		font-size: 25px;
+		font-weight: bold;
+		color: #818181;
+		width: 45px;
+		height: 30px;
+		display: inline-block;
+		position: relative;
+		top: -6px;				
+	}
+	.minus-count{
+		border: none;
+		width: 30px;
+		height: 30px;
+		background: #d9d9d9 url(/burger/resources/img/-.png) no-repeat 50%;
+		border-radius: 0 5px 5px 0;
+	}	
+	/* total 금액 */
+	.total_menu_price{
+		display: inline-block;
+		position: relative;
+		left: 590px;
+		top: 40px;
+		font-size: 25px;
+		margin-top: 5px;
+	}
+	.none{
+		display: none;
+	}
+	#total{
+		width: 320px;
+		display: inline-block;
+		position: relative;
+		left: 720px;
+		text-align: right;
+	}

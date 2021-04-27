@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 	.supervisorChart{
@@ -96,6 +97,14 @@
 </script>
 
 
+=======
+<script>
+	$(function(){
+		
+		
+	})
+</script>
+>>>>>>> refs/remotes/origin/main
 <div class="supervisorChart">
 	<div class="supervisorChartBox">
 		<div class="chartBox">
