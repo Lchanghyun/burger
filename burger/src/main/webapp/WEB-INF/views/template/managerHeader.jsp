@@ -31,42 +31,23 @@
 			    <div class="left-side-bar">
 			        <ul>
 			            <li>
-			                <a href="#">매출관리</a>
+			                <a href="<%=request.getContextPath()%>/chart/supervisorChart">매출관리</a>
+			            </li>
+			            <li>
+			                <label>자재, 발주</label>
 			                <ul>
-			                    <li><a href="#">1</a></li>
-			                    <li><a href="#">2</a></li>
+			                    <li><a href="<%=request.getContextPath()%>/item/list">자재목록</a></li>
+			                    <li><a href="<%=request.getContextPath()%>/purchase/superpurchaselist">발주목록</a></li>
 			                </ul>
 			            </li>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
-			                <ul>
-			                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
-			                    <li><a href="#">2</a></li>
-			                </ul>
+			                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
 			            </li>
 			            <li>
-			                <a href="#">공지사항</a>
-			                <ul>
-			                    <li><a href="#">1</a></li>
-			                    <li><a href="#">2</a></li>
-			                </ul>
+			                <a href="<%=request.getContextPath()%>/join/branch_join">지점 아이디 발급</a>
 			            </li>
 			            <li>
-			                <a href="#">EVENT 관리</a>
-			                <ul>
-			                    <li><a href="#">1</a></li>
-			                    <li><a href="#">2</a></li>
-			                </ul>
-			            </li>
-			            <li>
-			                <a href="#">지점 아이디 발급</a>
-			                <ul>
-			                    <li><a href="#">1</a></li>
-			                    <li><a href="#">2</a></li>
-			                </ul>
-			            </li>
-			            <li>
-			              <a href="#">메뉴 관리</a>
+			              <a href="<%=request.getContextPath()%>/">메뉴 관리</a>
 			              <ul>
 			                  <li><a href="#">1</a></li>
 			                  <li><a href="#">2</a></li>

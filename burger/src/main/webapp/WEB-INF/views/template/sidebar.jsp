@@ -62,61 +62,64 @@
 	}
 </style>
 <body>
-
-	<div class="upbar">
-		
-	</div>
-	<
-    
+<!-- 본사 -->
+<c:choose>
+	<c:when test ="${sessionScope.super_no not empty}">
     <div class="left-side-bar">
-        <div class="status-ico">
-            <span>▶</span>
-            <span>▼</span>
-        </div>
-
+			        <ul>
+			            <li>
+			                <a href="<%=request.getContextPath()%>/chart/supervisorChart">매출관리</a>
+			            </li>
+			            <li>
+			                <label>자재발주</label>
+			                <ul>
+			                    <li><a href="<%=request.getContextPath()%>/item/list">자재목록</a></li>
+			                    <li><a href="<%=request.getContextPath()%>/purchase/superpurchaselist">발주목록</a></li>
+			                </ul>
+			            </li>
+			            <li>
+			                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
+			            </li>
+			            <li>
+			                <a href="<%=request.getContextPath()%>/join/branch_join">지점 아이디 발급</a>
+			            </li>
+			            <li>
+			              <a href="<%=request.getContextPath()%>/menu/superlist">메뉴 관리</a>
+			          </li>
+			        </ul>
+			    </div>
+	</c:when>
+<!-- 지점 -->
+	<c:when test = "${sessionScope.branch_no not empty }"	>
+    <div class="left-side-bar">
         <ul>
             <li>
-                <a href="#">매출관리</a>
+                <a href="<%=request.getContextPath()%>/chart/branchChart">매출관리</a>
+            </li>
+            <li>
+                <label>자재발주</label>
                 <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
+                	<li><a href="<%=request.getContextPath()%>/stock/chart">재고분석</a></li>
+                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주목록</a></li>
                 </ul>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/purchase/list">발주관리</a>
+                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
+            </li>
+            <li>
+                <label>주문현황</label>
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주수정</a></li>
-                    <li><a href="#">2</a></li>
+                    <li><a href="<%=request.getContextPath()%>/today/chart">주문분석</a></li>
+                    <li><a href="<%=request.getContextPath()%>/today/order">주문현황</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">공지사항</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
+                <a href="<%=request.getContextPath()%>/menu/branchlist">메뉴관리</a>
             </li>
-            <li>
-                <a href="#">EVENT 관리</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">지점 아이디 발급</a>
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                </ul>
-            </li>
-            <li>
-              <a href="#">메뉴 관리</a>
-              <ul>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-              </ul>
-          </li>
         </ul>
     </div>
-    
+</c:when>
+    <c:otherwise>
+		<jsp:forward page="/error/404">    	
+    </c:otherwise>
+</c:choose>    
