@@ -19,8 +19,12 @@ public class GoodsRepository {
 		sqlSession.insert("goods.goodsInsert", goods);
 	}
 
-	public List<GoodsBranchMenuVo> goodsList(int order_no) {
+	public List<GoodsBranchMenuVo> goodsList(int order_no) throws Exception {
 		return sqlSession.selectList("goods.goodsList", order_no);
+	}
+
+	public Integer branchNo(int order_no) throws Exception{
+		return sqlSession.selectOne("goods.branch_no", order_no);
 	}
 	
 }

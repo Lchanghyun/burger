@@ -1,5 +1,6 @@
 package com.one.burger.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;

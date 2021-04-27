@@ -23,8 +23,51 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
-	<select id="list" resultType="Branch">
-		select * from branch
+	<insert id="branch_join" parameterType="Branch">
+		insert into branch(super_no, branch_no, branch_name, branch_id, branch_pw) values(
+		#{super_no}, #{branch_no}, #{branch_name}, #{branch_id}, #{branch_pw})
+	</insert>
+	
+	<!-- 시퀀스 -->
+	<select id="branch_seq" resultType="int">
+		select branch_seq.nextval from dual
 	</select>
-		
+	
+	<!-- 자동아이디 만들기 
+	<insert id="branch_id" parameterType="branch">
+		<selectKey keyColumn="Branch_id, Branch_pw" keyProperty="bgmg" resultType="String" order="BEFORE"> 
+			select "bgmg" || branch_seq.nextval from dual </selectKey>
+			insert into Branch(branch_id) values (#{branch_id})
+	</insert>
+	-->
+	
+	<!-- 로그인 -->
+	<select id="login_auth" resultType="Branch" parameterType="map">
+		select * from branch where branch_id = #{id} and branch_pw = #{pw}
+	</select>
+	
+	<!-- supervisor도 여기서해주자 -->
+	<select id="login_super" resultType="Supervisor" parameterType="map">
+		select * from supervisor where super_id = #{id} and super_pw = #{pw}
+	</select>
+	
+	<!-- 조회 -->
+	<select id="branch_find" resultType="branch" parameterType="int">
+		select * from branch where branch_no = #{branch_no}
+	</select>
+	
+	<select id="branch_find2" resultType="branch" parameterType="String">
+		select * from branch where branch_id = #{branch_id}
+	</select>
+	
+	<!-- 수정 -->
+	<update id="editBranch" parameterType="branch">
+		update branch set branch_pw = #{branch_pw}
+	</update>
+	
+	<!-- 탈퇴 -->
+	<delete id="deleteBranch">
+		delete from branch where branch_id = #{branch_id} and branch_pw = #{branch_pw}
+	</delete>
+
 </mapper>

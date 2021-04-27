@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .today{
+        height: calc(100% - 142px);
+        font-family: GmarketSansMedium;
+        padding:10px 20px;
+    }
+    .todayOrderBox{
+    	width:1650px;
+        margin:auto;
+    }
+    .orderstatus{
+        height:650px;
+        width:1000px;
+        border:3px solid #EE4E34;
+        padding:0 1.5rem;
+        margin: 0 auto;
+        overflow:auto;
+        border-radius: 3px;
+    }
+    .orderOne{
+        margin:1rem 0;
+        border-bottom:1px dotted gray;
+        padding: 0 30px;
+        height:230px;
+    }
+    .number-info{
+        display: flex;
+        justify-content: space-between;
+        padding:0 20px;
+    }
+    .order-number{
+        font-size: 20px;
+        font-weight:bold;
+    }
+    .orderTimeAndStatus{
+    	display:flex;
+    	justify-content: space-between;
+    	margin:1rem 0;
+    	padding:0 20px;
+    }
+    .statusPrice1{
+    	font-size:20px;
+    	color:red;
+    	font-weight:bold;
+    }
+    .statusPrice2{
+    	font-size:20px;
+    	color:green;
+    	font-weight:bold;
+    }
+    .tradeTime{
+    	color:gray;
+    	font-size: 19px;
+    }
+    .status-line{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        padding:0 20px;
+        height:120px;
+    }
+    .todayPersonMenu{
+    	width:400px;
+    	height:120px;
+    	overflow:auto;
+    	padding:0.5rem;
+    	border: 2px solid #EE4E34;
+    	border-radius: 3px;
+    }
+    .status-title{
+        display: flex;
+        height:35px;
+        align-items: center;
+        justify-content: space-between;
+        padding:0 50px;
+        font-size: 20px;
+        border-bottom: 1px solid #EE4E34;
+    }
+    .status-button{
+        text-align: right;
+    }
+    .takeoutBtn{
+        background-color: #EE4E34;
+        color:white;
+        font-size: 25px;
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        margin-top:15px;
+        border: none;
+        outline:none;
+        border-radius: 3px;
+        font-family: GmarketSansMedium;
+    }
+    .totalPriceShow{
+    	font-size:20px;
+    }
+    .MyBranchandTitleBox{
+    	display:flex;
+    	justify-content: space-between;
+    	align-items: flex-end;
+    	border-bottom: 4px solid black;
+    	margin:10px 0 25px 0;
+    	width:1650px;
+    }
+    .todayOrderTitle{
+    	font-size: 40px;
+    	margin-top: 10px;
+    }
+    .MyBranch{
+    	font-size:25px;
+    	color: #EE4E34;
+    	font-weight:bold;
+    	margin-right: 20px;
+    }
+    
+    
+    .chartBox{
+    	display:flex;
+    	justify-content:space-around;
+    	align-items:center;
+    	margin:auto;
+    	width:1300px;
+    	height:670px;
+    }
+    .selectBox{
+    	width:450px;
+    	height:80px;
+    	text-align: center;
+    }
+    .selectCategory{
+    	font-size:23px;
+    	border:2px solid #EE4E34;
+    	color: #EE4E34;
+    	padding:0.3rem;
+    	font-family: GmarketSansMedium;
+    	outline:none;
+    	border-radius: 3px;
+    }
+	#chart{
+		width:450px;
+		height:450px;
+	}
+	.detailChart{
+		width:850px;
+		height:600px;
+		display:grid;
+		grid-template-columns :1fr 1fr;
+		place-items:center;
+		overflow:auto;
+	}
+	.dChart{
+		width:400px;
+		height:300px;
+		margin-bottom:10px;
+		border: 2px solid lightgray;
+		box-shadow: 5px 5px 10px 1px gray;
+		border-radius: 3px;
+	}
+	.TodayChartTitle{
+		width:1650px;
+		font-size:40px;
+		border-bottom: 4px solid black;
+		margin: 10px auto;
+	}

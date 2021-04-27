@@ -5,6 +5,18 @@
  
  <mapper namespace="today">
  
+ 	<insert id="todayInsert" parameterType="Today">
+ 		insert into today values(
+ 			today_seq.nextval, #{order_no}, #{branch_no}, #{today_num}, 
+ 			sysdate, #{total_price}, '0', #{price_status})
+ 	</insert>
+ 	
+ 	<select id="sysdate" resultType="Integer">
+		select order_no 
+		    from today 
+        		where to_char(today_time, 'YYYY-MM-dd') = to_char(sysdate, 'YYYY-MM-dd') and rownum = 1
+ 	</select>
+ 	
  	<update id="status" parameterType="map">
  		update today set status='1' where order_no=#{order_no} and branch_no=#{branch_no}
  	</update>
@@ -13,6 +25,7 @@
  		select O.*, T.today_num,T.today_time,T.total_price,T.status,T.price_status from
     	burger_order O inner join today T on O.order_no=T.order_no
     	where O.branch_no=#{branch_no} and to_char(T.today_time,'YY/MM/DD')=to_char(sysdate)
+    	order by O.order_no asc
  	</select>
  	
  	<select id="menuInfo" parameterType="Integer" resultType="TodayOrderMenu">
@@ -26,6 +39,24 @@
  	
  	<select id="getBranchName" parameterType="Integer" resultType="String">
  		select branch_name from branch where branch_no=#{branch_no}
+ 	</select>
+ 	
+ 	<select id="forChart" parameterType="map" resultType="TodayOrderChart">
+ 		select G.bm_no,M.menu_name,M.category,sum(G.count) totalcount from
+		today T inner join goods G on T.order_no=G.order_no
+		inner join branch_menu B on G.bm_no=B.bm_no
+		inner join menu M on B.menu_no=M.menu_no
+		where G.branch_no=#{branch_no} 
+		<if test="category != null and category != '' ">
+			and M.category=#{category} and to_char(T.today_time,'YYYY/MM/DD') 
+			    between to_char(sysdate-6,'YYYY/MM/DD') and to_char(sysdate,'YYYY/MM/DD')
+		</if>
+		<if test="menu_name != null and menu_name != '' ">
+			and M.menu_name=#{menu_name} and 
+		        to_char(T.today_time,'YYYY/MM/DD')=#{today_time}
+		</if>
+		group by G.bm_no, M.menu_name, M.category
+		order by G.bm_no asc
  	</select>
  	
  </mapper>
