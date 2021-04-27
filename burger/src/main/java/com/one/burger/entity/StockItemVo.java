@@ -19,4 +19,5 @@ public class StockItemVo {
 	private Date stock_date;
 	
 	private List<StockItemVo> stockItemVo_list;
+	
 }

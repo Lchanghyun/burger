@@ -2,30 +2,24 @@ package com.one.burger.controller;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpSession;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.one.burger.entity.MenuBranchMenuGoodsVo;
 import com.one.burger.service.ChartService;
 import com.one.burger.service.MenuService;
-
+import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.entity.SalesSuperTotal;
-
 import lombok.extern.java.Log;
 
 @Log
@@ -35,6 +29,7 @@ public class ChartController {
 	
 	@Autowired
 	private MenuService menuService;
+	
 	@Autowired
 	private ChartService chartService;
 	
@@ -116,7 +111,6 @@ public class ChartController {
 		return new ResponseEntity<JSONObject>(obj, HttpStatus.CREATED);
 	}
 		
-	
 	@PostMapping("/menuSales")
 	@ResponseBody
 	public List<MenuBranchMenuGoodsVo> PostMenuSales(String year, String month) throws Exception{
@@ -127,10 +121,19 @@ public class ChartController {
 	
 	@GetMapping("/branchChart")
 	public void getBranchChart(Model model, HttpSession session) throws Exception{
+
 		log.info("getBranchChart()");
-		int branch_no = 1;
+
+		int branch_no = 1 ;
+		//int branch_no = (int) session.getAttribute("branch_no");
+		SimpleDateFormat format = new SimpleDateFormat("YYYY/MM");
+		Date date = new Date();
+		String sysdate = format.format(date);
+		String year = sysdate.split("/")[0];
 		
-		//model.addAttribute("burgerChart", service.bm_burgerChart())
+		List<BranchTotalSales> list = chartService.total_sales(branch_no);
+		
+		model.addAttribute("Totalsales",list);
+
 	}
-	
 }
