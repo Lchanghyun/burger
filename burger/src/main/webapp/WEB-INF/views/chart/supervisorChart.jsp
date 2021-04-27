@@ -5,9 +5,9 @@
 
 <style>
 	.supervisorChart{
-		height: calc(100% - 162px);
+		height: calc(100% - 100px);
        	font-family: GmarketSansMedium;
-       	padding:10px; 
+       	padding : 10px 0 10px 10px; 
 	}
 	.supervisorChartBox{
 		width:1300px;
@@ -17,7 +17,6 @@
 		width:1300px;
 		height:380px;
 		padding: 0 10px;
-		margin-bottom:10px;
 	}
 	.chartTitle{
 		height:25px;

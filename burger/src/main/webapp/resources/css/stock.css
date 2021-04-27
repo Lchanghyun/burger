@@ -13,7 +13,7 @@
         font-style: normal;
     }
     .whole_wrapper{
-		height : calc(100% - 162px) ;
+		height : calc(100% - 142px) ;
 	}
 	.stock_list_table{
 		margin : 10px auto;
@@ -101,8 +101,8 @@
 	.btn_wrapper{
 		position : absolute;
 		top: clamp(10px, 16% , 500px);
-		left: clamp(600px, 84%, 1700px);  
-		width : 240px;
+		left: clamp(600px, 78%, 1700px);  
+		width : 350px;
 	}
 	.stock_chart_btn,
 	.stock_list_btn,
@@ -183,5 +183,10 @@
 		top: clamp(10px, 16% , 500px);
 		left: clamp(600px, 82%, 1700px);  
 		width : 280px;
+	}
+	.two_btn_wrapper{
+		position : absolute;
+		width : 240px;
+		left : clamp(600px, 84%, 1700px);
 	}
 	
