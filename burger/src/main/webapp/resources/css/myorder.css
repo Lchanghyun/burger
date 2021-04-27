@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .order-list{
+            width:800px;
+            margin: auto;
+            padding:1rem;
+            font-family: GmarketSansMedium;
+        }
+        .order-title{
+        	height:40px;
+        	width: 800px;
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom:10px;
+            text-align:right;
+            padding-right:20px;
+        }
+        .myorderlist{
+        	width:800px;
+        	padding:0 2rem;
+            border:3px solid #EE4E34;
+            border-radius:3px;
+            height:520px;
+            overflow:auto;
+        }
+        .myorderlist-border:hover{
+        	cursor: pointer;
+        }
+        .myorderlist-border, .Dmyorderlist-border{
+            padding:1rem;
+            display: flex;
+            align-items: center;
+            justify-content:space-around;
+        }
+        .mylastorder{
+        	border-bottom: 1px dotted black;
+        }
+        .mylastorder:last-child{
+        	border-bottom:none;
+        }
+        .myorderorder{
+        	display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width:470px;
+        }
+        .myorderMenu{
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .myorderNum, .myorderTime{
+            font-size: 16px;
+        }
+        .myorderBranch{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+        .myorderStatus{
+            padding:0.5rem;
+            color : white;
+            background-color: #EE4E34;
+            border-radius:3px;
+            text-align: right;
+        }
+        .menulist-img{
+        	width:150px;
+        	height:110px;
+        	margin-right:15px;
+        }
+        
+        
+        .detailBack{
+        	display:flex;
+        	justify-content:space-between;
+        	align-items: flex-end;
+        	height:50px;
+        	width: 800px;
+        	padding-right: 20px;
+        }
+        .backA{
+        	text-decoration: none;
+        	font-size:20px;
+        	font-weight:bold;
+        	color: #EE4E34;
+        }
+        .detailTitle{
+        	font-size:30px;
+        	font-weight:bold;
+        }
+        .myorderdetailList{
+        	width:800px;
+            padding:0 2rem;
+            border:3px solid #EE4E34;
+            border-radius: 3px;
+        }
+        .myorderDetail{
+        	display: flex;
+            align-items: center;
+            justify-content:space-between;
+            width:450px;
+        }
+        .myorderDetailName{
+        	font-size:21px;
+        	font-weight: bold;
+        	margin-bottom:5px;
+        }
+        .myorderDetailPrice{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .how-many{
+            font-size: 17px;
+            background-color: lightgray;
+            border-radius: 3px;
+            padding:0.3rem;
+            width:90px;
+            text-align:center;
+        }
+        .totalprice-my{
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin:10px 0;
+        }
+        .mypage-totalprice{
+            color:brown;
+        }
+        .detailmenu-img{
+        	width:150px;
+        	height:110px;
+        	margin-right:10px;
+        }
+        .detailListbox{
+        	width:760px;
+        	padding-right:20px;
+        	max-height:450px;
+        	overflow:auto;
+        }

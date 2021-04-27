@@ -5,13 +5,13 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
+import org.json.simple.JSONObject;
 import org.springframework.util.FileCopyUtils;
 
 public class UploadFileUtils {
@@ -63,5 +63,14 @@ public class UploadFileUtils {
 				dir.mkdir();
 			}
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject convertMapToJson(Map<String,Object> map) {
+		JSONObject json = new JSONObject();
+		for(Map.Entry<String, Object> entry : map.entrySet()) {
+			json.put(entry.getKey(), entry.getValue());
+		}
+		return json;
 	}
 }
