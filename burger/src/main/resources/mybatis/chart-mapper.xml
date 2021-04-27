@@ -42,4 +42,18 @@
 		                group by to_char(T.today_time,'YYYY/MM'), M.menu_name
  
 	</select>
+	
+	<select id="eachBranch" parameterType="String" resultType="SalesSuperTotal">
+ 		select B.branch_no,B.branch_name,sum(total_price) total from 
+		today T inner join branch B on T.branch_no=B.branch_no 
+		where to_char(today_time,'YYYY/MM')=#{choiceDate}
+		group by B.branch_no,B.branch_name
+		order by B.branch_name asc
+ 	</select>
+ 	
+ 	<select id="branchNos" resultType="Branch">
+ 		select * from branch order by branch_name asc
+ 	</select>
+ 	
+ 	
 </mapper>
