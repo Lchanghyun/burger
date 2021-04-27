@@ -22,4 +22,5 @@ public interface MenuService {
 	public List<MenuPhotoVO> searchlist(String menu_name) throws Exception;
 	public List<MenuBranchVO> branchSearch(Integer branch_no, String key) throws Exception;
 	public void stopModify(int menu_no, String category) throws Exception;
+	public List<Menu> all_list() throws Exception;
 }

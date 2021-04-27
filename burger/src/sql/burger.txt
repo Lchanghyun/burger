@@ -32,7 +32,6 @@ drop sequence menu_photo_seq;
 drop sequence bm_seq;
 drop sequence goods_seq;
 
-
 create table supervisor(
 super_no number primary key,
 super_id  varchar2(20) unique not null,
@@ -80,7 +79,6 @@ create table stock(
 	status char(1) check(status in('0','1'))
 );
 
-
 create sequence stock_seq;
 
 create table purchase (
@@ -99,7 +97,7 @@ pi_no number primary key,
 purchase_no references purchase(purchase_no),
 branch_no number references branch(branch_no),
 super_no number references supervisor(super_no),
-item_no number references item(item_no),
+stock_no number references stock(stock_no),
 count number default 0 not null
 );
 
@@ -109,7 +107,7 @@ create table received_item(
 receive_no number primary key,
 purchase_no references purchase(purchase_no),
 branch_no number references branch(branch_no),
-item_no number references item(item_no),
+stock_no number references stock(stock_no),
 count number default 0 not null,
 receive_date date default sysdate not null
 );
@@ -137,11 +135,10 @@ super_no number references supervisor(super_no) on delete set null,
 notice_title varchar2(300) not null,
 notice_content varchar2(4000) not null,
 notice_date date default SYSDATE
-
+notice_category varchar2(24) check(notice_category in('이벤트', '공지사항', '이달의매장/직원'))
 );
 
 create sequence notice_seq;
-
 
 create table NOTICE_PHOTO(
 np_no number primary key,
@@ -190,7 +187,6 @@ create table menu(
 
 create sequence menu_seq;
 
-
 create table menu_photo(
     photo_no number primary key,
     menu_no references menu(menu_no) on delete cascade,
@@ -208,6 +204,7 @@ create table branch_menu( -- 지점메뉴
 	menu_no references menu(menu_no), 
 	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null 
         -- 0일때 정상판매, 1일때 품절처리, 2일때 지점 일시 판매 정지, 3일때 본사 단종
+	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null -- 0일때 정상판매, 1일태 품절처리
 );
 
 create sequence bm_seq;

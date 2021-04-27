@@ -82,7 +82,7 @@
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>  
 <div class="whole_wrapper">
 	<div class="page_title">카테고리별 재고 분석</div>
-	<div class="btn_wrapper">
+	<div class="btn_wrapper two_btn_wrapper">
 		<button class="stock_chart_btn">재고 분석</button> 
 		<button class="stock_list_btn">재고 현황</button>
 	</div>
