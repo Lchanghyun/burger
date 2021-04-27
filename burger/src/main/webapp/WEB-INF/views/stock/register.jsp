@@ -20,7 +20,7 @@
 </script>
 <div class="whole_wrapper">
 	<div class="page_title">일일재고 등록</div>
-	<div class="btn_wrapper">
+	<div class="btn_wrapper two_btn_wrapper">
 		<button class="stock_list_btn">재고 현황</button>
 		<button class="stock_plus_btn">자재 추가</button>
 	</div>

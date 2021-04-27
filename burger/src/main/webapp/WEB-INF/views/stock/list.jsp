@@ -14,6 +14,11 @@
 			e.preventDefault()
 			location.href="${pageContext.request.contextPath}/stock/stock_plus"			
 		})
+		
+		$(".stock_chart_btn").on("click",function(e){
+			e.preventDefault()
+			location.href="${pageContext.request.contextPath}/stock/chart"			
+		})
 		let msg = '<c:out value="${msg}"/>'
 		if(msg!=""){
 			Swal.fire({
@@ -27,6 +32,7 @@
 <div class="whole_wrapper">
 	<div class="page_title">재고 현황</div>
 	<div class="btn_wrapper">
+		<button class="stock_chart_btn">재고분석</button>
 		<button class="stock_register_btn">재고등록</button>
 		<button class="stock_plus_btn">자재 추가</button>
 	</div>

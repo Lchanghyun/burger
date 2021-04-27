@@ -99,5 +99,7 @@ public class MenuRepository {
 		data.put("category", category);
 		sqlSession.update("menu.stopModify1", data);
 	}
-	
+	public List<Menu> all_list() throws Exception{
+		return sqlSession.selectList("menu.all_list");
+	}
 }

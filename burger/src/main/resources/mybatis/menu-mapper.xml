@@ -111,5 +111,8 @@
 		update branch_menu set menu_status=#{menu_status} where branch_no=#{branch_no} and menu_no=#{menu_no}
 	</update>
 	
+	<select id="all_list" resultType ="Menu">
+		select * from menu
+	</select>
 	
  </mapper>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.one.burger.entity.Today;
 import com.one.burger.entity.TodayOrder;
 import com.one.burger.entity.TodayOrderChart;
 import com.one.burger.entity.TodayOrderMenu;
@@ -40,5 +41,10 @@ public class TodayOrderRepository {
 		data.put("today_time",today_time);
 		return sqlSession.selectList("today.forChart",data);
 	}
-	
+	public void todayInsert(Today today) throws Exception{	
+		sqlSession.insert("today.todayInsert", today);
+	}
+	public Integer sysdateToday() throws Exception{
+		return sqlSession.selectOne("today.sysdate");
+	}
 }

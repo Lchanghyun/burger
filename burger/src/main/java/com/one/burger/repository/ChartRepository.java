@@ -1,17 +1,14 @@
 package com.one.burger.repository;
 
 import java.util.List;
-
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.one.burger.entity.Branch;
 import com.one.burger.entity.SalesSuperTotal;
+import com.one.burger.entity.MenuBranchMenuGoodsVo;
 
-import lombok.extern.java.Log;
-
-@Log
 @Repository
 public class ChartRepository {
 	@Autowired
@@ -22,5 +19,8 @@ public class ChartRepository {
 	}
 	public List<Branch> getTotalbranch() throws Exception{
 		return sqlSession.selectList("chart.branchNos");
+	}
+	public MenuBranchMenuGoodsVo menu_sales(Map<String, Object> param) throws Exception{
+		return sqlSession.selectOne("chart.menu_total_sales",param);
 	}
 }

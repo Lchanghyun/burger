@@ -24,13 +24,15 @@
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->		
 	 <select id="goodsList" resultType="GoodsBranchMenuVo" parameterType="Integer">
-		select G.order_no, G.bm_no, M.menu_name, M.menu_price, G.count 
+		select G.order_no, G.bm_no, G.branch_no, M.menu_name, M.menu_price, G.count 
 		    from branch_menu B
 		        inner join goods G on G.bm_no = B.bm_no
 		        inner join menu M on M.menu_no = B.menu_no
 		            where G.order_no = #{order_no}
 	</select>
-	
+	<select id="branch_no" resultType="Integer" parameterType="Integer">
+		select branch_no from goods where order_no = #{order_no}
+	</select>
 	<insert id="goodsInsert" parameterType="Goods">
 		insert into goods values (
 			goods_seq.nextval, #{order_no}, #{member_no}, #{bm_no}, #{branch_no}, #{count})
