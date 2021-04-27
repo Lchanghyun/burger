@@ -2,72 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ChartMonth.css">
-=======
-
->>>>>>> refs/remotes/origin/main
-<style>
-	.supervisorChart{
-		height: calc(100% - 100px);
-       	font-family: GmarketSansMedium;
-       	padding : 10px 0 10px 10px; 
-	}
-	.supervisorChartBox{
-		width:1300px;
-		margin:auto;
-	}
-	.chartBox{
-		width:1300px;
-		height:380px;
-		padding: 0 10px;
-	}
-	.chartTitle{
-		height:25px;
-		font-size:18px;
-	}
-	.chartContent{
-		width: 1300px;  
-		height:350px;
-	}
-	#menu_sales_chart{
-		width: 1300px;
-		height:350px; 
-	}
-	.menu_sales_date_search_wrapper{
-		display : inline-block;
-		float : right; 
-	}
-	.menu_sales_date_search_wrapper::after{
-		content:"";
-		display:block;
-		clear:both;
-	}
-	.menu_sales_month,
-	.menu_sales_year{
-		border : 3px solid #EE4E34;
-		font-size: 17px; 
-		border-radius : 3px; 
-	}
-	.menu_sales_btn{
-		background-color : #EE4E34;
-		border : none;
-		border-radius : 3px;
-		width : 70px;
-		height: 28px;
-		color: white;
-		font-size: 17px;
-		margin-left : 10px; 
-		font-weight : bold;
-	}
-	button{
-		cursor: pointer;
-	}
-	button:focus{
-		outline: none;
-	}
-</style>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/superChart.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <!-- 메뉴별 매출 추이(창현) -->
