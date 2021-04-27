@@ -1,5 +1,6 @@
 package com.one.burger.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,13 +16,20 @@ public class BurgerOrderRepository {
 	@Autowired
 	private SqlSession sqlSession;	
 	
-	public List<MenuBranchMenuVo> orderList(String category) throws Exception{
-		return sqlSession.selectList("burgerOrder.orderList", category);
-	}
-	
 	public void orderInsert(BurgerOrder burgerOrder) throws Exception{
 		sqlSession.insert("burgerOrder.orderInsert", burgerOrder);
 	}
+	
+	public Integer getSeq() throws Exception{
+		Integer getSeq;
+		getSeq = sqlSession.selectOne("burgerOrder.getSeq"); 
+		return getSeq;
+	}
+	
+	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception{
+		return sqlSession.selectList("burgerOrder.orderList", branch_no);
+	}
+
 
 	
 

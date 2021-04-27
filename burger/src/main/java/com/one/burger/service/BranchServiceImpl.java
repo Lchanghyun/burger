@@ -1,5 +1,7 @@
 package com.one.burger.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class BranchServiceImpl implements BranchService{
 
 	@Autowired
 	private BranchRepository branchRepository;
+	@Override
+	public List<Branch> list() throws Exception {
+		return branchRepository.list();
+	}
 	
 	//지점관리자 가입
 	@Override
@@ -47,6 +53,13 @@ public class BranchServiceImpl implements BranchService{
 	public Branch find2(String branch_id) throws Exception {
 		return branchRepository.find2(branch_id);
 	}
+
+	@Override
+	public List<Branch> list(Integer branch_no) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 

@@ -16,6 +16,10 @@ public class BranchRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public List<Branch> list() throws Exception{
+		return sqlSession.selectList("branch.list");
+	}
+
 	//지점관리자 가입 db로
 	public void register(Branch branch) throws Exception {
 		sqlSession.insert("branch.branch_join", branch);

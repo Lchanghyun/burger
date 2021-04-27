@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+ <mapper namespace="today">
+ 
+ 	<insert id="todayInsert" parameterType="Today">
+ 		insert into today values(
+ 			today_seq.nextval, #{order_no}, #{branch_no}, #{today_num}, 
+ 			sysdate, #{total_price}, '0', #{price_status})
+ 	</insert>
+ 	
+ 	<select id="sysdate" resultType="Integer">
+		select order_no 
+		    from today 
+        		where to_char(today_time, 'YYYY-MM-dd') = to_char(sysdate, 'YYYY-MM-dd') and rownum = 1
+ 	</select>
+ 	
+ 	<update id="status" parameterType="map">
+ 		update today set status='1' where order_no=#{order_no} and branch_no=#{branch_no}
+ 	</update>
+ 	
+ 	<select id="todayOrder" parameterType="Integer" resultType="TodayOrder">
+ 		select O.*, T.today_num,T.today_time,T.total_price,T.status,T.price_status from
+    	burger_order O inner join today T on O.order_no=T.order_no
+    	where O.branch_no=#{branch_no} and to_char(T.today_time,'YY/MM/DD')=to_char(sysdate)
+ 	</select>
+ 	
+ 	<select id="menuInfo" parameterType="Integer" resultType="TodayOrderMenu">
+ 		select G.order_no,G.bm_no,G.count,M.menu_no,M.menu_name from
+    	burger_order O inner join today T on O.order_no=T.order_no
+   		inner join goods G on O.order_no=G.order_no
+    	inner join branch_menu B on G.bm_no=B.bm_no
+    	inner join menu M on B.menu_no=M.menu_no
+		where G.order_no=#{order_no} and to_char(T.today_time,'YY/MM/DD')=to_char(sysdate)
+ 	</select>
+ 	
+ 	<select id="getBranchName" parameterType="Integer" resultType="String">
+ 		select branch_name from branch where branch_no=#{branch_no}
+ 	</select>
+ 	
+ </mapper>

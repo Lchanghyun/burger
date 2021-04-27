@@ -23,13 +23,22 @@
 		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->	
-	<select id="orderList" resultType="MenuBranchMenuVo" parameterType="map">
-		select B.branch_no, M.menu_no, M.menu_name, M.menu_price, M.category, MP.save_name, B.menu_status
+	<select id="orderList" resultType="MenuBranchMenuVo" parameterType="Integer">
+		select B.branch_no, M.menu_no, M.menu_name, M.menu_price, M.category, 
+					MP.save_name, B.menu_status, B.bm_no
     		from branch_menu B
         		inner join menu M on B.menu_no = M.menu_no
         		inner join menu_photo MP on B.menu_no = MP.menu_no
-            		where B.branch_no = 1 and M.category = #{category}
+            		where B.branch_no = #{branch_no} and M.category != '단종'
                 		order by M.menu_no desc
 	</select>
-
+	
+	<select id="getSeq" resultType="int">
+		select order_seq.nextval from dual
+	</select>
+	
+	<insert id="orderInsert" parameterType="BurgerOrder">
+		insert into burger_order values (#{order_no}, #{member_no}, #{branch_no})
+	</insert>
+	
 </mapper>

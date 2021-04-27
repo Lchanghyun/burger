@@ -11,4 +11,5 @@ public class Stock {
 	private int branch_no;
 	private int item_no;
 	private int stock_count;
+	private char status;
 }

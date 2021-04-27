@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	이 파일은 데이터베이스 SQL구문을 보관해두는 파일이다.
+	이를 mapper(매퍼) 파일이라고 부른다.
+	
+	mapper 파일은 테이블당 1개씩 만드는 것을 원칙으로 하며, 여러 개 있을 수 있다.
+	mapper 파일간 충돌을 방지하기 위해 별칭(namespace)을 부여하도록 강제한다.  
+-->
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+<mapper namespace="goods">
+
+	<!-- 
+		insert를 수행할 수 있는 구문
+		- id : 외부에서 구문을 호출하기 위한 이름(식별자)
+		- parameterType : 외부에서 전달되는 데이터의 자료형
+		
+		myBatis에서는 데이터를 배치하기 위해 다음과 같은 형태의 식을 제공
+		1. #{이름} : 전달된 데이터에서 해당하는 이름의 값을 자료형에 알맞게 동적으로 배치
+		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
+	 -->		
+	 <select id="goodsList" resultType="GoodsBranchMenuVo" parameterType="Integer">
+		select G.order_no, G.bm_no, G.branch_no, M.menu_name, M.menu_price, G.count 
+		    from branch_menu B
+		        inner join goods G on G.bm_no = B.bm_no
+		        inner join menu M on M.menu_no = B.menu_no
+		            where G.order_no = #{order_no}
+	</select>
+	<select id="branch_no" resultType="Integer" parameterType="Integer">
+		select branch_no from goods where order_no = #{order_no}
+	</select>
+	<insert id="goodsInsert" parameterType="Goods">
+		insert into goods values (
+			goods_seq.nextval, #{order_no}, #{member_no}, #{bm_no}, #{branch_no}, #{count})
+	</insert>
+	
+</mapper>
