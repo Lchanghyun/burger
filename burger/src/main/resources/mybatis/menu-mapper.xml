@@ -6,7 +6,7 @@
  <mapper namespace="menu">
 	<insert id="register" parameterType="Menu">
 		insert into menu (menu_no, menu_name, menu_price, category) 
-		values (#{menu_no}, #{menu_name}, #{menu_price}, #{category})
+	   values (#{menu_no}, #{menu_name}, #{menu_price}, #{category})
 	</insert>
 	
 	<insert id="registerPhoto" parameterType="MenuPhoto">
@@ -20,14 +20,14 @@
 	
 	<select id="superlist" resultType="MenuPhotoVO">
 		select M.*, P.upload_name, P.save_name from
-    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	menu M left outer join menu_photo P on M.menu_no=P.menu_no
     	where not M.category = '단종'
     	order by M.menu_name asc
 	</select>
 	
 	<select id="searchlist" parameterType="String" resultType="MenuPhotoVO">
-		select M.*, P.upload_name, P.save_name from
-    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+		select M.*, P.upload_name, P.save_name
+		 from menu M inner join menu_photo P on M.menu_no=P.menu_no
     	where not M.category = '단종' and instr(M.menu_name,#{menu_name}) > 0
     	order by M.menu_name asc
 	</select>
@@ -49,7 +49,7 @@
 	
 	<select id="read" parameterType="Integer" resultType="MenuPhotoVO">
 		select M.*, P.upload_name, P.save_name from
-    	menu M inner join menu_photo P on M.menu_no=P.menu_no
+    	menu M left outer join menu_photo P on M.menu_no=P.menu_no
 		where M.menu_no = #{menu_no}
 	</select>
 	

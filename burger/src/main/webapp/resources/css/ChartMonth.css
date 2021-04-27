@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+		html, body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+	.adminbox{
+		height: calc(100% - 162px);
+       	font-family: GmarketSansMedium;
+    }
+	.chart1{
+		height:350px;
+		display:flex;
+		justify-content: space-between;
+		align-items:center;
+	}
+	.dateSelect{
+		width:750px;
+		height:30px;
+		display:flex;
+		justify-content:center;
+		align-items: center;
+		margin-bottom:10px;
+		font-family: GmarketSansMedium;
+	}
+	.eachbranchTotalBox{
+		width:750px;
+		height:310px;
+		text-align:center;
+	}
+	.ChartTableBox{
+		width:500px;
+		height:350px;
+		border: 2px solid #EE4E34;
+	}
+	.ChartTable{
+		width:500px;
+		margin:auto;
+		border-spacing: 0;
+		font-family: GmarketSansMedium;
+	}
+	.ChartTable > thead > tr > th{
+		background-color: #EE4E34;
+		color:white;
+		font-size: 18px;
+	}
+	.ChartTable > tbody > tr > td{
+		text-align:center;
+		height:35px;
+	}
+	.YMSelect{
+		border:2px solid #EE4E34;
+		font-size:17px;
+		outline:none;
+		border-radius:3px;
+		font-family: GmarketSansMedium;
+	}
+	.YMSelect + span{
+		font-size:17px;
+		margin:0 10px 0 5px;
+	}
+	.SelectBtn1{
+		background-color:#EE4E34;
+		width:70px;
+		height:28px;
+		border:none;
+		outline:none;
+		color:white;
+		font-size:17px;
+		border-radius:3px;
+		margin-left:20px;
+		font-family: GmarketSansMedium;
+	}
+	.statusRed{
+		color:red;
+	}
+	.statusBlue{
+		color: blue;
+	}
+	.statusZero{
+		font-weight:bold;
+	}

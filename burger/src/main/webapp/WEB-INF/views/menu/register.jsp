@@ -1,87 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>메뉴등록</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/menuAdmin.css">
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-    	$(function(){
-    		$(".resetBtn").click(function(){
-    			$(".menuphotoshow").children().remove();
-    		})
-    		$(".registformBtn").click(function(e){
-    			e.preventDefault();
-    			if(!$(".menu_name").val()){
-    				alert("메뉴명을 입력하세요.");
-    				return;
-    			}
-    			if(!$(".menu_price_if").val()){
-    				alert("가격을 입력하세요.");
-    				return;
-    			}
-    			if($(".menu_price_if").val() <= 0){
-    				alert("가격을 다시 입력하세요");
-    				return;
-    			}
-    			if(!$("#menu_photo").val()){
-    				alert("이미지를 선택하세요.");
-    				return;
-    			}
-    			let menu_name = $(".menu_name").val();
-    			$.ajax({
-    				url: "checkMenu",
-    				type: "POST",
-    				data: {
-    					menu_name : menu_name
-    				},
-    				success: function(res){
-    					if(res === 'o'){
-    						alert("이미 존재하는 메뉴 이름입니다.");
-    					}
-    					else{
-    						$("#menu").submit();
-    					}
-    				}
-    			})
-    		})
-    		$(".cancleBtn").click(function(){
-    			location.href = "superlist";
-    		})
-    		$("#menu_photo").on("change", function(e){
-    			let files = e.target.files;
-    			let file = files[0];
-    			let formData = new FormData();
-    			formData.append("file",file);
-    			$.ajax({
-    				url:"thumbUpload",
-    				processData : false,
-    				contentType: false,
-    				data : formData,
-    				dataType:"text",
-    				type:"POST",
-    				success: function(res){
-    					$(".menuphotoshow").children().remove();
-    					let str = "<div><img src='photoShow?fileName="+res+"'></div>";
-    					$(".menuphotoshow").append(str);
-    				}
-    			})
-    		})
-    	})
-    </script>
-</head>
-<body>
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
+<script src="${pageContext.request.contextPath}/resources/js/menuRegister.js"></script>
 	<div class="adminbox">
-		<div class="menubar">메뉴바</div>
 		<div class="menu-register-box">
 	        <form id="menu" action="register" method="post" enctype="multipart/form-data">
 	            <div class="menu-register-btn">
-	                <input type="reset" value="초기화" class="resetBtn">
-	                <input type="submit" value="등록" class="registformBtn">
-	                <input type="button" value="취소" class="cancleBtn">
+	            	<div class="menuAdminTitle">메뉴등록</div>
+	            	<div>
+		                <input type="reset" value="초기화" class="resetBtn">
+		                <input type="submit" value="등록" class="registformBtn">
+		                <input type="button" value="취소" class="cancleBtn">
+	                </div>
 	            </div>
 	            <div class="tableforborder">
 	                <table class="registermenu-table">
@@ -115,5 +47,4 @@
 	        </form>
 	    </div>
     </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"></jsp:include>

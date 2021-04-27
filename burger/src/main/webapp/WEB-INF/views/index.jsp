@@ -12,8 +12,6 @@
                 <div style="padding-left: 10px;">
                     <input type="button" value="회원가입" id="join">
        			</div>
-</head>
-
 
 <jsp:include page="template/footer.jsp"></jsp:include>
 	

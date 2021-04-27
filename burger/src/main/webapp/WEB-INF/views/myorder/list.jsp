@@ -2,102 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>My 주문내역</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        .top-menu{
-            width:100%;
-            height:100px;
-        }
-        .order-list{
-            width:800px;
-            margin: auto;
-            padding:1rem;
-        }
-        .myorderlist{
-        	padding:1rem;
-            border:1px solid black;
-        }
-        .order-title{
-            font-size: 23px;
-            font-weight: bold;
-            margin-bottom:15px;
-        }
-        .mylastorder{
-            padding:1rem;
-        }
-        .myorderlist-border:hover{
-        	background-color:lightgray;
-        	cursor: pointer;
-        }
-        .myorderlist-border{
-            padding:1rem;
-            display: flex;
-            align-items: center;
-            justify-content:space-around;
-            border-bottom: 1px dotted black;
-        }
-        .myorderorder{
-        	display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width:470px;
-        }
-        .myorderMenu{
-            font-size: 21px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .myorderNum, .myorderTime{
-            font-size: 16px;
-        }
-        .myorderBranch{
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-align: right;
-        }
-        .myorderStatus{
-            padding:0.5rem;
-            color : white;
-            background-color: brown;
-            text-align: right;
-        }
-        .menulist-img{
-        	width:200px;
-        	height:130px;
-        	margin-right:15px;
-        }
-
-    </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script>
-		$(function(){
-			$(".mylastorder").click(function(){
-				let order_no = $(this).children().val();
-				console.log(order_no);
-				location.href = "detail?order_no="+order_no;
-			})
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/myorder.css">
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<script>
+	$(function(){
+		$(".mylastorder").click(function(){
+			let order_no = $(this).children().val();
+			console.log(order_no);
+			location.href = "detail?order_no="+order_no;
 		})
-    </script>
-</head>
-<body>
-    <div class="top-menu">
-        상단메뉴
-    </div>
+	})
+</script>
     <div class="order-list">
     
-        <div class="order-title">『주문내역』</div>
+        <div class="order-title">주문내역</div>
         
         <div class="myorderlist">
         	<c:if test="${empty listcount}">
@@ -136,7 +54,5 @@
 		        </div>
 			</c:forEach>
         </div>
-        
     </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
