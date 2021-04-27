@@ -29,7 +29,7 @@
     }
 
     table.purchase_table {
-        border-collapse: separate;
+        border-collapse: collapse;
         border-spacing: 1px;
         text-align: center;
         line-height: 1.5;
@@ -163,7 +163,7 @@
     	                          
     	                            <c:when test="${status != '발주완료'}">
     	                            	<td>
-	   	                            		<a href="${pageContext.request.contextPath}/purchase/update?purchase_no=${Purchase.purchase_no}">
+	   	                            		<a>
 	   	                            			${Purchase.status}
 	   	                            		</a>
 	   	                            	</td>

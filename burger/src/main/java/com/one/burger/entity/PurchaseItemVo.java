@@ -11,4 +11,5 @@ public class PurchaseItemVo {
 	private String category;
 	private int count;
 	private int item_price;
+	private int pi_no;
 }

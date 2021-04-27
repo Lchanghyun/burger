@@ -171,8 +171,7 @@
                 <table class="purchase_table" id="purchaseList">
                     <thead>
                         <tr class="tlist">
-                        	<th>선택</th>
-                            <th>카테고리</th>
+                            <th>카테고리</th> 
                             <th>발주품목</th>
                             <th>발주금액</th>
                             <th>수량</th>

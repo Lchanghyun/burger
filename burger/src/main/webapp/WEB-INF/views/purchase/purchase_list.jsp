@@ -106,6 +106,12 @@
     <script>
   $(function(){
      
+	 $('#deletenum').on('click',function(){
+		 pss=$(this).prev().val;
+		 alert(pss.html()); 
+		 
+	 })
+	  
      // 목록
 	 $('#back').on('click',function(e){ 
 		 location.href="${pageContext.request.contextPath}/purchase/list"
@@ -138,6 +144,7 @@
                             <th>발주품목</th>
                             <th>발주금액</th>
                             <th>수량</th>
+                            <th>추가기능</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -152,6 +159,7 @@
                                 <td>${PI.item_name}</td>
                                 <td>${PI.item_price}</td>
                                 <td>${PI.count}</td>
+                                <td><button onclick = "location.href = '${pageContext.request.contextPath}/purchase/deletePurchase?pi_no=${PI.pi_no}' ">삭제</button></td>
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -139,9 +139,9 @@ public class PurchaseController {
 		log.info("list :" + list);
 		
 		purchaseService.register(list);
-		
-		return "purchase/list";
-	}
+		 
+		return "purchase/list"; 
+	} 
 	
 	@PostMapping("/regist")
 	public ModelAndView insert(HttpServletRequest req, HttpSession session) throws Exception{
@@ -162,13 +162,24 @@ public class PurchaseController {
 	}
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest req) throws Exception{
-		log.info("purchaseDelete");
+		log.info("purchaseDelete()");
 		
 		int purchase_no = Integer.parseInt(req.getParameter("purchase_no"));
 		
-		purchaseService.delete();
+		purchaseService.delete(purchase_no);
+		  
+		return "redirect:list"; 
+	}
+	
+	@GetMapping("/deletePurchase")
+	public String deletePurchase(HttpServletRequest req) throws Exception{
+		log.info("purchaseDelete()");
 		
-		return "purchase/list";
+		int pi_no = Integer.parseInt(req.getParameter("pi_no"));
+		
+		
+		purchaseService.deletePurchase(pi_no);   
+		return "redirect: list";
 	}
 	
 	@GetMapping("/superlist")

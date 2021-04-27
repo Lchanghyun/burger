@@ -9,10 +9,9 @@ import lombok.Setter;
 @Setter
 public class ReceivedItemVo {
 	
-	private int item_no;
 	private String item_name;
 	private int item_price;
 	private String category;
 	private int count;
-	private Date received_date;
+	private Date receive_date;
 }

@@ -107,4 +107,18 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		return purchaseRepository.stock(branch_no);
 	}
+
+	@Override 
+	public int delete(int purchase_no) throws Exception {
+		 
+		return purchaseRepository.purchaseDelete(purchase_no);
+		
+	}
+
+	@Override
+	public int deletePurchase(int pi_no) throws Exception {
+
+		return purchaseRepository.deletePurchase(pi_no); 
+	}
+
 }

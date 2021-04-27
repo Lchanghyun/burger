@@ -71,6 +71,15 @@ public class PurchaseRepository {
 		return sqlSession.selectList("purchase_item.StockList",branch_no);
 	}
 	
+	public int purchaseDelete(int purchase_no) {
+		
+		return sqlSession.delete("purchase.purchaseDelete", purchase_no);
+	}
+
+	public int deletePurchase(int pi_no) {
+		
+		return sqlSession.delete("purchase_item.deletePurchase", pi_no);
+	}
 	
 	
 }

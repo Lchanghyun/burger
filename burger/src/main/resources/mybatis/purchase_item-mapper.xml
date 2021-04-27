@@ -16,7 +16,7 @@
 
 	<select id ="PIlist" resultType="PurchaseItemVo" parameterType="int">
 	
-		select i.item_name, i.item_price, i.category, p.count 
+		select i.item_name, i.item_price, i.category, P.count, P.pi_no
 			from purchase_item P  
 				left outer join stock S on P.stock_no = S.stock_no 
 				left outer join Item i on S.item_no = I.item_no 
@@ -43,4 +43,8 @@
 		insert into purchase_item values(
 			#{pi_no, jdbcType=INTEGER}, #{purchase_no, jdbcType=INTEGER},#{branch_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{stock_no, jdbcType=INTEGER},#{count, jdbcType=INTEGER})
 	</insert>
+	
+	<delete id="deletePurchase" parameterType="int">
+		delete from purchase_item where pi_no=${pi_no}
+	</delete>
 </mapper>

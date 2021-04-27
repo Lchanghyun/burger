@@ -21,6 +21,8 @@ public interface PurchaseService {
 	public int getSeq() throws Exception;
 	public void insert(Map<String, Object> param) throws Exception;
 	public List <PurchaseStockVo> StockList(int branch_no) throws Exception;
-	public void register(List<Map<String, Object>> list) throws Exception; 
+	public void register(List<Map<String, Object>> list) throws Exception;
+	public int delete(int purchase_no) throws Exception;
+	public int deletePurchase(int pi_no) throws Exception; 
 
 }
