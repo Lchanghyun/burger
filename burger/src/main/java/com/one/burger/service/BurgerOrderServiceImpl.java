@@ -49,6 +49,10 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	public List<GoodsBranchMenuVo> goodsList(int order_no) throws Exception {
 		return goodsRepository.goodsList(order_no); 
 	}
+	@Override
+	public Integer branchNo(int order_no) throws Exception {
+		return goodsRepository.branchNo(order_no);	
+	}
 	
 	@Override
 	public void TodayInsert(Today today) throws Exception {

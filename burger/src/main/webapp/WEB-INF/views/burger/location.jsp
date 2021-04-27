@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>    
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 var map;
 	$(function(){
@@ -86,15 +86,15 @@ var map;
 </script>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 	<form class="form" action="order" method="get">
-		<p style="margin: 0;">지점 검색</p><br><br>
-		
-		<span>
-			<input class="inline-input address" type="text" name="address" required style="width: 340px;">
-			<input class="mapAddress" type="text" style="display: none;">
-		</span>
-		<span>
-			<input class="check-location" type="button" value="위치확인하기">
-		</span>		
+		<p style="margin: 0;">근처 지점 찾기</p><br><br>		
+			<span>
+				<input class="inline-input address" type="text" name="address" style="width: 340px;">
+				<input class="mapAddress" type="text" style="display: none;">
+			</span>
+			<span>
+				<input class="check-location" type="button" value="위치확인하기">
+			</span>
+			<div id="insert-map" style="width:800px; height:200px; display: none;"></div>
 		<br><br>
 		<select id="branch_select" name="branch_no">
 				<option>지점선택</option>

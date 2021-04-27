@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.one.burger.entity.BurgerOrder;
 import com.one.burger.entity.Goods;
+import com.one.burger.entity.GoodsBranchMenuVo;
 import com.one.burger.entity.Today;
 import com.one.burger.service.BranchService;
 import com.one.burger.service.BurgerOrderService;
@@ -93,6 +94,8 @@ public class BurgerOrderController {
 	public String paymentList(int order_no, Model model) throws Exception{
 		log.info("GETpaymentList()");
 		log.info("order_no: "+order_no);
+//		int branch_no = service.branchNo(order_no);
+//		System.out.println(""+branch_no);
 		model.addAttribute("goodsList", service.goodsList(order_no));
 		return "burger/payment";
 	}

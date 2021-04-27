@@ -23,6 +23,12 @@ public class BranchServiceImpl implements BranchService{
 		branchRepository.insert(branch);
 	}
 
+	@Override
+	public List<Branch> list(Integer branch_no) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 

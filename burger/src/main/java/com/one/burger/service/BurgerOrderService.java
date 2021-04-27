@@ -29,5 +29,7 @@ public interface BurgerOrderService {
 	public void TodayInsert(Today today)throws Exception;
 
 	public Integer sysdateToday() throws Exception;
+
+	public Integer branchNo(int order_no) throws Exception;
 	
 }
