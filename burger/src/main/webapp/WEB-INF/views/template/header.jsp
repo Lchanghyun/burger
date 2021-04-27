@@ -10,9 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="${path}/resources/js/indexJs.js"></script>
 	<link rel="stylesheet" href="${path}/resources/css/index.css">
-    <script>
-        
-    </script>
     <style>
         #join{
             width: 100px;
