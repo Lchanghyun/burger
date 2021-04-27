@@ -15,14 +15,37 @@ drop table item;
 drop table branch;
 drop table supervisor;
 
-create table supervisor(
-	super_no number primary key,
-	super_id  varchar2(20) unique not null,
-	super_pw varchar2(15) not null
-);
 drop sequence super_seq;
+drop sequence branch_seq;
+drop sequence item_seq;
+drop sequence stock_seq;
+drop sequence purchase_seq;
+drop sequence pi_seq;
+drop sequence receive_seq;
+drop sequence member_seq;
+drop sequence notice_seq;
+drop sequence np_seq;
+drop sequence order_seq;
+drop sequence today_seq;
+drop sequence menu_seq;
+drop sequence menu_photo_seq;
+drop sequence bm_seq;
+drop sequence goods_seq;
+
+
+create table supervisor(
+super_no number primary key,
+super_id  varchar2(20) unique not null,
+super_pw varchar2(15) not null
+);
+
 create sequence super_seq;
 
+insert into supervisor values(super_seq.nextval, 'super1', 'super1');
+insert into supervisor values(super_seq.nextval, 'super2', 'super2');
+insert into supervisor values(super_seq.nextval, 'super3', 'super3');
+insert into supervisor values(super_seq.nextval, 'super4', 'super4');
+insert into supervisor values(super_seq.nextval, 'super5', 'super5');
 
 create table branch(
 	branch_no number primary key,
@@ -30,13 +53,13 @@ create table branch(
 	branch_name varchar2(30) not null,
 	branch_id varchar2(20) unique not null,
 	branch_pw varchar2(15) not null,
-	branch_address varchar2(60) not null
+	branch_address varchar2(300) not null
 );
 
-drop SEQUENCE branch_seq;
 create sequence branch_seq;
 
-
+insert into branch values(branch_seq.nextval, 1, '강남점', 'branch1', 'branch1', '서울특별시 강남구 강남대로 406 GLASS TOWER');
+insert into branch values(branch_seq.nextval, 1, '등촌점', 'branch2', 'branch2', '서울특별시 강서구 등촌동');
 
 create table item(
 	item_no number primary key,
@@ -45,6 +68,7 @@ create table item(
 	category varchar2(30) check
 	    (category in('소모품', '채소류', '육류', '제과류', '음료', '단종')) not null
 );
+
 create sequence item_seq;
 
 create table stock(
@@ -55,8 +79,9 @@ create table stock(
 	stock_date date default sysdate not null,
 	status char(1) check(status in('0','1'))
 );
-create sequence stock_seq;
 
+
+create sequence stock_seq;
 
 create table purchase (
 purchase_no number primary key,
@@ -66,8 +91,8 @@ purchase_date date default sysdate not null,
 status varchar2(30) check 
     (status in('발주대기','발주완료','발주취소','발주보류'))
 );
-create sequence purchase_seq;
 
+create sequence purchase_seq;
 
 create table purchase_item(
 pi_no number primary key,
@@ -77,8 +102,8 @@ super_no number references supervisor(super_no),
 item_no number references item(item_no),
 count number default 0 not null
 );
-create sequence pi_seq;
 
+create sequence pi_seq;
 
 create table received_item(
 receive_no number primary key,
@@ -88,6 +113,7 @@ item_no number references item(item_no),
 count number default 0 not null,
 receive_date date default sysdate not null
 );
+
 create sequence receive_seq;
 
 create table member(
@@ -96,16 +122,14 @@ member_id varchar2(20) not null unique,
 member_pw varchar2(15) not null,
 member_name varchar2(60) not null,
 member_phone varchar2(13) not null unique,
-member_address varchar2(60) not null,
+member_address varchar2(300) not null,
 member_gender varchar2(12) check
     (member_gender in ('남', '여', '선택안함')),
 member_age_group varchar2(11) check
     (member_age_group in ('10대', '20대', '30대', '40대', '50대이상'))
 );
 
-drop sequence member_seq;
 create sequence member_seq;
-
 
 create table NOTICE(
 notice_no number primary key,
@@ -113,7 +137,9 @@ super_no number references supervisor(super_no) on delete set null,
 notice_title varchar2(300) not null,
 notice_content varchar2(4000) not null,
 notice_date date default SYSDATE
+
 );
+
 create sequence notice_seq;
 
 
@@ -126,7 +152,12 @@ save_name varchar2(256) not null unique,
 file_size number,
 save_type varchar2(256) not null
 );
+
 create sequence np_seq;
+
+insert into member values(
+    member_seq.nextval, 'test1', 'test1', '박지민', '010-1234-1234', '서울특별시 강남구 강남대로 406', '여', '10대'
+);
 
 create table burger_order( -- 주문
 order_no number primary key, -- 주문번호
@@ -134,13 +165,11 @@ member_no references member(member_no), -- 멤버 외래키
 branch_no references branch(branch_no) -- 지점 외래키
 );
 
-drop sequence order_seq;
 create sequence order_seq;
-
 
 create table today ( -- 당일주문
 dum_no number primary key, -- 당일주문 더미 번호
-order_no references burger_order(order_no), -- 주문 외래키
+order_no unique references burger_order(order_no) on delete cascade, -- 주문 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 today_num number default 1 not null, -- 당일 대기 번호
 today_time timestamp default sysdate, -- 거래시간
@@ -148,6 +177,7 @@ total_price number not null, -- 총금액
 status char(1) default '0', -- 0이면 주문접수, 1이면 픽업완료
 price_status char(1) default '0' -- 0이면 만나서 결제, 1이면 결제API
 );
+
 create sequence today_seq;
 
 create table menu(
@@ -157,6 +187,7 @@ create table menu(
 	category varchar2(9) check
     (category in ('햄버거', '음료', '사이드', '단종')) not null
 );
+
 create sequence menu_seq;
 
 
@@ -168,14 +199,17 @@ create table menu_photo(
     file_size number default 0 not null,
     save_type varchar2(256) not null
 );
+
 create sequence menu_photo_seq;
 
 create table branch_menu( -- 지점메뉴
 	bm_no number primary key,
 	branch_no references branch(branch_no),
-	menu_no references menu(menu_no) on delete cascade, 
-	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null -- 0일때 정상판매, 1일태 품절처리
+	menu_no references menu(menu_no), 
+	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null 
+        -- 0일때 정상판매, 1일때 품절처리, 2일때 지점 일시 판매 정지, 3일때 본사 단종
 );
+
 create sequence bm_seq;
 
 create table goods ( -- 주문상품
@@ -186,6 +220,7 @@ bm_no references branch_menu(bm_no), -- 지점 메뉴 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 count number not null
 );
+
 create sequence goods_seq;
 
-
+commit;
