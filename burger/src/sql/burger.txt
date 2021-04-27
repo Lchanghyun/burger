@@ -186,7 +186,7 @@ create table menu(
 );
 
 create sequence menu_seq;
-
+	
 create table menu_photo(
     photo_no number primary key,
     menu_no references menu(menu_no) on delete cascade,
