@@ -178,7 +178,6 @@
 						</table>
 					</div>
 				</div>
-				<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 				<script>
 					let labels = [];
 					let datas = [];
@@ -193,7 +192,7 @@
 						datas.push('${list.total}');
 					</c:forEach>
 				</script>
-				<script src="${pageContext.request.contextPath}/resources/js/chartMonth.js"></script>
+				<script src="${pageContext.request.contextPath}/resources/chartMonth.js"></script>
 			</div>
 		</div>
 		<div class="chartBox">
