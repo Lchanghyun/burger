@@ -1,165 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>(지점)메뉴관리</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/menuAdmin.css">
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-		$(function(){
-			let my = ${my};
-			if(my == true){
-				$(".myBranchList").addClass("activeTopList");
-			}
-			else{
-				$(".topTotal").addClass("activeTopList");
-			}
-			let menuCategory = '${mCategory}';
-			if(menuCategory == '햄버거'){
-				$(".burger").addClass("activeList");
-			}
-			else if(menuCategory == '사이드'){
-				$(".side").addClass("activeList");
-			}
-			else if(menuCategory == '음료'){
-				$(".drink").addClass("activeList");
-			}
-			else if(menuCategory == '단종'){
-				$(".theend").addClass("activeList");
-			}
-			else if(menuCategory == '판매중지'){
-				$(".stop").addClass("activeList");
-			}
-			else{
-				$(".total").addClass("activeList");
-			}
-			
-			$(".menuAdd").click(function(){
-				let menu_no = $(this).prev().val();
-				$.ajax({
-					url: "menuAdd",
-					type:"POST",
-					data:{
-						menu_no: menu_no,
-					},
-					success:function(res){
-						if(res=='add'){
-							alert("추가되었습니다.");
-							location.reload();
-						}
-					}
-				})
-			})
-			$(".menuBranchRemove").click(function(){
-				let menuName = $(this).parent().prev().prev().prev().children().last().text();
-				let conf = confirm(menuName+"을(를) 판매 중지하시겠습니까?");
-				if(conf){
-					let menu_no = $(this).prev().val();
-					$.ajax({
-						url: "removeBranchMenu",
-						type:"POST",
-						data:{
-							menu_no: menu_no,
-							branch_no: '${sessionScope.branch_no}',
-							menu_status:'2'
-						},
-						success:function(res){
-							if(res=='ok'){
-								alert("판매가 중지되었습니다.");
-								location.reload();
-							}
-						}
-					})
-				}
-			})
-			$(".stopResale").click(function(){
-				let menuName = $(this).parent().prev().prev().children().last().text();
-				let conf = confirm(menuName+"을(를) 재 판매하시겠습니까?");
-				if(conf){
-					let menu_no = $(this).prev().val();
-					$.ajax({
-						url: "removeBranchMenu",
-						type:"POST",
-						data:{
-							menu_no: menu_no,
-							branch_no: '${sessionScope.branch_no}',
-							menu_status:'0'
-						},
-						success:function(res){
-							if(res=='ok'){
-								alert("판매를 다시 시작했습니다.");
-								location.reload();
-							}
-						}
-					})
-				}
-			})
-			$(".listphotoshow").click(function(){
-				let save_name = $(this).prev().val();
-				let menu_name = $(this).next().text();
-				let openPhoto = window.open("","photo", "width=600px, height=550px");
-				openPhoto.document.write("<html><head><title>"+menu_name+"</title></head><body><div><img width='590px' height='530px' src='photoShow?fileName="+save_name+"'></div></body></html>");
-			})
-			$(".menuSoldout").click(function(){
-				let menuName = $(this).parent().prev().prev().children().last().text();
-				let conf = confirm(menuName+"을(를) 품절 처리하시겠습니까?");
-				if(conf){
-					let menu_no = $(this).prev().val();
-					$.ajax({
-						url: "soldoutAndResale",
-						type:"POST",
-						data:{
-							menu_no: menu_no,
-							branch_no: '${sessionScope.branch_no}',
-							menu_status: '1'
-						},
-						success:function(res){
-							if(res=='success'){
-								alert("품절 처리되었습니다.");
-								location.reload();
-							}
-						}
-					})
-				}
-			})
-			$(".menuResale").click(function(){
-				let menuName = $(this).parent().prev().prev().children().last().text();
-				let menu_no = $(this).prev().val();
-				$.ajax({
-					url: "soldoutAndResale",
-					type:"POST",
-					data:{
-						menu_no: menu_no,
-						branch_no: '${sessionScope.branch_no}',
-						menu_status: '0'
-					},
-					success:function(res){
-						if(res=='success'){
-							alert(menuName+" 판매를 시작했습니다.");
-							location.reload();
-						}
-					}
-				})
-			})
-		})
-    </script>
-</head>
-<body>
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
+<script>
+	$(function(){
+		let my = ${my};
+		if(my == true){
+			$(".myBranchList").addClass("activeTopList");
+		}
+		else{
+			$(".topTotal").addClass("activeTopList");
+		}
+		let menuCategory = '${mCategory}';
+		if(menuCategory == '햄버거'){
+			$(".burger").addClass("activeList");
+		}
+		else if(menuCategory == '사이드'){
+			$(".side").addClass("activeList");
+		}
+		else if(menuCategory == '음료'){
+			$(".drink").addClass("activeList");
+		}
+		else if(menuCategory == '단종'){
+			$(".theend").addClass("activeList");
+		}
+		else if(menuCategory == '판매중지'){
+			$(".stop").addClass("activeList");
+		}
+		else{
+			$(".total").addClass("activeList");
+		}
+	})
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/menuAdmin.js"></script>
 	<div class="adminbox">
-		<div class="menubar">
-			<div><a>매출관리</a></div>
-			<div><a>발주관리</a></div>
-			<div><a>재고관리</a></div>
-			<div><a href="${pageContext.request.contextPath}/menu/branchlist">지점메뉴관리</a></div>
-		</div>
 		<div class="menustatuslist">
-	        <div class="menulist-title">${branch_name} ☞ 메뉴관리</div>
 			<div class="listTopBox">
-	        	<a href="branchlist" class="topTotal">전체 메뉴목록</a>
-	        	<a href="branchlist?my" class="myBranchList">My지점 메뉴목록</a>
+				<div class="menuAdminTitle">메뉴관리</div>
+				<div>
+		        	<a href="branchlist" class="topTotal">전체 메뉴목록</a>
+		        	<a href="branchlist?my" class="myBranchList">${branch_name} 메뉴목록</a>
+	        	</div>
 	        </div>
 	
 		<c:if test="${my}">
@@ -371,5 +253,4 @@
 	        </div>
 		</div>
 	</div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"></jsp:include>

@@ -2,68 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<style>
-	.supervisorChart{
-		height: calc(100% - 100px);
-       	font-family: GmarketSansMedium;
-       	padding : 10px 0 10px 10px; 
-	}
-	.supervisorChartBox{
-		width:1300px;
-		margin:auto;
-	}
-	.chartBox{
-		width:1300px;
-		height:380px;
-		padding: 0 10px;
-	}
-	.chartTitle{
-		height:25px;
-		font-size:18px;
-	}
-	.chartContent{
-		width: 1300px;  
-		height:350px;
-	}
-	#menu_sales_chart{
-		width: 1300px;
-		height:350px; 
-	}
-	.menu_sales_date_search_wrapper{
-		display : inline-block;
-		float : right; 
-	}
-	.menu_sales_date_search_wrapper::after{
-		content:"";
-		display:block;
-		clear:both;
-	}
-	.menu_sales_month,
-	.menu_sales_year{
-		border : 3px solid #EE4E34;
-		font-size: 17px; 
-		border-radius : 3px; 
-	}
-	.menu_sales_btn{
-		background-color : #EE4E34;
-		border : none;
-		border-radius : 3px;
-		width : 70px;
-		height: 28px;
-		color: white;
-		font-size: 17px;
-		margin-left : 10px; 
-		font-weight : bold;
-	}
-	button{
-		cursor: pointer;
-	}
-	button:focus{
-		outline: none;
-	}
-</style>
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ChartMonth.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/superChart.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <!-- 메뉴별 매출 추이(창현) -->
@@ -163,7 +103,98 @@
 	<div class="supervisorChartBox">
 		<div class="chartBox">
 			<div class="chartTitle">각 지점별 월별 매출</div>
-			<div class="chartContent">차트부분</div>
+			<div class="chartContent">
+				<div class="chart1">
+					<div class="showChartAndInfo">
+						<div class="dateSelect">
+							<select name="year" class="YMSelect">
+								<c:forEach var="y" begin="0" end="${nowyear-2015}" step="1">
+									<option>${nowyear-y}</option>
+								</c:forEach>
+							</select>
+							<span>년</span>
+							<select name="month" class="YMSelect">
+								<option>01</option>
+								<option>02</option>
+								<option>03</option>
+								<option>04</option>
+								<option>05</option>
+								<option>06</option>
+								<option>07</option>
+								<option>08</option>
+								<option>09</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+							</select>
+							<span>월</span>
+							<input type="button" value="조회" class="SelectBtn1">
+						</div>
+						<div class="eachbranchTotalBox">
+							<canvas id="eachbranchTotal" width="750" height="310"></canvas>
+						</div>
+					</div>
+					
+					<div class="ChartTableBox" id="mySuperChart1">
+						<table class="ChartTable">
+							<thead>
+								<tr>
+									<th width="20%">지점</th>
+									<th width="20%">${prevyear}/${prevmonth}</th>
+									<th width="20%">${nowyear}/${nowmonth}</th>
+									<th width="40%">전월대비</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="i" begin="0" end="${length-1}" step="1">
+								<c:set var="prevTotal" value="${prevList.get(i).getTotal()}"></c:set>
+								<c:set var="incre" value="${totalchartList.get(i).getTotal() - prevTotal}"></c:set>
+								<tr>
+									<td>${totalchartList.get(i).getBranch_name()}</td>
+									<td><fmt:formatNumber value="${prevTotal}" groupingUsed="true"/></td>
+									<td><fmt:formatNumber value="${totalchartList.get(i).getTotal()}" groupingUsed="true"/></td>
+									<c:if test="${incre>0}">
+										<c:if test="${prevTotal != 0}">
+											<td class="statusRed">▲ <fmt:formatNumber value="${incre}" groupingUsed="true"/> (+<fmt:formatNumber value="${(incre/prevTotal)*100}" pattern="##.00"/>%)</td>
+										</c:if>
+										<c:if test="${prevTotal == 0}">
+											<td class="statusRed">▲ <fmt:formatNumber value="${incre}" groupingUsed="true"/> (+∞%)</td>
+										</c:if>
+									</c:if>
+									<c:if test="${incre<0}">
+										<c:if test="${prevTotal != 0}">
+											<td class="statusBlue">▼ <fmt:formatNumber value="${incre}" groupingUsed="true"/> (<fmt:formatNumber value="${(incre/prevTotal)*100}" pattern="##.00"/>%)</td>
+										</c:if>
+										<c:if test="${prevTotal == 0}">
+											<td class="statusBlue">▼ <fmt:formatNumber value="${incre}" groupingUsed="true"/> (-∞%)</td>
+										</c:if>
+									</c:if>
+									<c:if test="${incre==0}">
+										<td  class="statusZero">-</td>
+									</c:if>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+				<script>
+					let labels = [];
+					let datas = [];
+					let backColor = [];
+					let totalChart = document.getElementById('eachbranchTotal');
+					<c:forEach var="i" begin="1" end="${length}" step="1">
+						backColor.push('#EE4E34');
+					</c:forEach>
+					
+					<c:forEach var="list" items="${totalchartList}">
+						labels.push('${list.branch_name}');
+						datas.push('${list.total}');
+					</c:forEach>
+				</script>
+				<script src="${pageContext.request.contextPath}/resources/js/chartMonth.js"></script>
+			</div>
 		</div>
 		<div class="chartBox">
 			<div class="chartTitle">

@@ -31,7 +31,7 @@
         }            
     </style>
 </head>
-<body>
+<body> 
     <main>
         <header>
                 <div class="header-inner">
@@ -42,8 +42,10 @@
                         <a href="${path}/burger/location"><p>BURGER&amp;DRINK</p></a>
                     </div>
                     <div class="logo">
-                        <img src="${path}/resources/img/bgmg.png" alt="로고">  
-                    </div> 
+
+                        <img src="${path}/resources/img/bgmg.png" alt="로고">
+                    </div>
+
                     <div>
                         <p><a href="#">LOGIN</a></p>
                     </div>
