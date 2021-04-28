@@ -192,7 +192,7 @@
 						datas.push('${list.total}');
 					</c:forEach>
 				</script>
-				<script src="${pageContext.request.contextPath}/resources/chartMonth.js"></script>
+				<script src="${pageContext.request.contextPath}/resources/js/chartMonth.js"></script>
 			</div>
 		</div>
 		<div class="chartBox">
