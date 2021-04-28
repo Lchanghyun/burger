@@ -15,6 +15,7 @@ drop table item;
 drop table branch;
 drop table supervisor;
 
+
 drop sequence super_seq;
 drop sequence branch_seq;
 drop sequence item_seq;
@@ -32,6 +33,7 @@ drop sequence menu_photo_seq;
 drop sequence bm_seq;
 drop sequence goods_seq;
 
+
 create table supervisor(
 super_no number primary key,
 super_id  varchar2(20) unique not null,
@@ -41,10 +43,6 @@ super_pw varchar2(15) not null
 create sequence super_seq;
 
 insert into supervisor values(super_seq.nextval, 'super1', 'super1');
-insert into supervisor values(super_seq.nextval, 'super2', 'super2');
-insert into supervisor values(super_seq.nextval, 'super3', 'super3');
-insert into supervisor values(super_seq.nextval, 'super4', 'super4');
-insert into supervisor values(super_seq.nextval, 'super5', 'super5');
 
 create table branch(
 	branch_no number primary key,
@@ -67,7 +65,7 @@ create table item(
 	category varchar2(30) check
 	    (category in('소모품', '채소류', '육류', '제과류', '음료', '단종')) not null
 );
-drop sequence item_seq;
+
 create sequence item_seq;
 
 create table stock(
@@ -78,7 +76,7 @@ create table stock(
 	stock_date date default sysdate not null,
 	status char(1) check(status in('0','1'))
 );
-drop sequence stock_seq;
+
 create sequence stock_seq;
 
 create table purchase (
@@ -89,7 +87,7 @@ purchase_date date default sysdate not null,
 status varchar2(30) check 
     (status in('발주대기','발주완료','발주취소','발주보류'))
 );
-drop sequence purchase_seq;
+
 create sequence purchase_seq;
 
 create table purchase_item(
@@ -100,7 +98,7 @@ super_no number references supervisor(super_no),
 stock_no number references stock(stock_no),
 count number default 0 not null
 );
-drop  sequence pi_seq;
+
 create sequence pi_seq;
 
 create table received_item(
@@ -111,7 +109,7 @@ stock_no number references stock(stock_no),
 count number default 0 not null,
 receive_date date default sysdate not null
 );
-drop sequence receive_seq;
+
 create sequence receive_seq;
 
 create table member(
@@ -134,10 +132,10 @@ notice_no number primary key,
 super_no number references supervisor(super_no) on delete set null,
 notice_title varchar2(300) not null,
 notice_content varchar2(4000) not null,
-notice_date date default SYSDATE
+notice_date date default SYSDATE,
 notice_category varchar2(24) check(notice_category in('이벤트', '공지사항', '이달의매장/직원'))
 );
-drop sequence notice_seq;
+
 create sequence notice_seq;
 
 create table NOTICE_PHOTO(
@@ -149,7 +147,7 @@ save_name varchar2(256) not null unique,
 file_size number,
 save_type varchar2(256) not null
 );
-drop sequence np_seq;
+
 create sequence np_seq;
 
 insert into member values(
@@ -174,7 +172,7 @@ total_price number not null, -- 총금액
 status char(1) default '0', -- 0이면 주문접수, 1이면 픽업완료
 price_status char(1) default '0' -- 0이면 만나서 결제, 1이면 결제API
 );
-drop sequence today_seq;
+
 create sequence today_seq;
 
 create table menu(
@@ -184,7 +182,7 @@ create table menu(
 	category varchar2(9) check
     (category in ('햄버거', '음료', '사이드', '단종')) not null
 );
-drop sequence menu_seq;
+
 create sequence menu_seq;
 	
 create table menu_photo(
@@ -195,7 +193,7 @@ create table menu_photo(
     file_size number default 0 not null,
     save_type varchar2(256) not null
 );
-drop sequence menu_photo_seq;
+
 create sequence menu_photo_seq;
 
 create table branch_menu( -- 지점메뉴
@@ -204,9 +202,8 @@ create table branch_menu( -- 지점메뉴
 	menu_no references menu(menu_no), 
 	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null 
         -- 0일때 정상판매, 1일때 품절처리, 2일때 지점 일시 판매 정지, 3일때 본사 단종
-	menu_status char(1) check(menu_status in('0', '1', '2', '3')) not null -- 0일때 정상판매, 1일태 품절처리
 );
-drop sequence bm_seq;
+
 create sequence bm_seq;
 
 create table goods ( -- 주문상품
@@ -217,7 +214,55 @@ bm_no references branch_menu(bm_no), -- 지점 메뉴 외래키
 branch_no references branch(branch_no), -- 지점 외래키
 count number not null
 );
-drop sequence goods_seq;
+
 create sequence goods_seq;
+commit;
+
+
+--메뉴
+insert into menu values(menu_seq.nextval, '베이컨치즈버거', 7000, '햄버거');
+insert into menu values(menu_seq.nextval, '한우불고기버거', 9000, '햄버거');
+insert into menu values(menu_seq.nextval, '슉슉버거', 8500, '햄버거');
+insert into menu values(menu_seq.nextval, '코울슬로버거', 6700, '햄버거');
+insert into menu values(menu_seq.nextval, '블랙타이거쉬림프버거', 6100, '햄버거');
+insert into menu values(menu_seq.nextval, '불고기버거', 5400, '햄버거');
+insert into menu values(menu_seq.nextval, '이거저거버거', 6200, '햄버거');
+insert into menu values(menu_seq.nextval, '할라피뇨통살버거', 7400, '햄버거');
+insert into menu values(menu_seq.nextval, '리얼더블치즈버거', 7800, '햄버거');
+insert into menu values(menu_seq.nextval, '베버리힐즈치즈버거', 9500, '햄버거');
+
+insert into menu values(menu_seq.nextval, '코카콜라', 2100, '음료');
+insert into menu values(menu_seq.nextval, '스프라이트', 2100, '음료');
+insert into menu values(menu_seq.nextval, '환타', 2100, '음료');
+
+insert into menu values(menu_seq.nextval, '감자튀김', 2500, '사이드');
+insert into menu values(menu_seq.nextval, '창오후라이', 4500, '사이드');
+insert into menu values(menu_seq.nextval, '아라스크림', 3500, '사이드');
+insert into menu values(menu_seq.nextval, '동민롱스틱', 3000, '사이드');
+insert into menu values(menu_seq.nextval, '미경볼(2ea)', 2800, '사이드');
+insert into menu values(menu_seq.nextval, '승주너겟', 7500, '사이드');
+insert into menu values(menu_seq.nextval, '코울슬로', 3400, '사이드');
+
+--메뉴 사진
+insert into menu_photo values(menu_photo_seq.nextval, 1, 'bulgogi_사진', 'bulgogi_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 2, 'bulgogi_사진', '4dallar_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 3, 'bulgogi_사진', 'babyshark_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 4, 'bulgogi_사진', 'steak_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 5, 'bulgogi_사진', 'shrimp_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 6, 'bulgogi_사진', 'coke_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 7, 'bulgogi_사진', 'sprite_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 8, 'bulgogi_사진', 'fanta_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 9, 'bulgogi_사진', 'french_fies_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 10, 'bulgogi_사진', 'cheese_fies_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 11, 'bulgogi_사진', 'icecream_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 12, 'bulgogi_사진', 'cheese_stric_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 13, 'bulgogi_사진', 'cheese_ball_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 14, 'bulgogi_사진', 'chickenNugget_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 15, 'bulgogi_사진', 'coleslaw_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 16, 'bulgogi_사진', '1icecream_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 17, 'bulgogi_사진', '1cheese_stric_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 18, 'bulgogi_사진', '1cheese_ball_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 19, 'bulgogi_사진', '1chickenNugget_photo', 12, '.jpg');
+insert into menu_photo values(menu_photo_seq.nextval, 20, 'bulgogi_사진', '1coleslaw_photo', 12, '.jpg');
 
 commit;
