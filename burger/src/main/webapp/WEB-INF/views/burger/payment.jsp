@@ -79,13 +79,14 @@ $(function(){
 				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 				    		}
 				    	});
+				    	this.submit();
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
 				        
 				        alert(msg);
 				    }
-				});				
+				});
 			}else if(price_statusVal === '0'){
 				this.submit();
 			}
