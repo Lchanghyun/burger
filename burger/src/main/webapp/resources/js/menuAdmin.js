@@ -4,7 +4,7 @@ $(function(){
 	$(".CategoryCancleBtn").hide();
 	
 	$(".menuinsertBtn").click(function(){
-		location.href = "register";
+		location.href = "/burger/menu/register";
 	})
 	$(".menuRemove").click(function(){
 		let menuName = $(this).parent().prev().prev().prev().children().last().text();
@@ -12,7 +12,7 @@ $(function(){
 		if(conf){
 			let menu_no = $(this).prev().val();
 			$.ajax({
-				url: "remove",
+				url: "/burger/menu/remove",
 				type:"POST",
 				data:{
 					menu_no: menu_no,
@@ -37,7 +37,7 @@ $(function(){
 		let category = $(this).parent().prev().prev().prev().find(".StopModify").val();
 		let menu_no = $(this).prev().val();
 		$.ajax({
-			url: "stopModify",
+			url: "/burger/menu/stopModify",
 			type: "POST",
 			data: {
 				menu_no : menu_no,
@@ -61,12 +61,12 @@ $(function(){
 		let save_name = $(this).prev().val();
 		let menu_name = $(this).next().text();
 		let openPhoto = window.open("","photo", "width=600px, height=550px");
-		openPhoto.document.write("<html><head><title>"+menu_name+"</title></head><body><div><img width='590px' height='530px' src='photoShow?fileName="+save_name+"'></div></body></html>");
+		openPhoto.document.write("<html><head><title>"+menu_name+"</title></head><body><div><img width='590px' height='530px' src='/burger/menu/photoShow?fileName="+save_name+"'></div></body></html>");
 	})
 	$(".menuAdd").click(function(){
 		let menu_no = $(this).prev().val();
 		$.ajax({
-			url: "menuAdd",
+			url: "/burger/menu/menuAdd",
 			type:"POST",
 			data:{
 				menu_no: menu_no,
@@ -85,7 +85,7 @@ $(function(){
 		if(conf){
 			let menu_no = $(this).prev().val();
 			$.ajax({
-				url: "removeBranchMenu",
+				url: "/burger/menu/removeBranchMenu",
 				type:"POST",
 				data:{
 					menu_no: menu_no,
@@ -106,7 +106,7 @@ $(function(){
 		if(conf){
 			let menu_no = $(this).prev().val();
 			$.ajax({
-				url: "removeBranchMenu",
+				url: "/burger/menu/removeBranchMenu",
 				type:"POST",
 				data:{
 					menu_no: menu_no,
@@ -127,7 +127,7 @@ $(function(){
 		if(conf){
 			let menu_no = $(this).prev().val();
 			$.ajax({
-				url: "soldoutAndResale",
+				url: "/burger/menu/soldoutAndResale",
 				type:"POST",
 				data:{
 					menu_no: menu_no,
@@ -146,7 +146,7 @@ $(function(){
 		let menuName = $(this).parent().prev().prev().children().last().text();
 		let menu_no = $(this).prev().val();
 		$.ajax({
-			url: "soldoutAndResale",
+			url: "/burger/menu/soldoutAndResale",
 			type:"POST",
 			data:{
 				menu_no: menu_no,

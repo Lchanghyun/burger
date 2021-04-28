@@ -6,7 +6,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/menuRegister.js"></script>
 	<div class="adminbox">
 		<div class="menu-register-box">
-	        <form id="menu" action="register" method="post" enctype="multipart/form-data">
+	        <form id="menu" action="${pageContext.request.contextPath}/menu/register" method="post" enctype="multipart/form-data">
 	            <div class="menu-register-btn">
 	            	<div class="menuAdminTitle">메뉴등록</div>
 	            	<div>

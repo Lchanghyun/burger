@@ -7,7 +7,7 @@
 	<div class="TodayChartTitle">최근 일주일간의 카테고리별 주문 추이</div>
 	<div class="chartBox">
 		<div>
-			<form id="selectForm" action="chart" method="post">
+			<form id="selectForm" action="${pageContext.request.contextPath}/today/chart" method="post">
 				<div class="selectBox">
 					<select class="selectCategory" name="category">
 					<c:if test="${category eq '햄버거'}">
@@ -109,7 +109,7 @@
 		$.each(labels,function(index, name){
 			let menuDetailChart = document.getElementById('menuDetailChart'+(index+1));
 			$.ajax({
-				url:"detailChart",
+				url:"${pageContext.request.contextPath}/today/detailChart",
 				type:"POST",
 				data:{
 					menu_name: name

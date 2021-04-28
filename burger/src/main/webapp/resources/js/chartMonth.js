@@ -51,7 +51,7 @@
 							let selectYear = $("select[name=year]").val();
 							let selectMonth = $("select[name=month]").val();
 							$.ajax({
-								url: "monthtotalbranchChart",
+								url: "/burger/chart/monthtotalbranchChart",
 								type: "POST",
 								data: {
 									year: selectYear,
