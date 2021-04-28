@@ -31,7 +31,7 @@
 	            <input type="button" value="메뉴등록" class="menuinsertBtn">
 	        </div>
 	        
-		<form action="superlist" method="post">
+		<form action="${pageContext.request.contextPath}/menu/superlist" method="post">
 	        <div class="search-menulist">
 	            <div>
 	                <span class="menuname">메뉴명 : </span>
@@ -44,11 +44,11 @@
 		</form>
 	        
 	        <div class="categoryBox">
-	        	<a href="superlist" class="total" >전체</a>
-	        	<a href="superlist?category=햄버거" class="burger">햄버거</a>
-	        	<a href="superlist?category=사이드" class="side">사이드</a>
-	        	<a href="superlist?category=음료" class="drink">음료</a>
-	        	<a href="superlist?category=단종" class="theend">단종메뉴</a>
+	        	<a href="${pageContext.request.contextPath}/menu/superlist" class="total" >전체</a>
+	        	<a href="${pageContext.request.contextPath}/menu/superlist?category=햄버거" class="burger">햄버거</a>
+	        	<a href="${pageContext.request.contextPath}/menu/superlist?category=사이드" class="side">사이드</a>
+	        	<a href="${pageContext.request.contextPath}/menu/superlist?category=음료" class="drink">음료</a>
+	        	<a href="${pageContext.request.contextPath}/menu/superlist?category=단종" class="theend">단종메뉴</a>
 	        </div>
 
 	        <div class="tableHead">
@@ -100,7 +100,7 @@
 			                        </td>
 			                        <td width="17%">${menu.menu_price} 원</td>
 		                    		<td width="10%">
-			                    		<form action="modifyTemp" method="post" id="tempForm">
+			                    		<form action="${pageContext.request.contextPath}/menu/modifyTemp" method="post" id="tempForm">
 				                        	<input type="hidden" name="category" value="${mCategory}">
 				                        	<input type="hidden" name="menu_no" value="${menu.menu_no}">
 				                        	<input type="submit" value="수정" class="menuModify">

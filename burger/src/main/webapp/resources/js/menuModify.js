@@ -15,7 +15,7 @@ $(function(){
 		let formData = new FormData();
 		formData.append("file",file);
 		$.ajax({
-			url:"thumbUpload",
+			url:"/burger/menu/thumbUpload",
 			processData : false,
 			contentType: false,
 			data : formData,
@@ -23,7 +23,7 @@ $(function(){
 			type:"POST",
 			success: function(res){
 				$(".menuphotoshow").children().remove();
-				let str = "<div><img src='photoShow?fileName="+res+"'></div>";
+				let str = "<div><img src='/burger/menu/photoShow?fileName="+res+"'></div>";
 				$(".menuphotoshow").append(str);
 			}
 		})

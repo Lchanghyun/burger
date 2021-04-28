@@ -9,7 +9,7 @@
 		$(".takeoutBtn").click(function(){
 			let order_no = $(this).prev().val();
 			$.ajax({
-				url:"updateStatus",
+				url:"${pageContext.request.contextPath}/today/updateStatus",
 				type:"POST",
 				data:{
 					order_no:order_no

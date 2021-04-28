@@ -29,7 +29,7 @@
 			}
 			if(menu_name!==menuName){
 				$.ajax({
-					url: "checkMenu",
+					url: "${pageContext.request.contextPath}/menu/checkMenu",
 					type: "POST",
 					data: {
 						menu_name : menu_name
@@ -50,7 +50,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/menuModify.js"></script>
 	<div class="adminbox">
 		<div class="menu-register-box">
-	        <form id="menu" action="modify" method="post" enctype="multipart/form-data">
+	        <form id="menu" action="${pageContext.request.contextPath}/menu/modify" method="post" enctype="multipart/form-data">
 	            <div class="menu-register-btn">
 	            	<div class="menuAdminTitle">메뉴수정</div>
 	            	<div>

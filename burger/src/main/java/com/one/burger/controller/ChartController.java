@@ -107,7 +107,6 @@ public class ChartController {
 		obj.put("nowmonth",month);
 		obj.put("prevyear",prev.substring(0,4));
 		obj.put("prevmonth",prev.substring(5));
-		System.out.println(obj);
 		return new ResponseEntity<JSONObject>(obj, HttpStatus.CREATED);
 	}
 		

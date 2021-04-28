@@ -9,7 +9,7 @@
 		$(".mylastorder").click(function(){
 			let order_no = $(this).children().val();
 			console.log(order_no);
-			location.href = "detail?order_no="+order_no;
+			location.href = "${pageContext.request.contextPath}/myorder/detail?order_no="+order_no;
 		})
 	})
 </script>

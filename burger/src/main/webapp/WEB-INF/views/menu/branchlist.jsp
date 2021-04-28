@@ -39,13 +39,13 @@
 			<div class="listTopBox">
 				<div class="menuAdminTitle">메뉴관리</div>
 				<div>
-		        	<a href="branchlist" class="topTotal">전체 메뉴목록</a>
-		        	<a href="branchlist?my" class="myBranchList">${branch_name} 메뉴목록</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist" class="topTotal">전체 메뉴목록</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?my" class="myBranchList">${branch_name} 메뉴목록</a>
 	        	</div>
 	        </div>
 	
 		<c:if test="${my}">
-			<form action="branchlist?my" method="post">
+			<form action="${pageContext.request.contextPath}/menu/branchlist?my" method="post">
 			<div class="search-menulist">
 	            <div>
 	                <span class="menuname">메뉴명 : </span>
@@ -58,7 +58,7 @@
 	        </form>
 		</c:if>
 		<c:if test="${not my}">
-			<form action="branchlist" method="post">
+			<form action="${pageContext.request.contextPath}/menu/branchlist" method="post">
 	        <div class="search-menulist">
 	            <div>
 	                <span class="menuname">메뉴명 : </span>
@@ -73,18 +73,18 @@
 	     
 	        <div class="categoryBox">
 	        	<c:if test="${not my}">
-	        		<a href="branchlist" class="total" >전체</a>
-		        	<a href="branchlist?category=햄버거" class="burger">햄버거</a>
-		        	<a href="branchlist?category=사이드" class="side">사이드</a>
-		        	<a href="branchlist?category=음료" class="drink">음료</a>
-		        	<a href="branchlist?category=단종" class="theend">단종메뉴</a>
+	        		<a href="${pageContext.request.contextPath}/menu/branchlist" class="total" >전체</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?category=햄버거" class="burger">햄버거</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?category=사이드" class="side">사이드</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?category=음료" class="drink">음료</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?category=단종" class="theend">단종메뉴</a>
 	        	</c:if>
 	        	<c:if test="${my}">
-	        		<a href="branchlist?my" class="total" >전체</a>
-		        	<a href="branchlist?my&category=햄버거" class="burger">햄버거</a>
-		        	<a href="branchlist?my&category=사이드" class="side">사이드</a>
-		        	<a href="branchlist?my&category=음료" class="drink">음료</a>
-		        	<a href="branchlist?my&category=판매중지" class="stop">판매중지</a>
+	        		<a href="${pageContext.request.contextPath}/menu/branchlist?my" class="total" >전체</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?my&category=햄버거" class="burger">햄버거</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?my&category=사이드" class="side">사이드</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?my&category=음료" class="drink">음료</a>
+		        	<a href="${pageContext.request.contextPath}/menu/branchlist?my&category=판매중지" class="stop">판매중지</a>
 	        	</c:if>
 	        </div>
 	
