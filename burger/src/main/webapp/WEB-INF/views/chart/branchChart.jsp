@@ -29,6 +29,14 @@
 	.yearChoose{
 		position: absolute;
     	left: 974px;
+    	
+	}
+	.yearChooser{
+		width: 74px;
+	    height: 24px;
+	    font-size: 14px;
+	    border-radius: 3px;
+	    font-family: GmarketSansMedium;
 	}
 	#branch_total_chart{
 		width:1100px; 
@@ -48,22 +56,45 @@
 		let salesTime = []; 
 		let year = "";
 	
+		
+		
 		$(".yearChooser").on("change",function(){
 			let yearChooser = $(".yearChooser").val()
-			
+			let totalSales = [];
+			let salesTime = []; 
 			$.ajax({
-					url: "${page}"
+					url: "${pageContext.request.contextPath}/chart/totalYear",
+					type: "POST",
+					async: false,
+					data:{
+						year : yearChooser
+					},
+					success :function(list){
+						$.each(list, function( index, value ) {
+							if(value == null){
+								return false;
+							}
+							else{
+							salesTime.push(value.sales_time)
+							totalSales.push(value.total_sales)
+		                       console.log( index + " : " + salesTime );
+		                       console.log( index + " : " + totalSales );
+						}
+		          })
+				ctxChart(salesTime, totalSales)
+				}
 			})
-			
 		})
 		
 		<c:forEach items="${Totalsales}" var ="sales">
 		 	salesTime.push('${sales.sales_time}')
 		 	totalSales.push('${sales.total_sales}')
 		</c:forEach> 
+		 	ctxChart(salesTime, totalSales)
 		 	
-			var ctx = document.getElementById('branch_total_chart').getContext('2d'); 
-			var chart = new Chart(ctx, { 
+		 function ctxChart(salesTime, totalSales){
+			let ctx = document.getElementById('branch_total_chart').getContext('2d'); 
+			let chart = new Chart(ctx, { 
 				
 				type: 'line', 
 				data: {
@@ -101,6 +132,7 @@
 		}
 	  } 
 	})
+  }
 })
 		
 	

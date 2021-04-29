@@ -23,9 +23,8 @@ public class ChartRepository {
 		private SqlSession sqlSession;
 		
 	public List<BranchTotalSales> branch_total(Map<String,Object> param) throws Exception {
-	return sqlSession.selectList("chart.branch_total_sales",param);
+		return sqlSession.selectList("chart.branch_total_sales",param);
 	}
-
 
 	public List<SalesSuperTotal> getSalesTotal(String choiceDate) throws Exception{
 		return sqlSession.selectList("chart.eachBranch",choiceDate);

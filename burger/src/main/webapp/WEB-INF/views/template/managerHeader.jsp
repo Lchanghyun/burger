@@ -31,27 +31,23 @@
 			    <div class="left-side-bar">
 			        <ul>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/chart/supervisorChart">매출관리</a>
+			                <a href="${pageContext.request.contextPath}/chart/supervisorChart">매출관리</a>
 			            </li>
 			            <li>
-			                <label>자재, 발주</label>
+			                <a onclick="">자재, 발주</a>
 			                <ul>
-			                    <li><a href="<%=request.getContextPath()%>/item/list">자재목록</a></li>
-			                    <li><a href="<%=request.getContextPath()%>/purchase/superpurchaselist">발주목록</a></li>
+			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
+			                    <li><a href="${pageContext.request.contextPath}/purchase/superpurchaselist">발주목록</a></li>
 			                </ul>
 			            </li>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
+			                <a href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
 			            </li>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/join/branch_join">지점 아이디 발급</a>
+			                <a href="${pageContext.request.contextPath}/join/branch_join">지점 아이디 발급</a>
 			            </li>
 			            <li>
-			              <a href="<%=request.getContextPath()%>/">메뉴 관리</a>
-			              <ul>
-			                  <li><a href="#">1</a></li>
-			                  <li><a href="#">2</a></li>
-			              </ul>
+			              <a href="${pageContext.request.contextPath}/menu/branchlist">메뉴 관리</a>
 			          </li>
 			        </ul>
 			    </div>

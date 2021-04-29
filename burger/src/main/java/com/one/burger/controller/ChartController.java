@@ -2,6 +2,8 @@ package com.one.burger.controller;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,7 +124,6 @@ public class ChartController {
 	
 	@GetMapping("/branchChart")
 	public void getBranchChart(Model model, HttpSession session) throws Exception{
-
 		log.info("getBranchChart()");
 
 		int branch_no = 1 ;
@@ -130,9 +133,29 @@ public class ChartController {
 		String sysdate = format.format(date);
 		String year = sysdate.split("/")[0];
 		
-		List<BranchTotalSales> list = chartService.total_sales(branch_no);
+		Map<String, Object> param = new HashMap();
+		param.put("branch_no", branch_no);
+		param.put("year", year);
+		
+		List<BranchTotalSales> list = chartService.total_sales(param);
 		model.addAttribute("Tyear",year);
 		model.addAttribute("Totalsales",list);
 
 	}
-}
+	
+	@PostMapping("/totalYear")
+	@ResponseBody
+	public List<BranchTotalSales> totalYear(String year, HttpSession session) throws Exception{
+		log.info(year);
+		int branch_no = 1 ;
+		//int branch_no = (int) session.getAttribute("branch_no");
+		Map<String, Object> param = new HashMap();
+		param.put("branch_no", branch_no);
+		param.put("year", year);
+		
+		List<BranchTotalSales> list =chartService.total_sales(param);
+		log.info("도착");
+		return list;
+		
+	}
+}	
