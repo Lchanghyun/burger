@@ -28,7 +28,7 @@
 	}
 	.yearChoose{
 		position: absolute;
-    	left: 974px;
+    	left: 970px;
     	
 	}
 	.yearChooser{
@@ -122,11 +122,13 @@
 						ticks: {
 							beginAtZero: true,
 							fontSize : 16,
+							fontFamily: "GmarketSansMedium"
 						}
 					}],
 					xAxes: [{
 						ticks: {
 							fontSize : 16,
+							fontFamily: "GmarketSansMedium"
 				}
 			}]  
 		}

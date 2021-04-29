@@ -37,7 +37,7 @@
 			                <a onclick="">자재, 발주</a>
 			                <ul>
 			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
-			                    <li><a href="${pageContext.request.contextPath}/purchase/superpurchaselist">발주목록</a></li>
+			                    <li><a href="${pageContext.request.contextPath}/purchase/superlist">발주목록</a></li>
 			                </ul>
 			            </li>
 			            <li>
