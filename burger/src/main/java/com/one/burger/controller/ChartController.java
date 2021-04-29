@@ -131,7 +131,7 @@ public class ChartController {
 		String year = sysdate.split("/")[0];
 		
 		List<BranchTotalSales> list = chartService.total_sales(branch_no);
-		
+		model.addAttribute("Tyear",year);
 		model.addAttribute("Totalsales",list);
 
 	}
