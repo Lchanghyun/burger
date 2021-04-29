@@ -5,6 +5,7 @@
 <style type="text/css">
 			li {list-style: none; float: left; padding: 6px;}
 		</style>
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 <script>
 	$(function(){
 		$(".notice_write_btn").on("click", function(){
@@ -12,7 +13,6 @@
 		})
 	})
 </script>
-<body>
 <h2>공지사항</h2>
 	<div class="notice_write_btn_line">
 		<button class="notice_write_btn" id="notice_write_btn">공지 작성</button>
@@ -63,5 +63,6 @@
 </div>
 		
 	</div>
-</body>
+
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 
 

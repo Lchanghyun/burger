@@ -45,13 +45,23 @@
 
                         <img src="${path}/resources/img/bgmg.png" alt="로고">
                     </div>
-
-                    <div>
-                        <p><a href="#">LOGIN</a></p>
-                    </div>
-                    <div>
-                        <p><a href="#">JOIN</a></p>
-                    </div>                
+					
+					<c:if test="${sessionScope.member_no == null}">
+						<div>
+	                        <a href="${path}/join/login_member"><p>LOGIN</p></a>
+	                    </div>
+	                    <div>
+	                        <a href="${path}/join/member_join"><p>JOIN</p></a>
+	                    </div> 
+					</c:if>
+					<c:if test="${sessionScope.member_no != null}">
+						<div>
+	                        <a href="${path}/join/logout_member"><p>LOGOUT</p></a>
+	                    </div>
+	                    <div>
+	                        <a href="${path}/myorder/list"><p>MY ORDER</p></a>
+	                    </div> 
+					</c:if>                
                 </div>
         </header>
         <section>
