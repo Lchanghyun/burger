@@ -20,7 +20,7 @@
                     </div>
                     <div class="inner-fr">
                        <p>
-                            <a href="#" class="btn-login">LOGIN</a>
+                            <a href="${pageContext.request.contextPath}/join/login_auth" class="btn-login">LOGIN</a>
                             <a href="#" class="btn-email">E-MAIL</a>
                         </p>
                     </div>
@@ -37,6 +37,7 @@
 			                <a onclick="">자재, 발주</a>
 			                <ul>
 			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
+
 			                    <li><a href="${pageContext.request.contextPath}/purchase/superlist">발주목록</a></li>
 			                </ul>
 			            </li>
@@ -47,7 +48,7 @@
 			                <a href="${pageContext.request.contextPath}/join/branch_join">지점 아이디 발급</a>
 			            </li>
 			            <li>
-			              <a href="${pageContext.request.contextPath}/menu/branchlist">메뉴 관리</a>
+			              <a href="${pageContext.request.contextPath}/menu/superlist">메뉴 관리</a>
 			          </li>
 			        </ul>
 			    </div>
