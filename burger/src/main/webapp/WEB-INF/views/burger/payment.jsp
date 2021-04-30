@@ -11,6 +11,9 @@
 
 <script> 
 $(function(){
+	
+	
+	
 	let count = 0;
 	let price_status = $("input[name=price_status]");
 	var price_statusVal;
@@ -189,6 +192,9 @@ $(function(){
 		<h3 style="margin: 0 0 0 50px; font-size: 40px;">Pick-up info</h3>
 	</div>
 	<div id="map">
+		<div>
+			
+		</div>
 		지도랑 주소 보여주기
 	</div>
 	<br><br>

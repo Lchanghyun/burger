@@ -44,18 +44,24 @@ var markers = [];
 		console.log(keyword);
 		function isKeyword(element){
 	    	if(element.branch_addr.indexOf(keyword) != -1){
+	    		let selectPlace = [];
+	    		selectPlace.push(element.branch_addr);
+	    		console.log(selectPlace[1]);
 	    		return true;
 	    	}
 	    }
 	    const place = ps.filter(isKeyword);
+	    console.log("place: "+place)
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 	    placeSerchCB(keyword); 
 	}
 
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-	function placesSearchCB(keyword, pagination) {
+	function placesSearchCB(data, keyword, pagination) {
 	    if (keyword != null) {
-
+			
+	    	data = 
+	    	
 	        // 정상적으로 검색이 완료됐으면
 	        // 검색 목록과 마커를 표출합니다
 	        displayPlaces(data);
