@@ -9,6 +9,6 @@ import lombok.Setter;
 public class BranchMenuChart {
 	private String menu_name;
 	private int menu_price;
-	private int menu_total_price;
+	private int menu_total_count;
 	private String sales_time;
 }

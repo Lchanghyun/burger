@@ -24,7 +24,7 @@ var markers = [];
 		</c:forEach>
 	];
 	for(let i = 0; i<ps.length; i++){
-		console.log(ps[i]);		
+		console.log(ps[i].branch_addr);		
 	}	
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -49,12 +49,12 @@ var markers = [];
 	    }
 	    const place = ps.filter(isKeyword);
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-	    ps.keywordSearch(keyword, placesSearchCB); 
+	    placeSerchCB(keyword); 
 	}
 
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-	function placesSearchCB(data, pagination) {
-	    if (data != null) {
+	function placesSearchCB(keyword, pagination) {
+	    if (keyword != null) {
 
 	        // 정상적으로 검색이 완료됐으면
 	        // 검색 목록과 마커를 표출합니다

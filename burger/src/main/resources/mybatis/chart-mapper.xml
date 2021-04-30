@@ -60,12 +60,12 @@
 	</select>
  	
  	<select id="branchMenuChart" resultType="BranchMenuChart" parameterType="Map">
- 		select M.menu_name, M.menu_price, sum(G.count) menu_total_prcie, to_char(T.today_time,'YYYY/MM') sales_time 
+ 		select M.menu_name, M.menu_price, sum(G.count) menu_total_count, to_char(T.today_time,'YYYY/MM') sales_time 
           from menu M 
     	   left outer join branch_menu BM on M.menu_no = BM.menu_no
     	   left outer join goods G on BM.bm_no = G.bm_no 
    	 	   left outer join today T  on G.order_no = T.order_no
- 		 where T.status ='1' and to_char(T.today_time,'YYYY/MM') = #{sysdate} and BM.bm_no = #{bm_no} and BM.branch_no = #{branch_no}    
+ 		 where T.status ='1' and to_char(T.today_time,'YYYY/MM') = '2021/04' and BM.bm_no = #{bm_no} and BM.branch_no = #{branch_no}    
  		 group by to_char(T.today_time,'YYYY/MM'), M.menu_name, M.menu_price
  	</select>
  	
