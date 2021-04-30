@@ -1,5 +1,5 @@
 .supervisorChart{
-		height: calc(100% - 162px);
+		height: calc(100% - 142px);
        	font-family: GmarketSansMedium;
        	padding : 10px 0 10px 10px; 
 	}
@@ -25,19 +25,29 @@
 		height:350px; 
 	}
 	.menu_sales_date_search_wrapper{
-		display : inline-block;
-		float : right; 
+		width: 750px;
+	   	height: 30px;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    margin-bottom: 10px;
+	    font-family: GmarketSansMedium;
 	}
 	.menu_sales_date_search_wrapper::after{
-		content:"";
 		display:block;
 		clear:both;
 	}
 	.menu_sales_month,
 	.menu_sales_year{
-		border : 3px solid #EE4E34;
+		border : 2px solid #EE4E34;
 		font-size: 17px; 
 		border-radius : 3px; 
+	    font-family: GmarketSansMedium;
+	}
+	.menu_sales_month+span,
+	.menu_sales_year+span{
+		font-size: 17px; 	
+		margin: 0 10px 0 5px;
 	}
 	.menu_sales_btn{
 		background-color : #EE4E34;
@@ -47,7 +57,7 @@
 		height: 28px;
 		color: white;
 		font-size: 17px;
-		margin-left : 10px; 
+		margin-left : 20px; 
 		font-weight : bold;
 	}
 	button{
