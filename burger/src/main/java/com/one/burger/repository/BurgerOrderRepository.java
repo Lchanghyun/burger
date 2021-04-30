@@ -1,7 +1,7 @@
 package com.one.burger.repository;
 
-import java.util.Date;
 import java.util.List;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,12 @@ public class BurgerOrderRepository {
 	
 	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception{
 		return sqlSession.selectList("burgerOrder.orderList", branch_no);
+	}
+
+	public String branchAddr(int order_no) throws Exception{
+		String branch_address;
+		branch_address = sqlSession.selectOne("burgerOrder.branch_addr", order_no);
+		return branch_address;
 	}
 
 

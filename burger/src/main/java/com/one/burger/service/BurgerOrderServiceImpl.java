@@ -2,6 +2,7 @@ package com.one.burger.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,10 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	@Override
 	public Integer sysdateToday() throws Exception {
 		return todayRepository.sysdateToday();
+	}
+	@Override
+	public String branchAddr(int order_no) throws Exception {
+		return bugerOrderRepository.branchAddr(order_no);
 	}
 
 }

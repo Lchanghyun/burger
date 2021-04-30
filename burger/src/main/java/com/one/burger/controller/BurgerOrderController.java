@@ -1,6 +1,4 @@
 package com.one.burger.controller;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -94,8 +92,10 @@ public class BurgerOrderController {
 	public String paymentList(int order_no, Model model) throws Exception{
 		log.info("GETpaymentList()");
 		log.info("order_no: "+order_no);
+		String address = service.branchAddr(order_no);
 //		int branch_no = service.branchNo(order_no);
 //		System.out.println(""+branch_no);
+		model.addAttribute("address", address);
 		model.addAttribute("goodsList", service.goodsList(order_no));
 		return "burger/payment";
 	}

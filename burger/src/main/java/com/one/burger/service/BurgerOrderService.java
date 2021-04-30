@@ -1,8 +1,8 @@
 package com.one.burger.service;
 
 
-import java.util.Date;
 import java.util.List;
+
 
 import com.one.burger.entity.BurgerOrder;
 import com.one.burger.entity.Goods;
@@ -31,5 +31,7 @@ public interface BurgerOrderService {
 	public Integer sysdateToday() throws Exception;
 
 	public Integer branchNo(int order_no) throws Exception;
+
+	public String branchAddr(int order_no) throws Exception;
 	
 }
