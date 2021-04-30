@@ -63,24 +63,28 @@ public class BranchController {
 	
 	//로그인 데이터 전송
 	@PostMapping("/login_auth")
-	public String login(@ModelAttribute Login login, HttpSession session, Branch branch, Supervisor supervisor) throws Exception {
-		boolean result;
-		if(login.getGubun().equals("s")) {
+	public String login(@ModelAttribute Login login, HttpSession session) throws Exception {
+		boolean result; 
+		if(login.getGubun().equals("super")) {
 			result = branchService.superLogin(login.getId(),login.getPw()); //본사로그인
+			if(result) {
+				session.setAttribute("super_no", branchService.superfind2(login.getId()).getSuper_no() );
+				return "redirect:/chart/supervisorChart";
+			}else {
+				return "redirect:login-auth";
+			}
 		}
 		else {
 			result = branchService.branchLogin(login.getId(),login.getPw());
+			if(result) {
+				session.setAttribute("branch_no", branchService.find2(login.getId()).getBranch_no());
+				return "redirect:/chart/branchChart";
+			}else {
+				return "redirect:login-auth";
+			}
 		}
 		
-		if(result) {
-			session.setAttribute("branch", branch.getBranch_no());
-			session.setAttribute("supervisor", supervisor.getSuper_no());
-			return "redirect:/notice/notice_list";
-		}
-		else {
-		
-		return "redirect:login?error";
-		}
+
 	}
 	
 	//로그아웃
@@ -90,6 +94,6 @@ public class BranchController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:login_auth";
 	}
 }

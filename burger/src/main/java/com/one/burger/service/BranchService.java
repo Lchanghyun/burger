@@ -3,6 +3,7 @@ package com.one.burger.service;
 import java.util.List;
 
 import com.one.burger.entity.Branch;
+import com.one.burger.entity.Supervisor;
 
 public interface BranchService {
 	
@@ -20,6 +21,7 @@ public interface BranchService {
 	//find
 	public Branch find(int branch_no)throws Exception;
 	public Branch find2(String branch_id)throws Exception;
+	public Supervisor superfind2(String super_id) throws Exception;
 
 
 

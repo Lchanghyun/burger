@@ -64,6 +64,10 @@
 		select * from branch where branch_id = #{branch_id}
 	</select>
 	
+	<select id="super_find2" resultType="Supervisor" parameterType="String">
+		select * from supervisor where super_id = #{super_id}
+	</select>
+	
 	<!-- 수정 -->
 	<update id="editBranch" parameterType="Branch">
 		update branch set branch_pw = #{branch_pw}

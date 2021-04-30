@@ -109,8 +109,8 @@ public class PurchaseController {
 	public void StockList(Model model, HttpSession session, HttpServletRequest req) throws Exception {
 		log.info("stockList()");
 		
-		int branch_no=1; 
-		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		int purchase_no = Integer.parseInt(req.getParameter("purchase_no"));
 		
@@ -147,8 +147,8 @@ public class PurchaseController {
 	public ModelAndView insert(HttpServletRequest req, HttpSession session) throws Exception{
 		log.info("insert");
 		
-		int branch_no=1; 
-		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		Map<String, Object> param = new HashMap();
 		param.put("branch_no", branch_no);
