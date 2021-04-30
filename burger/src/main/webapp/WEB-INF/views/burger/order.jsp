@@ -30,7 +30,7 @@
 						<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
 							<c:if test="${MenuBranchMenuVo.menu_status != '2' and MenuBranchMenuVo.menu_status != '3'}">
 								<div class="menuList add-menu${MenuBranchMenuVo.bm_no}" style="display: inline-block; text-align: center; width: 280px">
-										<img alt="메뉴사진" src="http://placeimg.com/200/200/hamburger">
+										<img alt="메뉴사진" src="${pageContext.request.contextPath}/menu/photoShow?fileName=${MenuBranchMenuVo.save_name}">
 										<p class="menu_name">${MenuBranchMenuVo.menu_name}</p>
 										<span class="menu_price">${MenuBranchMenuVo.menu_price}</span><span>원</span>
 										<p id="branch_no" style="display: none;">${MenuBranchMenuVo.branch_no}</p>
