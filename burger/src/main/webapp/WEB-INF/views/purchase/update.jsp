@@ -125,7 +125,7 @@
                     <tbody>
                         <c:if test="${empty PIlist}">
                             <tr>
-                                <td>no list</td>
+                                <td colspan="4">no list</td>
                             </tr>
                         </c:if>
                         <c:forEach items="${PIlist}" var="PI">

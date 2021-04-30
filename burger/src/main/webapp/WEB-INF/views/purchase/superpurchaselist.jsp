@@ -153,7 +153,7 @@
                     <tbody>
                         <c:if test="${empty PurchaseItem}">
                             <tr>
-                                <td>no list</td>
+                                <td colspan="5">no list</td>
                             </tr>
                         </c:if>
                         <c:forEach items="${PurchaseItem}" var="PI">
