@@ -79,7 +79,6 @@ public class MenuController {
 	@GetMapping("/branchlist")
 	public void branchList(Model model, String my, String category, HttpSession session) throws Exception{
 		log.info("branchList()");
-		session.setAttribute("branch_no", 1);
 		int branch_no = (Integer)session.getAttribute("branch_no");
 		String branch_name = menuService.getBranchName(branch_no);
 		
@@ -141,7 +140,6 @@ public class MenuController {
 	@PostMapping("/menuAdd")
 	public ResponseEntity<String> menuAdd(Integer menu_no, HttpSession session) throws Exception{
 		log.info("menuAdd()");
-		session.setAttribute("branch_no", 1);
 		int branch_no = (Integer)session.getAttribute("branch_no");
 		menuService.menuAdd(menu_no, branch_no);
 		return new ResponseEntity<String>("add",HttpStatus.OK);

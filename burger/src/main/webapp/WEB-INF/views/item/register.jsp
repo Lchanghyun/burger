@@ -35,7 +35,7 @@
 	<div class="list_border">
 		<div class="item_list_wrapper">
 			<div class="input_wrapper">
-				<form action="register" method="POST" class="item_register_form">
+				<form action="${pageContext.request.contextPath}/item/register" method="POST" class="item_register_form">
 					<select name="category" class="item_category_select">
 						<option value="채소류">채소류</option>
 						<option value="육류">육류</option>

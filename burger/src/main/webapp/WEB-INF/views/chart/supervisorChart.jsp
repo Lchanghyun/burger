@@ -366,42 +366,46 @@
 		</div>
 		<div class="chartBox">
 			<div class="chartTitle">
-				메뉴별 매출
-				<div class="menu_sales_date_search_wrapper">
-					<select class="menu_sales_year">
-						<c:set var="loop" value="false"/> 
-						<c:forEach var="i" begin="0" end="1000" step="1" varStatus="status">						
-							<c:if test="${not loop}">					 							
-								<c:choose>
-									<c:when test="${year-status.count+1 le 2017}">
-										<c:set var="loop" value="true"/>
-									</c:when>
-									<c:otherwise>
-										<option value="${year-status.count+1}">${year-status.count+1}년</option> 
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</c:forEach>
-					</select>
-					<select class="menu_sales_month">
-						<option value="/01">1월</option>
-						<option value="/02">2월</option>
-						<option value="/03">3월</option>
-						<option value="/04">4월</option>
-						<option value="/05">5월</option>
-						<option value="/06">6월</option>
-						<option value="/07">7월</option>
-						<option value="/08">8월</option>
-						<option value="/09">9월</option>
-						<option value="/10">10월</option>
-						<option value="/11">11월</option>
-						<option value="/12">12월</option>
-					</select>
-					<button class="menu_sales_btn">조회</button>
-				</div>
-			</div>
+				전 지점 메뉴별 매출
 			<div class="chartContent">
-				<canvas id="menu_sales_chart"></canvas>
+				<div>
+					<div class="menu_sales_date_search_wrapper">
+							<select class="menu_sales_year">
+								<c:set var="loop" value="false"/> 
+								<c:forEach var="i" begin="0" end="1000" step="1" varStatus="status">						
+									<c:if test="${not loop}">					 							
+										<c:choose>
+											<c:when test="${year-status.count+1 le 2017}">
+												<c:set var="loop" value="true"/>
+											</c:when>
+											<c:otherwise>
+												<option value="${year-status.count+1}">${year-status.count+1}</option> 
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</c:forEach>		
+							</select>
+							<span>년</span> 
+							<select class="menu_sales_month">
+								<option value="/01">01</option>
+								<option value="/02">02</option>
+								<option value="/03">03</option>
+								<option value="/04">04</option>
+								<option value="/05">05</option>
+								<option value="/06">06</option>
+								<option value="/07">07</option>
+								<option value="/08">08</option>
+								<option value="/09">09</option>
+								<option value="/10">10</option>
+								<option value="/11">11</option>
+								<option value="/12">12</option>
+							</select>
+							<span>월</span>
+							<button class="menu_sales_btn">조회</button>
+						</div>
+					</div>
+					<canvas id="menu_sales_chart" width="1300" height="310"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
