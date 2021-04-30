@@ -29,42 +29,42 @@
 			<div class="category_wrapper">
 				<c:choose>
 					<c:when test="${category eq '채소류'}">
-						<a href="stock_plus?category=채소류" class="category_link select_category">채소류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=채소류" class="category_link select_category">채소류</a>
 					</c:when>
 					<c:otherwise>
-						<a href="stock_plus?category=채소류" class="category_link">채소류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=채소류" class="category_link">채소류</a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${category eq '육류'}">
-						<a href="stock_plus?category=육류" class="category_link select_category">육류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=육류" class="category_link select_category">육류</a>
 					</c:when>
 					<c:otherwise>
-						<a href="stock_plus?category=육류" class="category_link">육류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=육류" class="category_link">육류</a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${category eq '제과류'}">
-						<a href="stock_plus?category=제과류" class="category_link select_category">제과류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=제과류" class="category_link select_category">제과류</a>
 					</c:when>
 					<c:otherwise>
-						<a href="stock_plus?category=제과류" class="category_link">제과류</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=제과류" class="category_link">제과류</a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${category eq '음료'}">
-						<a href="stock_plus?category=음료" class="category_link select_category">음료</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=음료" class="category_link select_category">음료</a>
 					</c:when>
 					<c:otherwise>
-						<a href="stock_plus?category=음료" class="category_link">음료</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=음료" class="category_link">음료</a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${category eq '소모품'}">
-						<a href="stock_plus?category=소모품" class="category_link select_category">소모품</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=소모품" class="category_link select_category">소모품</a>
 					</c:when>
 					<c:otherwise>
-						<a href="stock_plus?category=소모품" class="category_link">소모품</a>
+						<a href="${pageContext.request.contextPath}/stock/stock_plus?category=소모품" class="category_link">소모품</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

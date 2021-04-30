@@ -75,12 +75,9 @@ public class ChartServiceImpl implements ChartService{
 	}
  
 	@Override
-	public List<BranchTotalSales> total_sales(int branch_no) throws Exception {
+	public List<BranchTotalSales> total_sales(Map<String, Object> param) throws Exception {
 		log.info("total_sales()");
-		Map<String, Object> param = new HashMap<>();
-		String Year = "2021";
-		param.put("year", Year);
-		param.put("branch_no", branch_no);
+		
 		List<BranchTotalSales> list =chartRepository.branch_total(param);
 		
 		return list ;

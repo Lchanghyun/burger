@@ -35,18 +35,18 @@
 			
 
 	<select id="menu_total_sales" parameterType="map" resultType="MenuBranchMenuGoodsVo">
-		select M.menu_name, sum(T.total_price) total_sales, to_char(T.today_time,'YYYY/MM') sales_time from menu M 
+		select M.menu_name, M.menu_price, sum(G.count) count, to_char(T.today_time,'YYYY/MM') sales_time from menu M 
 		    left outer join branch_menu BM on M.menu_no = BM.menu_no 
 		        left outer join goods G on BM.bm_no = G.bm_no 
 		            left outer join today T  on G.order_no = T.order_no  where status ='1' and to_char(T.today_time,'YYYY/MM') = #{day} and M.menu_no = #{menu_no}
-		                group by to_char(T.today_time,'YYYY/MM'), M.menu_name
+		                group by to_char(T.today_time,'YYYY/MM'), M.menu_name, M.menu_price
  
 	</select>
 	
 	<select id="eachBranch" parameterType="String" resultType="SalesSuperTotal">
  		select B.branch_no,B.branch_name,sum(total_price) total from 
 		today T inner join branch B on T.branch_no=B.branch_no 
-		where to_char(today_time,'YYYY/MM')=#{choiceDate}
+		where T.status='1' and to_char(today_time,'YYYY/MM')=#{choiceDate}
 		group by B.branch_no,B.branch_name
 		order by B.branch_name asc
  	</select>

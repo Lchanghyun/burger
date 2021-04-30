@@ -1,6 +1,7 @@
 package com.one.burger.service;
 
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,8 @@ import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.ReceivedItemVo;
 import com.one.burger.entity.StockItemVo;
 import com.one.burger.repository.PurchaseRepository;
+
+import lombok.extern.java.Log;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -88,18 +91,28 @@ public class PurchaseServiceImpl implements PurchaseService {
 			int pi_no = purchaseRepository.getSeq();
 			int super_no =1;
 			int branch_no =1;
+			
+			Map<String,Object> paramMap = new HashMap<String, Object>(); 
+			
+			List<Map<String,Object>> good = new ArrayList<Map<String,Object>>();
 			for(Map<String, Object> purchase : list) {
 			 
 			Map<String, Object> param = new HashMap<String, Object>();
-			param.put("super_no", super_no);
-			param.put("branch_no", branch_no);
 			param.put("pi_no", pi_no);
+			param.put("purchase_no", Integer.parseInt(String.valueOf(purchase.get("purchase_no"))));
+			param.put("branch_no", branch_no);
+			param.put("super_no", super_no);
 			param.put("stock_no" ,Integer.parseInt(String.valueOf(purchase.get("stock_no"))));
 			param.put("count", Integer.parseInt(String.valueOf(purchase.get("count"))));
-			param.put("purchase_no", Integer.parseInt(String.valueOf(purchase.get("purchase_no"))));
 			
-			purchaseRepository.register(param);
-		} 
+			good.add(param);
+		}   
+			paramMap.put("good", good);
+			for (String mapkey : paramMap.keySet()){
+		        System.out.println("key:"+mapkey+",value:"+paramMap.get(mapkey));
+		    }
+
+			purchaseRepository.register(paramMap); 
 	}
  
 	@Override 
@@ -119,6 +132,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public int deletePurchase(int pi_no) throws Exception {
 
 		return purchaseRepository.deletePurchase(pi_no); 
+	}
+
+	@Override
+	public int selectP(Map<String, Object> param) throws Exception {
+		System.out.println("도착");
+		return purchaseRepository.receivedP(param);
 	}
 
 }
