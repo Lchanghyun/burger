@@ -64,57 +64,57 @@
 <body>
 <!-- 본사 -->
 <c:choose>
-	<c:when test ="${sessionScope.super_no not empty}">
+	<c:when test ="${sessionScope.super_no != null}">
     <div class="left-side-bar">
 			        <ul>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/chart/supervisorChart">매출관리</a>
+			                <a href="${pageContext.request.contextPath}/chart/supervisorChart">매출관리</a>
 			            </li>
 			            <li>
-			                <label>자재발주</label>
+			                <a onclick="">자재, 발주</a>
 			                <ul>
-			                    <li><a href="<%=request.getContextPath()%>/item/list">자재목록</a></li>
-			                    <li><a href="<%=request.getContextPath()%>/purchase/superpurchaselist">발주목록</a></li>
+			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
+			                    <li><a href="${pageContext.request.contextPath}/purchase/superpurchaselist">발주목록</a></li>
 			                </ul>
 			            </li>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
+			                <a href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
 			            </li>
 			            <li>
-			                <a href="<%=request.getContextPath()%>/join/branch_join">지점 아이디 발급</a>
+			                <a href="${pageContext.request.contextPath}/join/branch_join">지점 아이디 발급</a>
 			            </li>
 			            <li>
-			              <a href="<%=request.getContextPath()%>/menu/superlist">메뉴 관리</a>
+			              <a href="${pageContext.request.contextPath}/menu/superlist">메뉴 관리</a>
 			          </li>
 			        </ul>
 			    </div>
 	</c:when>
 <!-- 지점 -->
-	<c:when test = "${sessionScope.branch_no not empty }"	>
+	<c:when test = "${sessionScope.branch_no != null }"	>
     <div class="left-side-bar">
         <ul>
             <li>
-                <a href="<%=request.getContextPath()%>/chart/branchChart">매출관리</a>
+                <a href="${pageContext.request.contextPath}/chart/branchChart">매출관리</a>
             </li>
             <li>
-                <label>자재발주</label>
+                <a onclick="">자재, 발주</a>
                 <ul>
-                	<li><a href="<%=request.getContextPath()%>/stock/chart">재고분석</a></li>
-                    <li><a href="<%=request.getContextPath()%>/purchase/list">발주목록</a></li>
+                	<li><a href="${pageContext.request.contextPath}/stock/chart">재고분석</a></li>
+                    <li><a href="${pageContext.request.contextPath}/purchase/list">발주목록</a></li>
                 </ul>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/notice/notice_list">공지사항</a>
+                <a href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
             </li>
             <li>
-                <label>주문현황</label>
+                <a onclick="">주문현황</a>
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/today/chart">주문분석</a></li>
-                    <li><a href="<%=request.getContextPath()%>/today/order">주문현황</a></li>
+                    <li><a href="${pageContext.request.contextPath}/today/chart">주문분석</a></li>
+                    <li><a href="${pageContext.request.contextPath}/today/order">주문현황</a></li>
                 </ul>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/menu/branchlist">메뉴관리</a>
+                <a href="${pageContext.request.contextPath}/menu/branchlist">메뉴관리</a>
             </li>
         </ul>
     </div>

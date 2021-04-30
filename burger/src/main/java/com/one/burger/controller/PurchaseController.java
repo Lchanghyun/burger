@@ -27,6 +27,7 @@ import com.one.burger.entity.Purchase;
 import com.one.burger.entity.PurchaseItemVo;
 import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.Purchase_Item;
+import com.one.burger.entity.Received_Item;
 import com.one.burger.entity.StockItemVo;
 import com.one.burger.service.ItemService;
 import com.one.burger.service.PurchaseService;
@@ -69,9 +70,8 @@ public class PurchaseController {
 		log.info("receivedDetail()");
 		
 		model.addAttribute("RIlist", purchaseService.received(purchase_no));
-		
-		
 	}
+	
 	@GetMapping("/update")
 	public void purchaseUpdate(int purchase_no, Model model) throws Exception{
 		log.info("purchaseUpdate()");
@@ -183,19 +183,17 @@ public class PurchaseController {
 	}
 	
 	@GetMapping("/superlist")
-	public String superPurchase(Model model) throws Exception{
+	public void superPurchase(Model model) throws Exception{
 		log.info("superPurchase()");
 		
 		model.addAttribute("SPlist",purchaseService.show());
-		
-		return "purchase/superlist";
 	}
 	
 	@GetMapping("/superpurchaselist")
 	public void superPurchaseList(int purchase_no, Model model) throws Exception{
 		log.info("purchaseDetail()");
-		
-		model.addAttribute("PIlist", purchaseService.select(purchase_no));
+
+		model.addAttribute("PurchaseItem", purchaseService.select(purchase_no));
 		
 	}
 	@PostMapping("/superpurchaselist")
@@ -204,6 +202,23 @@ public class PurchaseController {
 		
 		purchaseService.update(purchaseSuperVo);
 		
-	   return "purchase/superlist";
+	   return "redirect: superlist";
+	}
+	
+	@GetMapping("/selectP")
+	public String selectP(int stock_no, int count, int purchase_no) throws Exception{
+		log.info("purchaseP");
+		
+		Map<String, Object> param = new HashMap();
+		param.put("branch_no", 1);
+		param.put("stock_no", stock_no);
+		param.put("count", count);
+		param.put("purchase_no", purchase_no);
+	
+		for (String mapkey : param.keySet()){
+	        System.out.println("key:"+mapkey+",value:"+param.get(mapkey));
+	    }
+		purchaseService.selectP(param);
+		return "redirect: superlist";
 	}
 }

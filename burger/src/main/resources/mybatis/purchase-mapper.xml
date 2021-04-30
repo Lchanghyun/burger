@@ -30,7 +30,7 @@
 	<select id="SPlist" resultType="PurchaseSuperVo">
 		select B.branch_name, P.purchase_no, P.super_no, P.purchase_date, P.status 
 			from purchase P inner join branch B
-				 on P.branch_no = B.branch_no
+				 on P.branch_no = B.branch_no order by P.purchase_no
 	</select>
 	
 	<select id="getSeq" resultType="int">

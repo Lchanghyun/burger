@@ -114,6 +114,11 @@
 	 $('.back').on('click',function(e){
 		 location.href="${pageContext.request.contextPath}/purchase/list"
      })
+
+  
+  	$('.backsuper').on('click',function(e){
+		 location.href="${pageContext.request.contextPath}/purchase/superlist"
+     })
   })
     </script>
     
@@ -121,7 +126,8 @@
 <div style="height: calc(100% - 142px)">
 <div class="page_title">완료 품목</div>
 				<div class="btn_wrapper">
-					<button class="back" >목록</button> 
+					<button class="back" >목록</button>
+					<button class="backsuper" >본점목록</button>
 				</div>
 				<hr class="hr_line">
     <div class="purchase_wrap">
