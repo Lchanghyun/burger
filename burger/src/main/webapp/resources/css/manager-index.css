@@ -140,6 +140,7 @@
    .left-side-bar > ul li {
        position: relative;
        list-style: none;
+       z-index :2;
    }
    .left-side-bar ul {
        font-weight: bold;
@@ -149,6 +150,7 @@
    .left-side-bar ul > li > a {
        display: block;
        padding: 10px;
+       height: 25px;
        white-space: nowrap;
    }
    .left-side-bar ul > li:hover ul {

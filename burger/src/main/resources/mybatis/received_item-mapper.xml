@@ -30,4 +30,8 @@
 				left outer join Item i on S.item_no = I.item_no 
 					 where R.purchase_no=#{purchase_no}
 	</select>
-</mapper>
+	
+	<insert id="Received_item" parameterType="map">
+		insert into received_item values(RECEIVE_SEQ.nextval, #{purchase_no, jdbcType=INTEGER}, #{branch_no, jdbcType=INTEGER}, #{stock_no, jdbcType=INTEGER}, #{count, jdbcType=INTEGER},sysdate)
+	</insert>
+ </mapper>

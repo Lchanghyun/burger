@@ -12,4 +12,5 @@ public class PurchaseItemVo {
 	private int count;
 	private int item_price;
 	private int pi_no;
+	private int stock_no;
 }

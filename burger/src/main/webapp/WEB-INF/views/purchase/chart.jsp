@@ -39,9 +39,10 @@
         font-weight: bold;
         vertical-align: top;
         color: #fff;
-        background: #ce4869 ;
+        background: #ce4869;
     }
-    table.purchase_table td {
+    <!---->
+    table.purchase_table td { 
         width: 155px;
         padding: 10px;
         vertical-align: top;
