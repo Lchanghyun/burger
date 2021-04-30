@@ -8,12 +8,13 @@
             margin: 0;
             padding: 0;
         }
-        * {
-            box-sizing: border-box;
-        }
 	.adminbox{
 		height: calc(100% - 162px);
        	font-family: GmarketSansMedium;
+    }
+    .topchart{
+    	border-bottom: 2px solid gray;
+    	margin-bottom: 0.7rem;
     }
 	.chart1{
 		height:350px;
@@ -37,8 +38,9 @@
 	}
 	.ChartTableBox{
 		width:500px;
-		height:350px;
+		height:345px;
 		border: 2px solid #EE4E34;
+		margin-bottom: 5px;
 	}
 	.ChartTable{
 		width:500px;
