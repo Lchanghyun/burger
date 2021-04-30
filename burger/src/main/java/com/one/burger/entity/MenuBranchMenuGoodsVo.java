@@ -1,6 +1,5 @@
 package com.one.burger.entity;
 
-import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class MenuBranchMenuGoodsVo {
 	private String menu_name;
-	private long total_sales;
+	private String menu_price;
+	private int count;
 	private String sales_time;
 }

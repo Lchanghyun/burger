@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/superChart.css">
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<!-- 메뉴별 매출 추이(창현) -->
 <script>
 	$(function(){
 		let menu_name = []
@@ -30,8 +29,8 @@
 					$.each(resp, function(index, element){
 						if(element == null){
 							menu_sales.push(0)
-						}else{
-							menu_sales.push(element.total_sales)
+						}else{				
+							menu_sales.push(element.count*element.menu_price)
 						}
 					})
  					menu_sales_chart(menu_name, menu_sales)
@@ -54,7 +53,7 @@
 	 				menu_sales.push(0)
 				</c:when>
 				<c:otherwise>
-					menu_sales.push('${MenuBranchMenuGoodsVo.total_sales}')
+					menu_sales.push('${MenuBranchMenuGoodsVo.count*MenuBranchMenuGoodsVo.menu_price}')
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -87,12 +86,22 @@
 					}]
 				},
 				options: { 
+					legend:{
+							display : false
+					},
 					scales: { 
 						yAxes: [{ 
 							ticks: { 
-								beginAtZero: true 
+								beginAtZero: true,
+								fontFamily: "GmarketSansMedium"
 							} 
-						}] 
+						}],
+						xAxes: [{
+							ticks: {
+								fontFamily: "GmarketSansMedium",
+								fontSize : 12
+							}
+						}]
 					} 
 				}
 			})
