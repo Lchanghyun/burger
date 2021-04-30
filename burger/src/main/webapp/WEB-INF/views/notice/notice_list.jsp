@@ -5,7 +5,6 @@
 <style type="text/css">
 			li {list-style: none; float: left; padding: 6px;}
 		</style>
-<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 <script>
 	$(function(){
 		$(".notice_write_btn").on("click", function(){
@@ -13,6 +12,8 @@
 		})
 	})
 </script>
+<jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
+
 <h2>공지사항</h2>
 	<div class="notice_write_btn_line">
 		<button class="notice_write_btn" id="notice_write_btn">공지 작성</button>
@@ -22,6 +23,7 @@
 			<thead>
 				<tr>
 					<th align="center">번호</th>
+					<th align="center">분류</th>
 					<th align="center">제목</th>
 					<th align="center">등록일</th>
 				</tr>
@@ -30,13 +32,14 @@
 				<c:choose>
 					<c:when test="${empty notice_list}">
 						<tr>
-							<td colspan="3">공지가 없습니다.</td>
+							<td colspan="4">공지가 없습니다.</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${notice_list}" var="notice">
 							<tr>
 								<td><c:out value="${notice.notice_no}"/></td>
+								<td><c:out value="${notice.notice_category}"/></td>
 								<td><a href="${pageContext.request.contextPath}/notice/notice_detail?notice_no=${notice.notice_no}"><c:out value="${notice.notice_title}"/></a></td>
 								<td><c:out value="${notice.notice_date}"/></td>
 							</tr>

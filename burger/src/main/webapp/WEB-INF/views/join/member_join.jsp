@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- jsp header공간 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member_join.css">
+  
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!-- Daum 주소찾기 API 설정 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -24,8 +27,8 @@
 				}
 				else if(resp == "NNNNY"){
 					
-					$('#idCheckBox2').text("사용 가능한 아이디입니다.");
-					$('#idCheckBox2').css("color", "blue");
+				//	$('#idCheckBox2').text("사용 가능한 아이디입니다.");
+				//	$('#idCheckBox2').css("color", "blue");
 				}
 			
 			}
@@ -79,7 +82,7 @@
 			else{
 				$('#pwCheckBox').text('영문+숫자+특수문자 조합6~12자리로 입력해주세요.');
 				$('#pwCheckBox').css('color', 'red');
-				$('#membeR_pw').focus();
+				$('#member_pw').focus();
 				
 			}
 		});
@@ -204,30 +207,30 @@ $(function(){
 
 </script>
 
-<body>
-	<article class="container">
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
 		<div class="outbox" style="width:700px">
 		<div class="row center">
-			<h3>회원 가입</h3>
+			<h1>회원 가입</h1>
 		</div>
 			<form action="member_join" method="post" id="memberJoin" name="member">
 		
 			<div class="form-group">
 				<label for="member_id">아이디</label>
-				<input type="text" id="member_id" name="member_id" class="input" placeholder="아이디를 입력해주세요" required>
-				<span class="idCheckBoxFont" id="idCheckBox" name="idCheckBox"></span>
-				<span class="idCheckBoxFont" id="idCheckBox2" name="idCheckBox2"></span>
+				<input type="text" id="member_id" name="member_id" class="input" placeholder="아이디를 입력해주세요" required><br>
+				<span class="idCheckBoxFont" id="idCheckBox"></span>
+				<span class="idCheckBoxFont" id="idCheckBox2"></span>
 			</div>
 			
 			<div class="form-group">
 				<label for="member_pw">비밀번호</label>
-				<input type="password" id="member_pw" name="member_pw" class="input" placeholder="비밀번호를 입력해주세요" required>
+				<input type="password" id="member_pw" name="member_pw" class="input" placeholder="비밀번호를 입력해주세요" required><br>
 				<span class="pwCheckBoxFont" id="pwCheckBox"></span>
 			</div>
 		
 			<div class="form-group">
 				<label for="member_pw2">비밀번호 확인</label>
-				<input type="password" id="member_pw2" class="input" placeholder="비밀번호를 입력해주세요" required>
+				<input type="password" id="member_pw2" class="input" placeholder="비밀번호를 입력해주세요" required><br>
 				<span class="pwCheckBoxFont" id="pw2CheckBox"></span>
 			</div>
 			
@@ -237,8 +240,9 @@ $(function(){
 			</div>
 			
 			<div class="form-group">
-				<label for="member_phone">휴대전화 번호('-'없이 번호만 입력해주세요)</label>
-				<input type="text" id="memberPhone" name="member_phone"class="input" placeholder="010-0000-0000과 같이 입력해주세요" required>
+				<label for="member_phone">휴대전화 번호</label><br>
+				<input type="text" id="memberPhone" name="member_phone"class="input" placeholder="010-0000-0000과 같이 입력해주세요" required><br>
+				<label for="member_phone">('-'없이 입력해주세요)</label><br>
 				<span class="phoneCheckBoxFont" id="phoneCheckBox"></span>
 			
 			</div>
@@ -246,7 +250,7 @@ $(function(){
 			<div class="form-group">
 				<label for="member_address">주소</label>
 				<input type="text" name="member_address" id="sample4_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_btn"><br>
 				<input type="text" name="member_address" id="sample4_roadAddress" placeholder="도로명주소">
 				<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 				<span id="guide" style="color:#999;display:none"></span>
@@ -276,6 +280,6 @@ $(function(){
 			</div>
 			</form>
 		</div>
-	</article>
-</body>
+
 <!-- jsp footer 공간! -->
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

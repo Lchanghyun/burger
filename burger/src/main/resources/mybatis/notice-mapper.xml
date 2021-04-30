@@ -25,13 +25,13 @@
 	 -->
 	 <!-- 공지사항(NOTICE) 글 작성 -->
 	<insert id="notice_write" parameterType="Notice">
-		insert into notice(notice_no, notice_title, notice_content)
-			values(NOTICE_SEQ.nextval, #{notice_title}, #{notice_content})
+		insert into notice(notice_no, notice_title, notice_content, notice_category)
+			values(NOTICE_SEQ.nextval, #{notice_title}, #{notice_content}, #{notice_category})
 	</insert>
 	
 	<!-- 공지사항 목록을 위한 조회 --><!-- 카테고리 넣을거면 넣기 -->
 	<select id="notice_list" resultType="Notice">
-		select notice_no, notice_title, notice_date from notice order by notice_no DESC
+		select notice_no, notice_title, notice_date, notice_category from notice order by notice_no DESC
 	</select>
 	
 	<!-- 시퀀스 -->
@@ -48,7 +48,8 @@
 	<update id="notice_edit" parameterType="Notice">
 		update notice set
 			 notice_title = #{notice_title}, 
-			 notice_content = #{notice_content}
+			 notice_content = #{notice_content},
+			 notice_category = #{notice_category}
 		 where notice_no = #{notice_no}
 	</update>
 	
@@ -59,8 +60,8 @@
 	
 	<!-- 페이징처리 -->
 	<select id="listPage" resultType="Notice" parameterType="Criteria">
-		select notice_no, notice_title, notice_content, notice_date from (
-		select notice_no, notice_title, notice_content, notice_date, row_number() over(order by notice_no DESC)
+		select notice_no, notice_title, notice_content, notice_date, notice_category from (
+		select notice_no, notice_title, notice_content, notice_date, notice_category, row_number() over(order by notice_no DESC)
 		as RNUM from notice) MP
 		where RNUM between #{rowStart} and #{rowEnd} order by notice_no DESC
 	</select>
