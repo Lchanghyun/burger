@@ -28,7 +28,6 @@ public class MyOrderController {
 	@GetMapping("/list")
 	public void myorderList(Model model, HttpSession session) throws Exception{
 		log.info("myorderList()");
-		session.setAttribute("member_no", 1);
 		int member_no = (int)session.getAttribute("member_no");
 		List<MyOrder> list = myorderService.myorderListCount(member_no);
 		Map<Integer,Map<String,String>> menulist = new HashMap<>();

@@ -34,7 +34,6 @@ public class TodayOrderController {
 	@GetMapping("/order")
 	public void todayOrderList(Model model, HttpSession session) throws Exception{
 		log.info("todayOrderList()");
-		session.setAttribute("branch_no", 1);
 		int branch_no = (int)session.getAttribute("branch_no");
 		String branch_name = todayService.getBranchName(branch_no);
 		List<TodayOrder> list = todayService.orderList(branch_no);
@@ -61,7 +60,6 @@ public class TodayOrderController {
 	@GetMapping("/chart")
 	public void showChart(Model model, HttpSession session) throws Exception{
 		log.info("showChart()");
-		session.setAttribute("branch_no", 1);
 		int branch_no = (int)session.getAttribute("branch_no");
 		List<Map<String,Object>> list = todayService.getChart(branch_no, "햄버거", null);
 		JSONArray array = new JSONArray();
