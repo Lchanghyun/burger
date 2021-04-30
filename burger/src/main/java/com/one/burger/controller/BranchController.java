@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.one.burger.entity.Branch;
 import com.one.burger.entity.Login;
+import com.one.burger.entity.Supervisor;
 import com.one.burger.service.BranchService;
 
 import lombok.extern.java.Log;
@@ -30,7 +31,7 @@ public class BranchController {
 		
 	}
 		
-	//지점관리자 가입 데이터 전송
+	//지점관리자 가입 데이터 전송 Post
 	@PostMapping("/branch_join")
 	public String branchJoinPost(@ModelAttribute Branch branch, HttpSession session) throws Exception {
 		log.info("지점관리자 가입 페이지로 이동");
@@ -61,27 +62,27 @@ public class BranchController {
 	}
 	
 	//로그인 데이터 전송
-//	@PostMapping("/login_auth")
-//	public String login(@ModelAttribute Login login, HttpSession session) throws Exception {
-//		boolean result;
-//		if(login.getGubun().equals("s")) {
-//			result = branchService.superLogin(login.getId(),login.getPw()); //본사로그인
-//		}
-//		else {
-//			result = branchService.branchLogin(login.getId(),login.getPw());
-//		}
-//		
-//		if(result) {
-//			session.setAttribute("branch", branch.getBranch_no());
-//			session.setAttribute("supervisor", supervisor.getSuper_no());
-//			return "redirect:/";
-//		}
-//		else {
-//		
-//		return "redirect:login?error";
-//		}
-//	}
-//	
+	@PostMapping("/login_auth")
+	public String login(@ModelAttribute Login login, HttpSession session, Branch branch, Supervisor supervisor) throws Exception {
+		boolean result;
+		if(login.getGubun().equals("s")) {
+			result = branchService.superLogin(login.getId(),login.getPw()); //본사로그인
+		}
+		else {
+			result = branchService.branchLogin(login.getId(),login.getPw());
+		}
+		
+		if(result) {
+			session.setAttribute("branch", branch.getBranch_no());
+			session.setAttribute("supervisor", supervisor.getSuper_no());
+			return "redirect:/notice/notice_list";
+		}
+		else {
+		
+		return "redirect:login?error";
+		}
+	}
+	
 	//로그아웃
 	@GetMapping("/logout_auth")
 	public String logout_auth(HttpSession session) throws Exception {
