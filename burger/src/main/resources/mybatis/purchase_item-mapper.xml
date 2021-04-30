@@ -16,7 +16,7 @@
 
 	<select id ="PIlist" resultType="PurchaseItemVo" parameterType="int">
 	
-		select i.item_name, i.item_price, i.category, P.count, P.pi_no
+		select i.item_name, i.item_price, i.category, P.count, P.pi_no, S.stock_no
 			from purchase_item P  
 				left outer join stock S on P.stock_no = S.stock_no 
 				left outer join Item i on S.item_no = I.item_no 
@@ -28,7 +28,7 @@
 		select i.item_name, i.item_price, i.category, s.stock_no
     		from stock S
 		        left outer join item i on I.item_no = S.item_no
-		            where S.status = 1 and S.branch_no= #{branch_no}
+		            where S.status = 0 and S.branch_no= #{branch_no}
 	</select>
 	
 	<update id="update" parameterType="map">
@@ -39,9 +39,27 @@
 		select pi_seq.nextval from dual
 	</select>
 	
-	<insert id="PIRegister" parameterType="map">
-		insert into purchase_item values(
-			#{pi_no, jdbcType=INTEGER}, #{purchase_no, jdbcType=INTEGER},#{branch_no, jdbcType=INTEGER},#{super_no, jdbcType=INTEGER},#{stock_no, jdbcType=INTEGER},#{count, jdbcType=INTEGER})
+	<insert id="PIRegister" parameterType="java.util.HashMap">
+		<if test ="good.size !=0"> 
+		insert into purchase_item(
+			pi_no,
+			purchase_no,
+			branch_no,
+			super_no,
+			stock_no,
+			count
+		) values
+		<foreach collection="good" item="PI" separator=",">
+		(
+			#{PI.pi_no},
+			#{PI.purchase_no},
+			#{PI.branch_no},
+			#{PI.super_no},
+			#{PI.stock_no},
+		 	#{PI.count}
+		)
+		</foreach>
+		</if>
 	</insert>
 	
 	<delete id="deletePurchase" parameterType="int">

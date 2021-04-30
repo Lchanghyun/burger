@@ -34,14 +34,6 @@
 			                <a href="${pageContext.request.contextPath}/chart/supervisorChart">매출관리</a>
 			            </li>
 			            <li>
-			                <a onclick="">자재, 발주</a>
-			                <ul>
-			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
-
-			                    <li><a href="${pageContext.request.contextPath}/purchase/superlist">발주목록</a></li>
-			                </ul>
-			            </li>
-			            <li>
 			                <a href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
 			            </li>
 			            <li>
@@ -50,6 +42,14 @@
 			            <li>
 			              <a href="${pageContext.request.contextPath}/menu/superlist">메뉴 관리</a>
 			          </li>
+			          <li>
+			                <a onclick="">자재, 발주</a>
+			                <ul>
+			                    <li><a href="${pageContext.request.contextPath}/item/list">자재목록</a></li>
+
+			                    <li><a href="${pageContext.request.contextPath}/purchase/superlist">발주목록</a></li>
+			                </ul>
+			            </li>
 			        </ul>
 			    </div>
 	  </aside>

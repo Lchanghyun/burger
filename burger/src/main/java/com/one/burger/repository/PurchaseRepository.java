@@ -13,6 +13,7 @@ import com.one.burger.entity.PurchaseItemVo;
 import com.one.burger.entity.PurchaseStockVo;
 import com.one.burger.entity.PurchaseSuperVo;
 import com.one.burger.entity.ReceivedItemVo;
+import com.one.burger.entity.Received_Item;
 import com.one.burger.entity.StockItemVo;
 
 @Repository
@@ -61,9 +62,9 @@ public class PurchaseRepository {
 		sqlSession.insert("purchase.PRegister",param);
 	}
 
-	public void register(Map<String, Object> param) {
+	public void register(Map<String, Object> paramMap) { 
 
-		sqlSession.insert("purchase_item.PIRegister",param);
+		sqlSession.insert("purchase_item.PIRegister",paramMap);
 		 
 	}
 	public List<PurchaseStockVo> stock(int branch_no) {
@@ -79,6 +80,11 @@ public class PurchaseRepository {
 	public int deletePurchase(int pi_no) {
 		
 		return sqlSession.delete("purchase_item.deletePurchase", pi_no);
+	}
+
+	public int receivedP(Map<String, Object> param) {
+		
+		return sqlSession.insert("received_item.Received_item", param);
 	}
 	
 	

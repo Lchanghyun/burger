@@ -61,7 +61,7 @@
     	background-color:#f3e9e9 !important;
   		color:#303f39 !important
     }
-    
+      
     button {
     	width: 100px;
 	    height: 30px;
@@ -103,13 +103,7 @@
 		cursor : pointer;
 	}
     </style>
-    
-    <script>
-  $(function(){
-	
-	  
-  }
-    </script>
+ 
     <c:import url="/WEB-INF/views/template/managerHeader.jsp"/>
 <div style="height: calc(100% - 142px)">
 	<div class="page_title">발주 현황</div>
@@ -135,25 +129,33 @@
                         <c:forEach items="${SPlist}" var="Super">
                             <tr>
                             	<td>${Super.branch_name}</td>
-                                <td><input type="hidden" name="purchase_no" value="${Super.purchase_no}">
-	                                <a href="${pageContext.request.contextPath}/purchase/superpurchaselist?purchase_no=${Super.purchase_no}">
-	                                 ${Super.purchase_no}
-	                                </a>
-                                </td>
                                 <td>
-                                	<c:set var="status" value="${Super.status}"/>
-	                                <c:choose>
-    	                            	<c:when test="${status == '발주완료'}">
-    	                            		<a href="${pageContext.request.contextPath}/purchase/superreceived?purchase_no=${Super.purchase_no}">
-    	                            			${Super.status}
-    	                            		</a>
-    	                            	</c:when>
-    	                            	
-    	                            	<c:when test="${status != '발주완료'}">
-    	                            			${Super.status}
+                                	<input type="hidden" name="purchase_no" value="${Super.purchase_no}">
+                                		<c:set var="status" value="${Super.status}"/>
+                                 			<c:choose>
+    	                            			<c:when test="${status == '발주완료'}">
+					                                <a onclick="">
+					                                 ${Super.purchase_no}
+					                                </a>
+                                </td>
+	                                <td>
+		                            	<a href="${pageContext.request.contextPath}/purchase/received?purchase_no=${Super.purchase_no}">
+		                            		${Super.status}
+		                            	</a>
+		                            </td>
+    	                        			</c:when>
+    	                            			<c:when test="${status != '발주완료'}">
+			    	                            	<a href="${pageContext.request.contextPath}/purchase/superpurchaselist?purchase_no=${Super.purchase_no}">
+				                                	 ${Super.purchase_no}	
+				                                	</a>
+                                </td>                               
+   	                            	<td>
+		                            	<a onclick="">
+		                            		${Super.status}
+		                            	</a>
+	                            	</td>
     	                            	</c:when>		
        	                        	</c:choose>
-                                </td>
                                 <td>${Super.purchase_date}</td>  
                             </tr>
                         </c:forEach>
