@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.one.burger.entity.Branch;
 import com.one.burger.entity.Member;
-import com.one.burger.entity.Supervisor;
 import com.one.burger.service.MemberService;
 
 import lombok.extern.java.Log;
@@ -100,6 +99,16 @@ public class MemberController {
 		else {
 			return "NNNNN";
 		}
+	}
+	
+	//회원 개인 정보 보기
+	@GetMapping("/member_info")
+	public void member_info(HttpSession session, Model model, String member_id)throws Exception {
+		log.info("내 정보 보기 이동");
+		
+		
+		model.addAttribute("member_detail", memberService.find(member_id));
+		
 	}
 }
 

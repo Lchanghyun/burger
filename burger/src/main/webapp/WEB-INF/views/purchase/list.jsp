@@ -138,7 +138,7 @@
                     <tbody>
                         <c:if test="${empty Plist}">
                             <tr>
-                                <td>no list</td>
+                                <td colspan="3">no list</td>
                             </tr>
                         </c:if>
                         <c:forEach items="${Plist}" var="Purchase">

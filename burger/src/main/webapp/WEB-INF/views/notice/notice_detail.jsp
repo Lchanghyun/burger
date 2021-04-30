@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
     
 <script>
 	$(document).ready(function(){
@@ -27,7 +28,6 @@
 		
 	})
 </script>
-<body>
 	<div class="notice_detail_wrap">
 		<h2 class="notice_detail_head">공지사항</h2>
 		
@@ -48,6 +48,10 @@
 					<td><form:input path="notice_no" class="noticeNo" readonly="true"/></td>
 				</tr>
 				<tr>
+					<td align="center">분류</td>
+					<td><form:input path="notice_category" readonly="true"/></td>
+				</tr>
+				<tr>
 					<td align="center">제목</td>
 					<td><form:input path="notice_title" readonly="true"/></td>
 				</tr>
@@ -59,4 +63,4 @@
 		</form:form>
 		
 	</div>
-</body>
+<jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 

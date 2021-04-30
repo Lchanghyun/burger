@@ -180,7 +180,7 @@
                     <tbody>
                         <c:if test="${empty list}">
                             <tr>
-                                <td>no list</td>
+                                <td colspan="4">no list</td>
                             </tr>
                         </c:if>
                         <c:forEach items="${list}" var="stockItemVo">

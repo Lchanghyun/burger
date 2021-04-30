@@ -14,14 +14,7 @@ public class Notice {
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
+	private String notice_category;
 }
-/*
- notice_no number primary key,
-super_no number references supervisor(super_no) on delete set null,
-notice_title varchar2(300) not null,
-notice_content varchar2(4000) not null,
-notice_date date default SYSDATE
-);
-create sequence notice_seq;
- */
+
 

@@ -206,7 +206,7 @@ $(function(){
 </script>
 <div class="supervisorChart">
 	<div class="supervisorChartBox">
-		<div class="chartBox">
+		<div class="chartBox"> 
 			<div class="chartTitle">지점 월별 매출</div>
 			<div class="chartContent">
 				<div class="yearChoose">

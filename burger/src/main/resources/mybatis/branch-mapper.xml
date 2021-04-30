@@ -24,8 +24,8 @@
 		2. ${이름} : 전달된 데이터에서 해당하는 이름의 값을 어떠한 처리도 없이 정적으로 배치
 	 -->
 	<insert id="branch_join" parameterType="Branch">
-		insert into branch(super_no, branch_no, branch_name, branch_id, branch_pw) values(
-		#{super_no}, #{branch_no}, #{branch_name}, #{branch_id}, #{branch_pw})
+		insert into branch (branch_no, branch_name, branch_id, branch_pw, branch_address) 
+		values(#{branch_no}, #{branch_name}, #{branch_id}, #{branch_pw}, #{branch_address})
 	</insert>
 	
 	<!-- 시퀀스 -->
