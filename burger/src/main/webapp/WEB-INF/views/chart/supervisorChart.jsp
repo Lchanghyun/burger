@@ -366,7 +366,7 @@
 		</div>
 		<div class="chartBox">
 			<div class="chartTitle">
-				메뉴별 매출
+				전 지점 메뉴별 매출
 			<div class="chartContent">
 				<div>
 					<div class="menu_sales_date_search_wrapper">

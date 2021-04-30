@@ -26,7 +26,7 @@
 	</div>
 	<hr class="hr_line">  
 	<div class="list_border">
-		<form action="register" method="post" class="stock_register_form">
+		<form action="${pageContext.request.contextPath}/stock/register" method="post" class="stock_register_form">
 		<input type="hidden" name="size" value="${list.size()}">
 		<table class="stock_list_table">
 			<thead>
