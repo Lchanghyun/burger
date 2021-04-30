@@ -10,13 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.entity.Branch;
+import com.one.burger.entity.BranchMenu;
+import com.one.burger.entity.BranchMenuChart;
 import com.one.burger.entity.SalesSuperTotal;
 import com.one.burger.repository.ChartRepository;
 import com.one.burger.entity.Menu;
 import com.one.burger.entity.MenuBranchMenuGoodsVo;
 import com.one.burger.repository.MenuRepository;
 import lombok.extern.java.Log;
- 
+
 @Log
 @Service
 public class ChartServiceImpl implements ChartService{
@@ -85,4 +87,23 @@ public class ChartServiceImpl implements ChartService{
 		
 		return list ;
 	}
-} 
+
+	@Override
+	public List<BranchMenuChart> branchMenuChart(int branch_no, String sysdate) throws Exception {
+		
+		log.info("도는거냐");
+		
+		Map<String, Object> param = new HashMap<>();
+		List<Integer> bmNoList = chartRepository.Bm_noList(branch_no);
+		List<BranchMenuChart> chart = new ArrayList<>();
+		param.put("branch_no", branch_no);
+		param.put("date",sysdate);
+		for(int i = 0; i<bmNoList.size(); i++) {
+			param.put("bm_no", bmNoList.get(i));
+			chart.add(chartRepository.branchMenuChart(param));
+			param.remove("bm_no");
+		}
+		
+		return chart;
+	}
+}

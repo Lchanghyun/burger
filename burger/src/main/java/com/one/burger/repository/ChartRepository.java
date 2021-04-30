@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.one.burger.entity.BranchTotalSales;
 import com.one.burger.entity.Branch;
+import com.one.burger.entity.BranchMenu;
+import com.one.burger.entity.BranchMenuChart;
 import com.one.burger.entity.SalesSuperTotal;
 
 import com.one.burger.entity.MenuBranchMenuGoodsVo;
@@ -35,6 +37,13 @@ public class ChartRepository {
 	}
 	public MenuBranchMenuGoodsVo menu_sales(Map<String, Object> param) throws Exception{
 		return sqlSession.selectOne("chart.menu_total_sales",param);
+	}
+	public List<Integer> Bm_noList(int branch_no) throws Exception{
+		return sqlSession.selectList("chart.bmNoList", branch_no);
+	}
+
+	public BranchMenuChart branchMenuChart(Map<String, Object> param) throws Exception{
+		return sqlSession.selectOne("chart.branchMenuChart", param);
 	}
 
 }

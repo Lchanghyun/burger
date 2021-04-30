@@ -130,9 +130,11 @@ public class ChartController {
 		String sysdate = format.format(date);
 		String year = sysdate.split("/")[0];
 		
+
 		List<BranchTotalSales> list = chartService.total_sales(branch_no);
+		model.addAttribute("Totalsales",list);		
 		
-		model.addAttribute("Totalsales",list);
+		model.addAttribute("branch_menu_sales", chartService.branchMenuChart(branch_no, sysdate));
 
 	}
 }

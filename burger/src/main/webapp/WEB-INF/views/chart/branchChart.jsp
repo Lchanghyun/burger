@@ -92,19 +92,25 @@
 	  } 
 	})
 })
-		
-	
 </script>
-
-
-=======
 <script>
 	$(function(){
+		let branchMenu_name = [];
+		let branchMenu_salse = [];
 		
+		<c:forEach items="${menu_sales}" var="MenuBranchMenuGoodsVo">	
+			<c:choose>
+ 				<c:when test="${MenuBranchMenuGoodsVo eq null}">
+ 					menu_sales.push(0)
+				</c:when>
+				<c:otherwise>
+					menu_sales.push('${MenuBranchMenuGoodsVo.total_sales}')
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
 		
 	})
 </script>
->>>>>>> refs/remotes/origin/main
 <div class="supervisorChart">
 	<div class="supervisorChartBox">
 		<div class="chartBox">
@@ -115,9 +121,16 @@
 		</div>
 		<div class="chartBox">
 			<div class="chartTitle">해당 지점의 각 메뉴별 월별 매출</div>
-			<div class="chartContent">차트부분</div>
+			<div class="chartContent">
+				<canvas id="branch_burger_chart"></canvas>
+			</div>
 		</div>
 	</div>
+	<c:choose>
+		<c:when test="${empty branch_menu_sales}">
+			
+		</c:when>
+	</c:choose>
 </div>
 
 <jsp:include page="/WEB-INF/views/template/managerFooter.jsp"></jsp:include>
