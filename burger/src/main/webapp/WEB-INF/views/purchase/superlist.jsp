@@ -123,7 +123,7 @@
                     <tbody>
                         <c:if test="${empty SPlist}">
                             <tr>
-                                <td>no list</td>
+                                <td colspan="5">no list</td>
                             </tr>
                         </c:if>
                         <c:forEach items="${SPlist}" var="Super">
