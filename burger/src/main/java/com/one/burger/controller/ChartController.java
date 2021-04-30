@@ -126,8 +126,8 @@ public class ChartController {
 	public void getBranchChart(Model model, HttpSession session) throws Exception{
 		log.info("getBranchChart()");
 
-		int branch_no = 1 ;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		int branch_no = (int) session.getAttribute("branch_no");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY/MM");
 		Date date = new Date();
 		String sysdate = format.format(date);
@@ -147,8 +147,7 @@ public class ChartController {
 	@ResponseBody
 	public List<BranchTotalSales> totalYear(String year, HttpSession session) throws Exception{
 		log.info(year);
-		int branch_no = 1 ;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		Map<String, Object> param = new HashMap();
 		param.put("branch_no", branch_no);
 		param.put("year", year);
