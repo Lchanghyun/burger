@@ -16,6 +16,7 @@ public class BranchServiceImpl implements BranchService{
 
 	@Autowired
 	private BranchRepository branchRepository;
+	
 	@Override
 	public List<Branch> list() throws Exception {
 		return branchRepository.list();
