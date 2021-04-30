@@ -23,7 +23,7 @@
 	<hr class="hr_line">  
 	<div class="list_border">
 		<div class="list_all_wrapper">
-			<form action="stock_plus" method="post" class="stock_plus_form">	
+			<form action="${pageContext.request.contextPath}/stock/stock_plus" method="post" class="stock_plus_form">	
 				<input type="hidden" name="item_no" id="item_no">
 			</form>
 			<div class="category_wrapper">
