@@ -117,7 +117,7 @@
 					<div class="showChartAndInfo">
 						<div class="dateSelect">
 							<select name="year" class="YMSelect">
-								<c:forEach var="y" begin="0" end="${nowyear-2015}" step="1">
+								<c:forEach var="y" begin="0" end="${nowyear-2018}" step="1">
 									<option>${nowyear-y}</option>
 								</c:forEach>
 							</select>
