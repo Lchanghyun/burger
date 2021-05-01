@@ -82,6 +82,13 @@ public class ChartServiceImpl implements ChartService{
 		
 		return list ;
 	}
+	
+	@Override
+	public List<BranchMenuChart> Bm_nameList(int branch_no) throws Exception {
+		List<BranchMenuChart> bmNameList = chartRepository.Bm_nameList(branch_no);
+		
+		return bmNameList;
+	}
 
 	@Override
 	public List<BranchMenuChart> branchMenuChart(int branch_no, String sysdate) throws Exception {
@@ -101,4 +108,5 @@ public class ChartServiceImpl implements ChartService{
 		
 		return chart;
 	}
+
 }

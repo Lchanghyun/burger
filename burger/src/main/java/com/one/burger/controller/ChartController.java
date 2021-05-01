@@ -141,6 +141,8 @@ public class ChartController {
 		model.addAttribute("Tyear",year);
 		model.addAttribute("Totalsales",list);
 
+		// 지점 메뉴별 매출
+		model.addAttribute("branch_menu_name", chartService.Bm_nameList(branch_no));
 		model.addAttribute("branch_menu_sales", chartService.branchMenuChart(branch_no, sysdate));
 
 	}

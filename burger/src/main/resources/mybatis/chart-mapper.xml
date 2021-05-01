@@ -55,6 +55,13 @@
  		select * from branch order by branch_name asc
  	</select>
  	
+ 	<select id="branchName" resultType="BranchMenuChart" parameterType="int">
+ 		select M.menu_name
+ 		  from menu M
+ 		  	inner join branch_menu B on B.menu_no = M.menu_no
+ 		  where branch_no = #{branch_no}
+ 	</select>
+ 	
  	<select id="bmNoList" resultType="Integer" parameterType="int">
 		select bm_no from branch_menu where branch_no = #{branch_no}
 	</select>

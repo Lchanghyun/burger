@@ -139,20 +139,23 @@ $(function(){
 	$(function(){
 		let branchMenu_name = [];
 		let branchMenu_salse = [];
-		let menu_price;
-		let menu_total_count;
 		
 		<c:choose>
-			<c:when test="${empty branch_menu_sales}">
+			<c:when test="${empty branch_menu_sales} || ${empty branch_menu_sales}">
 				branchMenu_salse.push(0);
+				branchMenu_name.push(0);
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${branch_menu_sales}" var="BranchMenuChart">
-					branchMenu_name.push('${BranchMenuChart.menu_name}')
-					branchMenu_salse.push('${BranchMenuChart.menu_price}*${BranchMenuChart.menu_total_count}')
+					branchMenu_salse.push('${BranchMenuChart.menu_price*BranchMenuChart.menu_total_count}')
 				</c:forEach>
+				<c:forEach items="${branch_menu_name}" var="Menu">
+					branchMenu_name.push('${Menu.menu_name}');
+				</c:forEach>
+				
 			</c:otherwise>
 		</c:choose>
+		
 		
 		branch_burger_chart(branchMenu_name, branchMenu_salse)
 		
