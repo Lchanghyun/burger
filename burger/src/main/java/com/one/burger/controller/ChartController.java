@@ -126,14 +126,14 @@ public class ChartController {
 	public void getBranchChart(Model model, HttpSession session) throws Exception{
 		log.info("getBranchChart()");
 
-		int branch_no = 1 ;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		
+		int branch_no = (int) session.getAttribute("branch_no");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY/MM");
 		Date date = new Date();
 		String sysdate = format.format(date);
 		String year = sysdate.split("/")[0];
 		
-		Map<String, Object> param = new HashMap();
+		Map<String, Object> param = new HashMap<>();
 		param.put("branch_no", branch_no);
 		param.put("year", year);
 		
@@ -141,15 +141,18 @@ public class ChartController {
 		model.addAttribute("Tyear",year);
 		model.addAttribute("Totalsales",list);
 
+		// 지점 메뉴별 매출
+		model.addAttribute("branch_menu_name", chartService.Bm_nameList(branch_no));
+		model.addAttribute("branch_menu_sales", chartService.branchMenuChart(branch_no, sysdate));
+
 	}
 	
 	@PostMapping("/totalYear")
 	@ResponseBody
 	public List<BranchTotalSales> totalYear(String year, HttpSession session) throws Exception{
 		log.info(year);
-		int branch_no = 1 ;
-		//int branch_no = (int) session.getAttribute("branch_no");
-		Map<String, Object> param = new HashMap();
+		int branch_no = (int) session.getAttribute("branch_no");
+		Map<String, Object> param = new HashMap<>();
 		param.put("branch_no", branch_no);
 		param.put("year", year);
 		
