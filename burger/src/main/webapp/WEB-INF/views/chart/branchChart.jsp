@@ -38,7 +38,13 @@
 	    border-radius: 3px;
 	    font-family: GmarketSansMedium;
 	}
-	#branch_total_chart, #branch_burger_chart{
+	#branch_total_chart {
+		width:1100px; 
+		height:350px;
+		margin: auto;
+	}
+	
+	#branch_burger_chart{
 		width:1100px; 
 		height:350px;
 		margin: auto;
@@ -188,6 +194,7 @@ $(function(){
 					legend:{
 							display : false
 					},
+					responsive: false,
 					scales: { 
 						yAxes: [{ 
 							ticks: { 
