@@ -12,7 +12,7 @@
 	    inner join goods G on O.order_no=G.order_no
 	    where O.member_no=#{member_no}
 	    group by O.order_no, T.today_time, T.total_price, T.status, B.branch_name
-    	order by order_no desc
+    	order by T.today_time desc
  	</select>
  	
  	<select id="listDetail" parameterType="map" resultType="MyOrderDetail">
