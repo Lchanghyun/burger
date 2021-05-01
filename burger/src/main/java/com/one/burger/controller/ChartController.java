@@ -133,13 +133,17 @@ public class ChartController {
 		String sysdate = format.format(date);
 		String year = sysdate.split("/")[0];
 		
-		Map<String, Object> param = new HashMap();
+		Map<String, Object> param = new HashMap<>();
 		param.put("branch_no", branch_no);
 		param.put("year", year);
 		
 		List<BranchTotalSales> list = chartService.total_sales(param);
 		model.addAttribute("Tyear",year);
 		model.addAttribute("Totalsales",list);
+
+		// 지점 메뉴별 매출
+		model.addAttribute("branch_menu_name", chartService.Bm_nameList(branch_no));
+		model.addAttribute("branch_menu_sales", chartService.branchMenuChart(branch_no, sysdate));
 
 	}
 	
@@ -148,7 +152,7 @@ public class ChartController {
 	public List<BranchTotalSales> totalYear(String year, HttpSession session) throws Exception{
 		log.info(year);
 		int branch_no = (int) session.getAttribute("branch_no");
-		Map<String, Object> param = new HashMap();
+		Map<String, Object> param = new HashMap<>();
 		param.put("branch_no", branch_no);
 		param.put("year", year);
 		

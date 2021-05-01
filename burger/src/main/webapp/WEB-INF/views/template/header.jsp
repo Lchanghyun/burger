@@ -44,8 +44,7 @@
                     <div class="logo">
 
                         <img src="${path}/resources/img/bgmg.png" alt="로고">
-                    </div>
-					
+                    </div>	
 					<c:if test="${sessionScope.member_no == null}">
 						<div>
 	                        <a href="${path}/join/login_member"><p>LOGIN</p></a>

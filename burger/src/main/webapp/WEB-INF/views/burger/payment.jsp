@@ -4,7 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/> 
 <title>결제하기</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -56,7 +55,7 @@ $(function(){
 				    if ( rsp.success ) {
 				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 				    	jQuery.ajax({
-				    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+				    		url: "https://www.myservice.com/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
 				    		type: 'POST',
 				    		dataType: 'json',
 				    		data: {
@@ -73,18 +72,20 @@ $(function(){
 				    			msg += '카드 승인번호 : ' + rsp.apply_num;
 			 			
 				    			alert(msg);
+								
 				    		} else {
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
 				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 				    		}
 				    	});
+				    	this.submit();
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
 				        
 				        alert(msg);
 				    }
-				});				
+				});
 			}else if(price_statusVal === '0'){
 				this.submit();
 			}
@@ -96,102 +97,22 @@ $(function(){
 	});   
 });
 </script>
-<style>
-	#map{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#pay_way{
-		margin: 0 auto;
-		height: 350px; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#menu_info{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#goods{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 300px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	.menu_name{
-		font-size: 25px;
-		margin: 10px 0 3px;
-		padding-left: 20px;
-	}
-	.menu_price{
-		padding-left: 20px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	.menu_count{
-		display:inline-block;
-		position: relative;
-		left: 800px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	.menu_total{
-		display:inline-block;
-		position: relative;
-		left: 800px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	#check_order, #payment{
-	   box-shadow: 3px 7px 9px -4px grey;
-       width: 180px;
-       height: 50px;
-       padding: 3px;
-       padding-top: 6px;
-       background-color:#EE4E34;
-       color: white;
-       border: none;
-       font-family: 'GmarketSansMedium';
-       font-size: 25px;
-       font-weight: bold;
-       border-radius: 3px;
-    }
-    #check_order:hover, , #payment:hover{
-        cursor: pointer;
-        background-color:#FCEDDA;
-        color: #EE4E34;
-    }
-	#check_order:focus , #payment:focus{
-		outline: none;
-	}
-	.total_pricebox p{
-		display: inline-block;
-		margin: 5px 0;
-		font-size: 20px;
-	}
-</style>
+<link rel="stylesheet" href="${path}/resources/css/payment.css"></link>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 	<br><br>
-	<div style="display: inline-block;">
-		<h3 style="margin: 0 0 0 50px; font-size: 40px;">Pick-up info</h3>
+	<div class="payment_title">
+		<h3>Pick-up info</h3>
 	</div>
-	<div id="map">
-		지도랑 주소 보여주기
+	<div id="map"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
+	<script src="${path}/resources/js/paymentMapJs.js"></script>		
+	<div class="address_branch">
+		<c:set var="branch_address" value="${address}"></c:set>
+		<span>주소: <span id="branch_address"><c:out value="${branch_address}"/></span></span>
 	</div>
 	<br><br>
-	<div style="display: inline-block;">
-		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 정보</h3>
+	<div class="payment_title">
+		<h3>주문 정보</h3>
 	</div>
 	<div id="menu_info">
 		<c:set var="sum" value="${0}"></c:set>
@@ -205,12 +126,12 @@ $(function(){
 			<div>
 				<c:choose>
 					<c:when test="${fn:length(goodsList)==1}">
-						<p style="padding: 30px 0 0 20px; font-size: 30px; margin-top: 10px;">
+						<p class="menu_info_title">
 							<c:out value="${firstmenu}"/>
 						</p>
 					</c:when>
 					<c:otherwise>
-						<p style="padding: 30px 0 0 20px; font-size: 30px; margin-top: 10px;">
+						<p class="menu_info_title">
 							<c:out value="${firstmenu}"/> 외 <c:out value="${menuSize}"/>건
 						</p>										
 					</c:otherwise>
@@ -251,12 +172,14 @@ $(function(){
 		<form id="form" method="post" action="payment" style="margin: 0;">
 			<div id="pay_way">
 			<div>
-				<div style="text-align: center; margin-bottom: 20px;">
-					<div style="border-radius:5px; box-shadow: 3px 7px 9px -4px grey; margin-right:280px; padding-top:12px; font-size:30px; text-align: center; display: inline-block; width: 300px; height: 60px;">
-						<input style="margin: -1px 10px 0 0; vertical-align:middle; width: 30px; height: 30px;" type="radio" value="0" name="price_status" id="payment1" ><label for="payment1">만나서 결제</label>
+				<div class="pay_btnBox">
+					<div>
+						<input type="radio" value="0" name="price_status" id="payment1" >
+						<label for="payment1">만나서 결제</label>
 					</div>
-					<div style="border-radius:5px; box-shadow:3px 7px 9px -4px grey; padding-top:12px; font-size:30px; text-align: center; display: inline-block; width: 330px; height: 60px;">
-						<input style="margin: -1px 10px 0 0; vertical-align:middle; width: 30px; height: 30px;" type="radio" value="1" name="price_status" id="payment2" ><label for="payment2">간편 결제(카카오)</label>
+					<div class="pay_btnBox">
+						<input type="radio" value="1" name="price_status" id="payment2" >
+						<label for="payment2">간편 결제(카카오)</label>
 					</div>
 				</div>
 			<div class="total_pricebox">
@@ -280,10 +203,10 @@ $(function(){
 						<p id="discount" style="width:200px; margin-left: 640px;">0원</p>
 					</div>
 			</div>
-			</div>
-			<div style="text-align: right; padding-top: 20px;">
-				<button type="submit" id="payment">결제하기</button>			
-			</div>
-			</div>
+		</div>
+		<div style="text-align: right; padding-top: 20px;">
+			<button type="submit" id="payment">결제하기</button>			
+		</div>
+	</div>
 		</form>
 <c:import url="/WEB-INF/views/template/footer.jsp"></c:import>

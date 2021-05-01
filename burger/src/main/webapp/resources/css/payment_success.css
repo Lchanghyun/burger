@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+	article{
+		height: 150px;
+		text-align: center;
+		padding: 200px 0;
+	}
+	.success{
+		font-size: 40px;
+		font-weight: bold;
+	}
+	.href{
+		margin-top: 20px;
+		font-size: 25px;
+		color: #EE4E34;
+		font-weight: bold;
+	}
+	.href a{
+		margin-right: 50px;
+		color: #EE4E34;
+		text-decoration: none;
+	}
+	.href a:hover{
+		cursor: pointer;
+		color: lightgray;
+	}
