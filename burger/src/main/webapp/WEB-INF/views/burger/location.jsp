@@ -130,7 +130,7 @@ var markers = [];
 	    menuEl.scrollTop = 0;
 
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-	    map.setBounds(bounds);
+	    map.setBounds(	sbounds);
 	}
 
 	// 검색결과 항목을 Element로 반환하는 함수입니다

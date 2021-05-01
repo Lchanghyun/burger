@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.one.burger.entity.BurgerOrder;
 import com.one.burger.entity.Goods;
-import com.one.burger.entity.GoodsBranchMenuVo;
 import com.one.burger.entity.Today;
 import com.one.burger.service.BranchService;
 import com.one.burger.service.BurgerOrderService;
@@ -34,6 +33,7 @@ public class BurgerOrderController {
 	@GetMapping("/location")
 	public String location(Model model)throws Exception{
 		log.info("location()");
+		
 		model.addAttribute("list", branchService.list());
 		return "burger/location";
 
@@ -57,8 +57,9 @@ public class BurgerOrderController {
 		
 		log.info("POSTorderInsert()");
 		log.info("branch_no = "+ branch_no);
-		int member_no = 1;
-//		int menber_no = (int)session.getAttribute("member_no");
+		int member_no = (int)session.getAttribute("member_no");
+		
+		
 		int order_no = service.getSeq();
 		//주문 등록
 		burgerOrder.setOrder_no(order_no);
@@ -82,8 +83,9 @@ public class BurgerOrderController {
 		boolean result = true;		
 		if(result)  {
 			return ""+order_no;		
-		}
-		else {
+		}else if(member_no <= 0) {
+			return ""+member_no;
+		}else {
 			return "false";
 		}
 	}
@@ -104,8 +106,14 @@ public class BurgerOrderController {
 	public String paymentPost(Today today) throws Exception{
 		log.info("POSTpayment()");
 		//sysdate 조회 -> 조회목록 0보다 크면 하튼 길이로 체크 불린;; today_num이 1로 초기화
+		int order_no = today.getOrder_no();
+		boolean orderNoCheck = service.orderNoCheck(order_no);
+		if(!orderNoCheck) {
+			return "burger/fail";
+		}
+
+
 		Integer reset = service.sysdateToday();
-		
 		if(reset == null) {
 			today_num = 0;
 		}

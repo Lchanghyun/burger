@@ -14,9 +14,9 @@
 </script>
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 
-<h2>공지사항</h2>
+<h2>공지사항 </h2>
 	<div class="notice_write_btn_line">
-		<button class="notice_write_btn" id="notice_write_btn">공지 작성</button>
+		<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
 	</div>
 	<div class="notice_list_wrap">
 		<table class="notice_list_table">

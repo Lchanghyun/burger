@@ -36,9 +36,4 @@ public class BurgerOrderRepository {
 		return branch_address;
 	}
 
-
-	
-
-	
-	
 }

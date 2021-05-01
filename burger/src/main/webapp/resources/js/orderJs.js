@@ -26,6 +26,7 @@ $(function(){
 	console.log(nowTime);
 	var startdate = nowMonth + nowDay + '0900';
 	var enddate = nowMonth + nowDay + '2200';
+	startdate < nowTime && enddate > nowTime 
 	
 	//품절
 	let status = $("input[value=1]");
@@ -226,15 +227,25 @@ $(function(){
 					},
 					error: function(){
 						alert("주문이 실패되었습니다. 잠시후 다시 시도해주세요");
+					},
+					error: function(resp){
+						let member_no = resp;
+						alert("주문시 로그인이 필요합니다.");
+						document.location.href= contexPath+"/join/login_member";
 					}
 				});
 			}else{
 				alert("최소 주문 금액은 10,000원 입니다.");
 				return;
 			}
-		}else {
-			alert("마지막 주문은 10시까지입니다. 다음날 이용 부탁드립니다.");
-			return;
+		}else { 
+			if(enddate < nowTime){
+				alert("마지막 주문은 오후 10시까지입니다. 다음날 이용 부탁드립니다.");
+				return;				
+			}else if(startdate > nowTime){
+				alert("주문은 오전 9시부터 가능합니다.");
+				return;				
+			}
 		}
 	});
 });

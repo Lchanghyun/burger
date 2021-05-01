@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.one.burger.entity.Branch;
+import com.one.burger.entity.Supervisor;
 
 @Repository
 public class BranchRepository {
@@ -38,7 +39,7 @@ public class BranchRepository {
 		return sqlSession.selectList("branch.login_auth", map);
 	}
 	
-	public List<Branch> superLogin(String id, String pw) {
+	public List<Supervisor> superLogin(String id, String pw) {
 		Map<String, String> map = new HashMap<>();
 		map.put("id", id);
 		map.put("pw", pw);
@@ -54,6 +55,9 @@ public class BranchRepository {
 		return sqlSession.selectOne("branch.branch_find2", branch_id);
 	}
 
+	public Supervisor superfind2(String super_id) {
+		return sqlSession.selectOne("branch.super_find2", super_id);
+	}
 	
 }
 

@@ -33,5 +33,7 @@ public interface BurgerOrderService {
 	public Integer branchNo(int order_no) throws Exception;
 
 	public String branchAddr(int order_no) throws Exception;
+
+	public boolean orderNoCheck(int order_no) throws Exception;
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.one.burger.entity.Branch;
+import com.one.burger.entity.Supervisor;
 import com.one.burger.repository.BranchRepository;
 
 import lombok.extern.java.Log;
@@ -53,6 +54,11 @@ public class BranchServiceImpl implements BranchService{
 	@Override
 	public Branch find2(String branch_id) throws Exception {
 		return branchRepository.find2(branch_id);
+	}
+	
+	@Override
+	public Supervisor superfind2(String super_id) throws Exception {
+		return branchRepository.superfind2(super_id);
 	}
 
 	@Override

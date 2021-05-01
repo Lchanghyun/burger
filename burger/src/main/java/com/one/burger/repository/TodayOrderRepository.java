@@ -1,5 +1,6 @@
 package com.one.burger.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,5 +47,9 @@ public class TodayOrderRepository {
 	}
 	public Integer sysdateToday() throws Exception{
 		return sqlSession.selectOne("today.sysdate");
+	}
+	public List<Today> orderNoCheck(int order_no) throws Exception{
+		List<Today> today = sqlSession.selectList("today.orderNoCheck", order_no);
+		return today;
 	}
 }

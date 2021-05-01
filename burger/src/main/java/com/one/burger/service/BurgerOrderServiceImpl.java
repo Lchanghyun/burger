@@ -64,5 +64,13 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	public String branchAddr(int order_no) throws Exception {
 		return bugerOrderRepository.branchAddr(order_no);
 	}
+	@Override
+	public boolean orderNoCheck(int order_no) throws Exception {
+		boolean orderNoCheck = true;
+		if(todayRepository.orderNoCheck(order_no) != null) {
+			orderNoCheck = false;
+		}
+		return orderNoCheck;
+	}
 
 }

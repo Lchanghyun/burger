@@ -55,7 +55,7 @@ $(function(){
 				    if ( rsp.success ) {
 				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 				    	jQuery.ajax({
-				    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+				    		url: "https://www.myservice.com/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
 				    		type: 'POST',
 				    		dataType: 'json',
 				    		data: {
@@ -97,154 +97,22 @@ $(function(){
 	});   
 });
 </script>
-<style>
-	#map{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#pay_way{
-		margin: 0 auto;
-		height: 350px; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#menu_info{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 250px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	#goods{
-		margin: 0 auto;
-		height: auto; 
-		min-height: 300px; 
-		overflow: auto; 
-		width: 1000px; 
-		margin-top: 10px;
-	}
-	.menu_name{
-		font-size: 25px;
-		margin: 10px 0 3px;
-		padding-left: 20px;
-	}
-	.menu_price{
-		padding-left: 20px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	.menu_count{
-		display:inline-block;
-		position: relative;
-		left: 800px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	.menu_total{
-		display:inline-block;
-		position: relative;
-		left: 800px;
-		font-size: 18px;
-		margin: 3px 0;
-	}
-	#check_order, #payment{
-	   box-shadow: 3px 7px 9px -4px grey;
-       width: 180px;
-       height: 50px;
-       padding: 3px;
-       padding-top: 6px;
-       background-color:#EE4E34;
-       color: white;
-       border: none;
-       font-family: 'GmarketSansMedium';
-       font-size: 25px;
-       font-weight: bold;
-       border-radius: 3px;
-    }
-    #check_order:hover, , #payment:hover{
-        cursor: pointer;
-        background-color:#FCEDDA;
-        color: #EE4E34;
-    }
-	#check_order:focus , #payment:focus{
-		outline: none;
-	}
-	.total_pricebox p{
-		display: inline-block;
-		margin: 5px 0;
-		font-size: 20px;
-	}
-</style>
+<link rel="stylesheet" href="${path}/resources/css/payment.css"></link>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 	<br><br>
-	<div style="display: inline-block;">
-		<h3 style="margin: 0 0 0 50px; font-size: 40px;">Pick-up info</h3>
+	<div class="payment_title">
+		<h3>Pick-up info</h3>
 	</div>
 	<div id="map"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
-	<script>
-		let map;
-		$(function(){
-			let branch_address = $("#branch_address").text();
-			
-			//지도
-			$("#map").show();
-
-			//지도 생성
-			var mapContainer = document.querySelector("#map"),
-		    mapOption = {
-		            center: new kakao.maps.LatLng(33.450701, 126.570667),
-		            level: 3
-		    };  	
-			map = new kakao.maps.Map(mapContainer, mapOption); 
-			         
-		    var geocoder = new kakao.maps.services.Geocoder();
-
-		        geocoder.addressSearch(branch_address, function(result, status) {
-		        if (status === kakao.maps.services.Status.OK) {
-		             var coords = new kakao.maps.LatLng(result[0].y, result[0].x);                    
-		             //마커 생성
-		             var marker = new kakao.maps.Marker({
-		                 map: map,
-		                 position: coords
-		        });
-			        
-			       	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			          map.setCenter(coords);
-			       	
-			       	var iwContent = '<div style=" width: 150px; height: 40px; padding:5px; font-size:12px;">버거머거 주소:' + branch_address + '</div>';
-			       	iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
-			      	// 인포윈도우를 생성합니다
-			      	var infowindow = new kakao.maps.InfoWindow({
-			          position : iwPosition, 
-			          content : iwContent 
-			      	});
-		                  
-		                	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-		                	infowindow.open(map, marker); 
-		                }
-		            });
-
-			        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-		            var zoomControl = new kakao.maps.ZoomControl();
-		            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);	
-
-		});
-	</script>
-	<div style="width: 1000px; margin: 0 auto; text-align: right;" >
+	<script src="${path}/resources/js/paymentMapJs.js"></script>		
+	<div class="address_branch">
 		<c:set var="branch_address" value="${address}"></c:set>
-		<span>주문 지점 주소: <span id="branch_address"><c:out value="${branch_address}"/></span></span>
+		<span>주소: <span id="branch_address"><c:out value="${branch_address}"/></span></span>
 	</div>
 	<br><br>
-	<div style="display: inline-block;">
-		<h3 style="margin: 0 0 0 50px; font-size: 40px;">주문 정보</h3>
+	<div class="payment_title">
+		<h3>주문 정보</h3>
 	</div>
 	<div id="menu_info">
 		<c:set var="sum" value="${0}"></c:set>
@@ -258,12 +126,12 @@ $(function(){
 			<div>
 				<c:choose>
 					<c:when test="${fn:length(goodsList)==1}">
-						<p style="padding: 30px 0 0 20px; font-size: 30px; margin-top: 10px;">
+						<p class="menu_info_title">
 							<c:out value="${firstmenu}"/>
 						</p>
 					</c:when>
 					<c:otherwise>
-						<p style="padding: 30px 0 0 20px; font-size: 30px; margin-top: 10px;">
+						<p class="menu_info_title">
 							<c:out value="${firstmenu}"/> 외 <c:out value="${menuSize}"/>건
 						</p>										
 					</c:otherwise>
@@ -304,12 +172,14 @@ $(function(){
 		<form id="form" method="post" action="payment" style="margin: 0;">
 			<div id="pay_way">
 			<div>
-				<div style="text-align: center; margin-bottom: 20px;">
-					<div style="border-radius:5px; box-shadow: 3px 7px 9px -4px grey; margin-right:280px; padding-top:12px; font-size:30px; text-align: center; display: inline-block; width: 300px; height: 60px;">
-						<input style="margin: -1px 10px 0 0; vertical-align:middle; width: 30px; height: 30px;" type="radio" value="0" name="price_status" id="payment1" ><label for="payment1">만나서 결제</label>
+				<div class="pay_btnBox">
+					<div>
+						<input type="radio" value="0" name="price_status" id="payment1" >
+						<label for="payment1">만나서 결제</label>
 					</div>
-					<div style="border-radius:5px; box-shadow:3px 7px 9px -4px grey; padding-top:12px; font-size:30px; text-align: center; display: inline-block; width: 330px; height: 60px;">
-						<input style="margin: -1px 10px 0 0; vertical-align:middle; width: 30px; height: 30px;" type="radio" value="1" name="price_status" id="payment2" ><label for="payment2">간편 결제(카카오)</label>
+					<div class="pay_btnBox">
+						<input type="radio" value="1" name="price_status" id="payment2" >
+						<label for="payment2">간편 결제(카카오)</label>
 					</div>
 				</div>
 			<div class="total_pricebox">
@@ -333,10 +203,10 @@ $(function(){
 						<p id="discount" style="width:200px; margin-left: 640px;">0원</p>
 					</div>
 			</div>
-			</div>
-			<div style="text-align: right; padding-top: 20px;">
-				<button type="submit" id="payment">결제하기</button>			
-			</div>
-			</div>
+		</div>
+		<div style="text-align: right; padding-top: 20px;">
+			<button type="submit" id="payment">결제하기</button>			
+		</div>
+	</div>
 		</form>
 <c:import url="/WEB-INF/views/template/footer.jsp"></c:import>

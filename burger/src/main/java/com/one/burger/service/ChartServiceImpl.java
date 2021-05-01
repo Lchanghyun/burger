@@ -60,10 +60,8 @@ public class ChartServiceImpl implements ChartService{
 	
 	@Override
 	public List<MenuBranchMenuGoodsVo> menu_sales(String sales_date) throws Exception {
-		log.info("menu_sales(repository) : !");
 		Map<String, Object> param = new HashMap<>();
 		List<Menu> menu_list = menuRepository.all_list();
-		log.info("menu_list : " + menu_list);
 		List<MenuBranchMenuGoodsVo> result = new ArrayList<>();
 		param.put("day",sales_date);
 		for(Menu menu : menu_list) {
