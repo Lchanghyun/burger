@@ -3,7 +3,85 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style type="text/css">
-			li {list-style: none; float: left; padding: 6px;}
+			.notice_table > li {list-style: none; float: left; padding: 6px;}
+			
+	.hr_line{
+		position : absolute;
+		top : 20%;  
+		left : 218px;
+		display : block;
+		width: 84%;   
+		border : 2px solid;
+	}
+	
+	.page_title{
+		position : absolute;
+		top : 15%;
+		left : 220px;
+		font-size : 40px;	
+	}
+	
+	.btn_wrapper{
+		position: absolute;
+	    top: clamp(10px, 17% , 500px);
+	    left: clamp(600px, 84.6%, 1700px);
+	    width: 240px;
+	    z-index: 2;
+	}
+	
+	.notice_wrap{
+        width: 1680px;
+	    height: 845px;
+	    position: relative;
+	    margin: auto;
+	   	
+    }
+    .notice_container{
+   		width: 1610px;
+	    height: 530px;
+	    position: absolute;
+	    left: 10px;
+	    top: 214px;
+    }
+
+    .notice_list_wrap{
+           width: 1600px;
+		   height: 496px;
+		   overflow: auto;
+		   position: relative;
+		   left: -10px;
+		   top: 30px;
+	    
+    }
+
+    table.notice_table {
+        border-collapse: collapse;
+        border-spacing: 1px;
+        text-align: center;
+        line-height: 1.5;
+        margin: auto; 
+    }
+    table.notice_table > thead > tr.tlist > th {
+        width: 155px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-top: 2px solid #EE4E34;
+        border-bottom: 2px solid #EE4E34;
+        position : sticky;
+        top: 0px;
+        color:#EE4E34;
+    	background-color: #FCEDDA;
+      
+    }
+    table.notice_table td {
+        width: 300px;
+        padding: 10px; 
+        text-align: center;
+        vertical-align: top;
+        border-bottom: 1px solid #444444;
+    
+    }
 		</style>
 <script>
 	$(function(){
@@ -13,13 +91,16 @@
 	})
 </script>
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
-
-<h2>공지사항 </h2>
-	<div class="notice_write_btn_line">
-		<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
-	</div>
-	<div class="notice_list_wrap">
-		<table class="notice_list_table">
+	<div style="height: calc(100% - 142px)">
+	<div class="page_title">공지사항</div>
+				<div class="btn_wrapper">
+					<!-- 버튼넣기 -->
+				</div>
+				<hr class="hr_line">
+				<div class="notice_wrap">
+	        	<div class="notice_container">
+	            <div class="notice_list_wrap">
+		<table class="notice_table">
 			<thead>
 				<tr>
 					<th align="center">번호</th>
@@ -64,7 +145,10 @@
     </c:if> 
   </ul>
 </div>
-		
+</div>
+
+</div>
+		</div>
 	</div>
 
 <jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 
