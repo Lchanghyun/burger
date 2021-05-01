@@ -101,17 +101,17 @@ public class BurgerOrderController {
 		model.addAttribute("goodsList", service.goodsList(order_no));
 		return "burger/payment";
 	}
+
 	int today_num = 0;
 	@PostMapping("/payment")
 	public String paymentPost(Today today) throws Exception{
 		log.info("POSTpayment()");
 		//sysdate 조회 -> 조회목록 0보다 크면 하튼 길이로 체크 불린;; today_num이 1로 초기화
 		int order_no = today.getOrder_no();
-		boolean orderNoCheck = service.orderNoCheck(order_no);
-		if(!orderNoCheck) {
-			return "burger/fail";
-		}
-
+//		boolean orderNoCheck = service.orderNoCheck(order_no);
+//		if(!orderNoCheck) {
+//			return "burger/fail";
+//		}
 
 		Integer reset = service.sysdateToday();
 		if(reset == null) {
