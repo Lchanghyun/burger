@@ -70,10 +70,12 @@
         }
         .myorderStatus{
             padding:0.5rem;
+            width:70px;
             color : white;
+            margin-left:50px;
             background-color: #EE4E34;
             border-radius:3px;
-            text-align: right;
+            text-align: center;
         }
         .menulist-img{
         	width:150px;

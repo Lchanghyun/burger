@@ -229,8 +229,8 @@
 										ticks:{
 											beginAtZero: true,
 											fontFamily: "GmarketSansMedium",
-											stepSize:100000,
-											max:1000000,
+											stepSize:50000,
+											max:500000,
 											callback: function(label, index, labels){
 												return Intl.NumberFormat().format(label);
 											}
@@ -347,8 +347,8 @@
 													ticks:{
 														beginAtZero: true,
 														fontFamily: "GmarketSansMedium",
-														stepSize:100000,
-														max:1000000,
+														stepSize:50000,
+														max:500000,
 														callback: function(label, index, labels){
 															return Intl.NumberFormat().format(label);
 														}
