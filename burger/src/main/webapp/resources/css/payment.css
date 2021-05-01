@@ -1,0 +1,134 @@
+@charset "UTF-8";
+	#map{
+		margin: 0 auto;
+		height: auto; 
+		min-height: 250px; 
+		overflow: auto; 
+		width: 1000px; 
+		margin-top: 10px;
+	}
+	#pay_way{
+		margin: 0 auto;
+		height: 350px; 
+		min-height: 250px; 
+		overflow: auto; 
+		width: 1000px; 
+		margin-top: 10px;
+	}
+	#menu_info{
+		margin: 0 auto;
+		height: auto; 
+		min-height: 250px; 
+		overflow: auto; 
+		width: 1000px; 
+		margin-top: 10px;
+	}
+	#goods{
+		margin: 0 auto;
+		height: auto; 
+		min-height: 300px; 
+		overflow: auto; 
+		width: 1000px; 
+		margin-top: 10px;
+	}
+	.menu_name{
+		font-size: 25px;
+		margin: 10px 0 3px;
+		padding-left: 20px;
+	}
+	.menu_price{
+		padding-left: 20px;
+		font-size: 18px;
+		margin: 3px 0;
+	}
+	.menu_count{
+		display:inline-block;
+		position: relative;
+		left: 800px;
+		font-size: 18px;
+		margin: 3px 0;
+	}
+	.menu_total{
+		display:inline-block;
+		position: relative;
+		left: 800px;
+		font-size: 18px;
+		margin: 3px 0;
+	}
+	#check_order, #payment{
+	   box-shadow: 3px 7px 9px -4px grey;
+       width: 180px;
+       height: 50px;
+       padding: 3px;
+       padding-top: 6px;
+       background-color:#EE4E34;
+       color: white;
+       border: none;
+       font-family: 'GmarketSansMedium';
+       font-size: 25px;
+       font-weight: bold;
+       border-radius: 3px;
+    }
+    #check_order:hover, , #payment:hover{
+        cursor: pointer;
+        background-color:#FCEDDA;
+        color: #EE4E34;
+    }
+	#check_order:focus , #payment:focus{
+		outline: none;
+	}
+	.total_pricebox p{
+		display: inline-block;
+		margin: 5px 0;
+		font-size: 20px;
+	}
+	.payment_title{
+		display: inline-block;
+	}
+	.payment_title h3{
+		margin: 0 0 0 50px;
+		font-size: 40px;
+	}
+	.address_branch{
+		width: 1000px; 
+		margin: 0 auto; 
+		text-align: right;
+		font-size: 20px;
+	}
+	.address_branch span{
+		margin-top: 5px;
+		display: inline-block;
+	}
+	#branch_address{
+		font-weight: bold;
+		font-size: 23px;
+	}
+	.menu_info_title{
+		padding: 30px 0 0 20px; 
+		font-size: 30px; 
+		margin-top: 10px;
+	}
+	.pay_btnBox{
+		text-align: center; 
+		margin-bottom: 20px;
+	}
+	.pay_btnBox div{
+		border-radius:5px;
+		box-shadow: 3px 7px 9px -4px grey; 
+		margin: 0 80px; 
+		width: 330px; 
+		padding-top:12px; 
+		font-size:30px; 
+		text-align: center; 
+		display: inline-block; 
+		height: 60px;
+	}
+	.pay_btnBox div input{
+		margin: -1px 10px 0 0; 
+		vertical-align:middle; 
+		width: 30px; 
+		height: 30px;
+	}
+	
+	
+	
