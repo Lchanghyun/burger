@@ -6,7 +6,7 @@
 <title>주문완료</title>
 <c:import url="/WEB-INF/views/template/header.jsp"></c:import>
 <link rel="stylesheet" href="${path}/resources/css/payment_success.css"></link>
-	<span class="success">주문이 완료 되었습니다.</span>
+	<span class="success">주문이 이미 완료 되었습니다.</span>
 	<div class="href">
 		<a href="${path}">홈으로</a> <a href="${path}/myorder/list">MY ORDER</a>
 	</div>

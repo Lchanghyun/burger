@@ -28,10 +28,6 @@
 		values(#{branch_no}, #{branch_name}, #{branch_id}, #{branch_pw}, #{branch_address})
 	</insert>
 	
-	<!-- 미경이의 branch list-->
-	<select id="list" resultType="Branch">
-		select * from branch
-	</select>
 	<!-- 시퀀스 -->
 	<select id="branch_seq" resultType="int">
 		select branch_seq.nextval from dual
@@ -56,16 +52,20 @@
 	</select>
 	
 	<!-- 조회 -->
-	<select id="branch_find" resultType="Branch" parameterType="int">
+	<select id="branch_find" resultType="branch" parameterType="int">
 		select * from branch where branch_no = #{branch_no}
 	</select>
 	
-	<select id="branch_find2" resultType="Branch" parameterType="String">
+	<select id="branch_find2" resultType="branch" parameterType="String">
 		select * from branch where branch_id = #{branch_id}
 	</select>
 	
+	<select id="super_find2" resultType="Supervisor" parameterType="String">
+		select * from supervisor where super_id = #{super_id}
+	</select>
+	
 	<!-- 수정 -->
-	<update id="editBranch" parameterType="Branch">
+	<update id="editBranch" parameterType="branch">
 		update branch set branch_pw = #{branch_pw}
 	</update>
 	
@@ -74,4 +74,8 @@
 		delete from branch where branch_id = #{branch_id} and branch_pw = #{branch_pw}
 	</delete>
 
+	<select id="list" resultType="Branch">
+		select * from branch
+	</select>
+	
 </mapper>

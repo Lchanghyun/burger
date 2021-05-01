@@ -40,5 +40,11 @@
 	<insert id="orderInsert" parameterType="BurgerOrder">
 		insert into burger_order values (#{order_no}, #{member_no}, #{branch_no})
 	</insert>
+	<select id="branch_addr" resultType="string" parameterType="int">
+		select branch_address 
+		  from branch B
+		   inner join burger_order BO on BO.branch_no = B.branch_no
+		 where order_no = #{order_no}
+	</select>
 	
 </mapper>

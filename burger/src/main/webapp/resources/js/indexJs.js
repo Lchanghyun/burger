@@ -20,14 +20,30 @@ $(function(){
     }, function(){
         idxMenuBurger.text("BUGER&DRINK");
     });
-    $(idxMenuLogin).hover(function(){
-        idxMenuLogin.text("로그인");
-    }, function(){
-        idxMenuLogin.text("LOGIN");
-    });
-    $(idxMenuJoin).hover(function(){
-        idxMenuJoin.text("회원가입");
-    }, function(){
-        idxMenuJoin.text("JOIN");
-    });
+    if(idxMenuLogin.text() === "LOGIN"){
+    	$(idxMenuLogin).hover(function(){
+    		idxMenuLogin.text("로그인");
+    	}, function(){
+    		idxMenuLogin.text("LOGIN");
+    	});    	
+    }else{
+    	$(idxMenuLogin).hover(function(){
+    		idxMenuLogin.text("로그아웃");
+    	}, function(){
+    		idxMenuLogin.text("LOGOUT");
+    	});    	    	
+    }
+    if(idxMenuJoin.text() === "JOIN"){
+    	$(idxMenuJoin).hover(function(){
+    		idxMenuJoin.text("회원가입");
+    	}, function(){
+    		idxMenuJoin.text("JOIN");
+    	});    	
+    }else{
+    	$(idxMenuJoin).hover(function(){
+    		idxMenuJoin.text("주문내역");
+    	}, function(){
+    		idxMenuJoin.text("MY ORDER");
+    	});    	    	
+    }
 })

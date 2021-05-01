@@ -58,5 +58,7 @@
 		group by G.bm_no, M.menu_name, M.category
 		order by G.bm_no asc
  	</select>
- 	
+ 	<select id="orderNoCheck" resultType="Today" parameterType="int">
+ 		select * from today where order_no = #{order_no}
+ 	</select>
  </mapper>
