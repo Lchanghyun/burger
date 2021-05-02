@@ -8,8 +8,13 @@
     font-style: normal;
 }
 
+		html, body {
+            margin: 0;
+            padding: 0;
+        }
+
 	.outbox{
-    height: calc(100% - 162px);
+    height: calc(100% - 142px);
     font-family: GmarketSansMedium;
     }
 	h1{

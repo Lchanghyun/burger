@@ -142,7 +142,7 @@ $(function(){
     }
 </script>
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
-
+		
 
 		<div class="outbox" style="width:700px">
 		<div class="header">
@@ -189,6 +189,7 @@ $(function(){
 					<input type="reset" class="btn_reset" id="btn_reset" value="초기화">
 			</div>
 		</form>
+		</div>
 		</div>
 	
 <jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 

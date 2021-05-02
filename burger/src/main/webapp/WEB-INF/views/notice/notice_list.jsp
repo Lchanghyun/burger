@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style type="text/css">
+
+
 			.notice_table > li, .page > li{list-style: none; float: left; padding: 6px; margin:auto;}
 
 	.page{
@@ -26,12 +28,13 @@
 	    font-weight: bold;
 	    border-radius: 3px;
 	}
+
 	.hr_line{
 		position : absolute;
 		top : 20%;  
 		left : 218px;
 		display : block;
-		width: 84%;   
+		width: 84%;    
 		border : 2px solid;
 	}
 	
@@ -151,7 +154,9 @@
 				</c:choose>
 			</tbody>
 		</table>
-		<div>
+		</div>
+		
+		
   
   <ul class="page">
     <c:if test="${pageMaker.prev}">
@@ -166,12 +171,13 @@
     	<li><a href="${pageContext.request.contextPath}/notice/notice_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
-</div>
-</div>
+ </div>
+ </div>
 
-</div>
+
+
 		</div>
-	</div>
+	
 
 <jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 
 
