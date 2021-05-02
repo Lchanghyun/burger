@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"></jsp:include>
 <script>
 	$(function(){
-		let str = "<div><img src='photoShow?fileName=/thumbnail/th_${menu.upload_name}'></div>";
+		let str = "<div><img src='${pageContext.request.contextPath}/menu/photoShow?fileName=/thumbnail/th_${menu.upload_name}'></div>";
 		$(".menuphotoshow").append(str);
 		$("#menu_photo").hide();
 		let menuName = '${menu.menu_name}';

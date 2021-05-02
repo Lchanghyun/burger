@@ -13,7 +13,7 @@
 	.chartBox{
 		width:1300px;
 		height:380px;
-		border: 1px solid black;
+		border: none;
 		padding: 0 10px;
 		margin-bottom:10px;
 	}

@@ -55,19 +55,35 @@
     }
 
    .notice_list_wrap{
-    width: 1600px;
-	height: 496px;
-	position: relative;
-	left: 170px;
-	top: 0px;
-}
+	    width: 1600px;
+		height: 496px;
+		position: relative;
+		left: 170px;
+		top: 0px;
+	}
+	#notice_category{
+		width : 150px;
+		padding : 5px;
+	}
+	#notice_title{
+		width : 800px;
+		padding : 5px;
+	}
+	#notice_content{
+		width : 800px;
+		height : 450px;
+		overflow : auto;
+		padding : 10px;
+	}
 
-    </style> 
+</style> 
 	
 <script>
 	$(document).ready(function () {
 		var formObj = $("#notice_edit")
 		
+		let category= '<c:out value="${editList.notice_category}"/>' 
+		$("#notice_category").val(category).prop("selected", "true")
 		
 		$(".list_btn").on("click", function () {
 			location.href="${pageContext.request.contextPath}/notice/notice_list"
@@ -91,27 +107,26 @@
 			<table class="notice_edit_table">
 			
 				<tr>
-					<td>공지사항 번호</td>
-					<td><input type="text" name="notice_no" value="${editList.notice_no}" readonly="true"/></td>
+					<td><input type="hidden" name="notice_no" value="${editList.notice_no}" readonly="true"/></td>
 				</tr>
 				<tr>
 					<td>분류</td>
 					<td>
-						<select name="notice_category" id="notice_category" required><c:out value="${editList.notice_category}"/>
-						<option value="" selected="selected">공지사항 선택</option>
-						<option value="이벤트" id="">이벤트</option>
-						<option value="공지사항">공지사항</option>
-						<option value="이달의매장/직원">이달의매장/직원</option>
+						<select name="notice_category" id="notice_category" required>
+							<option value="" selected="selected">공지사항 선택</option>
+							<option value="이벤트" id="">이벤트</option>
+							<option value="공지사항">공지사항</option>
+							<option value="이달의매장/직원">이달의매장/직원</option>
 					</select>
 					</td>
 				</tr>
 				<tr>
-					<td>공지사항 제목</td>
-					<td><input type="text" name="notice_title" value="${editList.notice_title}"/></td>
+					<td>제목</td>
+					<td><input type="text" name="notice_title" id="notice_title" value="${editList.notice_title}"/></td>
 				</tr>
 				<tr>
-					<td>공지사항 내용</td>
-					<td><input type="text" name="notice_content" value="${editList.notice_content}"/></td>
+					<td>내용</td>
+					<td><textarea name="notice_content" id="notice_content">${editList.notice_content}</textarea></td> 
 				</tr>
 			</table>
 			</div>
