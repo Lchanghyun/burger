@@ -38,9 +38,10 @@ public class ChartController {
 	private ChartService chartService;
 	
 	@GetMapping("/supervisorChart")
-	public void getSupervisorChart(Model model) throws Exception {
+	public void getSupervisorChart(Model model, HttpSession session) throws Exception {
 		log.info("getSupervisorChart()");
 		
+		int super_no = (int)session.getAttribute("super_no");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY/MM");
 		Date date = new Date();
 		String sysdate = format.format(date);

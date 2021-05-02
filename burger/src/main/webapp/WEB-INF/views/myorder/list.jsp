@@ -42,7 +42,7 @@
 			                    <div class="myorderNum">주문번호: ${list.order_no}</div>
 			                    <div class="myorderTime">주문시간: <fmt:formatDate value="${list.today_time}" pattern="yyyy.MM.dd a HH:mm"/></div>
 			                </div>
-			                <div>
+			                <div class="statusBoxbox">
 			                    <div class="myorderBranch">${list.branch_name}</div>
 			                    <div class="myorderStatus">
 			                    	<c:if test="${list.status eq '0'}">주문접수</c:if>

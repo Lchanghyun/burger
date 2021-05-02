@@ -25,7 +25,7 @@
  		select O.*, T.today_num,T.today_time,T.total_price,T.status,T.price_status from
     	burger_order O inner join today T on O.order_no=T.order_no
     	where O.branch_no=#{branch_no} and to_char(T.today_time,'YY/MM/DD')=to_char(sysdate)
-    	order by O.order_no asc
+    	order by T.today_time asc
  	</select>
  	
  	<select id="menuInfo" parameterType="Integer" resultType="TodayOrderMenu">

@@ -206,14 +206,27 @@ $(function(){
 });
 
 </script>
-
+<style>
+label{
+  margin-right:3px;
+  color: #EE4E34;
+  width:200px;
+  padding-right:0px;
+  display:inline-block;
+  
+ 
+}
+.idCHeckBoxFont, .pwCheckBoxFont, .phoneCheckBoxFont{
+	font-size:15px;
+	}
+</style>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 		<div class="outbox" style="width:700px">
 		<div class="row center">
 			<h1>회원 가입</h1>
 		</div>
-			<form action="member_join" method="post" id="memberJoin" name="member">
+			<form action="${pageContext.request.contextPath}/join/member_join" method="post" id="memberJoin" name="member">
 		
 			<div class="form-group">
 				<label for="member_id">아이디</label>
@@ -241,8 +254,8 @@ $(function(){
 			
 			<div class="form-group">
 				<label for="member_phone">휴대전화 번호</label><br>
-				<input type="text" id="memberPhone" name="member_phone"class="input" placeholder="010-0000-0000과 같이 입력해주세요" required><br>
-				<label for="member_phone">('-'없이 입력해주세요)</label><br>
+				<label for="member_phone">('-'없이 입력해주세요)</label>
+				<input type="text" id="memberPhone" name="member_phone"class="input" placeholder="01012345678과 같이 입력해주세요" required><br>
 				<span class="phoneCheckBoxFont" id="phoneCheckBox"></span>
 			
 			</div>
@@ -253,7 +266,7 @@ $(function(){
 				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="address_btn"><br>
 				<input type="text" name="member_address" id="sample4_roadAddress" placeholder="도로명주소">
 				<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-				<span id="guide" style="color:#999;display:none"></span>
+				<span id="guide" style="color:#999;display:none"></span><br>
 				<input type="text" name="member_address" id="sample4_detailAddress" placeholder="상세주소">
 				<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 			</div>

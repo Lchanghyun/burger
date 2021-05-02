@@ -3,18 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style type="text/css">
-	.notice_table > li, .page > li {
-	list-style: none; 
-	float: left; 
-	padding: 6px;
-	}
-			
-	.page{ 
+
+
+			.notice_table > li, .page > li{list-style: none; float: left; padding: 6px; margin:auto;}
+
+	.page{
+
 	    position: relative;
 	    margin: auto;
 	    top: 20px;
 	    width: 200px;
-			}
+
+	}
+	.notice_write_btn{
+		width: 100px;
+	    height: 30px;
+	    padding: 3px;
+	    padding-top: 6px;
+	    background-color: #EE4E34;
+	    color: white;
+	    border: none;
+	    font-family: 'GmarketSansMedium';
+	    font-size: 15px;
+	    font-weight: bold;
+	    border-radius: 3px;
+	}
+
 	.hr_line{
 		position : absolute;
 		top : 20%;  
@@ -103,7 +117,8 @@
 	<div style="height: calc(100% - 142px)">
 	<div class="page_title">공지사항</div>
 				<div class="btn_wrapper">
-					<button class="notice_write_btn"></button>
+
+					<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
 				</div>
 				<hr class="hr_line">
 				<div class="notice_wrap">

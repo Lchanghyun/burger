@@ -70,14 +70,14 @@ $(function(){
 	
 	var regexPw = /^.*(?=^.{6,12}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	$('#branch_pw').blur(function(){
-		if(regexPw.test($('#member_pw').val())){
+		if(regexPw.test($('#branch_pw').val())){
 			$('#pwCheckBox').text('올바른 비밀번호입니다.');
 			$('#pwCheckBox').css('color', 'blue');
 		}
 		else{
 			$('#pwCheckBox').text('영문+숫자+특수문자 조합6~12자리로 입력해주세요.');
 			$('#pwCheckBox').css('color', 'red');
-			$('#branch_pw').focus();
+			
 			
 		}
 	});
@@ -149,7 +149,7 @@ $(function(){
 			<h1>지점관리자 가입</h1>
 		</div>
 		
-		<form action="branch_join" method="post" id="branchJoin" name="branch">
+		<form action="${pageContext.request.contextPath}/join/branch_join" method="post" id="branchJoin" name="branch">
 			<div class="form-group">
 				<label for="branch_name">지점명</label>
 				<input type="text" id="branch_name" name="branch_name" class="input" placeholder="지점명을 입력해주세요" required> 
