@@ -6,7 +6,7 @@
 
 	<div class="outbox" style="width:100%">
 		<h2>공지사항 글쓰기</h2>
-			<form action="notice_write" method="post" id="notice_write" name="notice_write">
+			<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
 				<div class="form-notice">
 					<label for="noticeCategory">분류</label>
 					<select name="notice_category" id="notice_category" required>
