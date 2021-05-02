@@ -18,7 +18,7 @@
     
 
 	<div class="notice_edit_wrap">
-		<form method="post" action="notice_edit" id="notice_edit">
+		<form method="post" action="${pageContext.request.contextPath}/notice/notice_edit" id="notice_edit">
 			
 			<table class="notice_edit_table">
 				<tr>

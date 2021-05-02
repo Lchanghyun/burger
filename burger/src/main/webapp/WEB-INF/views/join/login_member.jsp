@@ -9,7 +9,7 @@
 
 </script>
 
-<form action="login_member" method="post" class="loginForm">
+<form action="${pageContext.request.contextPath}/join/login_member" method="post" class="loginForm">
 	<div class="outbox" style="width:500px">
 		<div style="row:center">
 			<h1 class="login_title">로그인</h1>			
