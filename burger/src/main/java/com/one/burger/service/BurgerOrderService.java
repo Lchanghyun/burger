@@ -12,7 +12,7 @@ import com.one.burger.entity.Today;
 
 public interface BurgerOrderService {
 	//주문하기 클릭시 나오는 메뉴
-	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception;
+	public List<MenuBranchMenuVo> orderList(String branch_name) throws Exception;
 	
 	//시퀀스
 	public Integer getSeq() throws Exception;
