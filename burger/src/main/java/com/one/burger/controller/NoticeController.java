@@ -33,9 +33,10 @@ public class NoticeController {
 		}
 	//공지사항 글 작성 데이터 전송
 		@PostMapping("/notice_write")
-		public String notice_write(Notice notice, HttpServletRequest req ) throws Exception {
+		public String notice_write(Notice notice, HttpSession session) throws Exception {
 			log.info("notice_write.jsp 이동");
-			int super_no = Integer.parseInt(req.getParameter("super_no"));
+			int super_no = (int)session.getAttribute("super_no");
+			System.out.println(super_no);
 			notice.setSuper_no(super_no);
 			
 			//회원가입 Service

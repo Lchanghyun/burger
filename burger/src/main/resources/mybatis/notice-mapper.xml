@@ -25,8 +25,8 @@
 	 -->
 	 <!-- 공지사항(NOTICE) 글 작성 -->
 	<insert id="notice_write" parameterType="Notice">
-		insert into notice(notice_no, notice_title, notice_content, notice_category)
-			values(NOTICE_SEQ.nextval, #{notice_title}, #{notice_content}, #{notice_category})
+		insert into notice(notice_no, super_no, notice_title, notice_content, notice_category)
+			values(NOTICE_SEQ.nextval, #{super_no}, #{notice_title}, #{notice_content}, #{notice_category})
 	</insert>
 	
 	<!-- 공지사항 목록을 위한 조회 --><!-- 카테고리 넣을거면 넣기 -->
