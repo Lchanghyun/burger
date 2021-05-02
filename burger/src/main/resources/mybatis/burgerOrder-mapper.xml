@@ -28,8 +28,9 @@
 					MP.save_name, B.menu_status, B.bm_no
     		from branch_menu B
         		inner join menu M on B.menu_no = M.menu_no
+        		inner join branch BR on BR.branch_no = B.branch_no
         		inner join menu_photo MP on B.menu_no = MP.menu_no
-            		where B.branch_name = #{branch_name} and M.category != '단종'
+            		where BR.branch_name = #{branch_name} and M.category != '단종'
                 		order by M.menu_no desc
 	</select>
 	
