@@ -1,5 +1,6 @@
 package com.one.burger.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,10 @@ public class NoticeController {
 		}
 	//공지사항 글 작성 데이터 전송
 		@PostMapping("/notice_write")
-		public String notice_write(Notice notice) throws Exception {
+		public String notice_write(Notice notice, HttpServletRequest req ) throws Exception {
 			log.info("notice_write.jsp 이동");
+			int super_no = Integer.parseInt(req.getParameter("super_no"));
+			notice.setSuper_no(super_no);
 			
 			//회원가입 Service
 			noticeService.notice_write(notice);

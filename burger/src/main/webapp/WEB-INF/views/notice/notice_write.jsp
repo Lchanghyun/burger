@@ -70,9 +70,13 @@
 <jsp:include page="/WEB-INF/views/template/managerHeader.jsp"/>
 
 	<div class="outbox" style="width:100%">
+
+		<h2>공지사항 글쓰기</h2>
+			<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
+
 		<div style="height: calc(100% - 142px)">
 		<div class="page_title">공지사항 글쓰기</div>
-			<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
+			
 		<div class="btn_wrapper">
 					<input type="submit" class="btn_no_write" id=write_success value="작성하기">
 					<input type="button" class="btn_no_list" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/notice/notice_list'">
@@ -101,12 +105,16 @@
 				</div>
 				
 				
+
 			</div>
 			</div>
+			
 		</div>
-			</form>
+			
 	</div>
+	</form>
 	</div>
+
 	
 	
 
