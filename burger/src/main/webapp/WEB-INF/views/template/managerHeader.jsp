@@ -37,7 +37,7 @@
             <aside>
 			   
 		<c:choose>
-			<c:when test ="${sessionScope.super_no != null}">
+			<c:when test ="${sessionScope.super_no != null and sessionScope.branch_no == null}">
 		    <div class="left-side-bar">
 			        <ul>
 			            <li>
@@ -63,7 +63,7 @@
 			    </div>
 	</c:when>
 
-	<c:when test = "${sessionScope.branch-no != null}"	>
+	<c:when test = "${sessionScope.branch_no != null and sessionScope.super_no == null}"	>
     <div class="left-side-bar">
         <ul>
             <li>

@@ -72,6 +72,7 @@
 	<div class="outbox" style="width:100%">
 		<div style="height: calc(100% - 142px)">
 		<div class="page_title">공지사항 글쓰기</div>
+			<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
 		<div class="btn_wrapper">
 					<input type="submit" class="btn_no_write" id=write_success value="작성하기">
 					<input type="button" class="btn_no_list" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/notice/notice_list'">
@@ -81,7 +82,6 @@
 					<div class="notice_container">
 					<div class="notice_list_wrap">
 					
-					<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
 				<div class="form-notice">
 					<label for="noticeCategory">분류</label>
 					<select name="notice_category" id="notice_category" required>
@@ -101,10 +101,10 @@
 				</div>
 				
 				
-			</form>
 			</div>
 			</div>
 		</div>
+			</form>
 	</div>
 	</div>
 	
