@@ -104,7 +104,7 @@ $(function(){
 		<h3>Pick-up info</h3>
 	</div>
 	<div id="map"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=229e2c08f37ef9afeaa49b3fd7017d47&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68d4be6c2ce69cb3cfc2551c68619e12&libraries=services"></script>
 	<script src="${path}/resources/js/paymentMapJs.js"></script>		
 	<div class="address_branch">
 		<c:set var="branch_address" value="${address}"></c:set>
@@ -169,7 +169,7 @@ $(function(){
 		<div style="display: inline-block;">
 			<h3 style="margin: 20px 0 10px 50px; font-size: 40px;">결제수단</h3>
 		</div>
-		<form id="form" method="post" action="payment" style="margin: 0;">
+		<form id="form" method="post" action="${pageContext.request.contextPath}/burger/payment" style="margin: 0;">
 			<div id="pay_way">
 			<div>
 				<div class="pay_btnBox">

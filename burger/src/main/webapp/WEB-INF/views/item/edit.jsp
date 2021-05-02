@@ -93,7 +93,7 @@
 		
 	})
 </script>
-<div style="height: calc(100% - 162px);">
+<div class="whole_wrapper">
 	<div class="page_title">원자재 수정</div>
 	<button class="item_list_btn">자재 목록</button>
 	<hr class="hr_line">
