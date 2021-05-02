@@ -39,8 +39,7 @@ public class StockController {
 	public String StockList(Model model, String category, HttpSession session) throws Exception {
 		log.info("StockList()");
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		if(category == null) category="채소류";
 		
@@ -54,8 +53,7 @@ public class StockController {
 	public String register(Model model, HttpSession session) throws Exception {
 		log.info("StockRegister()");
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 	
 		model.addAttribute("list", stockservice.all_list(branch_no));
 
@@ -66,8 +64,7 @@ public class StockController {
 	public String PostRegister(StockItemVo stockItemVo, int size, HttpSession session, RedirectAttributes redirectAttribute) throws Exception {
 		log.info("PostStockRegister()");
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		List<Map<String, Object>> list = new ArrayList<>();
 		
@@ -93,8 +90,7 @@ public class StockController {
 	public void stockPlus(Model model, String category, HttpSession session) throws Exception{
 		log.info("stockPlus()");
 
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		if(category == null) category="채소류";
 		
@@ -106,8 +102,7 @@ public class StockController {
 	public String PostStockPlus(Integer item_no, HttpSession session) throws Exception{
 		log.info("PostStockPlus() + item_no : " + item_no);
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		stockservice.plus(item_no, branch_no);
 		
@@ -118,8 +113,7 @@ public class StockController {
 	public void stockChart(Model model, HttpSession session) throws Exception{
 		log.info("stockChart()");
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 				
 		model.addAttribute("bar_list", stockservice.all_list(branch_no));
 		
@@ -130,8 +124,7 @@ public class StockController {
 	public void categoryChart(Model model, HttpSession session, String category) throws Exception{
 		log.info("categoryChart()");
 		
-		int branch_no = 1;
-		//int branch_no = (int) session.getAttribute("branch_no");
+		int branch_no = (int) session.getAttribute("branch_no");
 		
 		if(category == null) category="채소류";
 
