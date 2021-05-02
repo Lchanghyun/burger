@@ -33,7 +33,7 @@
 		
 		<div class="notice_detail_button_line">
 			<button type="submit" class="notice_list_btn" id="list_btn">목록</button>
-			<c:if test="${sessionScope.super_no != null}">
+			<c:if test="${sessionScope.super_no != null and sessionScope.branch_no == null}">
 				<button type="submit" class="notice_edit_btn" id="edit_btn">수정</button>
 				<button type="submit" class="notice_delete_btn" id="delete_btn">삭제</button>
 			</c:if>

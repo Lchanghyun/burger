@@ -71,7 +71,6 @@
 
 	<div class="outbox" style="width:100%">
 
-		<h2>공지사항 글쓰기</h2>
 			<form action="${pageContext.request.contextPath}/notice/notice_write" method="post" id="notice_write" name="notice_write">
 
 		<div style="height: calc(100% - 142px)">
