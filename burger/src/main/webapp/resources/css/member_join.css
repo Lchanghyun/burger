@@ -14,35 +14,29 @@
     font-style: normal;
 }
 
-		html, body {
-            margin: 0;
-            padding: 0;
-        }
-        * {
-            box-sizing: border-box;
-        }
+	
 	.outbox{
 		height: calc(100% - 162px);
        	font-family: GmarketSansMedium;
     }
 	h1{
 	margin-top:0px;
-    color : #EE4E34;
+  color : #EE4E34;
 	margin-left:200px;
-    font-size:300%;
+  font-size:300%;
 	font-family: GmarketSansBold;
 	display:flex;
-    width:800px;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 4px solid #EE4E34;
+  width:800px;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 4px solid #EE4E34;
 	}
   .form-group{
     align:center;
     color:black;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 30%;
-    font-size: 25px;
+    font-size: 20px;
     width:960px;
     }
    
@@ -87,10 +81,13 @@
 label{
   margin-right:3px;
   color: #EE4E34;
+  width:200px;
+  padding-right:0px;
+  display:inline-block;
 }
 input{
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 3px;
   border: 2px solid #EE4E34;
 
