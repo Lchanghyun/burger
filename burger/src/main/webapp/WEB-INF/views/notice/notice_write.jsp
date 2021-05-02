@@ -76,6 +76,7 @@
 
 		<div style="height: calc(100% - 142px)">
 		<div class="page_title">공지사항 글쓰기</div>
+			
 		<div class="btn_wrapper">
 					<input type="submit" class="btn_no_write" id=write_success value="작성하기">
 					<input type="button" class="btn_no_list" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/notice/notice_list'">
@@ -104,14 +105,16 @@
 				</div>
 				
 				
-			
+
 			</div>
 			</div>
 			
 		</div>
+			
 	</div>
 	</form>
 	</div>
+
 	
 	
 
