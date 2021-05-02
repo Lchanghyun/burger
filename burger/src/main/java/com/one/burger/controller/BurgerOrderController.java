@@ -40,10 +40,10 @@ public class BurgerOrderController {
 	}
 	
 	@GetMapping("/order")
-	public String orderInsert(int branch_no, Model model) throws Exception{
+	public String orderInsert(String branch_name, Model model) throws Exception{
 		log.info("GETorderInsert()");
-		log.info("branch_no: "+branch_no);
-		model.addAttribute("orderList", service.orderList(branch_no));
+		log.info("branch_name: "+branch_name);
+		model.addAttribute("orderList", service.orderList(branch_name));
 		return "burger/order";
 	}
 	

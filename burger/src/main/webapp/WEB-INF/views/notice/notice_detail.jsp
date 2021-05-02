@@ -98,6 +98,7 @@
 			<button type="submit" class="notice_edit_btn" id="edit_btn">수정</button>
 			<button type="submit" class="notice_delete_btn" id="delete_btn">삭제</button>
 		</c:if>
+			
 		</div>
 		<hr class="hr_line">
 				<div class="notice_wrap">

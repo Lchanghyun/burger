@@ -26,8 +26,8 @@ public class BurgerOrderRepository {
 		return getSeq;
 	}
 	
-	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception{
-		return sqlSession.selectList("burgerOrder.orderList", branch_no);
+	public List<MenuBranchMenuVo> orderList(String branch_name) throws Exception{
+		return sqlSession.selectList("burgerOrder.orderList", branch_name);
 	}
 
 	public String branchAddr(int order_no) throws Exception{

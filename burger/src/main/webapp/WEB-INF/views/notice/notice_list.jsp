@@ -118,9 +118,9 @@
 	<div style="height: calc(100% - 142px)">
 	<div class="page_title">공지사항</div>
 				<div class="btn_wrapper">
-				<c:if test="${sessionScope.super_no != null}">
-					<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
-				</c:if>
+					<c:if test="${sessionScope.super_no != null and sessionScope.branch_no == null}">
+						<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
+					</c:if>
 				</div>
 				<hr class="hr_line">
 				<div class="notice_wrap">
