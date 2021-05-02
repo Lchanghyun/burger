@@ -57,14 +57,15 @@ public class BranchController {
 	
 	//지점 관리자 로그인 페이지로 이동
 	@GetMapping("/login_auth")
-	public void login_auth() throws Exception {
+	public void login_auth(HttpSession session) throws Exception {
 		log.info("지점 관리자 / 본사 관리자 로그인 페이지 이동");
+		session.invalidate();
 	}
 	
 	//로그인 데이터 전송
 	@PostMapping("/login_auth")
 	public String login(@ModelAttribute Login login, HttpSession session) throws Exception {
-		boolean result; 
+		boolean result;
 		if(login.getGubun().equals("super")) {
 			result = branchService.superLogin(login.getId(),login.getPw()); //본사로그인
 			if(result) {

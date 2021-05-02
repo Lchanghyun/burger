@@ -3,14 +3,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style type="text/css">
-			.notice_table > li {list-style: none; float: left; padding: 6px;}
-			
+
+
+			.notice_table > li, .page > li{list-style: none; float: left; padding: 6px; margin:auto;}
+
+	.page{
+
+	    position: relative;
+	    margin: auto;
+	    top: 20px;
+	    width: 200px;
+
+	}
+	.notice_write_btn{
+		width: 100px;
+	    height: 30px;
+	    padding: 3px;
+	    padding-top: 6px;
+	    background-color: #EE4E34;
+	    color: white;
+	    border: none;
+	    font-family: 'GmarketSansMedium';
+	    font-size: 15px;
+	    font-weight: bold;
+	    border-radius: 3px;
+	}
+
 	.hr_line{
 		position : absolute;
 		top : 20%;  
 		left : 218px;
 		display : block;
-		width: 84%;   
+		width: 84%;    
 		border : 2px solid;
 	}
 	
@@ -47,7 +71,6 @@
     .notice_list_wrap{
            width: 1600px;
 		   height: 496px;
-		   overflow: auto;
 		   position: relative;
 		   left: -10px;
 		   top: 30px;
@@ -94,7 +117,8 @@
 	<div style="height: calc(100% - 142px)">
 	<div class="page_title">공지사항</div>
 				<div class="btn_wrapper">
-					<!-- 버튼넣기 -->
+
+					<button class="notice_write_btn" id="notice_write_btn">공지 작성 </button>
 				</div>
 				<hr class="hr_line">
 				<div class="notice_wrap">
@@ -129,27 +153,30 @@
 				</c:choose>
 			</tbody>
 		</table>
-		<div>
+		</div>
+		
+		
   
-  <ul>
+  <ul class="page">
     <c:if test="${pageMaker.prev}">
-    	<li><a href="notice_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+    	<li><a href="${pageContext.request.contextPath}/notice/notice_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    	<li><a href="notice_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    	<li><a href="${pageContext.request.contextPath}/notice/notice_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="notice_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    	<li><a href="${pageContext.request.contextPath}/notice/notice_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
-</div>
-</div>
+ </div>
+ </div>
 
-</div>
+
+
 		</div>
-	</div>
+	
 
 <jsp:include page="/WEB-INF/views/template/managerFooter.jsp"/> 
 

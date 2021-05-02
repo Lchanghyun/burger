@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.outbox{
+    height: calc(100% - 162px);
+    font-family: GmarketSansMedium;
+    margin:0 auto;
+    margin-top:250px;
+    }
+h1{
+  margin-top:0px;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 4px solid #EE4E34;
+}
+
+.row_auth{
+  margin-top: 10px;
+  border : none;
+  width : 250px;
+}
+.login_bt_auth{
+  padding:0.4rem 0.3rem 0.3rem 0.3rem;
+  font-size:20px;
+  background-color: #EE4E34;
+  color:white;
+  outline:none;
+  border:none;
+  margin-right:5px;
+  width:320px;
+  height:50px;
+  border-radius: 3px;
+  cursor:pointer;
+  margin-top:25px;
+}
+.login_bt_auth:hover{
+  color: #EE4E34;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25),0 7px 10px 0 rgba(0,0,0,0.19);
+}
+.login_box{
+  margin-left: 90px;
+}
+.login_id_auth, .login_pw_auth{
+  color: black;
+  font-size: 25px;
+  border-radius: 3px;
+  border: 2px solid #EE4E34;
+}
+.success_auth{
+  text-align:center;
+}
+h3{
+	color:#EE4E34;
+	font-size:40px;
+	text-align:center;
+  padding-left:0px;
+  margin-top:100px;
+}
+.success_message{
+  color:#757575;
+  text-align:center;
+}
+.button_login{
+  padding:0.4rem 0.3rem 0.3rem 0.3rem;
+  font-size:20px;
+  background-color: #EE4E34;
+  color:white;
+  outline:none;
+  border:none;
+  margin-right:5px;
+  width:320px;
+  height:50px;
+  border-radius: 3px;
+  cursor:pointer;
+  margin-top:50px;
+}
+.button_login:hover{
+  color: #EE4E34;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25),0 7px 10px 0 rgba(0,0,0,0.19);
+}
+.radio_auth{
+  margin-left:5px;
+  font-size:25px;
+}
+.button{
+  text-align:center;
+}
+.button_login_member{
+  padding:0.4rem 0.3rem 0.3rem 0.3rem;
+  font-size:20px;
+  background-color: #EE4E34;
+  color:white;
+  outline:none;
+  border:none;
+  margin-right:5px;
+  width:320px;
+  height:50px;
+  border-radius: 3px;
+  cursor:pointer;
+  margin-top:50px;
+}
+.button_login_member:hover{
+  color: #EE4E34;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25),0 7px 10px 0 rgba(0,0,0,0.19);
+}
+.button_index_member{
+  padding:0.4rem 0.3rem 0.3rem 0.3rem;
+  font-size:20px;
+  background-color: #EE4E34;
+  color:white;
+  outline:none;
+  border:none;
+  margin-right:5px;
+  width:320px;
+  height:50px;
+  border-radius: 3px;
+  cursor:pointer;
+  margin-top:50px;
+}
+.button_index_member:hover{
+  color: #EE4E34;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25),0 7px 10px 0 rgba(0,0,0,0.19);
+}
