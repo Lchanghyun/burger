@@ -56,13 +56,26 @@
     }
 
    .notice_list_wrap{
-    width: 1600px;
-	height: 496px;
-	position: relative;
-	left: 170px;
-	top: 0px;
-}
-
+	    width: 1600px;
+		height: 496px;
+		position: relative;
+		left: 170px;
+		top: 0px;
+	}
+	#notice_category{
+		width : 150px;
+		padding : 5px;
+	}
+	#notice_title{
+		width : 800px;
+		padding : 5px;
+	}
+	#notice_content{
+		width : 800px;
+		height : 450px;
+		overflow : auto;
+		padding : 10px;
+	}
     </style>    
 <script>
 	$(document).ready(function(){
@@ -109,10 +122,6 @@
 			
 			<table class="notice_detail_table">
 				<tr>
-					<td align="center">NO</td>
-					<td><form:input path="notice_no" class="noticeNo" readonly="true"/></td>
-				</tr>
-				<tr>
 					<td align="center">분류</td>
 					<td><form:input path="notice_category" readonly="true"/></td>
 				</tr>
@@ -122,7 +131,7 @@
 				</tr>
 				<tr>
 					<td align="center">내용</td>
-					<td><form:input path="notice_content" readonly="true"/></td>
+					<td><form:textarea path="notice_content" readonly="true"/></td>
 				</tr>
 			</table>
 		</form:form>
