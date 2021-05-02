@@ -28,8 +28,8 @@ public class BurgerOrderServiceImpl implements BurgerOrderService {
 	private TodayOrderRepository todayRepository;
 	
 	@Override
-	public List<MenuBranchMenuVo> orderList(Integer branch_no) throws Exception {
-		return bugerOrderRepository.orderList(branch_no);
+	public List<MenuBranchMenuVo> orderList(String branch_name) throws Exception {
+		return bugerOrderRepository.orderList(branch_name);
 	}
 	@Override
 	public Integer getSeq() throws Exception {
