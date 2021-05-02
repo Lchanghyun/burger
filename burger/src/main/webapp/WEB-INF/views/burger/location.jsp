@@ -36,8 +36,8 @@ var markers = [];
 	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	        level: 4 // 지도의 확대 레벨
 	    };  
-
- 		// 지도를 생성합니다    
+		
+ 		// 지도를 생성합니다    제발..
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 		// 장소 검색 객체를 생성합니다
