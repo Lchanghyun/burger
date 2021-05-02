@@ -27,6 +27,7 @@
 	    font-size: 15px;
 	    font-weight: bold;
 	    border-radius: 3px;
+	    margin-left:110px;
 	}
 
 	.hr_line{
