@@ -1,6 +1,8 @@
 # BGMG: 버거머거
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png" style="padding: 0;margin-left:30px;">
+</p>
 
-![image](https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png)
 ___
 
 ## 참고 사이트
@@ -28,8 +30,8 @@ ___
 ![image](https://user-images.githubusercontent.com/72377484/116806377-91247980-ab67-11eb-861d-49e799aca255.png)
 ___
 
-## 기술 스택
-![image](https://user-images.githubusercontent.com/72377484/116807105-35a8ba80-ab6c-11eb-9794-74a63c309320.png)
+## 유스 케이스
+![image](https://user-images.githubusercontent.com/72377484/116850100-f9885f00-ac2a-11eb-81b6-4d329e72624d.png)
 ___
 
 ## ERD 구조
@@ -38,6 +40,10 @@ ___
 
 ## 서비스 시연 영상
 ![image](https://user-images.githubusercontent.com/72377484/116808752-912b7600-ab75-11eb-913b-d6e273df0811.png)
+___
+
+## 기술 스택
+![image](https://user-images.githubusercontent.com/72377484/116807105-35a8ba80-ab6c-11eb-9794-74a63c309320.png)
 ___
 
 ## 팀원 소개
