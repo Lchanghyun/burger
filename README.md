@@ -1,6 +1,8 @@
 # BGMG: 버거머거
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png" style="padding: 0;margin-left:30px;">
+</p>
 
-![image](https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png)
 ___
 
 ## 참고 사이트
