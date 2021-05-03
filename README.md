@@ -28,16 +28,16 @@ ___
 ![image](https://user-images.githubusercontent.com/72377484/116806377-91247980-ab67-11eb-861d-49e799aca255.png)
 ___
 
-## 기술 스택
-![image](https://user-images.githubusercontent.com/72377484/116807105-35a8ba80-ab6c-11eb-9794-74a63c309320.png)
-___
-
 ## ERD 구조
 ![image](https://user-images.githubusercontent.com/72377484/116807284-4b6aaf80-ab6d-11eb-8cee-25d57a0b6f77.png)
 ___
 
 ## 서비스 시연 영상
 ![image](https://user-images.githubusercontent.com/72377484/116808752-912b7600-ab75-11eb-913b-d6e273df0811.png)
+___
+
+## 기술 스택
+![image](https://user-images.githubusercontent.com/72377484/116807105-35a8ba80-ab6c-11eb-9794-74a63c309320.png)
 ___
 
 ## 팀원 소개
