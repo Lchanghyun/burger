@@ -1,8 +1,12 @@
 # BGMG: 버거머거
-___
-![image](https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png)
 
+![image](https://user-images.githubusercontent.com/72377484/116805041-83b6c180-ab5e-11eb-91c1-15bbe400f87c.png)
 ___
+
+## 참고 사이트
+![image](https://user-images.githubusercontent.com/72377484/116848608-ed4ed280-ac27-11eb-8875-0377fbdee3fe.png)
+___
+
 ## 서비스 소개
 가상의 햄버거 프렌차이즈 업체(본사&지점) 내부관리시스템 및 비대면 웹 주문 키오스크
 본사와 지점을 위한 맞춤형 매출 차트! (매출관리 및 제품 선호도 파악 용이)
@@ -21,8 +25,8 @@ ___
 
 ### 지점 매출차트
 ![image](https://user-images.githubusercontent.com/72377484/116806377-91247980-ab67-11eb-861d-49e799aca255.png)
-
 ___
+
 ## 기술 스택
 ![image](https://user-images.githubusercontent.com/72377484/116807105-35a8ba80-ab6c-11eb-9794-74a63c309320.png)
 ___
