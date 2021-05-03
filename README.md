@@ -37,7 +37,7 @@ ___
 
 ## 팀원 소개
 
-| 💪이창현 | 🤮김미경 | 🍀김아라 | 🍕양동민 | 🛸이승주 |
+| 💪이창현 | 🙏김미경 | 🍀김아라 | 🍕양동민 | 🛸이승주 |
 |:--------:|:--------:|:--------:|:--------:|:--------:|
 |![image](https://user-images.githubusercontent.com/72377484/116808255-c71b2b00-ab72-11eb-98ca-ffe0bd733d6b.png) | ![image](https://user-images.githubusercontent.com/72377484/116808275-e5812680-ab72-11eb-8331-957051df05b3.png) |![image](https://user-images.githubusercontent.com/72377484/116808281-ee71f800-ab72-11eb-83b8-3100af6456c3.png) |![image](https://user-images.githubusercontent.com/72377484/116808292-f9c52380-ab72-11eb-9f5b-075cb3226dd9.png) |![image](https://user-images.githubusercontent.com/72377484/116808296-fe89d780-ab72-11eb-8697-4ce7857fe663.png) |
 | 자재&재고관리 | 주문&결제 | 주문현황&내역<br>메뉴관리 | 회원가입/로그인<br>(지점,사용자) | 발주관리 |
