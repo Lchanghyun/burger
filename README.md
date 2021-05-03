@@ -5,7 +5,7 @@ ___
 
 ## 참고 사이트
 ![image](https://user-images.githubusercontent.com/72377484/116848608-ed4ed280-ac27-11eb-8875-0377fbdee3fe.png)
-ShakeShakeBurger / BurgerKing
+ShakeShakeBurger(쉑쉑버거) / BurgerKing(버거킹)
 ___
 
 ## 서비스 소개
