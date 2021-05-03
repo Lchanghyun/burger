@@ -28,6 +28,10 @@ ___
 ![image](https://user-images.githubusercontent.com/72377484/116806377-91247980-ab67-11eb-861d-49e799aca255.png)
 ___
 
+## 유스 케이스
+![image](https://user-images.githubusercontent.com/72377484/116850100-f9885f00-ac2a-11eb-81b6-4d329e72624d.png)
+___
+
 ## ERD 구조
 ![image](https://user-images.githubusercontent.com/72377484/116807284-4b6aaf80-ab6d-11eb-8cee-25d57a0b6f77.png)
 ___
