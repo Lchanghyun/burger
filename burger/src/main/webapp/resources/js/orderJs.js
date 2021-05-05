@@ -22,7 +22,8 @@ $(function(){
 	nowHour = pluszero(nowHour);
 	nowMins = pluszero(nowMins);
 	
-	var nowTime = nowMonth + nowDay + nowHour + nowMins;
+	var nowTime = '05052100';
+		//nowMonth + nowDay + nowHour + nowMins;
 	console.log(nowTime);
 	var startdate = nowMonth + nowDay + '0900';
 	var enddate = nowMonth + nowDay + '2200';

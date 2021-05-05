@@ -24,7 +24,10 @@
 			<div id="menu" >
 				<c:choose>
 					<c:when test="${empty orderList}">
-						<p>게시물이 없습니다.</p>
+						<div class="menuReady">
+							<p>메뉴 준비중입니다.</p>
+							<br>
+						</div>
 					</c:when>
 						<c:otherwise>
 						<c:forEach items="${orderList}" var="MenuBranchMenuVo" >
@@ -51,7 +54,9 @@
 		<button id="all-delete">전체 삭제</button>
 			<div style="width: 1000px; margin: 0 auto;">
 				<div id="array">
-					<div id="menuEmpty">제품을 선택해주세요.</div>								
+					<div id="menuEmpty">
+						<p>제품을 선택해주세요.</p>
+					</div>								
 				</div>
 			</div>
 		<div id="total">
