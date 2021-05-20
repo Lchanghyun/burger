@@ -190,4 +190,20 @@
 	#menuEmpty{
 		padding: 10px 30px; 
 		font-size: 25px;
+		text-align: center; 
+		margin-top: 110px;
+	}
+	#menuEmpty p{
+		margin: 0;
+	}
+	.menuReady{
+		display: inline-block; 
+		text-align: center; 
+		width: 1140px; 
+		height: 330px;
+	}
+	.menuReady p {
+		color:#EE4E34; 
+		font-size: 35px; 
+		margin-top: 140px;
 	}
